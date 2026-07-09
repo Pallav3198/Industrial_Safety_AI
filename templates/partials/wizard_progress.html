@@ -1,0 +1,26 @@
+{#
+    Shared 7-step progress indicator for the Add Facility wizard.
+    Include with: {% include "partials/wizard_progress.html" %}
+    after setting a `current_step` integer (1-7) in the calling template's
+    render_template() call.
+#}
+<div class="wizard-progress mb-4">
+    {% set steps = [
+        (1, "Upload"),
+        (2, "Validate"),
+        (3, "Sensors"),
+        (4, "Layout"),
+        (5, "History"),
+        (6, "Employees"),
+        (7, "Attendance"),
+    ] %}
+    {% for num, label in steps %}
+        <div class="wizard-step {{ 'done' if num < current_step else ('active' if num == current_step else '') }}">
+            <span class="wizard-step-number">
+                {% if num < current_step %}<i class="bi bi-check-lg"></i>{% else %}{{ num }}{% endif %}
+            </span>
+            <span class="wizard-step-label">{{ label }}</span>
+        </div>
+        {% if not loop.last %}<div class="wizard-step-line {{ 'done' if num < current_step else '' }}"></div>{% endif %}
+    {% endfor %}
+</div>

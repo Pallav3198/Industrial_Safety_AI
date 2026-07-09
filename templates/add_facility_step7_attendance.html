@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Add Facility — Step 7{% endblock %}
+
+{% block content %}
+<div id="app-data" data-factory-id="{{ factory.id }}"></div>
+
+{% with current_step = 7 %}{% include "partials/wizard_progress.html" %}{% endwith %}
+
+<div class="mb-2 text-center">
+    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
+        <i class="bi bi-arrow-left"></i> Back to Facility Overview
+    </a>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-7">
+        <div class="card form-card">
+            <div class="card-body">
+                <h3 class="mb-1">Attendance System Integration</h3>
+                <p class="text-muted mb-4">
+                    Connect the facility's attendance/access-control API so employee presence data can
+                    be correlated with shift patterns and sensor activity. This is the final step.
+                </p>
+
+                <div class="mb-3">
+                    <label class="form-label">API URL</label>
+                    <input type="text" class="form-control" id="attendanceApiUrl"
+                           value="{{ factory.attendance_api_url }}"
+                           placeholder="https://attendance.example.com/api/status">
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label">Method</label>
+                        <select class="form-select" id="attendanceApiMethod">
+                            <option value="GET" {{ "selected" if factory.attendance_api_method == "GET" }}>GET</option>
+                            <option value="POST" {{ "selected" if factory.attendance_api_method == "POST" }}>POST</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3 d-flex align-items-end">
+                        <span class="small text-muted">Status:
+                            <span id="attendanceStatusBadge" class="badge
+                                {{ 'text-bg-success' if factory.attendance_api_status == 'Active' else ('text-bg-danger' if factory.attendance_api_status == 'Inactive' else 'text-bg-secondary') }}">
+                                {{ factory.attendance_api_status }}
+                            </span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Headers (one "Key: Value" per line, optional)</label>
+                    <textarea class="form-control" id="attendanceApiHeaders" rows="2"
+                              placeholder="Authorization: Bearer your-token-here">{{ factory.attendance_api_headers }}</textarea>
+                </div>
+
+                <button type="button" class="btn btn-outline-secondary mb-4" id="testAttendanceBtn">
+                    <i class="bi bi-plug"></i> Test Connection
+                </button>
+                <p class="small text-muted" id="attendanceTestMessage"></p>
+
+                <form method="POST" action="{{ url_for('factory.finish_setup', factory_id=factory.id) }}" id="attendanceForm">
+                    <input type="hidden" name="api_url" id="hiddenApiUrl">
+                    <input type="hidden" name="api_method" id="hiddenApiMethod">
+                    <input type="hidden" name="api_headers" id="hiddenApiHeaders">
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('factory.employees_page', factory_id=factory.id) }}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Back
+                        </a>
+                        <button type="submit" class="btn btn-success btn-lg">
+                            Finish Setup <i class="bi bi-check2-circle"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/attendance.js') }}"></script>
+{% endblock %}

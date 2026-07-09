@@ -1,0 +1,99 @@
+<!--
+    A single modal reused for BOTH "Add New Employee" and "Edit Employee".
+    static/js/employees.js decides which mode based on #employeeId:
+      - empty  -> Add mode  -> POST /factory/<id>/employees/add
+      - filled -> Edit mode -> POST /factory/<id>/employees/<employee_id>/edit
+-->
+<div class="modal fade" id="employeeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="employeeModalTitle">Add New Employee</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="employeeForm">
+                    <input type="hidden" id="employeeId" value="">
+
+                    <div class="mb-3">
+                        <label class="form-label">Full Name</label>
+                        <input type="text" class="form-control" id="employeeName" required placeholder="e.g. Ravi Kumar">
+                    </div>
+
+                  <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Role / Designation</label>
+                            <input type="text" class="form-control" id="employeeRole" placeholder="e.g. Shift Engineer">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Department</label>
+                            <select class="form-select" id="employeeDepartment"></select>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Manager</label>
+                        <select class="form-select" id="employeeManager">
+                            <option value="">— No Manager / Top Level —</option>
+                        </select>
+                        <div class="form-text">List is built from the other employees on this facility.</div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-control" id="employeeEmail">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Phone</label>
+                            <input type="text" class="form-control" id="employeePhone">
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Blood Group</label>
+                            <select class="form-select" id="employeeBloodGroup"></select>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Working Hours</label>
+                            <input type="text" class="form-control" id="employeeWorkingHours" placeholder="e.g. 6:00 AM - 2:00 PM">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Working Days</label>
+                            <input type="text" class="form-control" id="employeeWorkingDays" placeholder="e.g. Mon-Fri">
+                        </div>
+                    </div>
+
+                    <hr>
+                    <h6 class="text-muted mb-2"><i class="bi bi-telephone-plus"></i> Emergency Contact</h6>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" id="emergencyContactName">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Phone</label>
+                            <input type="text" class="form-control" id="emergencyContactPhone">
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label">Relation</label>
+                            <input type="text" class="form-control" id="emergencyContactRelation" placeholder="e.g. Spouse">
+                        </div>
+                    </div>
+
+                    <div class="mb-1">
+                        <label class="form-label">Notes</label>
+                        <textarea class="form-control" id="employeeNotes" rows="2"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="saveEmployeeBtn">
+                    <i class="bi bi-check-lg"></i> Save
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

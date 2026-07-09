@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Factory Layout Demo</title>
+
+<script src="https://unpkg.com/konva@9/konva.min.js"></script>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+}
+
+#toolbar{
+    background:#efefef;
+    padding:10px;
+}
+
+button{
+    margin-right:10px;
+    padding:8px 16px;
+}
+
+#container{
+    border-top:1px solid #ccc;
+}
+</style>
+
+</head>
+
+<body>
+
+<div id="toolbar">
+
+<button id="machineBtn">Add Machine</button>
+
+<button id="textBtn">Add Text</button>
+
+<button id="lineBtn">Add Line</button>
+
+<button id="saveBtn">Export JSON</button>
+
+</div>
+
+<div id="container"></div>
+
+<script>
+
+const stage = new Konva.Stage({
+    container:"container",
+    width:window.innerWidth,
+    height:window.innerHeight-60
+});
+
+const layer = new Konva.Layer();
+stage.add(layer);
+
+// ---------- GRID ----------
+
+for(let i=0;i<stage.width();i+=40){
+
+    layer.add(new Konva.Line({
+        points:[i,0,i,stage.height()],
+        stroke:"#eee"
+    }));
+
+}
+
+for(let i=0;i<stage.height();i+=40){
+
+    layer.add(new Konva.Line({
+        points:[0,i,stage.width(),i],
+        stroke:"#eee"
+    }));
+
+}
+
+// ---------- Transformer ----------
+
+const transformer = new Konva.Transformer();
+layer.add(transformer);
+
+let selected=null;
+
+// ---------- Machine ----------
+
+function addMachine(){
+
+    let group=new Konva.Group({
+
+        x:100,
+        y:100,
+        draggable:true
+
+    });
+
+    let rect=new Konva.Rect({
+
+        width:140,
+        height:80,
+        fill:"#8ecae6",
+        stroke:"black",
+        strokeWidth:2
+
+    });
+
+    let text=new Konva.Text({
+
+        text:"Machine",
+        width:140,
+        align:"center",
+        y:30,
+        fontSize:18
+
+    });
+
+    group.add(rect);
+    group.add(text);
+
+    group.on("click",()=>{
+
+        selected=group;
+        transformer.nodes([group]);
+
+    });
+
+    text.on("dblclick",()=>{
+
+        let value=prompt("Machine Name",text.text());
+
+        if(value)
+            text.text(value);
+
+        layer.draw();
+
+    });
+
+    layer.add(group);
+
+    layer.draw();
+
+}
+
+// ---------- TEXT ----------
+
+function addText(){
+
+    let txt=new Konva.Text({
+
+        x:250,
+        y:250,
+        text:"Double Click",
+        fontSize:22,
+        draggable:true
+
+    });
+
+    txt.on("click",()=>{
+
+        selected=txt;
+        transformer.nodes([txt]);
+
+    });
+
+    txt.on("dblclick",()=>{
+
+        let value=prompt("Text",txt.text());
+
+        if(value)
+            txt.text(value);
+
+        layer.draw();
+
+    });
+
+    layer.add(txt);
+
+    layer.draw();
+
+}
+
+// ---------- DELETE ----------
+
+window.addEventListener("keydown",(e)=>{
+
+    if(e.key==="Delete" && selected){
+
+        selected.destroy();
+
+        transformer.nodes([]);
+
+        selected=null;
+
+        layer.draw();
+
+    }
+
+});
+
+// ---------- SAVE ----------
+
+function exportJSON(){
+
+    let objects=[];
+
+    layer.children.forEach(obj=>{
+
+        if(obj instanceof Konva.Group){
+
+            objects.push({
+
+                type:"machine",
+
+                x:obj.x(),
+
+                y:obj.y(),
+
+                width:obj.children[0].width()*obj.scaleX(),
+
+                height:obj.children[0].height()*obj.scaleY(),
+
+                label:obj.children[1].text()
+
+            });
+
+        }
+
+        if(obj instanceof Konva.Text && obj.parent===layer){
+
+            objects.push({
+
+                type:"text",
+
+                x:obj.x(),
+
+                y:obj.y(),
+
+                text:obj.text()
+
+            });
+
+        }
+
+    });
+
+    console.log(objects);
+
+    alert(JSON.stringify(objects,null,2));
+
+}
+
+// ---------- Buttons ----------
+
+document.getElementById("machineBtn").onclick=addMachine;
+
+
+document.getElementById("textBtn").onclick=addText;
+
+document.getElementById("saveBtn").onclick=exportJSON;
+
+</script>
+
+</body>
+</html>

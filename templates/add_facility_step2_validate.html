@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Add Facility — Step 2{% endblock %}
+
+{% block content %}
+<div id="app-data" data-factory-id="{{ factory.id }}"></div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+
+        {% with current_step = 2 %}{% include "partials/wizard_progress.html" %}{% endwith %}
+
+        <h3 class="mb-1">Document Validation</h3>
+        <p class="text-muted mb-3">
+            The AI reviewed your uploaded template. Answer a few follow-up questions below so the
+            platform can correlate shift patterns, maintenance timing, and sensor coverage correctly.
+        </p>
+
+        {% if factory.missing_sections %}
+        <div class="alert alert-warning" role="alert">
+            <i class="bi bi-exclamation-triangle"></i>
+            <strong>Sections flagged as incomplete or missing:</strong>
+            <ul class="mb-0 mt-1">
+                {% for section in factory.missing_sections %}
+                    <li>{{ section }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+
+        <div class="card chat-card">
+            <div class="chat-window" id="chatWindow">
+                <!-- Chat bubbles are rendered here by validation_chat.js -->
+            </div>
+            <div class="chat-input-row" id="chatInputRow">
+                <input type="text" class="form-control" id="chatAnswerInput"
+                       placeholder="Type your answer and press Enter…" autocomplete="off">
+                <button type="button" class="btn btn-primary" id="chatSendBtn">
+                    <i class="bi bi-send"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end mt-3" id="continueBtnRow" style="display:none !important;">
+            <button type="button" class="btn btn-success btn-lg" id="continueBtn">
+                Continue to Sensors <i class="bi bi-arrow-right"></i>
+            </button>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    // The question list (with any already-saved answers) passed from the
+    // server so validation_chat.js doesn't need a separate fetch just to
+    // get its own starting data.
+    window.CLARIFICATION_QA = {{ factory.clarification_qa | tojson }};
+    window.SENSORS_URL = {{ url_for('factory.sensors_page', factory_id=factory.id) | tojson }};
+</script>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/validation_chat.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% block title %}{{ factory.name }} — Facility Details{% endblock %}
+
+{% block content %}
+<div id="app-data" data-factory-id="{{ factory.id }}"></div>
+
+<a href="{{ url_for('factory.list_facilities') }}" class="btn btn-sm btn-outline-secondary mb-3">
+    <i class="bi bi-arrow-left"></i> All Facilities
+</a>
+
+<div class="d-flex justify-content-between align-items-start mb-4 flex-wrap gap-2">
+    <div class="flex-grow-1">
+        <div class="d-flex align-items-center gap-2">
+            <h3 class="mb-0" id="facilityNameDisplay">{{ factory.name }}</h3>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="editNameBtn">
+                <i class="bi bi-pencil"></i>
+            </button>
+        </div>
+        <div class="d-none align-items-center gap-2 mt-2" id="editNameRow">
+            <input type="text" class="form-control form-control-sm" style="max-width:320px"
+                   id="facilityNameInput" value="{{ factory.name }}">
+            <button type="button" class="btn btn-sm btn-primary" id="saveNameBtn">Save</button>
+            <button type="button" class="btn btn-sm btn-outline-secondary" id="cancelNameBtn">Cancel</button>
+        </div>
+        <p class="text-muted small mt-1 mb-0">Added {{ factory.created_at[:10] }}</p>
+    </div>
+    <span class="badge fs-6 {{ 'text-bg-success' if factory.setup_complete else 'text-bg-warning' }}">
+        {{ 'Setup Complete' if factory.setup_complete else 'Setup In Progress' }}
+    </span>
+</div>
+
+{% if factory.ai_summary %}
+<div class="alert alert-info ai-summary-box mb-4">
+    <i class="bi bi-robot me-1"></i> <strong>AI Process Summary:</strong> {{ factory.ai_summary }}
+</div>
+{% endif %}
+
+<div class="row g-4">
+
+    <!-- Sensors summary -->
+    <div class="col-lg-6">
+        <div class="card detail-section-card h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0"><i class="bi bi-cpu"></i> Sensors &amp; Systems ({{ factory.sensors|length }})</h5>
+                    <a href="{{ url_for('factory.sensors_page', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                </div>
+                {% if factory.sensors %}
+                <div class="table-responsive">
+                    <table class="table table-sm detail-table">
+                        <thead><tr><th>Name</th><th>Type</th><th>API Status</th></tr></thead>
+                        <tbody>
+                        {% for sensor in factory.sensors %}
+                            <tr>
+                                <td>{{ sensor.name }}</td>
+                                <td>{{ sensor.sensor_type }}</td>
+                                <td>
+                                    <span class="badge {{ 'text-bg-success' if sensor.api_status == 'Active' else ('text-bg-danger' if sensor.api_status == 'Inactive' else 'text-bg-secondary') }}">
+                                        {{ sensor.api_status }}
+                                    </span>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted small mb-0">No sensors configured yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Employees summary -->
+    <div class="col-lg-6">
+        <div class="card detail-section-card h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0"><i class="bi bi-people"></i> Employees ({{ factory.employees|length }})</h5>
+                    <a href="{{ url_for('factory.employees_page', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                </div>
+                {% if factory.employees %}
+                <div class="table-responsive">
+                    <table class="table table-sm detail-table">
+                        <thead><tr><th>Name</th><th>Role</th><th>Phone</th></tr></thead>
+                        <tbody>
+                        {% for employee in factory.employees %}
+                            <tr>
+                                <td>{{ employee.name }}</td>
+                                <td>{{ employee.role }}</td>
+                                <td>{{ employee.phone or "—" }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p class="text-muted small mb-0">No employees added yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <!-- Facility Layout -->
+    <div class="col-lg-6">
+        <div class="card detail-section-card h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0"><i class="bi bi-diagram-3"></i> Facility Layout ({{ factory.layout_data|length }} shapes)</h5>
+                    <a href="{{ url_for('factory.layout_page', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                </div>
+                {% if factory.layout_data %}
+                    <p class="small text-muted mb-0">
+                        {{ factory.layout_data | selectattr('type', 'equalto', 'machine') | list | length }} machine(s),
+                        {{ factory.layout_data | selectattr('type', 'equalto', 'text') | list | length }} label(s),
+                        {{ factory.layout_data | selectattr('type', 'equalto', 'line') | list | length }} line(s) placed.
+                    </p>
+                {% else %}
+                    <p class="text-muted small mb-0">No layout drawn yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Negligence History -->
+    <div class="col-lg-6">
+        <div class="card detail-section-card h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0"><i class="bi bi-clock-history"></i> Incident &amp; Negligence History</h5>
+                    <a href="{{ url_for('factory.negligence_page', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                </div>
+                {% if factory.negligence_history %}
+                    <p class="small mb-0">{{ factory.negligence_history }}</p>
+                {% else %}
+                    <p class="text-muted small mb-0">Not filled in yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Attendance System -->
+    <div class="col-lg-6">
+        <div class="card detail-section-card h-100">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h5 class="mb-0"><i class="bi bi-fingerprint"></i> Attendance System</h5>
+                    <a href="{{ url_for('factory.attendance_page', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                </div>
+                {% if factory.attendance_api_url %}
+                    <p class="small mb-1"><strong>URL:</strong> {{ factory.attendance_api_url }}</p>
+                    <p class="small mb-0"><strong>Status:</strong>
+                        <span class="badge {{ 'text-bg-success' if factory.attendance_api_status == 'Active' else ('text-bg-danger' if factory.attendance_api_status == 'Inactive' else 'text-bg-secondary') }}">
+                            {{ factory.attendance_api_status }}
+                        </span>
+                    </p>
+                {% else %}
+                    <p class="text-muted small mb-0">Not configured yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Validation Q&A (read-only) -->
+    <div class="col-12">
+        <div class="card detail-section-card">
+            <div class="card-body">
+                <h5 class="mb-3"><i class="bi bi-patch-question"></i> Document Validation</h5>
+                {% if factory.missing_sections %}
+                <p class="small mb-2"><strong>Flagged sections:</strong></p>
+                <ul class="small">
+                    {% for section in factory.missing_sections %}<li>{{ section }}</li>{% endfor %}
+                </ul>
+                {% endif %}
+                {% if factory.clarification_qa %}
+                <div class="mt-2">
+                    {% for qa in factory.clarification_qa %}
+                    <div class="mb-2 pb-2 border-bottom">
+                        <p class="small fw-bold mb-1">Q: {{ qa.question }}</p>
+                        <p class="small text-muted mb-0">A: {{ qa.answer or "(not answered)" }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted small mb-0">No validation questions were generated for this facility.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/facility_details.js') }}"></script>
+{% endblock %}

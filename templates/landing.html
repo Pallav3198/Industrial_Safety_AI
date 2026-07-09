@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block title %}Home — Compound Risk Intelligence{% endblock %}
+
+{% block content %}
+<div class="text-center mb-5 landing-header">
+    <h1>Industrial Safety Intelligence Portal</h1>
+    <p class="text-muted">Onboard a facility, review and edit what's been configured, and monitor it live.</p>
+</div>
+
+<div class="row g-4 justify-content-center">
+
+    <!-- 1. Add Facility -- the only fully built section in this version -->
+    <div class="col-md-4">
+        <a href="{{ url_for('factory.new_factory') }}" class="landing-card-link">
+            <div class="card landing-card h-100">
+                <div class="card-body text-center d-flex flex-column">
+                    <div class="landing-card-icon bg-primary-soft">
+                        <i class="bi bi-buildings"></i>
+                    </div>
+                    <h4 class="card-title mt-3">Add Facility</h4>
+                    <p class="card-text text-muted flex-grow-1">
+                        Download the onboarding template, upload it back once completed, and walk
+                        through sensor, personnel, and system configuration.
+                    </p>
+                    <span class="btn btn-primary mt-2">Get Started <i class="bi bi-arrow-right"></i></span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- 2. View / Edit Facility -->
+    <div class="col-md-4">
+        <a href="{{ url_for('factory.list_facilities') }}" class="landing-card-link">
+            <div class="card landing-card h-100">
+                <div class="card-body text-center d-flex flex-column">
+                    <div class="landing-card-icon bg-primary-soft">
+                        <i class="bi bi-pencil-square"></i>
+                    </div>
+                    <h4 class="card-title mt-3">View / Edit Facility</h4>
+                    <p class="card-text text-muted flex-grow-1">
+                        Revisit a previously onboarded facility to review or update any of its configured
+                        details.
+                    </p>
+                    <span class="btn btn-primary mt-2">View Facilities <i class="bi bi-arrow-right"></i></span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <!-- 3. Monitor Facility -- placeholder, not built in this version -->
+    <div class="col-md-4">
+        <div class="card landing-card h-100 landing-card-disabled">
+            <div class="card-body text-center d-flex flex-column">
+                <div class="landing-card-icon bg-secondary-soft">
+                    <i class="bi bi-activity"></i>
+                </div>
+                <h4 class="card-title mt-3">Monitor Facility</h4>
+                <p class="card-text text-muted flex-grow-1">
+                    Live view of sensor readings, compound risk flags, and system health across all
+                    onboarded facilities.
+                </p>
+                <span class="badge text-bg-secondary mt-2">Coming Soon</span>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% if factory_count %}
+<div class="text-center mt-5 text-muted">
+    <small>{{ factory_count }} facility(ies) started &middot; {{ completed_count }} fully onboarded.</small>
+</div>
+{% endif %}
+{% endblock %}

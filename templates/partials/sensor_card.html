@@ -1,0 +1,78 @@
+<!--
+    Reusable sensor card. Included server-side by Jinja for the initial
+    page render (add_facility_step3_sensors.html). The exact same markup
+    is also built client-side in static/js/sensors.js (see
+    renderSensorCard()) whenever a sensor is added or edited via AJAX --
+    keep both in sync if you change this structure.
+-->
+<div class="col-md-6 col-lg-4 sensor-col" data-sensor-id="{{ sensor.id }}">
+    <div class="card sensor-card h-100"
+         data-name="{{ sensor.name }}"
+         data-sensor-type="{{ sensor.sensor_type }}"
+         data-location="{{ sensor.location }}"
+         data-unit="{{ sensor.unit }}"
+         data-normal-range="{{ sensor.normal_range }}"
+         data-alarm-threshold="{{ sensor.alarm_threshold }}"
+         data-response-type="{{ sensor.response_type }}"
+         data-notes="{{ sensor.notes }}"
+         data-api-url="{{ sensor.api_url }}"
+         data-api-method="{{ sensor.api_method }}"
+         data-api-headers="{{ sensor.api_headers }}"
+         data-api-json-path="{{ sensor.api_json_path }}">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start">
+                <span class="badge {{ 'badge-ai' if sensor.source == 'AI-Extracted' else 'badge-manual' }}">
+                    <i class="bi {{ 'bi-robot' if sensor.source == 'AI-Extracted' else 'bi-person' }}"></i>
+                    {{ sensor.source }}
+                </span>
+                <span class="badge text-bg-light border">{{ sensor.sensor_type }}</span>
+            </div>
+
+            <h5 class="card-title mt-2 mb-1">{{ sensor.name }}</h5>
+            <p class="text-muted small mb-2"><i class="bi bi-geo-alt"></i> {{ sensor.location or "Location not specified" }}</p>
+
+            <div class="sensor-detail-row">
+                <span class="label">Normal Range</span>
+                <span class="value">{{ sensor.normal_range or "—" }} {{ sensor.unit }}</span>
+            </div>
+            <div class="sensor-detail-row">
+                <span class="label">Alarm Threshold</span>
+                <span class="value">{{ sensor.alarm_threshold or "—" }}</span>
+            </div>
+            <div class="sensor-detail-row">
+                <span class="label">Response Type</span>
+                <span class="value">{{ sensor.response_type }}</span>
+            </div>
+
+            {% if sensor.notes %}
+            <p class="small text-muted mt-2 mb-0"><i class="bi bi-sticky"></i> {{ sensor.notes }}</p>
+            {% endif %}
+
+            <hr class="my-2">
+            <div class="d-flex justify-content-between align-items-center">
+                <span class="small text-muted"><i class="bi bi-hdd-network"></i> API Status</span>
+                <span class="api-status-badge badge {{ 'text-bg-success' if sensor.api_status == 'Active' else ('text-bg-danger' if sensor.api_status == 'Inactive' else 'text-bg-secondary') }}">
+                    {{ sensor.api_status }}
+                </span>
+            </div>
+            {% if sensor.api_url %}
+            <p class="small text-muted mb-0 text-truncate" title="{{ sensor.api_url }}"><i class="bi bi-link-45deg"></i> {{ sensor.api_url }}</p>
+            {% else %}
+            <p class="small text-muted mb-0 fst-italic">No API endpoint configured</p>
+            {% endif %}
+        </div>
+        <div class="card-footer bg-transparent">
+            <div class="d-flex gap-2 mb-2">
+                <button type="button" class="btn btn-sm btn-outline-primary flex-grow-1 edit-sensor-btn">
+                    <i class="bi bi-pencil"></i> Edit
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-danger flex-grow-1 delete-sensor-btn">
+                    <i class="bi bi-trash"></i> Delete
+                </button>
+            </div>
+            <button type="button" class="btn btn-sm btn-outline-secondary w-100 test-sensor-btn">
+                <i class="bi bi-plug"></i> Test Connection
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Add Facility — Step 5{% endblock %}
+
+{% block content %}
+{% with current_step = 5 %}{% include "partials/wizard_progress.html" %}{% endwith %}
+
+<div class="mb-2 text-center">
+    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
+        <i class="bi bi-arrow-left"></i> Back to Facility Overview
+    </a>
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card form-card">
+            <div class="card-body">
+                <h3 class="mb-1">Incident &amp; Negligence History</h3>
+                <p class="text-muted mb-4">
+                    Is there a previous history of negligence at this facility? Describe any prior
+                    incidents, safety violations, near-misses, or patterns (e.g. deferred maintenance,
+                    ignored complaints, understaffing) that might make it more susceptible to future
+                    errors. This directly informs the platform's risk-pattern modeling.
+                </p>
+
+                <form method="POST" action="{{ url_for('factory.negligence_page', factory_id=factory.id) }}">
+                    <div class="mb-4">
+                        <label for="negligence_history" class="form-label">Negligence / Incident History</label>
+                        <textarea class="form-control" id="negligence_history" name="negligence_history"
+                                  rows="10" placeholder="Describe any relevant history here — or note that none is known.">{{ factory.negligence_history }}</textarea>
+                    </div>
+
+                    <div class="d-flex justify-content-between">
+                        <a href="{{ url_for('factory.layout_page', factory_id=factory.id) }}" class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Back
+                        </a>
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            Next <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

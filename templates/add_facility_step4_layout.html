@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Add Facility — Step 4{% endblock %}
+
+{% block extra_head %}
+<script src="https://unpkg.com/konva@9/konva.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<div id="app-data" data-factory-id="{{ factory.id }}"></div>
+
+{% with current_step = 4 %}{% include "partials/wizard_progress.html" %}{% endwith %}
+
+<div class="mb-2">
+    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
+        <i class="bi bi-arrow-left"></i> Back to Facility Overview
+    </a>
+</div>
+
+<div class="mb-3">
+    <h3 class="mb-1">{{ factory.name }} — Facility Layout</h3>
+    <p class="text-muted mb-0">
+        Place equipment and labels on the floor plan. Drag to move, double-click a machine or text
+        label to rename it, select a shape and press Delete to remove it.
+    </p>
+</div>
+
+<div class="card layout-editor-card mb-3">
+    <div class="layout-toolbar">
+        <button type="button" class="btn btn-outline-primary btn-sm" id="machineBtn">
+            <i class="bi bi-box"></i> Add Machine
+        </button>
+        <button type="button" class="btn btn-outline-primary btn-sm" id="textBtn">
+            <i class="bi bi-fonts"></i> Add Text
+        </button>
+        <button type="button" class="btn btn-outline-primary btn-sm" id="lineBtn">
+            <i class="bi bi-slash-lg"></i> Add Line
+        </button>
+        <div class="ms-auto d-flex align-items-center gap-2">
+            <span class="small text-muted" id="layoutSaveStatus"></span>
+            <button type="button" class="btn btn-primary btn-sm" id="saveBtn">
+                <i class="bi bi-save"></i> Save Layout
+            </button>
+        </div>
+    </div>
+    <div id="layoutContainer" class="layout-canvas-container"></div>
+</div>
+
+<div class="d-flex justify-content-between mt-4">
+    <a href="{{ url_for('factory.sensors_page', factory_id=factory.id) }}" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Back
+    </a>
+    <a href="{{ url_for('factory.negligence_page', factory_id=factory.id) }}" class="btn btn-primary" id="nextBtn">
+        Next <i class="bi bi-arrow-right"></i>
+    </a>
+</div>
+
+<script>
+    // Previously saved shapes (if any), used to reconstruct the canvas on
+    // load -- see static/js/layout_editor.js.
+    window.INITIAL_LAYOUT_DATA = {{ factory.layout_data | tojson }};
+</script>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/layout_editor.js') }}"></script>
+{% endblock %}
