@@ -7,24 +7,25 @@
 
 {% block content %}
 <div id="app-data" data-factory-id="{{ factory.id }}"></div>
+<div class="fill-height">
 
-{% with current_step = 4 %}{% include "partials/wizard_progress.html" %}{% endwith %}
+{% with current_route = 'factory.layout_page' %}{% include "partials/wizard_progress.html" %}{% endwith %}
 
-<div class="mb-2">
+<div class="mb-1">
     <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
         <i class="bi bi-arrow-left"></i> Back to Facility Overview
     </a>
 </div>
 
-<div class="mb-3">
-    <h3 class="mb-1">{{ factory.name }} — Facility Layout</h3>
-    <p class="text-muted mb-0">
+<div class="mb-2">
+    <h5 class="mb-1">{{ factory.name }} — Facility Layout</h5>
+    <p class="text-muted small mb-0">
         Place equipment and labels on the floor plan. Drag to move, double-click a machine or text
         label to rename it, select a shape and press Delete to remove it.
     </p>
 </div>
 
-<div class="card layout-editor-card mb-3">
+<div class="card layout-editor-card flex-grow-1 mb-2" style="min-height:0;">
     <div class="layout-toolbar">
         <button type="button" class="btn btn-outline-primary btn-sm" id="machineBtn">
             <i class="bi bi-box"></i> Add Machine
@@ -42,16 +43,18 @@
             </button>
         </div>
     </div>
-    <div id="layoutContainer" class="layout-canvas-container"></div>
+    <div id="layoutContainer" class="layout-canvas-container flex-grow-1"></div>
 </div>
 
-<div class="d-flex justify-content-between mt-4">
+<div class="d-flex justify-content-between">
     <a href="{{ url_for('factory.sensors_page', factory_id=factory.id) }}" class="btn btn-outline-secondary">
         <i class="bi bi-arrow-left"></i> Back
     </a>
     <a href="{{ url_for('factory.negligence_page', factory_id=factory.id) }}" class="btn btn-primary" id="nextBtn">
         Next <i class="bi bi-arrow-right"></i>
     </a>
+</div>
+
 </div>
 
 <script>

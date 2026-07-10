@@ -1,21 +1,22 @@
 {% extends "base.html" %}
-{% block title %}Add Facility — Step 3{% endblock %}
+{% block title %}Add Facility — Sensors{% endblock %}
 
 {% block content %}
 <div id="app-data" data-factory-id="{{ factory.id }}"></div>
+<div class="fill-height">
 
-{% with current_step = 3 %}{% include "partials/wizard_progress.html" %}{% endwith %}
+{% with current_route = 'factory.sensors_page' %}{% include "partials/wizard_progress.html" %}{% endwith %}
 
-<div class="mb-2">
+<div class="mb-1">
     <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
         <i class="bi bi-arrow-left"></i> Back to Facility Overview
     </a>
 </div>
 
-<div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
+<div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
     <div>
         <h3 class="mb-1">{{ factory.name }} — Sensors &amp; Systems</h3>
-        <p class="text-muted mb-0">Review the AI-identified sensors, configure their live API connections, and test each one.</p>
+        <p class="text-muted mb-0 small">Review the AI-identified sensors, configure their live API connections, and test each one.</p>
     </div>
     <button type="button" class="btn btn-primary" id="addSensorBtn">
         <i class="bi bi-plus-lg"></i> Add New Sensor/System
@@ -23,34 +24,39 @@
 </div>
 
 {% if factory.ai_summary %}
-<div class="alert alert-info ai-summary-box" role="alert">
+<div class="alert alert-info ai-summary-box mb-2 py-2 small" role="alert">
     <i class="bi bi-robot me-1"></i>
     <strong>AI process summary:</strong> {{ factory.ai_summary }}
 </div>
 {% endif %}
 
-<div class="row g-3" id="sensorGrid">
-    {% for sensor in factory.sensors %}
-        {% include "partials/sensor_card.html" %}
-    {% else %}
-        <div class="col-12" id="emptyState">
-            <div class="text-center text-muted py-5">
-                <i class="bi bi-inboxes display-4"></i>
-                <p class="mt-2">No sensors yet. Add some manually to get started.</p>
+<div class="grid-scroll-area">
+    <div class="row g-3" id="sensorGrid">
+        {% for sensor in factory.monitored_parameters if sensor.parameter_category == "Live Sensor Reading" %}
+            {% include "partials/sensor_card.html" %}
+        {% else %}
+            <div class="col-12" id="emptyState">
+                <div class="text-center text-muted py-5">
+                    <i class="bi bi-inboxes display-4"></i>
+                    <p class="mt-2">No sensors yet. Add some manually to get started.</p>
+                </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 </div>
 
-<div class="d-flex justify-content-between mt-4">
-    <a href="{{ url_for('factory.validate_page', factory_id=factory.id) }}" class="btn btn-outline-secondary">
-        <i class="bi bi-arrow-left"></i> Back
-    </a>
-    <a href="{{ url_for('factory.layout_page', factory_id=factory.id) }}" class="btn btn-primary">
-        Next <i class="bi bi-arrow-right"></i>
-    </a>
+<div id="sensorPaginationControls" class="pagination-controls"></div>
+
+<div class="d-flex justify-content-between mt-2">
+    {% if prev_nav %}
+    <a href="{{ prev_nav.url }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
+    {% else %}<span></span>{% endif %}
+    {% if next_nav %}
+    <a href="{{ next_nav.url }}" class="btn btn-primary">Next <i class="bi bi-arrow-right"></i></a>
+    {% endif %}
 </div>
 
+</div>
 {% include "partials/sensor_form_modal.html" %}
 {% endblock %}
 
@@ -60,5 +66,6 @@
     window.RESPONSE_TYPE_CHOICES = {{ response_type_choices | tojson }};
     window.API_METHOD_CHOICES = {{ api_method_choices | tojson }};
 </script>
+<script src="{{ url_for('static', filename='js/pagination.js') }}"></script>
 <script src="{{ url_for('static', filename='js/sensors.js') }}"></script>
 {% endblock %}

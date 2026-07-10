@@ -5,8 +5,6 @@ A small JSON-file-backed persistence layer.
 
 This is intentionally NOT a real database. For a hackathon prototype, a
 flat JSON file is enough to demonstrate the full Add Facility wizard
-(create factory, list/edit sensors, list/edit employees, save
-validation answers, save negligence history, save attendance config)
 without adding SQL/ORM setup overhead.
 
 To swap in a real database later: keep these exact function signatures
@@ -21,8 +19,10 @@ from typing import Optional, List
 
 from config import Config
 from models.factory import Factory
-from models.sensor import Sensor
-from models.employee import Employee
+from models.monitored_parameter import MonitoredParameter
+from models.person import Person
+from models.checklist_record import ChecklistRecord
+from models.permit_record import PermitRecord
 
 # Guards the JSON file against corruption from concurrent requests.
 # Fine for a single-process dev server; replace with real DB transactions
@@ -71,83 +71,156 @@ def list_factories() -> List[Factory]:
 
 
 # ---------------------------------------------------------------------------
-# Sensor CRUD
+# MonitoredParameter CRUD (was "Sensor CRUD" -- see models/monitored_parameter.py)
 # ---------------------------------------------------------------------------
 
-def delete_sensor(factory_id: str, sensor_id: str) -> bool:
-    """Returns True if a sensor was actually removed, False if the factory
-    or sensor didn't exist."""
+def delete_monitored_parameter(factory_id: str, parameter_id: str) -> bool:
+    """Returns True if a parameter was actually removed, False if the
+    factory or parameter didn't exist."""
     factory = get_factory(factory_id)
     if not factory:
         return False
-    before = len(factory.sensors)
-    factory.sensors = [s for s in factory.sensors if s.id != sensor_id]
+    before = len(factory.monitored_parameters)
+    factory.monitored_parameters = [p for p in factory.monitored_parameters if p.id != parameter_id]
     save_factory(factory)
-    return len(factory.sensors) < before
+    return len(factory.monitored_parameters) < before
 
 
-def upsert_sensor(factory_id: str, sensor: Sensor) -> bool:
-    """Add a new sensor, or update an existing one if its id already exists
-    on this factory. Returns False only if the factory itself doesn't
-    exist."""
+def upsert_monitored_parameter(factory_id: str, parameter: MonitoredParameter) -> bool:
+    """Add a new parameter, or update an existing one if its id already
+    exists on this factory. Returns False only if the factory itself
+    doesn't exist."""
     factory = get_factory(factory_id)
     if not factory:
         return False
-    for i, s in enumerate(factory.sensors):
-        if s.id == sensor.id:
-            factory.sensors[i] = sensor
+    for i, p in enumerate(factory.monitored_parameters):
+        if p.id == parameter.id:
+            factory.monitored_parameters[i] = parameter
             save_factory(factory)
             return True
-    factory.sensors.append(sensor)
+    factory.monitored_parameters.append(parameter)
     save_factory(factory)
     return True
 
 
-def get_sensor(factory_id: str, sensor_id: str) -> Optional[Sensor]:
+def get_monitored_parameter(factory_id: str, parameter_id: str) -> Optional[MonitoredParameter]:
     factory = get_factory(factory_id)
     if not factory:
         return None
-    return next((s for s in factory.sensors if s.id == sensor_id), None)
+    return next((p for p in factory.monitored_parameters if p.id == parameter_id), None)
 
 
 # ---------------------------------------------------------------------------
-# Employee CRUD -- mirrors the sensor CRUD functions exactly, same pattern.
+# Person CRUD (was "Employee CRUD" -- see models/person.py). Mirrors the
+# MonitoredParameter CRUD functions exactly, same pattern.
 # ---------------------------------------------------------------------------
 
-def delete_employee(factory_id: str, employee_id: str) -> bool:
+def delete_person(factory_id: str, person_id: str) -> bool:
     factory = get_factory(factory_id)
     if not factory:
         return False
-    before = len(factory.employees)
-    factory.employees = [e for e in factory.employees if e.id != employee_id]
+    before = len(factory.people)
+    factory.people = [p for p in factory.people if p.id != person_id]
     save_factory(factory)
-    return len(factory.employees) < before
+    return len(factory.people) < before
 
 
-def upsert_employee(factory_id: str, employee: Employee) -> bool:
+def upsert_person(factory_id: str, person: Person) -> bool:
     factory = get_factory(factory_id)
     if not factory:
         return False
-    for i, e in enumerate(factory.employees):
-        if e.id == employee.id:
-            factory.employees[i] = employee
+    for i, p in enumerate(factory.people):
+        if p.id == person.id:
+            factory.people[i] = person
             save_factory(factory)
             return True
-    factory.employees.append(employee)
+    factory.people.append(person)
     save_factory(factory)
     return True
 
 
-def get_employee(factory_id: str, employee_id: str) -> Optional[Employee]:
+def get_person(factory_id: str, person_id: str) -> Optional[Person]:
     factory = get_factory(factory_id)
     if not factory:
         return None
-    return next((e for e in factory.employees if e.id == employee_id), None)
+    return next((p for p in factory.people if p.id == person_id), None)
 
 
 # ---------------------------------------------------------------------------
-# Generic field updates -- used by the negligence history, validation
-# answers, and attendance system steps, none of which need full CRUD.
+# ChecklistRecord CRUD (PSSR + MOC -- see models/checklist_record.py)
+# ---------------------------------------------------------------------------
+
+def delete_checklist_record(factory_id: str, record_id: str) -> bool:
+    factory = get_factory(factory_id)
+    if not factory:
+        return False
+    before = len(factory.checklist_records)
+    factory.checklist_records = [c for c in factory.checklist_records if c.id != record_id]
+    save_factory(factory)
+    return len(factory.checklist_records) < before
+
+
+def upsert_checklist_record(factory_id: str, record: ChecklistRecord) -> bool:
+    factory = get_factory(factory_id)
+    if not factory:
+        return False
+    for i, c in enumerate(factory.checklist_records):
+        if c.id == record.id:
+            factory.checklist_records[i] = record
+            save_factory(factory)
+            return True
+    factory.checklist_records.append(record)
+    save_factory(factory)
+    return True
+
+
+def get_checklist_record(factory_id: str, record_id: str) -> Optional[ChecklistRecord]:
+    factory = get_factory(factory_id)
+    if not factory:
+        return None
+    return next((c for c in factory.checklist_records if c.id == record_id), None)
+
+
+# ---------------------------------------------------------------------------
+# PermitRecord CRUD (see models/permit_record.py)
+# ---------------------------------------------------------------------------
+
+def delete_permit_record(factory_id: str, permit_id: str) -> bool:
+    factory = get_factory(factory_id)
+    if not factory:
+        return False
+    before = len(factory.permit_records)
+    factory.permit_records = [p for p in factory.permit_records if p.id != permit_id]
+    save_factory(factory)
+    return len(factory.permit_records) < before
+
+
+def upsert_permit_record(factory_id: str, permit: PermitRecord) -> bool:
+    factory = get_factory(factory_id)
+    if not factory:
+        return False
+    for i, p in enumerate(factory.permit_records):
+        if p.id == permit.id:
+            factory.permit_records[i] = permit
+            save_factory(factory)
+            return True
+    factory.permit_records.append(permit)
+    save_factory(factory)
+    return True
+
+
+def get_permit_record(factory_id: str, permit_id: str) -> Optional[PermitRecord]:
+    factory = get_factory(factory_id)
+    if not factory:
+        return None
+    return next((p for p in factory.permit_records if p.id == permit_id), None)
+
+
+# ---------------------------------------------------------------------------
+# Generic field updates -- used by any section that's a handful of scalar/
+# list/dict fields directly on Factory, with no dedicated CRUD needed
+# (e.g. negligence history, validation answers, attendance config, and
+# the new Part A/B/C/E simple-record sections).
 # ---------------------------------------------------------------------------
 
 def update_factory_fields(factory_id: str, **fields) -> bool:

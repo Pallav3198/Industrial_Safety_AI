@@ -232,10 +232,14 @@ def test_delete_nonexistent_sensor_returns_404(client):
 # ===========================================================================
 
 def test_step4_layout_stub_loads(client):
+    """Layout is a real Konva.js canvas editor, not a stub -- this test's
+    name is legacy from an earlier build phase, kept for continuity with
+    the rest of the suite's naming."""
     factory_id = _create_test_facility(client)
     response = client.get(f"/factory/{factory_id}/layout")
     assert response.status_code == 200
-    assert b"Coming Soon" in response.data
+    assert b"machineBtn" in response.data  # the "Add Machine" toolbar button
+    assert b"layoutContainer" in response.data  # the canvas mount point
 
 
 # ===========================================================================
@@ -243,13 +247,19 @@ def test_step4_layout_stub_loads(client):
 # ===========================================================================
 
 def test_step5_negligence_save_and_redirect(client):
+    """As of the Step 0-1 navigation refactor, Negligence's "next" is
+    computed from the section registry (models/wizard_sections.py), not
+    hardcoded -- with only Sensors/Employees/Negligence/Attendance built
+    so far, that correctly resolves to Attendance now, not Employees
+    (Employees comes BEFORE Negligence in the canonical 20-section
+    order; the old 7-step flow had them in the opposite order)."""
     factory_id = _create_test_facility(client)
     response = client.post(
         f"/factory/{factory_id}/negligence",
         data={"negligence_history": "Two prior near-misses in 2024."},
     )
     assert response.status_code == 302
-    assert f"/factory/{factory_id}/employees" in response.headers["Location"]
+    assert f"/factory/{factory_id}/attendance" in response.headers["Location"]
 
     # Confirm it persisted and pre-fills on revisit.
     page = client.get(f"/factory/{factory_id}/negligence")
@@ -367,3 +377,60 @@ def test_full_wizard_end_to_end(client):
     # Confirm final state
     final_page = client.get(f"/factory/{factory_id}/attendance")
     assert final_page.status_code == 200
+
+# ===========================================================================
+# NEW (Step 0-1) -- registry-driven navigation and Person category filtering
+# ===========================================================================
+
+def test_navigation_skips_missing_sections(client):
+    """Sensors(4) -> Employees(8) should skip straight past Sections 5-7
+    (Key Personnel, Shift Patterns, Staffing Rules), none of which have
+    routes yet -- and back again -- without any hardcoded link between
+    them. This is the "go back to the previous section" mechanism from
+    models/wizard_sections.py, tested directly rather than just implied
+    by other tests passing."""
+    factory_id = _create_test_facility(client)
+
+    sensors_page = client.get(f"/factory/{factory_id}/sensors")
+    assert f"/factory/{factory_id}/validate".encode() in sensors_page.data  # Back -> Validate (nothing earlier built yet)
+    assert f"/factory/{factory_id}/employees".encode() in sensors_page.data  # Next -> Employees (skips 5,6,7)
+
+    employees_page = client.get(f"/factory/{factory_id}/employees")
+    assert f"/factory/{factory_id}/sensors".encode() in employees_page.data  # Back -> Sensors
+    assert f"/factory/{factory_id}/negligence".encode() in employees_page.data  # Next -> Negligence (skips 9-14)
+
+
+def test_person_category_filtering(client):
+    """The Employee Directory page (Section 8) must only show people
+    whose person_category is "Employee" -- Key Personnel categories
+    (Managerial Staff, Safety Officer, Maintenance Staff) extracted from
+    the same document should not appear there, even though they live in
+    the same underlying `people` list on the Factory record."""
+    factory_id = _create_test_facility(client)
+
+    factory_page = client.get(f"/factory/{factory_id}/employees")
+    # Mock extraction seeds one of each category -- only "Employee" (Ravi Kumar)
+    # should render on this page.
+    assert b"Ravi Kumar" in factory_page.data       # category: Employee
+    assert b"R. Venkatesh" not in factory_page.data  # category: Managerial Staff
+    assert b"Priya Nair" not in factory_page.data    # category: Safety Officer
+    assert b"Anil Sharma" not in factory_page.data   # category: Maintenance Staff
+
+
+def test_new_monitored_parameter_categories_available(client):
+    """A newly-added parameter defaults to parameter_category
+    'Live Sensor Reading' via the /sensors/add endpoint (the only
+    category currently wired to a UI) -- confirms the renamed model
+    round-trips correctly end to end, not just that the route responds."""
+    factory_id = _create_test_facility(client)
+    result = client.post(
+        f"/factory/{factory_id}/sensors/add",
+        data=json.dumps({"name": "Category Test Sensor", "sensor_type": "Pressure"}),
+        content_type="application/json",
+    ).get_json()
+    assert result["success"] is True
+    assert result["sensor"]["parameter_category"] == "Live Sensor Reading"
+    # New generalized fields exist on every parameter, even ones created
+    # through the Sensors UI which doesn't set them.
+    assert "data_source_type" in result["sensor"]
+    assert "fault_since" in result["sensor"]

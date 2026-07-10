@@ -2,20 +2,24 @@
 {% block title %}Add Facility — Step 1{% endblock %}
 
 {% block content %}
-<div class="row justify-content-center">
+<div class="fill-height justify-content-center">
+<div class="row justify-content-center w-100">
     <div class="col-lg-8">
 
-        {% with current_step = 1 %}{% include "partials/wizard_progress.html" %}{% endwith %}
+        {# No wizard progress bar here -- this page renders before any
+           facility record exists, so there's nothing yet to show
+           progress against. The progress bar appears starting on the
+           Sensors page, once a facility (and its id) exists. #}
 
         <div class="card form-card mb-3">
-            <div class="card-body">
-                <h3 class="mb-1">Download the Onboarding Template</h3>
-                <p class="text-muted mb-3">
+            <div class="card-body py-3">
+                <h5 class="mb-1">Download the Onboarding Template</h5>
+                <p class="text-muted small mb-2">
                     Fill out every section as thoroughly as possible. Anything left blank or thin will
                     be flagged in Step 2, where the AI will ask targeted follow-up questions before you
                     continue.
                 </p>
-                <a href="{{ url_for('factory.download_template') }}" class="btn btn-outline-primary">
+                <a href="{{ url_for('factory.download_template') }}" class="btn btn-outline-primary btn-sm">
                     <i class="bi bi-file-earmark-word"></i> Download Facility Onboarding Template (.docx)
                 </a>
                 <p class="text-muted small mt-2 mb-0">
@@ -26,9 +30,9 @@
         </div>
 
         <div class="card form-card">
-            <div class="card-body">
-                <h3 class="mb-1">Upload Completed Template</h3>
-                <p class="text-muted mb-4">
+            <div class="card-body py-3">
+                <h5 class="mb-1">Upload Completed Template</h5>
+                <p class="text-muted small mb-3">
                     Name this facility and upload your completed template as a PDF. The AI will read it
                     and prepopulate sensors, employees, and a process summary on the following steps.
                 </p>
@@ -36,16 +40,16 @@
                 <form method="POST" action="{{ url_for('factory.new_factory') }}"
                       enctype="multipart/form-data" id="factoryForm">
 
-                    <div class="mb-4">
+                    <div class="mb-3">
                         <label for="factory_name" class="form-label">Name of the Facility</label>
-                        <input type="text" class="form-control form-control-lg" id="factory_name"
+                        <input type="text" class="form-control" id="factory_name"
                                name="factory_name" placeholder="e.g. Vedanta Chhattisgarh Thermal Power Plant"
                                required>
                     </div>
 
-                    <div class="mb-4">
+                    <div class="mb-3">
                         <label class="form-label">Upload Completed Template (PDF)</label>
-                        <div class="upload-dropzone" id="dropzone">
+                        <div class="upload-dropzone upload-dropzone-compact" id="dropzone">
                             <i class="bi bi-cloud-arrow-up upload-icon"></i>
                             <p class="mb-1"><strong>Click to browse</strong> or drag a PDF here</p>
                             <p class="text-muted small mb-0" id="fileNameDisplay">No file selected — PDF only, no size limit</p>
@@ -55,7 +59,7 @@
                     </div>
 
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                        <button type="submit" class="btn btn-primary" id="submitBtn">
                             Next <i class="bi bi-arrow-right"></i>
                         </button>
                     </div>
@@ -64,6 +68,7 @@
         </div>
 
     </div>
+</div>
 </div>
 
 <!-- Full-screen processing overlay, shown while the AI extraction call runs -->

@@ -3,20 +3,19 @@
 
 {% block content %}
 <div id="app-data" data-factory-id="{{ factory.id }}"></div>
+<div class="fill-height">
 
-<div class="row justify-content-center">
+<div class="row justify-content-center flex-shrink-0">
     <div class="col-lg-8">
-
-        {% with current_step = 2 %}{% include "partials/wizard_progress.html" %}{% endwith %}
-
-        <h3 class="mb-1">Document Validation</h3>
-        <p class="text-muted mb-3">
+        {% with current_route = 'factory.validate_page' %}{% include "partials/wizard_progress.html" %}{% endwith %}
+        <h5 class="mb-1">Document Validation</h5>
+        <p class="text-muted small mb-2">
             The AI reviewed your uploaded template. Answer a few follow-up questions below so the
             platform can correlate shift patterns, maintenance timing, and sensor coverage correctly.
         </p>
 
         {% if factory.missing_sections %}
-        <div class="alert alert-warning" role="alert">
+        <div class="alert alert-warning py-2 small mb-2" role="alert">
             <i class="bi bi-exclamation-triangle"></i>
             <strong>Sections flagged as incomplete or missing:</strong>
             <ul class="mb-0 mt-1">
@@ -26,8 +25,12 @@
             </ul>
         </div>
         {% endif %}
+    </div>
+</div>
 
-        <div class="card chat-card">
+<div class="row justify-content-center flex-grow-1" style="min-height:0;">
+    <div class="col-lg-8 d-flex flex-column">
+        <div class="card chat-card flex-grow-1">
             <div class="chat-window" id="chatWindow">
                 <!-- Chat bubbles are rendered here by validation_chat.js -->
             </div>
@@ -40,13 +43,14 @@
             </div>
         </div>
 
-        <div class="d-flex justify-content-end mt-3" id="continueBtnRow" style="display:none !important;">
-            <button type="button" class="btn btn-success btn-lg" id="continueBtn">
+        <div class="d-flex justify-content-end mt-2" id="continueBtnRow" style="display:none !important;">
+            <button type="button" class="btn btn-success" id="continueBtn">
                 Continue to Sensors <i class="bi bi-arrow-right"></i>
             </button>
         </div>
-
     </div>
+</div>
+
 </div>
 
 <script>

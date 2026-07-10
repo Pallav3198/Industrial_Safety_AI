@@ -1,23 +1,35 @@
 """
 routes/factory_routes.py
 ---------------------------
-Routes for the full "Add Facility" wizard (7 steps):
+Routes for the "Add Facility" wizard.
 
-  Step 1  GET/POST /factory/new                    -> download template, upload filled PDF
-  Step 2  GET/POST /factory/<id>/validate           -> chatbot-style gap-filling Q&A
-  Step 3  GET      /factory/<id>/sensors            -> sensor list + API config + test
-  Step 4  GET      /factory/<id>/layout             -> interactive facility layout editor (Konva.js canvas)
-  Step 5  GET/POST /factory/<id>/negligence         -> incident/negligence history free text
-  Step 6  GET      /factory/<id>/employees          -> employee list (same CRUD pattern as sensors)
-  Step 7  GET      /factory/<id>/attendance         -> attendance system API config + test + finish
+Currently live (4 of the eventual 20 Facility Onboarding Template
+sections -- the rest land in later build phases, see
+models/wizard_sections.py for the full section registry):
 
-Plus JSON API endpoints for AJAX CRUD (sensors, employees) and the two
-"Test Connection" endpoints (sensor API, attendance API), all under the
-same /factory/<id>/... prefix.
+  GET/POST /factory/new                    -> download template, upload filled PDF
+  GET/POST /factory/<id>/validate           -> chatbot-style gap-filling Q&A
+  GET      /factory/<id>/sensors            -> Section 4: Sensor & Instrumentation (+ API test)
+  GET      /factory/<id>/layout             -> portal-only Konva.js canvas editor (not a template section)
+  GET/POST /factory/<id>/negligence         -> Section 15: Incident & Negligence History
+  GET      /factory/<id>/employees          -> Section 8: Employee Directory
+  GET      /factory/<id>/attendance         -> Section 16: Attendance & Access Control (+ finish)
+
+Plus JSON API endpoints for AJAX CRUD and the "Test Connection"
+endpoints, all under the same /factory/<id>/... prefix.
+
+NAVIGATION: every section page's Back/Next is computed from
+models/wizard_sections.WIZARD_SECTIONS via get_prev_next(), not
+hardcoded -- see that module's docstring. Layout is deliberately not
+in the registry and so drops out of linear Back/Next; it stays
+reachable via the wizard progress bar and the Facility Details page.
 
 NOTE ON NAMING: the product now calls this "Add Facility" in the UI.
 The code keeps "factory" throughout (module name, URL prefix, variable
-names) -- see models/factory.py docstring for why.
+names) -- see models/factory.py docstring for why. Sensor/Employee were
+renamed to MonitoredParameter/Person at the model layer (also see
+models/factory.py), but URL routes/endpoints deliberately keep their
+old names ("sensors", "employees") to minimize blast radius.
 """
 
 import os
@@ -26,8 +38,9 @@ from werkzeug.utils import secure_filename
 
 from config import Config
 from models.factory import Factory
-from models.sensor import Sensor, SENSOR_TYPE_CHOICES, RESPONSE_TYPE_CHOICES, API_METHOD_CHOICES
-from models.employee import Employee, DEPARTMENT_CHOICES, BLOOD_GROUP_CHOICES
+from models.monitored_parameter import MonitoredParameter, SENSOR_TYPE_CHOICES, RESPONSE_TYPE_CHOICES, API_METHOD_CHOICES
+from models.person import Person, DEPARTMENT_CHOICES, BLOOD_GROUP_CHOICES
+from models.wizard_sections import get_prev_next, get_first_available_section
 from services import storage
 from services.ai_extraction import extract_from_document
 from services.api_tester import test_endpoint
@@ -51,7 +64,7 @@ def _get_factory_or_404(factory_id):
 
 
 # ===========================================================================
-# STEP 1 -- Download template, upload filled document
+# Upload + Validate (before Part A begins -- not in the section registry)
 # ===========================================================================
 
 @factory_bp.route("/template/download")
@@ -71,7 +84,7 @@ def download_template():
 
 @factory_bp.route("/new", methods=["GET", "POST"])
 def new_factory():
-    """Step 1 -- download template + facility name + upload filled PDF."""
+    """Upload step -- download template + facility name + upload filled PDF."""
     if request.method == "GET":
         return render_template("add_facility_step1_upload.html")
 
@@ -102,26 +115,47 @@ def new_factory():
     uploaded_file.save(file_path)
     factory.preliminary_doc_filename = stored_filename
 
-    # Single AI call extracts sensors, employees, process summary, AND
-    # the document validation results (missing sections + questions) --
-    # see services/ai_extraction.py for why this is one call, not four.
+    # Single AI call extracts everything realistically extractable from a
+    # one-time document read -- see services/ai_extraction.py for the
+    # full schema and for why this is one call, not several.
     result = extract_from_document(file_path)
     factory.ai_summary = result["process_summary"]
-    factory.sensors = result["sensors"]
-    factory.employees = result["employees"]
+    factory.monitored_parameters = result["monitored_parameters"]
+    factory.people = result["people"]
     factory.missing_sections = result["missing_sections"]
     # Seed clarification_qa with each question and a blank answer; the
-    # Step 2 chat UI fills in the answers.
+    # Validate chat UI fills in the answers.
     factory.clarification_qa = [{"question": q, "answer": ""} for q in result["clarifying_questions"]]
+
+    # Part A fields (Sections 1-3) -- facility_overview is a nested dict
+    # from the extraction schema; unpack its keys onto the flat Factory
+    # fields of the same name. Sections 1-3 don't have dedicated pages
+    # yet (later build phases), but the data is captured now rather than
+    # discarded, so nothing needs to be re-extracted once those pages land.
+    overview = result.get("facility_overview", {}) or {}
+    factory.address = overview.get("address", "")
+    factory.industry_sector = overview.get("industry_sector", "")
+    factory.operating_company = overview.get("operating_company", "")
+    factory.commissioning_date = overview.get("commissioning_date", "")
+    factory.installed_capacity = overview.get("installed_capacity", "")
+    factory.operating_phase = overview.get("operating_phase", "")
+    factory.upcoming_milestone_date = overview.get("upcoming_milestone_date", "")
+    factory.departments = overview.get("departments", [])
+    factory.process_narrative = result.get("process_narrative", "")
+    factory.drawing_references = result.get("drawing_references", "")
+    factory.scada_systems = result.get("scada_systems", [])
+    factory.historian_system = result.get("historian_system", "")
+    factory.network_notes = result.get("network_notes", "")
+
+    # Part B/C fields (Sections 6, 9) -- same reasoning as above.
+    factory.shift_patterns = result.get("shift_patterns", [])
+    factory.shift_handover_notes = result.get("shift_handover_notes", "")
+    factory.maintenance_records = result.get("maintenance_records", [])
 
     storage.save_factory(factory)
 
     return redirect(url_for("factory.validate_page", factory_id=factory.id))
 
-
-# ===========================================================================
-# STEP 2 -- Document validation / chatbot-style gap-filling Q&A
-# ===========================================================================
 
 @factory_bp.route("/<factory_id>/validate", methods=["GET"])
 def validate_page(factory_id):
@@ -151,11 +185,17 @@ def submit_validation(factory_id):
         updated_qa.append({"question": qa["question"], "answer": answer})
 
     storage.update_factory_fields(factory_id, clarification_qa=updated_qa, validation_complete=True)
-    return jsonify({"success": True, "redirect": url_for("factory.sensors_page", factory_id=factory_id)})
+
+    # Validate isn't in WIZARD_SECTIONS, so its "next" is computed as
+    # "whichever registered section comes first" rather than a hardcoded
+    # page -- this automatically improves as Part A sections 1-3 land.
+    first_section = get_first_available_section(factory_id)
+    redirect_url = first_section["url"] if first_section else url_for("main.landing")
+    return jsonify({"success": True, "redirect": redirect_url})
 
 
 # ===========================================================================
-# STEP 3 -- Sensors & Systems (with API config + test)
+# Section 4 -- Sensor & Instrumentation Details (+ API config + test)
 # ===========================================================================
 
 @factory_bp.route("/<factory_id>/sensors", methods=["GET"])
@@ -164,12 +204,19 @@ def sensors_page(factory_id):
     if not factory:
         return redirect(url_for("main.landing"))
 
+    prev_nav, next_nav = get_prev_next(
+        "factory.sensors_page", factory_id,
+        fallback_prev={"url": url_for("factory.validate_page", factory_id=factory_id), "label": "Validate"},
+    )
+
     return render_template(
         "add_facility_step3_sensors.html",
         factory=factory,
         sensor_type_choices=SENSOR_TYPE_CHOICES,
         response_type_choices=RESPONSE_TYPE_CHOICES,
         api_method_choices=API_METHOD_CHOICES,
+        prev_nav=prev_nav,
+        next_nav=next_nav,
     )
 
 
@@ -180,8 +227,9 @@ def add_sensor(factory_id):
         return jsonify({"success": False, "error": "Facility not found"}), 404
 
     data = request.get_json(force=True)
-    sensor = Sensor(
+    parameter = MonitoredParameter(
         name=data.get("name", "Unnamed Sensor"),
+        parameter_category="Live Sensor Reading",
         sensor_type=data.get("sensor_type", "Other"),
         location=data.get("location", ""),
         unit=data.get("unit", ""),
@@ -195,8 +243,8 @@ def add_sensor(factory_id):
         api_json_path=data.get("api_json_path", ""),
         source="Manually Added",
     )
-    storage.upsert_sensor(factory_id, sensor)
-    return jsonify({"success": True, "sensor": sensor.to_dict()})
+    storage.upsert_monitored_parameter(factory_id, parameter)
+    return jsonify({"success": True, "sensor": parameter.to_dict()})
 
 
 @factory_bp.route("/<factory_id>/sensors/<sensor_id>/edit", methods=["POST"])
@@ -205,7 +253,7 @@ def edit_sensor(factory_id, sensor_id):
     if not factory:
         return jsonify({"success": False, "error": "Facility not found"}), 404
 
-    existing = next((s for s in factory.sensors if s.id == sensor_id), None)
+    existing = next((p for p in factory.monitored_parameters if p.id == sensor_id), None)
     if not existing:
         return jsonify({"success": False, "error": "Sensor not found"}), 404
 
@@ -234,13 +282,13 @@ def edit_sensor(factory_id, sensor_id):
     # Note: editing does NOT change `source` -- a sensor the AI originally
     # extracted stays labeled "AI-Extracted" even after a human corrects it.
 
-    storage.upsert_sensor(factory_id, existing)
+    storage.upsert_monitored_parameter(factory_id, existing)
     return jsonify({"success": True, "sensor": existing.to_dict()})
 
 
 @factory_bp.route("/<factory_id>/sensors/<sensor_id>/delete", methods=["POST"])
 def delete_sensor_route(factory_id, sensor_id):
-    success = storage.delete_sensor(factory_id, sensor_id)
+    success = storage.delete_monitored_parameter(factory_id, sensor_id)
     if not success:
         return jsonify({"success": False, "error": "Sensor or facility not found"}), 404
     return jsonify({"success": True})
@@ -254,26 +302,28 @@ def test_sensor_connection(factory_id, sensor_id):
     reload, not just in the current browser session."""
     from datetime import datetime
 
-    sensor = storage.get_sensor(factory_id, sensor_id)
-    if not sensor:
+    parameter = storage.get_monitored_parameter(factory_id, sensor_id)
+    if not parameter:
         return jsonify({"success": False, "error": "Sensor not found"}), 404
 
-    result = test_endpoint(sensor.api_url, sensor.api_method, sensor.api_headers)
+    result = test_endpoint(parameter.api_url, parameter.api_method, parameter.api_headers)
 
-    sensor.api_status = "Active" if result["success"] else "Inactive"
-    sensor.api_last_tested = datetime.utcnow().isoformat()
-    storage.upsert_sensor(factory_id, sensor)
+    parameter.api_status = "Active" if result["success"] else "Inactive"
+    parameter.api_last_tested = datetime.utcnow().isoformat()
+    storage.upsert_monitored_parameter(factory_id, parameter)
 
     return jsonify({
         "success": True,  # the test-request itself completed (regardless of connectivity outcome)
-        "api_status": sensor.api_status,
+        "api_status": parameter.api_status,
         "message": result["message"],
         "status_code": result["status_code"],
     })
 
 
 # ===========================================================================
-# STEP 4 -- Facility Layout (interactive Konva.js canvas editor)
+# Facility Layout -- portal-only Konva.js canvas editor, NOT a template
+# section (see models/wizard_sections.py) -- reachable from the wizard
+# progress bar and Facility Details, not from linear Back/Next.
 # ===========================================================================
 
 @factory_bp.route("/<factory_id>/layout", methods=["GET"])
@@ -304,7 +354,7 @@ def save_layout(factory_id):
 
 
 # ===========================================================================
-# STEP 5 -- Incident / Negligence History
+# Section 15 -- Incident & Negligence History
 # ===========================================================================
 
 @factory_bp.route("/<factory_id>/negligence", methods=["GET", "POST"])
@@ -313,16 +363,19 @@ def negligence_page(factory_id):
     if not factory:
         return redirect(url_for("main.landing"))
 
+    prev_nav, next_nav = get_prev_next("factory.negligence_page", factory_id)
+
     if request.method == "GET":
-        return render_template("add_facility_step5_negligence.html", factory=factory)
+        return render_template("add_facility_step5_negligence.html", factory=factory, prev_nav=prev_nav, next_nav=next_nav)
 
     negligence_text = request.form.get("negligence_history", "").strip()
     storage.update_factory_fields(factory_id, negligence_history=negligence_text)
-    return redirect(url_for("factory.employees_page", factory_id=factory_id))
+    redirect_url = next_nav["url"] if next_nav else url_for("factory.facility_details", factory_id=factory_id)
+    return redirect(redirect_url)
 
 
 # ===========================================================================
-# STEP 6 -- Employee Directory (same CRUD pattern as Sensors)
+# Section 8 -- Employee Directory
 # ===========================================================================
 
 @factory_bp.route("/<factory_id>/employees", methods=["GET"])
@@ -331,21 +384,29 @@ def employees_page(factory_id):
     if not factory:
         return redirect(url_for("main.landing"))
 
-    # employee_lookup resolves a manager_id -> name for display on each
-    # card (Jinja side). employee_options is the same data reshaped for
+    # person_lookup resolves a manager_id -> name for display on each
+    # card (Jinja side). person_options is the same data reshaped for
     # the JS-side Manager <select> dropdown, since that list needs to be
-    # rebuilt client-side every time an employee is added/edited/deleted
-    # without a full page reload.
-    employee_lookup = {e.id: e.name for e in factory.employees}
-    employee_options = [{"id": e.id, "name": e.name} for e in factory.employees]
+    # rebuilt client-side every time a person is added/edited/deleted
+    # without a full page reload. Only "Employee"-category people are
+    # shown/manageable here -- Key Personnel (Section 5) and Contractor
+    # Oversight (Section 14) filter the same underlying list differently.
+    employees = [p for p in factory.people if p.person_category == "Employee"]
+    person_lookup = {p.id: p.name for p in employees}
+    person_options = [{"id": p.id, "name": p.name} for p in employees]
+
+    prev_nav, next_nav = get_prev_next("factory.employees_page", factory_id)
 
     return render_template(
         "add_facility_step6_employees.html",
         factory=factory,
+        employees=employees,
         department_choices=DEPARTMENT_CHOICES,
         blood_group_choices=BLOOD_GROUP_CHOICES,
-        employee_lookup=employee_lookup,
-        employee_options=employee_options,
+        employee_lookup=person_lookup,
+        employee_options=person_options,
+        prev_nav=prev_nav,
+        next_nav=next_nav,
     )
 
 
@@ -358,15 +419,16 @@ def add_employee(factory_id):
     data = request.get_json(force=True)
 
     # Defensive: only accept a manager_id that actually belongs to an
-    # existing employee on this facility -- silently drop anything else
+    # existing person on this facility -- silently drop anything else
     # (stale/tampered client data) rather than 500 on a low-stakes field.
-    valid_employee_ids = {e.id for e in factory.employees}
+    valid_person_ids = {p.id for p in factory.people}
     manager_id = data.get("manager_id", "")
-    if manager_id and manager_id not in valid_employee_ids:
+    if manager_id and manager_id not in valid_person_ids:
         manager_id = ""
 
-    employee = Employee(
+    person = Person(
         name=data.get("name", "Unnamed Employee"),
+        person_category="Employee",
         role=data.get("role", ""),
         department=data.get("department", ""),
         manager_id=manager_id,
@@ -381,8 +443,8 @@ def add_employee(factory_id):
         notes=data.get("notes", ""),
         source="Manually Added",
     )
-    storage.upsert_employee(factory_id, employee)
-    return jsonify({"success": True, "employee": employee.to_dict()})
+    storage.upsert_person(factory_id, person)
+    return jsonify({"success": True, "employee": person.to_dict()})
 
 
 @factory_bp.route("/<factory_id>/employees/<employee_id>/edit", methods=["POST"])
@@ -391,14 +453,26 @@ def edit_employee(factory_id, employee_id):
     if not factory:
         return jsonify({"success": False, "error": "Facility not found"}), 404
 
-    existing = next((e for e in factory.employees if e.id == employee_id), None)
+    existing = next((p for p in factory.people if p.id == employee_id), None)
     if not existing:
         return jsonify({"success": False, "error": "Employee not found"}), 404
 
     data = request.get_json(force=True)
+
+    # A person can't be their own manager.
+    new_manager_id = data.get("manager_id", existing.manager_id)
+    if new_manager_id == employee_id:
+        return jsonify({"success": False, "error": "An employee cannot be their own manager"}), 400
+    # Defensive: only accept a manager_id that actually belongs to an
+    # existing person on this facility (see add_employee for why).
+    valid_person_ids = {p.id for p in factory.people}
+    if new_manager_id and new_manager_id not in valid_person_ids:
+        new_manager_id = ""
+
     existing.name = data.get("name", existing.name)
     existing.role = data.get("role", existing.role)
     existing.department = data.get("department", existing.department)
+    existing.manager_id = new_manager_id
     existing.email = data.get("email", existing.email)
     existing.phone = data.get("phone", existing.phone)
     existing.blood_group = data.get("blood_group", existing.blood_group)
@@ -409,20 +483,20 @@ def edit_employee(factory_id, employee_id):
     existing.emergency_contact_relation = data.get("emergency_contact_relation", existing.emergency_contact_relation)
     existing.notes = data.get("notes", existing.notes)
 
-    storage.upsert_employee(factory_id, existing)
+    storage.upsert_person(factory_id, existing)
     return jsonify({"success": True, "employee": existing.to_dict()})
 
 
 @factory_bp.route("/<factory_id>/employees/<employee_id>/delete", methods=["POST"])
 def delete_employee_route(factory_id, employee_id):
-    success = storage.delete_employee(factory_id, employee_id)
+    success = storage.delete_person(factory_id, employee_id)
     if not success:
         return jsonify({"success": False, "error": "Employee or facility not found"}), 404
     return jsonify({"success": True})
 
 
 # ===========================================================================
-# STEP 7 -- Attendance System Integration (final step)
+# Section 16 -- Attendance & Access Control (+ Finish Setup)
 # ===========================================================================
 
 @factory_bp.route("/<factory_id>/attendance", methods=["GET"])
@@ -430,16 +504,16 @@ def attendance_page(factory_id):
     factory = _get_factory_or_404(factory_id)
     if not factory:
         return redirect(url_for("main.landing"))
-    return render_template("add_facility_step7_attendance.html", factory=factory)
+    prev_nav, next_nav = get_prev_next("factory.attendance_page", factory_id)
+    return render_template("add_facility_step7_attendance.html", factory=factory, prev_nav=prev_nav)
 
 
 @factory_bp.route("/<factory_id>/attendance/test", methods=["POST"])
 def test_attendance_connection(factory_id):
     """Tests connectivity using whatever is in the request body (NOT
-    necessarily saved yet) -- unlike the sensor test, this is the very
-    last step of the wizard with only one endpoint to configure, so
-    testing the in-progress form values directly is low-risk and saves
-    the user a click."""
+    necessarily saved yet) -- unlike the sensor test, this step's form
+    only has one endpoint to configure, so testing the in-progress form
+    values directly is low-risk and saves the user a click."""
     from datetime import datetime
 
     factory = storage.get_factory(factory_id)
@@ -473,8 +547,11 @@ def test_attendance_connection(factory_id):
 
 @factory_bp.route("/<factory_id>/attendance/finish", methods=["POST"])
 def finish_setup(factory_id):
-    """Final step of the wizard -- saves whatever attendance config is
-    currently in the form and marks the facility as fully onboarded."""
+    """Saves whatever attendance config is currently in the form and
+    marks the facility as fully onboarded. Not registry-driven -- this
+    is a distinct terminal action ('Finish Setup'), not a generic
+    'Next', and stays that way regardless of how many more sections
+    Part E eventually grows to."""
     factory = _get_factory_or_404(factory_id)
     if not factory:
         return redirect(url_for("main.landing"))
@@ -489,12 +566,13 @@ def finish_setup(factory_id):
     flash(f'"{factory.name}" onboarding complete.', "success")
     return redirect(url_for("main.landing"))
 
+
 # ===========================================================================
 # VIEW / EDIT FACILITY -- lists all onboarded facilities, shows a full
 # read view of one facility's data, and lets the user rename it inline.
-# Editing any individual section (sensors, employees, negligence history,
-# attendance) reuses the exact same wizard step pages/routes above --
-# no separate edit-mode logic, just a link into the same page.
+# Editing any individual section reuses the exact same wizard step
+# pages/routes above -- no separate edit-mode logic, just a link into
+# the same page.
 # ===========================================================================
 
 @factory_bp.route("/list", methods=["GET"])
@@ -532,13 +610,14 @@ def rename_facility(factory_id):
     storage.update_factory_fields(factory_id, name=new_name)
     return jsonify({"success": True, "name": new_name})
 
+
 @factory_bp.route("/<factory_id>/train", methods=["POST"])
 def train_and_configure(factory_id):
     """Stub for the 'Train & Configure AI' action, shown on the Facility
-    Details page once every wizard step reports 'done'. What this
-    actually does is intentionally undecided for now -- this route just
-    confirms the button works end-to-end (visible only when the facility
-    is fully configured, clicking it round-trips to the server) without
+    Details page once every section reports 'done'. What this actually
+    does is intentionally undecided for now -- this route just confirms
+    the button works end-to-end (visible only when the facility is
+    fully configured, clicking it round-trips to the server) without
     committing to a real implementation yet."""
     factory = storage.get_factory(factory_id)
     if not factory:
