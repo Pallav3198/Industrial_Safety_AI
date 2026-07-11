@@ -172,7 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <span class="badge ${permit.status === "Active" ? "text-bg-success" : "text-bg-secondary"}">${escapeHtml(permit.status)}</span>
                         <span class="badge text-bg-light border">${escapeHtml(permit.permit_type)}</span>
                     </div>
-                    <h5 class="card-title mt-2 mb-1">${escapeHtml(permit.permit_number)}</h5>
+                    <h5 class="card-title tag-id mt-2 mb-1">${escapeHtml(permit.permit_number)}</h5>
                     <p class="text-muted small mb-2">${escapeHtml(permit.location_equipment)}</p>
                     <div class="sensor-detail-row"><span class="label">Issued To</span><span class="value">${escapeHtml(permit.issued_to) || "—"}</span></div>
                     <div class="sensor-detail-row"><span class="label">Issued At</span><span class="value">${escapeHtml(permit.issued_at) || "—"}</span></div>

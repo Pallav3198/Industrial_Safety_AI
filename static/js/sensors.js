@@ -249,7 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <span class="badge ${badgeClass}"><i class="bi ${badgeIcon}"></i> ${escapeHtml(sensor.source)}</span>
                         <span class="badge text-bg-light border">${escapeHtml(sensor.sensor_type)}</span>
                     </div>
-                    <h5 class="card-title mt-2 mb-1">${escapeHtml(sensor.name)}</h5>
+                    <h5 class="card-title tag-id mt-2 mb-1">${escapeHtml(sensor.name)}</h5>   // (or asset.name / permit.permit_number)
                     <p class="text-muted small mb-2"><i class="bi bi-geo-alt"></i> ${escapeHtml(sensor.location) || "Location not specified"}</p>
                     <div class="sensor-detail-row">
                         <span class="label">Normal Range</span>

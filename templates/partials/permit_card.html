@@ -13,7 +13,7 @@
                 <span class="badge {{ 'text-bg-success' if permit.status == 'Active' else 'text-bg-secondary' }}">{{ permit.status }}</span>
                 <span class="badge text-bg-light border">{{ permit.permit_type }}</span>
             </div>
-            <h5 class="card-title mt-2 mb-1">{{ permit.permit_number }}</h5>
+            <h5 class="card-title tag-id mt-2 mb-1">{{ permit.permit_number }}</h5>
             <p class="text-muted small mb-2">{{ permit.location_equipment }}</p>
             <div class="sensor-detail-row"><span class="label">Issued To</span><span class="value">{{ permit.issued_to or "—" }}</span></div>
             <div class="sensor-detail-row"><span class="label">Issued At</span><span class="value">{{ permit.issued_at or "—" }}</span></div>

@@ -12,8 +12,15 @@
     --brand-text: #1F2937;
     --brand-muted: #6B7280;
     --card-radius: 14px;
-}
 
+    /* Step 9 design pass: an accent distinct from --brand-primary (navy,
+       used for chrome/structure) and --brand-accent (amber, used for
+       warnings) -- reserved specifically for identifying LIVE/monitored
+       data at a glance, as opposed to static form fields. Also see
+       .tag-id below, and the blue left-border on .sensor-card. */
+    --brand-instrument: #0EA5E9;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, 'Courier New', monospace;
+}
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: var(--brand-bg);
@@ -161,14 +168,35 @@ body {
 .text-light-50 { color: rgba(255, 255, 255, 0.7); }
 
 /* --- Sensor cards -------------------------------------------------------- */
+/* Sensor cards get a left-border accent in --brand-instrument that
+   asset/staffing-rule cards (same base card styling, different partials)
+   deliberately don't -- a live sensor reading is a genuinely different
+   kind of thing from a periodic compliance record, and this is the one
+   place in the UI that distinction is visible at a glance rather than
+   only in the data model. */
 .sensor-card {
     border: 1px solid #E5E9EF;
+    border-left: 3px solid var(--brand-instrument);
     border-radius: var(--card-radius);
     box-shadow: 0 2px 8px rgba(16, 24, 40, 0.04);
     transition: box-shadow 0.15s ease;
 }
 .sensor-card:hover {
     box-shadow: 0 8px 20px rgba(16, 24, 40, 0.08);
+}
+
+/* Technical identifiers -- sensor tags, permit numbers, asset IDs --
+   styled in monospace to read like real SCADA/HMI tag naming
+   conventions (e.g. "PAF-01", "HW-2026-014"), not decoration for its
+   own sake. Used on card titles and the matching Facility Details
+   table cells; deliberately NOT applied to editable form inputs (feels
+   worse to type into) or to plain proper-noun names (people, SCADA
+   system names, contractor names) that aren't actually tag-shaped. */
+.tag-id {
+    font-family: var(--font-mono);
+    color: var(--brand-instrument);
+    font-weight: 600;
+    letter-spacing: 0.2px;
 }
 .sensor-detail-row {
     display: flex;

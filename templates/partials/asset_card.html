@@ -13,7 +13,7 @@
                 </span>
                 {% if asset.next_due_date %}<span class="badge text-bg-light border"><i class="bi bi-calendar-event"></i> Due {{ asset.next_due_date }}</span>{% endif %}
             </div>
-            <h5 class="card-title mt-2 mb-1">{{ asset.name }}</h5>
+            <h5 class="card-title tag-id mt-2 mb-1">{{ asset.name }}</h5>
             <p class="text-muted small mb-2">{{ asset.asset_type }}{% if asset.location %} &middot; {{ asset.location }}{% endif %}</p>
             <div class="sensor-detail-row"><span class="label">Last Test Date</span><span class="value">{{ asset.last_test_date or "—" }}</span></div>
             <div class="sensor-detail-row"><span class="label">Next Due Date</span><span class="value">{{ asset.next_due_date or "—" }}</span></div>

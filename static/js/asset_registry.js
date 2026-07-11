@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <span class="badge ${isAi ? "badge-ai" : "badge-manual"}"><i class="bi ${isAi ? "bi-robot" : "bi-person"}"></i> ${escapeHtml(asset.source)}</span>
                         ${asset.next_due_date ? `<span class="badge text-bg-light border"><i class="bi bi-calendar-event"></i> Due ${escapeHtml(asset.next_due_date)}</span>` : ""}
                     </div>
-                    <h5 class="card-title mt-2 mb-1">${escapeHtml(asset.name)}</h5>
+                   <h5 class="card-title tag-id mt-2 mb-1">${escapeHtml(asset.name)}</h5>
                     <p class="text-muted small mb-2">${escapeHtml(asset.asset_type)}${asset.location ? " &middot; " + escapeHtml(asset.location) : ""}</p>
                     <div class="sensor-detail-row"><span class="label">Last Test Date</span><span class="value">${escapeHtml(asset.last_test_date) || "—"}</span></div>
                     <div class="sensor-detail-row"><span class="label">Next Due Date</span><span class="value">${escapeHtml(asset.next_due_date) || "—"}</span></div>

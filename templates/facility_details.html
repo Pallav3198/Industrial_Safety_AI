@@ -138,7 +138,7 @@
                             <tbody>
                             {% for sensor in sensors %}
                                 <tr>
-                                    <td>{{ sensor.name }}</td>
+                                    <td class="tag-id">{{ sensor.name }}</td>
                                     <td>{{ sensor.sensor_type }}</td>
                                     <td>
                                         <span class="badge {{ 'text-bg-success' if sensor.api_status == 'Active' else ('text-bg-danger' if sensor.api_status == 'Inactive' else 'text-bg-secondary') }}">
@@ -325,7 +325,7 @@
                             <thead><tr><th>Asset</th><th>Next Due</th></tr></thead>
                             <tbody>
                             {% for a in assets %}
-                                <tr><td>{{ a.name }}</td><td>{{ a.next_due_date or "—" }}</td></tr>
+                               <tr><td class="tag-id">{{ a.name }}</td><td>{{ a.next_due_date or "—" }}</td></tr>
                             {% endfor %}
                             </tbody>
                         </table>
@@ -378,7 +378,7 @@
                             <tbody>
                             {% for p in factory.permit_records %}
                                 <tr>
-                                    <td>{{ p.permit_number }}</td><td>{{ p.permit_type }}</td>
+                                    <td class="tag-id">{{ p.permit_number }}</td><td>{{ p.permit_type }}</td>
                                     <td><span class="badge {{ 'text-bg-success' if p.status == 'Active' else 'text-bg-secondary' }}">{{ p.status }}</span></td>
                                 </tr>
                             {% endfor %}
