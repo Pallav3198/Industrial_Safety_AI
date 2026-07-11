@@ -1033,7 +1033,7 @@ def contractor_oversight(factory_id):
 
 
 # ===========================================================================
-# Section 16 -- Attendance & Access Control (+ Finish Setup)
+# Section 16 -- Attendance & Access Control
 # ===========================================================================
 
 @factory_bp.route("/<factory_id>/attendance", methods=["GET"])
@@ -1042,7 +1042,7 @@ def attendance_page(factory_id):
     if not factory:
         return redirect(url_for("main.landing"))
     prev_nav, next_nav = get_prev_next("factory.attendance_page", factory_id)
-    return render_template("add_facility_step7_attendance.html", factory=factory, prev_nav=prev_nav)
+    return render_template("add_facility_step7_attendance.html", factory=factory, prev_nav=prev_nav, next_nav=next_nav)
 
 
 @factory_bp.route("/<factory_id>/attendance/test", methods=["POST"])
@@ -1084,11 +1084,15 @@ def test_attendance_connection(factory_id):
 
 @factory_bp.route("/<factory_id>/attendance/finish", methods=["POST"])
 def finish_setup(factory_id):
-    """Saves whatever attendance config is currently in the form and
-    marks the facility as fully onboarded. Not registry-driven -- this
-    is a distinct terminal action ('Finish Setup'), not a generic
-    'Next', and stays that way regardless of how many more sections
-    Part E eventually grows to."""
+    """Saves attendance config and continues to the next section. As of
+    Step 7 (Part E), this is a normal 'save and go to next' action, NOT
+    a completion action anymore -- Attendance was the last built section
+    for a while, so this endpoint grew up doing double duty. Now that
+    Sections 17-20 exist, setup completion has moved to Emergency
+    Response (Section 20), the genuine last section of the template.
+    Endpoint name and URL kept as "finish_setup" / "/attendance/finish"
+    to avoid unnecessary churn, even though the name is now a bit of a
+    misnomer -- it no longer finishes anything."""
     factory = _get_factory_or_404(factory_id)
     if not factory:
         return redirect(url_for("main.landing"))
@@ -1098,14 +1102,143 @@ def finish_setup(factory_id):
         attendance_api_url=request.form.get("api_url", "").strip(),
         attendance_api_method=request.form.get("api_method", "GET"),
         attendance_api_headers=request.form.get("api_headers", "").strip(),
+    )
+    _, next_nav = get_prev_next("factory.attendance_page", factory_id)
+    redirect_url = next_nav["url"] if next_nav else url_for("factory.facility_details", factory_id=factory_id)
+    return redirect(redirect_url)
+
+
+# ===========================================================================
+# Section 17 -- Utility & Support Systems
+# ===========================================================================
+
+STANDARD_UTILITY_SYSTEMS = [
+    "Emergency Power Backup (DG Set / UPS)",
+    "Compressed Air System",
+    "Water Treatment / Cooling Water",
+    "Fire Water System",
+    "HVAC (Control Room / Critical Areas)",
+]
+
+
+@factory_bp.route("/<factory_id>/utilities", methods=["GET", "POST"])
+def utility_systems(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    # Pre-populate with the 5 standard utility categories from the
+    # template on first visit, persisted immediately -- same lazy-
+    # default-on-first-view pattern as PSSR's standard checklist items
+    # (see _get_or_create_checklist above).
+    if not factory.utility_systems:
+        defaults = [{"system": s, "type_vendor": "", "redundancy": "", "last_tested": ""} for s in STANDARD_UTILITY_SYSTEMS]
+        storage.update_factory_fields(factory_id, utility_systems=defaults)
+        factory.utility_systems = defaults
+
+    prev_nav, next_nav = get_prev_next("factory.utility_systems", factory_id)
+
+    if request.method == "GET":
+        return render_template("add_facility_utility_systems.html", factory=factory, prev_nav=prev_nav, next_nav=next_nav)
+
+    systems = request.form.getlist("utility_system[]")
+    type_vendors = request.form.getlist("utility_type_vendor[]")
+    redundancies = request.form.getlist("utility_redundancy[]")
+    last_testeds = request.form.getlist("utility_last_tested[]")
+    utility_list = [
+        {"system": s.strip(), "type_vendor": tv.strip(), "redundancy": r.strip(), "last_tested": lt.strip()}
+        for s, tv, r, lt in _zip_form_lists(systems, type_vendors, redundancies, last_testeds)
+        if s.strip() or tv.strip() or r.strip() or lt.strip()
+    ]
+    storage.update_factory_fields(factory_id, utility_systems=utility_list)
+    redirect_url = next_nav["url"] if next_nav else url_for("factory.facility_details", factory_id=factory_id)
+    return redirect(redirect_url)
+
+
+# ===========================================================================
+# Section 18 -- Training & Certification Records
+# ===========================================================================
+
+@factory_bp.route("/<factory_id>/training", methods=["GET", "POST"])
+def training_records(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    prev_nav, next_nav = get_prev_next("factory.training_records", factory_id)
+
+    if request.method == "GET":
+        return render_template("add_facility_training_records.html", factory=factory, prev_nav=prev_nav, next_nav=next_nav)
+
+    training_info = {
+        "induction_program": request.form.get("induction_program", "").strip(),
+        "drill_frequency": request.form.get("drill_frequency", "").strip(),
+        "last_drill_date": request.form.get("last_drill_date", "").strip(),
+        "contractor_training_process": request.form.get("contractor_training_process", "").strip(),
+    }
+    storage.update_factory_fields(factory_id, training_info=training_info)
+    redirect_url = next_nav["url"] if next_nav else url_for("factory.facility_details", factory_id=factory_id)
+    return redirect(redirect_url)
+
+
+# ===========================================================================
+# Section 19 -- Environmental & Quality Compliance
+# ===========================================================================
+
+@factory_bp.route("/<factory_id>/environmental", methods=["GET", "POST"])
+def environmental_compliance(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    prev_nav, next_nav = get_prev_next("factory.environmental_compliance", factory_id)
+
+    if request.method == "GET":
+        return render_template("add_facility_environmental_compliance.html", factory=factory, prev_nav=prev_nav, next_nav=next_nav)
+
+    env_compliance = {
+        "env_clearance": request.form.get("env_clearance", "").strip(),
+        "pcb_registration": request.form.get("pcb_registration", "").strip(),
+        "iso_9001": request.form.get("iso_9001", "").strip(),
+        "iso_14001": request.form.get("iso_14001", "").strip(),
+        "iso_45001": request.form.get("iso_45001", "").strip(),
+    }
+    storage.update_factory_fields(factory_id, environmental_compliance=env_compliance)
+    redirect_url = next_nav["url"] if next_nav else url_for("factory.facility_details", factory_id=factory_id)
+    return redirect(redirect_url)
+
+
+# ===========================================================================
+# Section 20 -- Emergency Response & Compliance (+ Finish Setup)
+# ===========================================================================
+
+@factory_bp.route("/<factory_id>/emergency-response", methods=["GET", "POST"])
+def emergency_response(factory_id):
+    """The genuine last section of the 20-section template -- this is
+    where 'Finish Setup' / setup_complete now lives (moved from
+    Attendance in Step 7, see finish_setup's docstring above)."""
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    prev_nav, _ = get_prev_next("factory.emergency_response", factory_id)
+
+    if request.method == "GET":
+        return render_template("add_facility_emergency_response.html", factory=factory, prev_nav=prev_nav)
+
+    storage.update_factory_fields(
+        factory_id,
+        regulatory_standards=request.form.get("regulatory_standards", "").strip(),
+        fire_safety_systems=request.form.get("fire_safety_systems", "").strip(),
+        last_safety_audit_date=request.form.get("last_safety_audit_date", "").strip(),
+        last_safety_audit_findings=request.form.get("last_safety_audit_findings", "").strip(),
         setup_complete=True,
     )
     flash(f'"{factory.name}" onboarding complete.', "success")
     return redirect(url_for("main.landing"))
 
-
 # ===========================================================================
-# VIEW / EDIT FACILITY -- lists all onboarded facilities, shows a full
+# # VIEW / EDIT FACILITY -- lists all onboarded facilities, shows a full
 # read view of one facility's data, and lets the user rename it inline.
 # Editing any individual section reuses the exact same wizard step
 # pages/routes above -- no separate edit-mode logic, just a link into

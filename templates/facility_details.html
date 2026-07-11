@@ -45,18 +45,92 @@
 </div>
 {% endif %}
 
-<div class="grid-scroll-area">
-    <div class="row g-3" id="detailCardGrid">
+{% set sensors = factory.monitored_parameters | selectattr('parameter_category', 'equalto', 'Live Sensor Reading') | list %}
+{% set staffing_rules = factory.monitored_parameters | selectattr('parameter_category', 'equalto', 'Staffing Rule') | list %}
+{% set assets = factory.monitored_parameters | selectattr('parameter_category', 'equalto', 'Compliance Due-Date') | list %}
+{% set directory_employees = factory.people | selectattr('person_category', 'equalto', 'Employee') | list %}
+{% set managerial = factory.people | selectattr('person_category', 'equalto', 'Managerial Staff') | list %}
+{% set maintenance_staff = factory.people | selectattr('person_category', 'equalto', 'Maintenance Staff') | list %}
+{% set safety_officers = factory.people | selectattr('person_category', 'equalto', 'Safety Officer') | list %}
+{% set contractors = factory.people | selectattr('person_category', 'equalto', 'Contractor') | list %}
+{% set moc_record = (factory.checklist_records | selectattr('checklist_type', 'equalto', 'MOC') | list | first) %}
+{% set pssr_record = (factory.checklist_records | selectattr('checklist_type', 'equalto', 'PSSR') | list | first) %}
 
-        <!-- Sensors summary -->
-        <div class="col-lg-6 detail-card-col">
+<div class="grid-scroll-area">
+
+    <!-- ==================================================================
+         PART A -- Facility & Process Profile
+         ================================================================== -->
+    <h6 class="detail-part-header"><span class="wizard-part-label">A</span> Facility &amp; Process Profile</h6>
+    <div class="row g-3 mb-4">
+
+        <div class="col-lg-6 col-xl-4">
             <div class="card detail-section-card h-100">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h6 class="mb-0"><i class="bi bi-cpu"></i> Sensors &amp; Systems ({{ factory.monitored_parameters | selectattr('parameter_category', 'equalto', 'Live Sensor Reading') | list | length }})</h6>
+                        <h6 class="mb-0"><i class="bi bi-building"></i> Facility Overview</h6>
+                        <a href="{{ url_for('factory.facility_overview', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    {% if factory.address %}
+                    <div class="sensor-detail-row"><span class="label">Address</span><span class="value">{{ factory.address }}</span></div>
+                    <div class="sensor-detail-row"><span class="label">Industry Sector</span><span class="value">{{ factory.industry_sector or "—" }}</span></div>
+                    <div class="sensor-detail-row"><span class="label">Operating Phase</span><span class="value">{{ factory.operating_phase or "—" }}</span></div>
+                    <div class="sensor-detail-row"><span class="label">Departments</span><span class="value">{{ factory.departments|length }}</span></div>
+                    {% else %}
+                    <p class="text-muted small mb-0">Not filled in yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-diagram-2"></i> Process Flow</h6>
+                        <a href="{{ url_for('factory.process_flow', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    {% if factory.process_narrative %}
+                    <p class="small mb-0">{{ factory.process_narrative[:160] }}{{ "…" if factory.process_narrative|length > 160 else "" }}</p>
+                    {% else %}
+                    <p class="text-muted small mb-0">Not filled in yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-hdd-network"></i> SCADA / DCS Systems ({{ factory.scada_systems|length }})</h6>
+                        <a href="{{ url_for('factory.scada_systems', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    {% if factory.scada_systems %}
+                    <div class="table-responsive">
+                        <table class="table table-sm detail-table mb-0">
+                            <thead><tr><th>Name</th><th>Vendor</th><th>Redundant?</th></tr></thead>
+                            <tbody>
+                            {% for s in factory.scada_systems %}
+                                <tr><td>{{ s.name }}</td><td>{{ s.vendor }}</td><td>{{ s.redundant or "—" }}</td></tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <p class="text-muted small mb-0">No systems listed yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-cpu"></i> Sensors &amp; Systems ({{ sensors|length }})</h6>
                         <a href="{{ url_for('factory.sensors_page', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
                     </div>
-                    {% set sensors = factory.monitored_parameters | selectattr('parameter_category', 'equalto', 'Live Sensor Reading') | list %}
                     {% if sensors %}
                     <div class="table-responsive">
                         <table class="table table-sm detail-table mb-0">
@@ -83,15 +157,106 @@
             </div>
         </div>
 
-        <!-- Employees summary -->
-        <div class="col-lg-6 detail-card-col">
+        <div class="col-lg-6 col-xl-4">
             <div class="card detail-section-card h-100">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h6 class="mb-0"><i class="bi bi-people"></i> Employees ({{ factory.people | selectattr('person_category', 'equalto', 'Employee') | list | length }})</h6>
+                        <h6 class="mb-0"><i class="bi bi-diagram-3"></i> Facility Layout ({{ factory.layout_data|length }} shapes)</h6>
+                        <a href="{{ url_for('factory.layout_page', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    {% if factory.layout_data %}
+                        <p class="small text-muted mb-0">
+                            {{ factory.layout_data | selectattr('type', 'equalto', 'machine') | list | length }} machine(s),
+                            {{ factory.layout_data | selectattr('type', 'equalto', 'text') | list | length }} label(s),
+                            {{ factory.layout_data | selectattr('type', 'equalto', 'line') | list | length }} line(s) placed.
+                        </p>
+                    {% else %}
+                        <p class="text-muted small mb-0">No layout drawn yet. (Portal-only feature — not part of the template.)</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ==================================================================
+         PART B -- People & Workforce
+         ================================================================== -->
+    <h6 class="detail-part-header"><span class="wizard-part-label">B</span> People &amp; Workforce</h6>
+    <div class="row g-3 mb-4">
+
+        <div class="col-lg-6 col-xl-4">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-person-badge"></i> Key Personnel</h6>
+                        <a href="{{ url_for('factory.key_personnel', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    <div class="sensor-detail-row"><span class="label">Managerial Staff</span><span class="value">{{ managerial|length }}</span></div>
+                    <div class="sensor-detail-row"><span class="label">Maintenance Staff</span><span class="value">{{ maintenance_staff|length }}</span></div>
+                    <div class="sensor-detail-row"><span class="label">Safety Officers</span><span class="value">{{ safety_officers|length }}</span></div>
+                    <div class="sensor-detail-row"><span class="label">Escalation Levels</span><span class="value">{{ factory.escalation_logic|length }}</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-clock"></i> Shift Patterns ({{ factory.shift_patterns|length }})</h6>
+                        <a href="{{ url_for('factory.shift_patterns', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    {% if factory.shift_patterns %}
+                    <div class="table-responsive">
+                        <table class="table table-sm detail-table mb-0">
+                            <thead><tr><th>Shift</th><th>Start</th><th>End</th></tr></thead>
+                            <tbody>
+                            {% for s in factory.shift_patterns %}
+                                <tr><td>{{ s.shift_name }}</td><td>{{ s.start_time }}</td><td>{{ s.end_time }}</td></tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <p class="text-muted small mb-0">No shifts listed yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-people"></i> Staffing Rules ({{ staffing_rules|length }})</h6>
+                        <a href="{{ url_for('factory.staffing_rules', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    {% if staffing_rules %}
+                    <div class="table-responsive">
+                        <table class="table table-sm detail-table mb-0">
+                            <thead><tr><th>Task</th><th>Min. Personnel</th></tr></thead>
+                            <tbody>
+                            {% for r in staffing_rules %}
+                                <tr><td>{{ r.task_name or r.name }}</td><td>{{ r.minimum_headcount or "—" }}</td></tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <p class="text-muted small mb-0">No staffing rules yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-people"></i> Employees ({{ directory_employees|length }})</h6>
                         <a href="{{ url_for('factory.employees_page', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
                     </div>
-                    {% set directory_employees = factory.people | selectattr('person_category', 'equalto', 'Employee') | list %}
                     {% if directory_employees %}
                     <div class="table-responsive">
                         <table class="table table-sm detail-table mb-0">
@@ -114,29 +279,173 @@
             </div>
         </div>
 
-        <!-- Facility Layout -->
-        <div class="col-lg-6 detail-card-col">
+    </div>
+
+    <!-- ==================================================================
+         PART C -- Maintenance, Assets & Change Management
+         ================================================================== -->
+    <h6 class="detail-part-header"><span class="wizard-part-label">C</span> Maintenance, Assets &amp; Change Management</h6>
+    <div class="row g-3 mb-4">
+
+        <div class="col-lg-6 col-xl-4">
             <div class="card detail-section-card h-100">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h6 class="mb-0"><i class="bi bi-diagram-3"></i> Facility Layout ({{ factory.layout_data|length }} shapes)</h6>
-                        <a href="{{ url_for('factory.layout_page', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                        <h6 class="mb-0"><i class="bi bi-tools"></i> Maintenance Records ({{ factory.maintenance_records|length }})</h6>
+                        <a href="{{ url_for('factory.maintenance_records', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
                     </div>
-                    {% if factory.layout_data %}
-                        <p class="small text-muted mb-0">
-                            {{ factory.layout_data | selectattr('type', 'equalto', 'machine') | list | length }} machine(s),
-                            {{ factory.layout_data | selectattr('type', 'equalto', 'text') | list | length }} label(s),
-                            {{ factory.layout_data | selectattr('type', 'equalto', 'line') | list | length }} line(s) placed.
-                        </p>
+                    {% if factory.maintenance_records %}
+                    <div class="table-responsive">
+                        <table class="table table-sm detail-table mb-0">
+                            <thead><tr><th>Equipment</th><th>Next Due</th></tr></thead>
+                            <tbody>
+                            {% for m in factory.maintenance_records %}
+                                <tr><td>{{ m.equipment }}</td><td>{{ m.next_due or "—" }}</td></tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                     {% else %}
-                        <p class="text-muted small mb-0">No layout drawn yet.</p>
+                    <p class="text-muted small mb-0">No maintenance records yet.</p>
                     {% endif %}
                 </div>
             </div>
         </div>
 
-        <!-- Negligence History -->
-        <div class="col-lg-6 detail-card-col">
+        <div class="col-lg-6 col-xl-4">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-clipboard-check"></i> Asset Registry ({{ assets|length }})</h6>
+                        <a href="{{ url_for('factory.asset_registry', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    {% if assets %}
+                    <div class="table-responsive">
+                        <table class="table table-sm detail-table mb-0">
+                            <thead><tr><th>Asset</th><th>Next Due</th></tr></thead>
+                            <tbody>
+                            {% for a in assets %}
+                                <tr><td>{{ a.name }}</td><td>{{ a.next_due_date or "—" }}</td></tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <p class="text-muted small mb-0">No assets registered yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-arrow-repeat"></i> MOC Log</h6>
+                        <a href="{{ url_for('factory.moc_log', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    {% if moc_record and moc_record.items %}
+                    <div class="sensor-detail-row"><span class="label">Changes Logged</span><span class="value">{{ moc_record.items|length }}</span></div>
+                    <div class="sensor-detail-row"><span class="label">Status</span><span class="value">
+                        <span class="badge {{ 'text-bg-success' if moc_record.status == 'Complete' else 'text-bg-warning' }}">{{ moc_record.status }}</span>
+                    </span></div>
+                    {% else %}
+                    <p class="text-muted small mb-0">No changes logged yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ==================================================================
+         PART D -- Work Authorization & Contractor Management
+         ================================================================== -->
+    <h6 class="detail-part-header"><span class="wizard-part-label">D</span> Work Authorization &amp; Contractor Management</h6>
+    <div class="row g-3 mb-4">
+
+        <div class="col-lg-6 col-xl-4">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-file-earmark-lock"></i> Permit-to-Work ({{ factory.permit_records|length }})</h6>
+                        <a href="{{ url_for('factory.permits', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    {% if factory.permit_records %}
+                    <div class="table-responsive">
+                        <table class="table table-sm detail-table mb-0">
+                            <thead><tr><th>Permit No.</th><th>Type</th><th>Status</th></tr></thead>
+                            <tbody>
+                            {% for p in factory.permit_records %}
+                                <tr>
+                                    <td>{{ p.permit_number }}</td><td>{{ p.permit_type }}</td>
+                                    <td><span class="badge {{ 'text-bg-success' if p.status == 'Active' else 'text-bg-secondary' }}">{{ p.status }}</span></td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <p class="text-muted small mb-0">No permits on record yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-list-check"></i> PSSR</h6>
+                        <a href="{{ url_for('factory.pssr_checklist', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    {% if pssr_record and pssr_record.items %}
+                    {% set completed_count = pssr_record.items | selectattr('completed', 'equalto', 'Y') | list | length %}
+                    <div class="sensor-detail-row"><span class="label">Items Completed</span><span class="value">{{ completed_count }} of {{ pssr_record.items|length }}</span></div>
+                    <div class="sensor-detail-row"><span class="label">Status</span><span class="value">
+                        <span class="badge {{ 'text-bg-success' if pssr_record.status == 'Complete' else 'text-bg-warning' }}">{{ pssr_record.status }}</span>
+                    </span></div>
+                    {% else %}
+                    <p class="text-muted small mb-0">Not started yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-person-badge"></i> Contractor Oversight ({{ contractors|length }})</h6>
+                        <a href="{{ url_for('factory.contractor_oversight', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    {% if contractors %}
+                    <div class="table-responsive">
+                        <table class="table table-sm detail-table mb-0">
+                            <thead><tr><th>Name</th><th>HAZOP?</th></tr></thead>
+                            <tbody>
+                            {% for c in contractors %}
+                                <tr><td>{{ c.name }}</td><td>{{ c.joint_hazop_conducted or "—" }}</td></tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <p class="text-muted small mb-0">No contractors on record yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ==================================================================
+         PART E -- Incidents, Compliance & Support Systems
+         ================================================================== -->
+    <h6 class="detail-part-header"><span class="wizard-part-label">E</span> Incidents, Compliance &amp; Support Systems</h6>
+    <div class="row g-3 mb-4">
+
+        <div class="col-lg-6 col-xl-4">
             <div class="card detail-section-card h-100">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
@@ -144,7 +453,7 @@
                         <a href="{{ url_for('factory.negligence_page', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
                     </div>
                     {% if factory.negligence_history %}
-                        <p class="small mb-0">{{ factory.negligence_history }}</p>
+                        <p class="small mb-0">{{ factory.negligence_history[:160] }}{{ "…" if factory.negligence_history|length > 160 else "" }}</p>
                     {% else %}
                         <p class="text-muted small mb-0">Not filled in yet.</p>
                     {% endif %}
@@ -152,8 +461,7 @@
             </div>
         </div>
 
-        <!-- Attendance System -->
-        <div class="col-lg-6 detail-card-col">
+        <div class="col-lg-6 col-xl-4">
             <div class="card detail-section-card h-100">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
@@ -174,11 +482,94 @@
             </div>
         </div>
 
-        <!-- Validation Q&A (read-only) -->
-        <div class="col-lg-6 detail-card-col">
+        <div class="col-lg-6 col-xl-4">
             <div class="card detail-section-card h-100">
                 <div class="card-body">
-                    <h6 class="mb-2"><i class="bi bi-patch-question"></i> Document Validation</h6>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-plug"></i> Utility Systems ({{ factory.utility_systems|length }})</h6>
+                        <a href="{{ url_for('factory.utility_systems', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    {% if factory.utility_systems %}
+                    <div class="table-responsive">
+                        <table class="table table-sm detail-table mb-0">
+                            <thead><tr><th>System</th><th>Redundancy</th></tr></thead>
+                            <tbody>
+                            {% for u in factory.utility_systems %}
+                                <tr><td>{{ u.system }}</td><td>{{ u.redundancy or "—" }}</td></tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% else %}
+                    <p class="text-muted small mb-0">Not filled in yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-mortarboard"></i> Training &amp; Certification</h6>
+                        <a href="{{ url_for('factory.training_records', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    {% if factory.training_info %}
+                    <div class="sensor-detail-row"><span class="label">Induction Program</span><span class="value">{{ factory.training_info.induction_program or "—" }}</span></div>
+                    <div class="sensor-detail-row"><span class="label">Drill Frequency</span><span class="value">{{ factory.training_info.drill_frequency or "—" }}</span></div>
+                    {% else %}
+                    <p class="text-muted small mb-0">Not filled in yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-tree"></i> Environmental &amp; Quality</h6>
+                        <a href="{{ url_for('factory.environmental_compliance', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    {% if factory.environmental_compliance %}
+                    <div class="sensor-detail-row"><span class="label">Env. Clearance</span><span class="value">{{ factory.environmental_compliance.env_clearance or "—" }}</span></div>
+                    <div class="sensor-detail-row"><span class="label">ISO Certifications</span><span class="value">
+                        {{ [factory.environmental_compliance.iso_9001, factory.environmental_compliance.iso_14001, factory.environmental_compliance.iso_45001] | select | list | length }} of 3
+                    </span></div>
+                    {% else %}
+                    <p class="text-muted small mb-0">Not filled in yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-6 col-xl-4">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <h6 class="mb-0"><i class="bi bi-shield-check"></i> Emergency Response</h6>
+                        <a href="{{ url_for('factory.emergency_response', factory_id=factory.id) }}" class="btn btn-sm btn-outline-primary">Edit</a>
+                    </div>
+                    {% if factory.regulatory_standards %}
+                    <div class="sensor-detail-row"><span class="label">Regulatory Standards</span><span class="value">{{ factory.regulatory_standards }}</span></div>
+                    <div class="sensor-detail-row"><span class="label">Last Safety Audit</span><span class="value">{{ factory.last_safety_audit_date or "—" }}</span></div>
+                    {% else %}
+                    <p class="text-muted small mb-0">Not filled in yet.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ==================================================================
+         Document Validation -- not a template section, kept separate
+         ================================================================== -->
+    <h6 class="detail-part-header text-muted"><i class="bi bi-patch-question"></i> Document Validation (from initial upload)</h6>
+    <div class="row g-3 mb-3">
+        <div class="col-lg-8">
+            <div class="card detail-section-card h-100">
+                <div class="card-body">
                     {% if factory.missing_sections %}
                     <p class="small mb-1"><strong>Flagged sections:</strong></p>
                     <ul class="small">
@@ -200,25 +591,13 @@
                 </div>
             </div>
         </div>
-
     </div>
-</div>
 
-<div id="detailPaginationControls" class="pagination-controls"></div>
+</div>
 
 </div>
 {% endblock %}
 
 {% block extra_scripts %}
-<script src="{{ url_for('static', filename='js/pagination.js') }}"></script>
-<script>
-    initPagination({
-        gridSelector: "#detailCardGrid",
-        itemSelector: ".detail-card-col",
-        controlsId: "detailPaginationControls",
-        pageSizeDesktop: 4,
-        pageSizeMobile: 2,
-    });
-</script>
 <script src="{{ url_for('static', filename='js/facility_details.js') }}"></script>
 {% endblock %}

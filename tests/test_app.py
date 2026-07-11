@@ -329,59 +329,143 @@ def test_step7_attendance_test_fails_gracefully(client):
     assert result["api_status"] == "Inactive"
 
 
-def test_step7_finish_marks_setup_complete(client):
+def test_step7_attendance_finish_now_continues_not_completes(client):
+    """As of Step 7 (Part E), /attendance/finish is a mid-flow save-and-
+    continue, not a completion action -- setup_complete now only flips
+    once Emergency Response (Section 20), the genuine last section, is
+    submitted. Renamed from test_step7_finish_marks_setup_complete to
+    reflect this; see test_emergency_response_finish_marks_setup_complete
+    below for where that behavior actually lives now."""
     factory_id = _create_test_facility(client)
     response = client.post(
         f"/factory/{factory_id}/attendance/finish",
         data={"api_url": "", "api_method": "GET", "api_headers": ""},
     )
     assert response.status_code == 302
+    assert "/utilities" in response.headers["Location"]
+
+    import services.storage as storage
+    factory = storage.get_factory(factory_id)
+    assert factory.setup_complete is False
+
+
+def test_emergency_response_finish_marks_setup_complete(client):
+    factory_id = _create_test_facility(client)
+    response = client.post(
+        f"/factory/{factory_id}/emergency-response",
+        data={
+            "regulatory_standards": "Factory Act, OISD",
+            "fire_safety_systems": "Hydrant, sprinkler",
+            "last_safety_audit_date": "2026-01-15",
+            "last_safety_audit_findings": "No major findings.",
+        },
+    )
+    assert response.status_code == 302
     assert response.headers["Location"].rstrip("/") == "" or response.headers["Location"] == "/"
+
+    import services.storage as storage
+    factory = storage.get_factory(factory_id)
+    assert factory.setup_complete is True
+    assert factory.regulatory_standards == "Factory Act, OISD"
 
     # Confirm the landing page now reflects one completed facility.
     landing = client.get("/")
     assert b"1 facility(ies) started" in landing.data or b"fully onboarded" in landing.data
 
 
+def test_utility_systems_prepopulated_with_standard_categories(client):
+    factory_id = _create_test_facility(client)
+    page = client.get(f"/factory/{factory_id}/utilities")
+    assert page.status_code == 200
+    assert b"Emergency Power Backup" in page.data
+    assert b"Compressed Air System" in page.data
+
+    import services.storage as storage
+    factory = storage.get_factory(factory_id)
+    assert len(factory.utility_systems) == 5
+
+
+def test_training_and_environmental_save_and_redirect(client):
+    factory_id = _create_test_facility(client)
+
+    r = client.post(f"/factory/{factory_id}/training", data={"induction_program": "2-day induction"})
+    assert r.status_code == 302
+    assert "/environmental" in r.headers["Location"]
+
+    r = client.post(f"/factory/{factory_id}/environmental", data={"iso_9001": "Yes", "iso_14001": "Yes"})
+    assert r.status_code == 302
+    assert "/emergency-response" in r.headers["Location"]
+
+    import services.storage as storage
+    factory = storage.get_factory(factory_id)
+    assert factory.training_info["induction_program"] == "2-day induction"
+    assert factory.environmental_compliance["iso_9001"] == "Yes"
+
+
+def test_facility_details_shows_all_parts(client):
+    """Confirms Step 8's expanded Facility Details page renders all 5
+    Part headers -- the whole point of the expansion."""
+    factory_id = _create_test_facility(client)
+    page = client.get(f"/factory/{factory_id}/details")
+    assert page.status_code == 200
+    for part_letter in ["A", "B", "C", "D", "E"]:
+        assert f'wizard-part-label">{part_letter}</span>'.encode() in page.data
+
 # ===========================================================================
 # Full end-to-end smoke test -- every step in sequence, one facility
 # ===========================================================================
 
 def test_full_wizard_end_to_end(client):
-    """Walks a single facility through all 7 steps in order, confirming
-    each step's data is visible on the next -- the closest thing to a
-    real user's click-through in an automated test."""
+    """Walks a single facility through the entire chain in order --
+    Validate through Emergency Response -- confirming each step's data
+    is visible on the next and that setup_complete only flips at the
+    genuine last step. Originally covered the old 7-step flow; extended
+    in Step 7 to cover the full 20-section chain now that it all exists."""
     factory_id = _create_test_facility(client, name="Full Flow Plant")
 
-    # Step 2
+    # Validate
     answers = ["A1", "A2", "A3", "A4", "A5"]
     r = client.post(f"/factory/{factory_id}/validate", data=json.dumps({"answers": answers}), content_type="application/json")
     assert r.get_json()["success"] is True
 
-    # Step 3 (no changes, just confirm it loads with prepopulated data)
+    # Sensors (no changes, just confirm it loads with prepopulated data)
     r = client.get(f"/factory/{factory_id}/sensors")
     assert b"Full Flow Plant" in r.data
 
-    # Step 4
+    # Layout
     r = client.get(f"/factory/{factory_id}/layout")
     assert r.status_code == 200
 
-    # Step 5
+    # Negligence History
     r = client.post(f"/factory/{factory_id}/negligence", data={"negligence_history": "None known."})
     assert r.status_code == 302
 
-    # Step 6
+    # Employees
     r = client.get(f"/factory/{factory_id}/employees")
     assert b"Ravi Kumar" in r.data
 
-    # Step 7
+    # Attendance -- now continues, does not complete
     r = client.post(f"/factory/{factory_id}/attendance/finish", data={"api_url": "", "api_method": "GET", "api_headers": ""})
     assert r.status_code == 302
+    assert "/utilities" in r.headers["Location"]
 
-    # Confirm final state
-    final_page = client.get(f"/factory/{factory_id}/attendance")
+    import services.storage as storage
+    assert storage.get_factory(factory_id).setup_complete is False
+
+    # Utilities -> Training -> Environmental -> Emergency Response (the real finish)
+    r = client.post(f"/factory/{factory_id}/utilities", data={})
+    assert "/training" in r.headers["Location"]
+    r = client.post(f"/factory/{factory_id}/training", data={"induction_program": "Standard"})
+    assert "/environmental" in r.headers["Location"]
+    r = client.post(f"/factory/{factory_id}/environmental", data={})
+    assert "/emergency-response" in r.headers["Location"]
+    r = client.post(f"/factory/{factory_id}/emergency-response", data={"regulatory_standards": "Factory Act"})
+    assert r.headers["Location"].rstrip("/") == "" or r.headers["Location"] == "/"
+
+    # Confirm final state -- setup_complete now True, only at the true end.
+    final_page = client.get(f"/factory/{factory_id}/emergency-response")
     assert final_page.status_code == 200
-
+    assert storage.get_factory(factory_id).setup_complete is True
 # ===========================================================================
 # NEW (Step 0-1) -- registry-driven navigation and Person category filtering
 # ===========================================================================

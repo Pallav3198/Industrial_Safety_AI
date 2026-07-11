@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}Add Facility — Utility Systems{% endblock %}
+
+{% block content %}
+<div class="fill-height">
+
+{% with current_route = 'factory.utility_systems' %}{% include "partials/wizard_progress.html" %}{% endwith %}
+
+<div class="mb-1">
+    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
+        <i class="bi bi-arrow-left"></i> Back to Facility Details
+    </a>
+</div>
+
+<div class="mb-2">
+    <h3 class="mb-1">{{ factory.name }} — Utility &amp; Support Systems</h3>
+    <p class="text-muted mb-0 small">
+        Critical utility systems that support plant operations. Failures here often compound with primary
+        process risks — e.g. a power backup failure during a sensor fault. Pre-filled with the standard
+        categories; edit, remove, or add rows as needed.
+    </p>
+</div>
+
+<div class="grid-scroll-area">
+<form method="POST" action="{{ url_for('factory.utility_systems', factory_id=factory.id) }}" id="utilityForm">
+    <div class="table-responsive mb-2">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Utility System</th><th>Type / Vendor</th>
+                    <th style="width:150px">Backup / Redundancy</th><th style="width:120px">Last Tested</th><th style="width:40px"></th>
+                </tr>
+            </thead>
+            <tbody id="utilityRows"></tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-primary mb-3" id="addUtilityRowBtn">
+        <i class="bi bi-plus-lg"></i> Add System
+    </button>
+
+    <div class="d-flex justify-content-between mt-2">
+        {% if prev_nav %}
+        <a href="{{ prev_nav.url }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
+        {% else %}<span></span>{% endif %}
+        <button type="submit" class="btn btn-primary">Next <i class="bi bi-arrow-right"></i></button>
+    </div>
+</form>
+</div>
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    window.EXISTING_UTILITIES = {{ factory.utility_systems | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/dynamic_table.js') }}"></script>
+<script>
+    initDynamicTable({
+        tbodyId: "utilityRows",
+        addButtonId: "addUtilityRowBtn",
+        rowHtml: (v) => {
+            const esc = (s) => (s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+            return `
+            <td><input type="text" name="utility_system[]" class="form-control form-control-sm" value="${esc(v.system)}"></td>
+            <td><input type="text" name="utility_type_vendor[]" class="form-control form-control-sm" value="${esc(v.type_vendor)}"></td>
+            <td><input type="text" name="utility_redundancy[]" class="form-control form-control-sm" value="${esc(v.redundancy)}"></td>
+            <td><input type="text" name="utility_last_tested[]" class="form-control form-control-sm" value="${esc(v.last_tested)}"></td>
+            <td><button type="button" class="btn btn-sm btn-outline-danger remove-row-btn"><i class="bi bi-trash"></i></button></td>
+        `;
+        },
+        existingRows: window.EXISTING_UTILITIES || [],
+    });
+</script>
+{% endblock %}

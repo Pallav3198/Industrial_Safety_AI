@@ -5,18 +5,12 @@
     "factory.sensors_page") in the calling template's render_template()
     call. `factory` is already in scope in every step template.
 
-    IMPORTANT -- INTERIM STATE: 15 of the eventual 20 Facility
-    Onboarding Template sections have real pages today (everything
-    except Sections 17-20, Part E's Utility/Training/Environmental/
-    Emergency Response, which land in a later build phase), plus the
-    portal-only Layout editor. As those land, add their entries to the
-    matching Part's list below -- nothing else about this partial needs
-    to change.
+    IMPORTANT: all 20 of the eventual Facility Onboarding Template
+    sections have real pages now, plus the portal-only Layout editor.
 
-    Now that this is 15+ items, they're grouped visually by Part
-    (A-E) with a labeled divider before each group, rather than one
-    long undifferentiated row -- a flat row stopped being readable once
-    Parts B/C/D filled in.
+    Items are grouped visually by Part (A-E) with a labeled divider
+    before each group, rather than one long undifferentiated row -- a
+    flat row stopped being readable once Parts B/C/D filled in.
 
     Status per section comes from Factory.get_wizard_step_status() (a
     real data-completeness check, independent of which page you're
@@ -52,6 +46,10 @@
     ("E", [
         (url_for('factory.negligence_page', factory_id=factory.id), "factory.negligence_page", "History", step_status.get(15, "pending")),
         (url_for('factory.attendance_page', factory_id=factory.id), "factory.attendance_page", "Attendance", step_status.get(16, "pending")),
+        (url_for('factory.utility_systems', factory_id=factory.id), "factory.utility_systems", "Utilities", step_status.get(17, "pending")),
+        (url_for('factory.training_records', factory_id=factory.id), "factory.training_records", "Training", step_status.get(18, "pending")),
+        (url_for('factory.environmental_compliance', factory_id=factory.id), "factory.environmental_compliance", "Environmental", step_status.get(19, "pending")),
+        (url_for('factory.emergency_response', factory_id=factory.id), "factory.emergency_response", "Emergency Response", step_status.get(20, "pending")),
     ]),
 ] %}
 <div class="wizard-progress-groups mb-3">

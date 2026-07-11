@@ -341,6 +341,16 @@ body {
 }
 
 /* --- Facility details page -------------------------------------------------- */
+.detail-part-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 700;
+    color: var(--brand-primary);
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.35rem;
+    border-bottom: 1px solid #E5E9EF;
+}
 .detail-section-card {
     border: 1px solid #E5E9EF;
     border-radius: var(--card-radius);
