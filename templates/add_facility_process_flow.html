@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Add Facility — Process Flow{% endblock %}
+
+{% block content %}
+<div class="fill-height">
+
+{% with current_route = 'factory.process_flow' %}{% include "partials/wizard_progress.html" %}{% endwith %}
+
+<div class="mb-1 text-center flex-shrink-0">
+    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
+        <i class="bi bi-arrow-left"></i> Back to Facility Details
+    </a>
+</div>
+
+<div class="row justify-content-center flex-grow-1" style="min-height:0;">
+    <div class="col-lg-8 d-flex flex-column">
+        <div class="card form-card flex-grow-1 d-flex flex-column">
+            <div class="card-body d-flex flex-column flex-grow-1" style="min-height:0;">
+                <h5 class="mb-1">Process Flow Description</h5>
+                <p class="text-muted small mb-2">
+                    Describe the process step by step, from raw material intake to final product/output.
+                    Reference major equipment by name.
+                </p>
+
+                <form method="POST" action="{{ url_for('factory.process_flow', factory_id=factory.id) }}"
+                      class="d-flex flex-column flex-grow-1" style="min-height:0;">
+                    <div class="mb-2 flex-grow-1 d-flex flex-column" style="min-height:0;">
+                        <label for="process_narrative" class="form-label">Process Narrative</label>
+                        <textarea class="form-control flex-grow-1" id="process_narrative" name="process_narrative"
+                                  style="min-height:120px; resize:none;"
+                                  placeholder="Describe the process end to end.">{{ factory.process_narrative }}</textarea>
+                    </div>
+                    <div class="mb-2 flex-shrink-0">
+                        <label for="drawing_references" class="form-label">Referenced Drawing Numbers <span class="text-muted small">(P&amp;ID / PFD, if attached as appendix)</span></label>
+                        <input type="text" class="form-control" id="drawing_references" name="drawing_references"
+                               value="{{ factory.drawing_references }}">
+                    </div>
+
+                    <div class="d-flex justify-content-between flex-shrink-0">
+                        {% if prev_nav %}
+                        <a href="{{ prev_nav.url }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
+                        {% else %}<span></span>{% endif %}
+                        <button type="submit" class="btn btn-primary">Next <i class="bi bi-arrow-right"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,27 @@
+<div class="col-md-6 col-lg-4 permit-col" data-permit-id="{{ permit.id }}">
+    <div class="card permit-card h-100"
+         data-permit-number="{{ permit.permit_number }}"
+         data-permit-type="{{ permit.permit_type }}"
+         data-location-equipment="{{ permit.location_equipment }}"
+         data-issued-to="{{ permit.issued_to }}"
+         data-issued-at="{{ permit.issued_at }}"
+         data-expires-at="{{ permit.expires_at }}"
+         data-status="{{ permit.status }}"
+         data-notes="{{ permit.notes }}">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start">
+                <span class="badge {{ 'text-bg-success' if permit.status == 'Active' else 'text-bg-secondary' }}">{{ permit.status }}</span>
+                <span class="badge text-bg-light border">{{ permit.permit_type }}</span>
+            </div>
+            <h5 class="card-title mt-2 mb-1">{{ permit.permit_number }}</h5>
+            <p class="text-muted small mb-2">{{ permit.location_equipment }}</p>
+            <div class="sensor-detail-row"><span class="label">Issued To</span><span class="value">{{ permit.issued_to or "—" }}</span></div>
+            <div class="sensor-detail-row"><span class="label">Issued At</span><span class="value">{{ permit.issued_at or "—" }}</span></div>
+            <div class="sensor-detail-row"><span class="label">Expires At</span><span class="value">{{ permit.expires_at or "—" }}</span></div>
+        </div>
+        <div class="card-footer bg-transparent d-flex gap-2">
+            <button type="button" class="btn btn-sm btn-outline-primary flex-grow-1 edit-permit-btn"><i class="bi bi-pencil"></i> Edit</button>
+            <button type="button" class="btn btn-sm btn-outline-danger flex-grow-1 delete-permit-btn"><i class="bi bi-trash"></i> Delete</button>
+        </div>
+    </div>
+</div>

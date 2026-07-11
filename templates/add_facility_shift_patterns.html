@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Add Facility — Shift Patterns{% endblock %}
+
+{% block content %}
+<div class="fill-height">
+
+{% with current_route = 'factory.shift_patterns' %}{% include "partials/wizard_progress.html" %}{% endwith %}
+
+<div class="mb-1">
+    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
+        <i class="bi bi-arrow-left"></i> Back to Facility Details
+    </a>
+</div>
+
+<div class="mb-2">
+    <h3 class="mb-1">{{ factory.name }} — Shift &amp; Workforce Patterns</h3>
+    <p class="text-muted mb-0 small">Shift timings and the handover protocol between them.</p>
+</div>
+
+<div class="grid-scroll-area">
+<form method="POST" action="{{ url_for('factory.shift_patterns', factory_id=factory.id) }}" id="shiftForm">
+    <div class="table-responsive mb-2">
+        <table class="table table-sm">
+            <thead><tr><th>Shift Name</th><th>Start Time</th><th>End Time</th><th style="width:120px">Headcount</th><th style="width:40px"></th></tr></thead>
+            <tbody id="shiftRows"></tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-primary mb-3" id="addShiftRowBtn">
+        <i class="bi bi-plus-lg"></i> Add Shift
+    </button>
+
+    <div class="mb-3">
+        <label class="form-label">Shift Changeover / Handover Protocol</label>
+        <textarea class="form-control" name="shift_handover_notes" rows="4"
+                  placeholder="Describe what is checked, communicated, and signed off between outgoing and incoming shifts.">{{ factory.shift_handover_notes }}</textarea>
+    </div>
+
+    <div class="d-flex justify-content-between mt-2">
+        {% if prev_nav %}
+        <a href="{{ prev_nav.url }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
+        {% else %}<span></span>{% endif %}
+        <button type="submit" class="btn btn-primary">Next <i class="bi bi-arrow-right"></i></button>
+    </div>
+</form>
+</div>
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    window.EXISTING_SHIFTS = {{ factory.shift_patterns | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/dynamic_table.js') }}"></script>
+<script>
+    initDynamicTable({
+        tbodyId: "shiftRows",
+        addButtonId: "addShiftRowBtn",
+        rowHtml: (v) => {
+            const esc = (s) => (s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+            return `
+            <td><input type="text" name="shift_name[]" class="form-control form-control-sm" value="${esc(v.shift_name)}" placeholder="e.g. Shift A"></td>
+            <td><input type="text" name="shift_start[]" class="form-control form-control-sm" value="${esc(v.start_time)}"></td>
+            <td><input type="text" name="shift_end[]" class="form-control form-control-sm" value="${esc(v.end_time)}"></td>
+            <td><input type="text" name="shift_headcount[]" class="form-control form-control-sm" value="${esc(v.headcount)}"></td>
+            <td><button type="button" class="btn btn-sm btn-outline-danger remove-row-btn"><i class="bi bi-trash"></i></button></td>
+        `;
+        },
+        existingRows: window.EXISTING_SHIFTS || [],
+    });
+</script>
+{% endblock %}

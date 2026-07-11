@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block title %}Add Facility — Key Personnel{% endblock %}
+
+{% block content %}
+<div id="app-data" data-factory-id="{{ factory.id }}"></div>
+<div class="fill-height">
+
+{% with current_route = 'factory.key_personnel' %}{% include "partials/wizard_progress.html" %}{% endwith %}
+
+<div class="mb-1">
+    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
+        <i class="bi bi-arrow-left"></i> Back to Facility Details
+    </a>
+</div>
+
+<div class="mb-2">
+    <h3 class="mb-1">{{ factory.name }} — Key Personnel</h3>
+    <p class="text-muted mb-0 small">Managerial staff, maintenance leads, safety officers, and the escalation chain that connects them.</p>
+</div>
+
+<div class="grid-scroll-area">
+
+    <div class="d-flex justify-content-between align-items-center mb-2 mt-1">
+        <h6 class="mb-0">Managerial Staff</h6>
+        <button type="button" class="btn btn-sm btn-outline-primary add-person-btn" data-category="Managerial Staff">
+            <i class="bi bi-plus-lg"></i> Add
+        </button>
+    </div>
+    <div class="row g-3 mb-3 person-grid" id="managerialGrid" data-category="Managerial Staff">
+        {% for employee in managerial %}{% include "partials/employee_card.html" %}
+        {% else %}<div class="col-12 text-muted small">None added yet.</div>{% endfor %}
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h6 class="mb-0">Maintenance Staff</h6>
+        <button type="button" class="btn btn-sm btn-outline-primary add-person-btn" data-category="Maintenance Staff">
+            <i class="bi bi-plus-lg"></i> Add
+        </button>
+    </div>
+    <div class="row g-3 mb-3 person-grid" id="maintenanceGrid" data-category="Maintenance Staff">
+        {% for employee in maintenance %}{% include "partials/employee_card.html" %}
+        {% else %}<div class="col-12 text-muted small">None added yet.</div>{% endfor %}
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-2">
+        <h6 class="mb-0">Safety Officers</h6>
+        <button type="button" class="btn btn-sm btn-outline-primary add-person-btn" data-category="Safety Officer">
+            <i class="bi bi-plus-lg"></i> Add
+        </button>
+    </div>
+    <div class="row g-3 mb-3 person-grid" id="safetyGrid" data-category="Safety Officer">
+        {% for employee in safety %}{% include "partials/employee_card.html" %}
+        {% else %}<div class="col-12 text-muted small">None added yet.</div>{% endfor %}
+    </div>
+
+    <hr class="my-3">
+
+    <h6 class="mb-2">Escalation Logic</h6>
+    <p class="text-muted small mb-2">Who is contacted, in what order, for each severity of incident.</p>
+    <form method="POST" action="{{ url_for('factory.save_escalation_logic', factory_id=factory.id) }}" id="escalationForm">
+        <div class="table-responsive mb-2">
+            <table class="table table-sm">
+                <thead><tr><th>Level</th><th>Trigger Condition</th><th>Contact / Role</th><th>Response Time</th><th style="width:40px"></th></tr></thead>
+                <tbody id="escalationRows"></tbody>
+            </table>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-primary mb-3" id="addEscalationRowBtn">
+            <i class="bi bi-plus-lg"></i> Add Level
+        </button>
+
+        <div class="d-flex justify-content-between mt-2">
+            {% if prev_nav %}
+            <a href="{{ prev_nav.url }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
+            {% else %}<span></span>{% endif %}
+            <button type="submit" class="btn btn-primary">Next <i class="bi bi-arrow-right"></i></button>
+        </div>
+    </form>
+</div>
+
+</div>
+{% include "partials/employee_form_modal.html" %}
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    window.DEPARTMENT_CHOICES = {{ department_choices | tojson }};
+    window.BLOOD_GROUP_CHOICES = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "Unknown"];
+    window.ALL_EMPLOYEES = {{ person_options | tojson }};
+    window.EXISTING_ESCALATION_LOGIC = {{ factory.escalation_logic | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/dynamic_table.js') }}"></script>
+<script src="{{ url_for('static', filename='js/key_personnel.js') }}"></script>
+<script>
+    initDynamicTable({
+        tbodyId: "escalationRows",
+        addButtonId: "addEscalationRowBtn",
+        rowHtml: (v) => {
+            const esc = (s) => (s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+            return `
+            <td><input type="text" name="escalation_level[]" class="form-control form-control-sm" value="${esc(v.level)}" placeholder="e.g. 1 — First Responder"></td>
+            <td><input type="text" name="escalation_trigger[]" class="form-control form-control-sm" value="${esc(v.trigger)}"></td>
+            <td><input type="text" name="escalation_contact[]" class="form-control form-control-sm" value="${esc(v.contact_role)}"></td>
+            <td><input type="text" name="escalation_response_time[]" class="form-control form-control-sm" value="${esc(v.response_time)}"></td>
+            <td><button type="button" class="btn btn-sm btn-outline-danger remove-row-btn"><i class="bi bi-trash"></i></button></td>
+        `;
+        },
+        existingRows: window.EXISTING_ESCALATION_LOGIC || [],
+    });
+</script>
+{% endblock %}

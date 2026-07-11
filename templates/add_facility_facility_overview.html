@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Add Facility — Facility Overview{% endblock %}
+
+{% block content %}
+<div class="fill-height">
+
+{% with current_route = 'factory.facility_overview' %}{% include "partials/wizard_progress.html" %}{% endwith %}
+
+<div class="mb-1">
+    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
+        <i class="bi bi-arrow-left"></i> Back to Facility Details
+    </a>
+</div>
+
+<div class="mb-2">
+    <h3 class="mb-1">{{ factory.name }} — Facility Overview</h3>
+    <p class="text-muted mb-0 small">Basic facility profile — what it is, where it is, and its major departments.</p>
+</div>
+
+<div class="grid-scroll-area">
+<form method="POST" action="{{ url_for('factory.facility_overview', factory_id=factory.id) }}" id="facilityOverviewForm">
+    <div class="row">
+        <div class="col-md-6 mb-2">
+            <label class="form-label">Physical Address</label>
+            <input type="text" class="form-control" name="address" value="{{ factory.address }}">
+        </div>
+        <div class="col-md-6 mb-2">
+            <label class="form-label">Industry Sector</label>
+            <input type="text" class="form-control" name="industry_sector" value="{{ factory.industry_sector }}"
+                   placeholder="e.g. Thermal Power, Steel, Chemical/Pharma, Refinery">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-2">
+            <label class="form-label">Operating Company</label>
+            <input type="text" class="form-control" name="operating_company" value="{{ factory.operating_company }}">
+        </div>
+        <div class="col-md-6 mb-2">
+            <label class="form-label">Commissioning Date</label>
+            <input type="text" class="form-control" name="commissioning_date" value="{{ factory.commissioning_date }}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-2">
+            <label class="form-label">Installed Capacity</label>
+            <input type="text" class="form-control" name="installed_capacity" value="{{ factory.installed_capacity }}"
+                   placeholder="e.g. 600 MW, 3 MTPA">
+        </div>
+        <div class="col-md-6 mb-2">
+            <label class="form-label">Current Operating Phase</label>
+            <select class="form-select" name="operating_phase">
+                <option value="" {{ "selected" if not factory.operating_phase }}>— Select —</option>
+                <option value="Routine Operation" {{ "selected" if factory.operating_phase == "Routine Operation" }}>Routine Operation</option>
+                <option value="Commissioning/Startup" {{ "selected" if factory.operating_phase == "Commissioning/Startup" }}>Commissioning/Startup</option>
+                <option value="Shutdown/Turnaround" {{ "selected" if factory.operating_phase == "Shutdown/Turnaround" }}>Shutdown/Turnaround</option>
+            </select>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Upcoming High-Profile Milestone Date <span class="text-muted small">(e.g. inauguration, regulatory deadline — if any)</span></label>
+        <input type="text" class="form-control" name="upcoming_milestone_date" value="{{ factory.upcoming_milestone_date }}">
+    </div>
+
+    <h6 class="mb-2">Major Departments / Units</h6>
+    <div class="table-responsive mb-2">
+        <table class="table table-sm">
+            <thead><tr><th>Department / Unit Name</th><th>Primary Function</th><th style="width:120px">Headcount</th><th style="width:40px"></th></tr></thead>
+            <tbody id="departmentRows"></tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-primary mb-3" id="addDepartmentRowBtn">
+        <i class="bi bi-plus-lg"></i> Add Department
+    </button>
+
+    <div class="d-flex justify-content-between mt-2">
+        {% if prev_nav %}
+        <a href="{{ prev_nav.url }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
+        {% else %}<span></span>{% endif %}
+        <button type="submit" class="btn btn-primary">Next <i class="bi bi-arrow-right"></i></button>
+    </div>
+</form>
+</div>
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    window.EXISTING_DEPARTMENTS = {{ factory.departments | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/dynamic_table.js') }}"></script>
+<script>
+    initDynamicTable({
+        tbodyId: "departmentRows",
+        addButtonId: "addDepartmentRowBtn",
+        rowHtml: (v) => {
+            const esc = (s) => (s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+            return `
+            <td><input type="text" name="dept_name[]" class="form-control form-control-sm" value="${esc(v.name)}"></td>
+            <td><input type="text" name="dept_function[]" class="form-control form-control-sm" value="${esc(v.function)}"></td>
+            <td><input type="text" name="dept_headcount[]" class="form-control form-control-sm" value="${esc(v.headcount)}"></td>
+            <td><button type="button" class="btn btn-sm btn-outline-danger remove-row-btn"><i class="bi bi-trash"></i></button></td>
+        `;
+        },
+        existingRows: window.EXISTING_DEPARTMENTS || [],
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block title %}Add Facility — Contractor Oversight{% endblock %}
+
+{% block content %}
+<div id="app-data" data-factory-id="{{ factory.id }}"></div>
+<div class="fill-height">
+
+{% with current_route = 'factory.contractor_oversight' %}{% include "partials/wizard_progress.html" %}{% endwith %}
+
+<div class="mb-1">
+    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
+        <i class="bi bi-arrow-left"></i> Back to Facility Details
+    </a>
+</div>
+
+<div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
+    <div>
+        <h3 class="mb-1">{{ factory.name }} — Contractor Oversight Register</h3>
+        <p class="text-muted mb-0 small">Every contractor or third-party service provider currently engaged in operations or maintenance work.</p>
+    </div>
+    <button type="button" class="btn btn-primary" id="addContractorBtn"><i class="bi bi-plus-lg"></i> Add Contractor</button>
+</div>
+
+<div class="grid-scroll-area">
+    <div class="row g-3" id="contractorGrid">
+        {% for contractor in contractors %}
+            {% include "partials/contractor_card.html" %}
+        {% else %}
+            <div class="col-12" id="emptyState">
+                <div class="text-center text-muted py-5">
+                    <i class="bi bi-person-badge display-4"></i>
+                    <p class="mt-2">No contractors on record yet. Add one to get started.</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+<div id="contractorPaginationControls" class="pagination-controls"></div>
+
+<div class="d-flex justify-content-between mt-2">
+    {% if prev_nav %}
+    <a href="{{ prev_nav.url }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
+    {% else %}<span></span>{% endif %}
+    {% if next_nav %}
+    <a href="{{ next_nav.url }}" class="btn btn-primary">Next <i class="bi bi-arrow-right"></i></a>
+    {% endif %}
+</div>
+
+</div>
+{% include "partials/contractor_form_modal.html" %}
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    window.SUPERVISING_EMPLOYEE_OPTIONS = {{ person_options | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/pagination.js') }}"></script>
+<script src="{{ url_for('static', filename='js/contractors.js') }}"></script>
+{% endblock %}

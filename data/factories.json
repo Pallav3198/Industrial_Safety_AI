@@ -1922,5 +1922,397 @@
     "setup_complete": false,
     "id": "64070da2",
     "created_at": "2026-07-10T14:36:28.575872"
+  },
+  "6a8d2654": {
+    "name": "ABC",
+    "preliminary_doc_filename": "6a8d2654_Facility_Onboarding_Template_AA.pdf",
+    "ai_summary": "",
+    "monitored_parameters": [],
+    "people": [],
+    "checklist_records": [],
+    "permit_records": [],
+    "missing_sections": [
+      "Section 1: Facility Overview",
+      "Section 2: Process Flow Description",
+      "Section 3: SCADA / DCS Systems",
+      "Section 4: Sensor & Instrumentation Details",
+      "Section 5.1: Managerial Staff",
+      "Section 5.2: Maintenance Staff",
+      "Section 5.3: Safety Officers",
+      "Section 5.4: Escalation Logic",
+      "Section 6: Shift & Workforce Patterns",
+      "Section 7: Maintenance Records & Timelines",
+      "Section 8: Incident & Negligence History",
+      "Section 9: Employee Directory",
+      "Section 10: Attendance & Access Control Systems",
+      "Section 11: Utility & Support Systems",
+      "Section 12: Training & Certification Records",
+      "Section 13: Environmental & Quality Compliance",
+      "Section 14: Emergency Response & Compliance"
+    ],
+    "clarification_qa": [
+      {
+        "question": "Given the template is largely blank, what is the current status of gathering this information, or is there another source document where these details are compiled?",
+        "answer": ""
+      },
+      {
+        "question": "Could you provide a high-level summary of the plant's operations, its primary product, and main process steps to fill in the 'Facility Overview' and 'Process Flow Description' sections?",
+        "answer": ""
+      },
+      {
+        "question": "What SCADA/DCS systems are currently in use, and which critical sensors or instruments are monitored? Please include their types, locations, units, normal ranges, and alarm thresholds.",
+        "answer": ""
+      },
+      {
+        "question": "Since key personnel sections are empty, how are roles, contact details, and emergency escalation paths (including response times for each level) currently managed and communicated across different shifts?",
+        "answer": ""
+      },
+      {
+        "question": "Can you detail the established shift patterns (start/end times, typical headcount) and describe the formal shift changeover protocol, including what is checked and communicated?",
+        "answer": ""
+      },
+      {
+        "question": "What are the maintenance records for critical equipment (last maintenance, type, next due)? Are there any deferred or overdue maintenance items to note?",
+        "answer": ""
+      },
+      {
+        "question": "To better understand potential compound risks, can you provide details on the facility's utility and support systems (e.g., emergency power backup, fire water), including their redundancy and last test dates?",
+        "answer": ""
+      },
+      {
+        "question": "Are there any records of past incidents, near-misses, or any broader history of negligence that could inform risk modeling and prevention strategies?",
+        "answer": ""
+      }
+    ],
+    "validation_complete": false,
+    "address": "",
+    "industry_sector": "",
+    "operating_company": "",
+    "commissioning_date": "",
+    "installed_capacity": "",
+    "operating_phase": "",
+    "upcoming_milestone_date": "",
+    "departments": [],
+    "process_narrative": "",
+    "drawing_references": "",
+    "scada_systems": [],
+    "historian_system": "",
+    "network_notes": "",
+    "escalation_logic": [],
+    "shift_patterns": [],
+    "shift_handover_notes": "",
+    "maintenance_records": [],
+    "negligence_history": "",
+    "attendance_api_url": "",
+    "attendance_api_method": "GET",
+    "attendance_api_headers": "",
+    "attendance_api_status": "Not Tested",
+    "attendance_api_last_tested": "",
+    "utility_systems": [],
+    "training_info": {},
+    "environmental_compliance": {},
+    "regulatory_standards": "",
+    "fire_safety_systems": "",
+    "last_safety_audit_date": "",
+    "last_safety_audit_findings": "",
+    "layout_data": [],
+    "setup_complete": false,
+    "id": "6a8d2654",
+    "created_at": "2026-07-10T20:38:25.992353"
+  },
+  "419242ee": {
+    "name": "ABC",
+    "preliminary_doc_filename": "419242ee_Facility_Onboarding_Template_AA.pdf",
+    "ai_summary": "",
+    "monitored_parameters": [],
+    "people": [],
+    "checklist_records": [],
+    "permit_records": [],
+    "missing_sections": [
+      "Section 1: Facility Overview",
+      "Section 2: Process Flow Description",
+      "Section 3: SCADA / DCS Systems",
+      "Section 4: Sensor & Instrumentation Details",
+      "Section 5: Key Personnel (Managerial Staff, Maintenance Staff, Safety Officers, Escalation Logic)",
+      "Section 6: Shift & Workforce Patterns",
+      "Section 7: Maintenance Records & Timelines",
+      "Section 8: Incident & Negligence History",
+      "Section 9: Employee Directory",
+      "Section 10: Attendance & Access Control Systems",
+      "Section 11: Utility & Support Systems",
+      "Section 12: Training & Certification Records",
+      "Section 13: Environmental & Quality Compliance",
+      "Section 14: Emergency Response & Compliance"
+    ],
+    "clarification_qa": [
+      {
+        "question": "What is the complete process flow description for this facility, including major equipment and any available PFD/P&ID drawing numbers?",
+        "answer": "ok"
+      },
+      {
+        "question": "Could you provide detailed information for all SCADA/DCS systems, historian systems, and any relevant network architecture notes (e.g., IT/OT segregation)?",
+        "answer": "ok"
+      },
+      {
+        "question": "Please list all sensors and instruments that require monitoring, specifying their type, location, unit, normal operating range, alarm thresholds, and how their data can be integrated (e.g., API details).",
+        "answer": "ok"
+      },
+      {
+        "question": "Who are the key personnel, including managerial, maintenance, and safety staff, with their contact information and certifications, and what is the incident escalation logic across all operational shifts?",
+        "answer": "ok"
+      },
+      {
+        "question": "What are the established shift patterns, including timings and typical headcount per shift, and what is the detailed shift changeover/handover protocol?",
+        "answer": "ok"
+      },
+      {
+        "question": "Can you provide comprehensive maintenance records for all major equipment, detailing last maintenance dates, types of maintenance, next due dates, and any deferred maintenance notes?",
+        "answer": "ok"
+      },
+      {
+        "question": "Please describe the facility's incident and negligence history, including any past incidents, near-misses, safety violations, root causes, and corrective actions taken.",
+        "answer": "ok"
+      }
+    ],
+    "validation_complete": true,
+    "address": "",
+    "industry_sector": "",
+    "operating_company": "",
+    "commissioning_date": "",
+    "installed_capacity": "",
+    "operating_phase": "",
+    "upcoming_milestone_date": "",
+    "departments": [],
+    "process_narrative": "",
+    "drawing_references": "",
+    "scada_systems": [],
+    "historian_system": "",
+    "network_notes": "",
+    "escalation_logic": [],
+    "shift_patterns": [],
+    "shift_handover_notes": "",
+    "maintenance_records": [],
+    "negligence_history": "",
+    "attendance_api_url": "",
+    "attendance_api_method": "GET",
+    "attendance_api_headers": "",
+    "attendance_api_status": "Not Tested",
+    "attendance_api_last_tested": "",
+    "utility_systems": [],
+    "training_info": {},
+    "environmental_compliance": {},
+    "regulatory_standards": "",
+    "fire_safety_systems": "",
+    "last_safety_audit_date": "",
+    "last_safety_audit_findings": "",
+    "layout_data": [],
+    "setup_complete": false,
+    "id": "419242ee",
+    "created_at": "2026-07-10T20:42:25.702749"
+  },
+  "fa46830d": {
+    "name": "abx",
+    "preliminary_doc_filename": "fa46830d_Facility_Onboarding_Template_AA.pdf",
+    "ai_summary": "",
+    "monitored_parameters": [],
+    "people": [],
+    "checklist_records": [],
+    "permit_records": [],
+    "missing_sections": [
+      "Section 1: Facility Overview Details (address, industry, capacity, departments)",
+      "Section 1: Narrative Overview",
+      "Section 2: Process Flow Description",
+      "Section 3: SCADA / DCS Systems",
+      "Section 4: Sensor & Instrumentation Details",
+      "Section 5: Key Personnel & Escalation Logic",
+      "Section 7: Maintenance Records & Timelines",
+      "Section 9: Employee Directory"
+    ],
+    "clarification_qa": [
+      {
+        "question": "What is the core industrial process of the facility, including its raw material inputs and final products?",
+        "answer": ","
+      },
+      {
+        "question": "Can you provide details on the SCADA/DCS systems and their vendors/functions, along with any existing historian system and network architecture notes?",
+        "answer": ","
+      },
+      {
+        "question": "Please list the critical sensors and instruments to be monitored, including their type, location, units, normal ranges, and alarm thresholds.",
+        "answer": ","
+      },
+      {
+        "question": "Who are the key managerial, maintenance, and safety personnel, and what are their contact details and specific roles?",
+        "answer": ","
+      },
+      {
+        "question": "What is the escalation logic for incidents, including specific contacts or roles for each level and their expected response times?",
+        "answer": ","
+      },
+      {
+        "question": "Could you provide the full shift patterns, including start/end times and typical headcount for each shift (A, B, C), and describe the shift changeover protocol?",
+        "answer": ","
+      },
+      {
+        "question": "What are the current maintenance records for major equipment, including last maintenance date, type, next due date, performer, and any deferred items?",
+        "answer": ","
+      },
+      {
+        "question": "Are there any records of past incidents, near-misses, or safety violations, and any broader history of negligence or understaffing that could increase risk?",
+        "answer": ","
+      }
+    ],
+    "validation_complete": true,
+    "address": "",
+    "industry_sector": "",
+    "operating_company": "",
+    "commissioning_date": "",
+    "installed_capacity": "",
+    "operating_phase": "",
+    "upcoming_milestone_date": "",
+    "departments": [],
+    "process_narrative": "",
+    "drawing_references": "",
+    "scada_systems": [],
+    "historian_system": "",
+    "network_notes": "",
+    "escalation_logic": [],
+    "shift_patterns": [
+      {
+        "shift_name": "Shift A",
+        "start_time": "",
+        "end_time": "",
+        "headcount": ""
+      },
+      {
+        "shift_name": "Shift B",
+        "start_time": "",
+        "end_time": "",
+        "headcount": ""
+      },
+      {
+        "shift_name": "Shift C",
+        "start_time": "",
+        "end_time": "",
+        "headcount": ""
+      }
+    ],
+    "shift_handover_notes": "",
+    "maintenance_records": [],
+    "negligence_history": "",
+    "attendance_api_url": "",
+    "attendance_api_method": "GET",
+    "attendance_api_headers": "",
+    "attendance_api_status": "Not Tested",
+    "attendance_api_last_tested": "",
+    "utility_systems": [],
+    "training_info": {},
+    "environmental_compliance": {},
+    "regulatory_standards": "",
+    "fire_safety_systems": "",
+    "last_safety_audit_date": "",
+    "last_safety_audit_findings": "",
+    "layout_data": [],
+    "setup_complete": true,
+    "id": "fa46830d",
+    "created_at": "2026-07-11T05:17:16.366982"
+  },
+  "8bf52863": {
+    "name": "ABCD",
+    "preliminary_doc_filename": "8bf52863_Facility_Onboarding_Template_AA.pdf",
+    "ai_summary": "",
+    "monitored_parameters": [],
+    "people": [],
+    "checklist_records": [],
+    "permit_records": [],
+    "missing_sections": [
+      "Section 1: Facility Overview",
+      "Section 2: Process Flow Description",
+      "Section 3: SCADA / DCS Systems",
+      "Section 4: Sensor & Instrumentation Details",
+      "Section 4.1: Real-Time Data Integration (API Access)",
+      "Section 5.1: Managerial Staff",
+      "Section 5.2: Maintenance Staff",
+      "Section 5.3: Safety Officers",
+      "Section 5.4: Escalation Logic",
+      "Section 6: Shift & Workforce Patterns",
+      "Section 7: Maintenance Records & Timelines",
+      "Section 8: Incident & Negligence History",
+      "Section 9: Employee Directory",
+      "Section 10: Attendance & Access Control Systems",
+      "Section 11: Utility & Support Systems",
+      "Section 12: Training & Certification Records",
+      "Section 13: Environmental & Quality Compliance",
+      "Section 14: Emergency Response & Compliance"
+    ],
+    "clarification_qa": [
+      {
+        "question": "Could you please provide the core details for Section 1: Facility Overview, including the plant's name, address, and industry sector, as these form the foundational context for all other risk assessments?",
+        "answer": ""
+      },
+      {
+        "question": "Given that Section 4: Sensor & Instrumentation Details is critical for risk detection, what are the primary process parameters that need to be monitored, and what are their normal operating ranges and alarm thresholds?",
+        "answer": ""
+      },
+      {
+        "question": "To understand operational risks, can you describe the main process steps in Section 2: Process Flow Description, and list any SCADA/DCS systems and their primary functions as requested in Section 3?",
+        "answer": ""
+      },
+      {
+        "question": "Section 5: Key Personnel and Section 6: Shift & Workforce Patterns are essential for emergency response. Can you provide information on key managerial, maintenance, and safety staff, along with the facility's standard shift timings and typical headcounts?",
+        "answer": ""
+      },
+      {
+        "question": "For effective emergency response, please detail the escalation logic (Section 5.4) and list the available fire safety systems (Section 14) and their last inspection dates.",
+        "answer": ""
+      },
+      {
+        "question": "Section 7: Maintenance Records and Section 8: Incident & Negligence History are vital for identifying patterns of risk. Please provide a summary of recent maintenance activities and any significant incidents or near-misses.",
+        "answer": ""
+      },
+      {
+        "question": "Could you describe the interdependencies between critical utility systems (Section 11) and primary process operations, especially concerning potential cascade failures?",
+        "answer": ""
+      },
+      {
+        "question": "To understand the current state of compliance and safety preparedness, please fill in Section 12: Training & Certification Records and Section 13: Environmental & Quality Compliance.",
+        "answer": ""
+      }
+    ],
+    "validation_complete": false,
+    "address": "",
+    "industry_sector": "",
+    "operating_company": "",
+    "commissioning_date": "",
+    "installed_capacity": "",
+    "operating_phase": "",
+    "upcoming_milestone_date": "",
+    "departments": [],
+    "process_narrative": "",
+    "drawing_references": "",
+    "scada_systems": [],
+    "historian_system": "",
+    "network_notes": "",
+    "escalation_logic": [],
+    "shift_patterns": [],
+    "shift_handover_notes": "",
+    "maintenance_records": [],
+    "negligence_history": "",
+    "attendance_api_url": "",
+    "attendance_api_method": "GET",
+    "attendance_api_headers": "",
+    "attendance_api_status": "Not Tested",
+    "attendance_api_last_tested": "",
+    "utility_systems": [],
+    "training_info": {},
+    "environmental_compliance": {},
+    "regulatory_standards": "",
+    "fire_safety_systems": "",
+    "last_safety_audit_date": "",
+    "last_safety_audit_findings": "",
+    "layout_data": [],
+    "setup_complete": false,
+    "id": "8bf52863",
+    "created_at": "2026-07-11T06:50:47.110402"
   }
 }

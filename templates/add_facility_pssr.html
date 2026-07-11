@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Add Facility — PSSR{% endblock %}
+
+{% block content %}
+<div class="fill-height">
+
+{% with current_route = 'factory.pssr_checklist' %}{% include "partials/wizard_progress.html" %}{% endwith %}
+
+<div class="mb-1">
+    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
+        <i class="bi bi-arrow-left"></i> Back to Facility Details
+    </a>
+</div>
+
+<div class="mb-2">
+    <h3 class="mb-1">{{ factory.name }} — Pre-Startup Safety Review (PSSR)</h3>
+    <p class="text-muted mb-0 small">
+        Completed before introducing hazardous material or energy into a new or modified unit. If no
+        unit has been commissioned or recommissioned in the last 12 months, leave the standard items
+        unchecked or remove them.
+    </p>
+</div>
+
+<div class="grid-scroll-area">
+<form method="POST" action="{{ url_for('factory.pssr_checklist', factory_id=factory.id) }}" id="pssrForm">
+    <div class="table-responsive mb-2">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Checklist Item</th><th style="width:110px">Completed?</th>
+                    <th>Verified By</th><th style="width:120px">Date</th><th style="width:40px"></th>
+                </tr>
+            </thead>
+            <tbody id="pssrRows"></tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-primary mb-3" id="addPssrRowBtn">
+        <i class="bi bi-plus-lg"></i> Add Item
+    </button>
+
+    <div class="d-flex justify-content-between mt-2">
+        {% if prev_nav %}
+        <a href="{{ prev_nav.url }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
+        {% else %}<span></span>{% endif %}
+        <button type="submit" class="btn btn-primary">Next <i class="bi bi-arrow-right"></i></button>
+    </div>
+</form>
+</div>
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    window.EXISTING_PSSR_ITEMS = {{ record.items | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/dynamic_table.js') }}"></script>
+<script>
+    function pssrCompletedOptions(selected) {
+        return ["", "Y", "N"].map((opt) => {
+            const sel = opt === (selected || "") ? "selected" : "";
+            return `<option value="${opt}" ${sel}>${opt || "—"}</option>`;
+        }).join("");
+    }
+    initDynamicTable({
+        tbodyId: "pssrRows",
+        addButtonId: "addPssrRowBtn",
+        rowHtml: (v) => {
+            const esc = (s) => (s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+            return `
+            <td><input type="text" name="pssr_item[]" class="form-control form-control-sm" value="${esc(v.item)}"></td>
+            <td><select name="pssr_completed[]" class="form-select form-select-sm">${pssrCompletedOptions(v.completed)}</select></td>
+            <td><input type="text" name="pssr_verified_by[]" class="form-control form-control-sm" value="${esc(v.verified_by)}"></td>
+            <td><input type="text" name="pssr_date[]" class="form-control form-control-sm" value="${esc(v.date)}"></td>
+            <td><button type="button" class="btn btn-sm btn-outline-danger remove-row-btn"><i class="bi bi-trash"></i></button></td>
+        `;
+        },
+        existingRows: window.EXISTING_PSSR_ITEMS || [],
+    });
+</script>
+{% endblock %}

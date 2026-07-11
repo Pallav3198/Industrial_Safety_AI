@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block title %}Add Facility — MOC Log{% endblock %}
+
+{% block content %}
+<div class="fill-height">
+
+{% with current_route = 'factory.moc_log' %}{% include "partials/wizard_progress.html" %}{% endwith %}
+
+<div class="mb-1">
+    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
+        <i class="bi bi-arrow-left"></i> Back to Facility Details
+    </a>
+</div>
+
+<div class="mb-2">
+    <h3 class="mb-1">{{ factory.name }} — Management of Change (MOC) Log</h3>
+    <p class="text-muted mb-0 small">
+        A formal review triggered whenever equipment, a procedure, or an operating condition changes in a
+        way that could affect safety — e.g. a piece of equipment develops a known defect but isn't
+        immediately replaced.
+    </p>
+</div>
+
+<div class="grid-scroll-area">
+<form method="POST" action="{{ url_for('factory.moc_log', factory_id=factory.id) }}" id="mocForm">
+    <div class="table-responsive mb-2">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th style="width:100px">Change ID</th><th>Equipment / Process</th><th>Description</th>
+                    <th style="width:110px">Date Identified</th><th style="width:100px">MOC Complete?</th>
+                    <th>Reviewed By</th><th>Corrective Action</th><th style="width:40px"></th>
+                </tr>
+            </thead>
+            <tbody id="mocRows"></tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-primary mb-3" id="addMocRowBtn">
+        <i class="bi bi-plus-lg"></i> Add Change
+    </button>
+
+    <div class="d-flex justify-content-between mt-2">
+        {% if prev_nav %}
+        <a href="{{ prev_nav.url }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
+        {% else %}<span></span>{% endif %}
+        <button type="submit" class="btn btn-primary">Next <i class="bi bi-arrow-right"></i></button>
+    </div>
+</form>
+</div>
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    window.EXISTING_MOC_ITEMS = {{ record.items | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/dynamic_table.js') }}"></script>
+<script>
+    function mocCompletedOptions(selected) {
+        return ["", "Y", "N"].map((opt) => {
+            const sel = opt === (selected || "") ? "selected" : "";
+            return `<option value="${opt}" ${sel}>${opt || "—"}</option>`;
+        }).join("");
+    }
+    initDynamicTable({
+        tbodyId: "mocRows",
+        addButtonId: "addMocRowBtn",
+        rowHtml: (v) => {
+            const esc = (s) => (s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+            return `
+            <td><input type="text" name="moc_change_id[]" class="form-control form-control-sm" value="${esc(v.change_id)}"></td>
+            <td><input type="text" name="moc_equipment[]" class="form-control form-control-sm" value="${esc(v.equipment_process)}"></td>
+            <td><input type="text" name="moc_description[]" class="form-control form-control-sm" value="${esc(v.description)}"></td>
+            <td><input type="text" name="moc_date[]" class="form-control form-control-sm" value="${esc(v.date_identified)}"></td>
+            <td><select name="moc_completed[]" class="form-select form-select-sm">${mocCompletedOptions(v.moc_completed)}</select></td>
+            <td><input type="text" name="moc_reviewed_by[]" class="form-control form-control-sm" value="${esc(v.reviewed_by)}"></td>
+            <td><input type="text" name="moc_action[]" class="form-control form-control-sm" value="${esc(v.corrective_action)}"></td>
+            <td><button type="button" class="btn btn-sm btn-outline-danger remove-row-btn"><i class="bi bi-trash"></i></button></td>
+        `;
+        },
+        existingRows: window.EXISTING_MOC_ITEMS || [],
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,32 @@
+<div class="col-md-6 col-lg-4 contractor-col" data-contractor-id="{{ contractor.id }}">
+    <div class="card contractor-card h-100"
+         data-name="{{ contractor.name }}"
+         data-scope-of-work="{{ contractor.scope_of_work }}"
+         data-joint-hazop-conducted="{{ contractor.joint_hazop_conducted }}"
+         data-last-joint-inspection-date="{{ contractor.last_joint_inspection_date }}"
+         data-safety-induction-completed="{{ contractor.safety_induction_completed }}"
+         data-supervising-employee="{{ contractor.supervising_employee }}"
+         data-phone="{{ contractor.phone }}"
+         data-email="{{ contractor.email }}"
+         data-notes="{{ contractor.notes }}">
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start">
+                <span class="badge {{ 'badge-ai' if contractor.source == 'AI-Extracted' else 'badge-manual' }}">
+                    <i class="bi {{ 'bi-robot' if contractor.source == 'AI-Extracted' else 'bi-person' }}"></i> {{ contractor.source }}
+                </span>
+                <span class="badge {{ 'text-bg-success' if contractor.joint_hazop_conducted == 'Y' else 'text-bg-warning' }}">
+                    HAZOP: {{ contractor.joint_hazop_conducted or "—" }}
+                </span>
+            </div>
+            <h5 class="card-title mt-2 mb-1">{{ contractor.name }}</h5>
+            <p class="text-muted small mb-2">{{ contractor.scope_of_work or "—" }}</p>
+            <div class="sensor-detail-row"><span class="label">Last Joint Inspection</span><span class="value">{{ contractor.last_joint_inspection_date or "—" }}</span></div>
+            <div class="sensor-detail-row"><span class="label">Safety Induction</span><span class="value">{{ contractor.safety_induction_completed or "—" }}</span></div>
+            <div class="sensor-detail-row"><span class="label">Supervising Employee</span><span class="value">{{ contractor.supervising_employee or "—" }}</span></div>
+        </div>
+        <div class="card-footer bg-transparent d-flex gap-2">
+            <button type="button" class="btn btn-sm btn-outline-primary flex-grow-1 edit-contractor-btn"><i class="bi bi-pencil"></i> Edit</button>
+            <button type="button" class="btn btn-sm btn-outline-danger flex-grow-1 delete-contractor-btn"><i class="bi bi-trash"></i> Delete</button>
+        </div>
+    </div>
+</div>

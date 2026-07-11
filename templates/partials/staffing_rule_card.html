@@ -1,0 +1,22 @@
+<div class="col-md-6 col-lg-4 staffing-rule-col" data-rule-id="{{ rule.id }}">
+    <div class="card staffing-rule-card h-100"
+         data-name="{{ rule.name }}"
+         data-task-name="{{ rule.task_name }}"
+         data-minimum-headcount="{{ rule.minimum_headcount }}"
+         data-required-roles="{{ rule.required_roles }}"
+         data-notes="{{ rule.notes }}">
+        <div class="card-body">
+            <span class="badge {{ 'badge-ai' if rule.source == 'AI-Extracted' else 'badge-manual' }}">
+                <i class="bi {{ 'bi-robot' if rule.source == 'AI-Extracted' else 'bi-person' }}"></i> {{ rule.source }}
+            </span>
+            <h5 class="card-title mt-2 mb-1">{{ rule.task_name or rule.name }}</h5>
+            <div class="sensor-detail-row"><span class="label">Minimum Personnel</span><span class="value">{{ rule.minimum_headcount or "—" }}</span></div>
+            <div class="sensor-detail-row"><span class="label">Roles Required</span><span class="value">{{ rule.required_roles or "—" }}</span></div>
+            {% if rule.notes %}<p class="text-muted small mt-2 mb-0">{{ rule.notes }}</p>{% endif %}
+        </div>
+        <div class="card-footer bg-transparent d-flex gap-2">
+            <button type="button" class="btn btn-sm btn-outline-primary flex-grow-1 edit-rule-btn"><i class="bi bi-pencil"></i> Edit</button>
+            <button type="button" class="btn btn-sm btn-outline-danger flex-grow-1 delete-rule-btn"><i class="bi bi-trash"></i> Delete</button>
+        </div>
+    </div>
+</div>

@@ -1,26 +1,88 @@
 {#
-    Shared 7-step progress indicator for the Add Facility wizard.
+    Wizard progress indicator for the Add Facility flow.
     Include with: {% include "partials/wizard_progress.html" %}
-    after setting a `current_step` integer (1-7) in the calling template's
-    render_template() call.
+    after setting `current_route` (a route/endpoint string, e.g.
+    "factory.sensors_page") in the calling template's render_template()
+    call. `factory` is already in scope in every step template.
+
+    IMPORTANT -- INTERIM STATE: 15 of the eventual 20 Facility
+    Onboarding Template sections have real pages today (everything
+    except Sections 17-20, Part E's Utility/Training/Environmental/
+    Emergency Response, which land in a later build phase), plus the
+    portal-only Layout editor. As those land, add their entries to the
+    matching Part's list below -- nothing else about this partial needs
+    to change.
+
+    Now that this is 15+ items, they're grouped visually by Part
+    (A-E) with a labeled divider before each group, rather than one
+    long undifferentiated row -- a flat row stopped being readable once
+    Parts B/C/D filled in.
+
+    Status per section comes from Factory.get_wizard_step_status() (a
+    real data-completeness check, independent of which page you're
+    currently viewing). Layout isn't in that registry (see
+    models/wizard_sections.py), so its status is computed separately
+    right here, the same simple way it always was.
 #}
-<div class="wizard-progress mb-4">
-    {% set steps = [
-        (1, "Upload"),
-        (2, "Validate"),
-        (3, "Sensors"),
-        (4, "Layout"),
-        (5, "History"),
-        (6, "Employees"),
-        (7, "Attendance"),
-    ] %}
-    {% for num, label in steps %}
-        <div class="wizard-step {{ 'done' if num < current_step else ('active' if num == current_step else '') }}">
-            <span class="wizard-step-number">
-                {% if num < current_step %}<i class="bi bi-check-lg"></i>{% else %}{{ num }}{% endif %}
-            </span>
-            <span class="wizard-step-label">{{ label }}</span>
+{% set step_status = factory.get_wizard_step_status() %}
+{% set layout_status = "done" if factory.layout_data else "pending" %}
+{% set parts = [
+    ("A", [
+        (url_for('factory.facility_overview', factory_id=factory.id), "factory.facility_overview", "Overview", step_status.get(1, "pending")),
+        (url_for('factory.process_flow', factory_id=factory.id), "factory.process_flow", "Process", step_status.get(2, "pending")),
+        (url_for('factory.scada_systems', factory_id=factory.id), "factory.scada_systems", "SCADA", step_status.get(3, "pending")),
+        (url_for('factory.sensors_page', factory_id=factory.id), "factory.sensors_page", "Sensors", step_status.get(4, "pending")),
+    ]),
+    ("B", [
+        (url_for('factory.key_personnel', factory_id=factory.id), "factory.key_personnel", "Key Personnel", step_status.get(5, "pending")),
+        (url_for('factory.shift_patterns', factory_id=factory.id), "factory.shift_patterns", "Shifts", step_status.get(6, "pending")),
+        (url_for('factory.staffing_rules', factory_id=factory.id), "factory.staffing_rules", "Staffing Rules", step_status.get(7, "pending")),
+        (url_for('factory.employees_page', factory_id=factory.id), "factory.employees_page", "Employees", step_status.get(8, "pending")),
+    ]),
+    ("C", [
+        (url_for('factory.maintenance_records', factory_id=factory.id), "factory.maintenance_records", "Maintenance", step_status.get(9, "pending")),
+        (url_for('factory.asset_registry', factory_id=factory.id), "factory.asset_registry", "Asset Registry", step_status.get(10, "pending")),
+        (url_for('factory.moc_log', factory_id=factory.id), "factory.moc_log", "MOC Log", step_status.get(11, "pending")),
+    ]),
+    ("D", [
+        (url_for('factory.permits', factory_id=factory.id), "factory.permits", "Permits", step_status.get(12, "pending")),
+        (url_for('factory.pssr_checklist', factory_id=factory.id), "factory.pssr_checklist", "PSSR", step_status.get(13, "pending")),
+        (url_for('factory.contractor_oversight', factory_id=factory.id), "factory.contractor_oversight", "Contractors", step_status.get(14, "pending")),
+    ]),
+    ("E", [
+        (url_for('factory.negligence_page', factory_id=factory.id), "factory.negligence_page", "History", step_status.get(15, "pending")),
+        (url_for('factory.attendance_page', factory_id=factory.id), "factory.attendance_page", "Attendance", step_status.get(16, "pending")),
+    ]),
+] %}
+<div class="wizard-progress-groups mb-3">
+    {% for part_letter, steps in parts %}
+    <div class="wizard-progress-group">
+        <span class="wizard-part-label">{{ part_letter }}</span>
+        <div class="wizard-progress">
+            {% for link, route_name, label, status in steps %}
+                {% set status_label = {"done": "Complete", "warning": "Needs attention", "pending": "Not started"}[status] %}
+                <a href="{{ link }}" class="wizard-step status-{{ status }}{{ ' active' if route_name == current_route else '' }}"
+                   title="{{ label }} — {{ status_label }}">
+                    <span class="wizard-step-number">
+                        {% if status == "done" %}<i class="bi bi-check-lg"></i>
+                        {% elif status == "warning" %}<i class="bi bi-exclamation"></i>
+                        {% else %}<i class="bi bi-circle"></i>
+                        {% endif %}
+                    </span>
+                    <span class="wizard-step-label">{{ label }}</span>
+                </a>
+                {% if not loop.last %}<div class="wizard-step-line {{ 'done' if status == 'done' else '' }}"></div>{% endif %}
+            {% endfor %}
+            {% if part_letter == "A" %}
+                {% set layout_label = {"done": "Complete", "pending": "Not started"}[layout_status] %}
+                <div class="wizard-step-line"></div>
+                <a href="{{ url_for('factory.layout_page', factory_id=factory.id) }}" class="wizard-step status-{{ layout_status }}{{ ' active' if current_route == 'factory.layout_page' else '' }}"
+                   title="Layout — {{ layout_label }}">
+                    <span class="wizard-step-number">{% if layout_status == "done" %}<i class="bi bi-check-lg"></i>{% else %}<i class="bi bi-circle"></i>{% endif %}</span>
+                    <span class="wizard-step-label">Layout</span>
+                </a>
+            {% endif %}
         </div>
-        {% if not loop.last %}<div class="wizard-step-line {{ 'done' if num < current_step else '' }}"></div>{% endif %}
+    </div>
     {% endfor %}
 </div>

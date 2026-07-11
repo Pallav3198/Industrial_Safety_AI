@@ -208,6 +208,32 @@ body {
 }
 
 /* --- 7-step wizard progress bar (Add Facility flow) ---------------------- */
+.wizard-progress-groups {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    align-items: center;
+}
+.wizard-progress-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.wizard-part-label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--brand-muted);
+    background-color: #E5E9EF;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
 .wizard-progress {
     display: flex;
     align-items: center;

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Add Facility — Maintenance Records{% endblock %}
+
+{% block content %}
+<div class="fill-height">
+
+{% with current_route = 'factory.maintenance_records' %}{% include "partials/wizard_progress.html" %}{% endwith %}
+
+<div class="mb-1">
+    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
+        <i class="bi bi-arrow-left"></i> Back to Facility Details
+    </a>
+</div>
+
+<div class="mb-2">
+    <h3 class="mb-1">{{ factory.name }} — Maintenance Records &amp; Timelines</h3>
+    <p class="text-muted mb-0 small">Major equipment and their maintenance history — flag anything deferred or overdue.</p>
+</div>
+
+<div class="grid-scroll-area">
+<form method="POST" action="{{ url_for('factory.maintenance_records', factory_id=factory.id) }}" id="maintForm">
+    <div class="table-responsive mb-2">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Equipment</th><th style="width:120px">Last Date</th><th>Type</th>
+                    <th style="width:120px">Next Due</th><th>Performed By</th><th>Deferred? / Notes</th><th style="width:40px"></th>
+                </tr>
+            </thead>
+            <tbody id="maintRows"></tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-primary mb-3" id="addMaintRowBtn">
+        <i class="bi bi-plus-lg"></i> Add Equipment
+    </button>
+
+    <div class="d-flex justify-content-between mt-2">
+        {% if prev_nav %}
+        <a href="{{ prev_nav.url }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
+        {% else %}<span></span>{% endif %}
+        <button type="submit" class="btn btn-primary">Next <i class="bi bi-arrow-right"></i></button>
+    </div>
+</form>
+</div>
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    window.EXISTING_MAINTENANCE = {{ factory.maintenance_records | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/dynamic_table.js') }}"></script>
+<script>
+    initDynamicTable({
+        tbodyId: "maintRows",
+        addButtonId: "addMaintRowBtn",
+        rowHtml: (v) => {
+            const esc = (s) => (s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+            return `
+            <td><input type="text" name="maint_equipment[]" class="form-control form-control-sm" value="${esc(v.equipment)}"></td>
+            <td><input type="text" name="maint_last_date[]" class="form-control form-control-sm" value="${esc(v.last_date)}"></td>
+            <td><input type="text" name="maint_type[]" class="form-control form-control-sm" value="${esc(v.type)}"></td>
+            <td><input type="text" name="maint_next_due[]" class="form-control form-control-sm" value="${esc(v.next_due)}"></td>
+            <td><input type="text" name="maint_performed_by[]" class="form-control form-control-sm" value="${esc(v.performed_by)}"></td>
+            <td><input type="text" name="maint_deferred_notes[]" class="form-control form-control-sm" value="${esc(v.deferred_notes)}"></td>
+            <td><button type="button" class="btn btn-sm btn-outline-danger remove-row-btn"><i class="bi bi-trash"></i></button></td>
+        `;
+        },
+        existingRows: window.EXISTING_MAINTENANCE || [],
+    });
+</script>
+{% endblock %}

@@ -17,7 +17,8 @@
          data-emergency-contact-name="{{ employee.emergency_contact_name }}"
          data-emergency-contact-phone="{{ employee.emergency_contact_phone }}"
          data-emergency-contact-relation="{{ employee.emergency_contact_relation }}"
-         data-notes="{{ employee.notes }}">
+         data-notes="{{ employee.notes }}"
+         data-certifications="{{ employee.certifications }}">
         <div class="card-body">
             <div class="d-flex justify-content-between align-items-start">
                 <span class="badge {{ 'badge-ai' if employee.source == 'AI-Extracted' else 'badge-manual' }}">

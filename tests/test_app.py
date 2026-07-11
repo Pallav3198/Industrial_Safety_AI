@@ -126,7 +126,11 @@ def test_step1_upload_prepopulates_sensors_and_employees(client):
 # Step 2 -- Validation chat
 # ===========================================================================
 
-def test_step2_submit_answers_redirects_to_sensors(client):
+def test_step2_submit_answers_redirects_to_facility_overview(client):
+    """As of Step 3 (Part A pages), Validate's "next" resolves to
+    Facility Overview (Section 1) -- the first section in the registry
+    that now has a real route -- not Sensors anymore. Renamed from
+    test_step2_submit_answers_redirects_to_sensors to reflect this."""
     factory_id = _create_test_facility(client)
     answers = ["Answer 1", "Answer 2", "Answer 3", "Answer 4", "Answer 5"]
     response = client.post(
@@ -136,11 +140,11 @@ def test_step2_submit_answers_redirects_to_sensors(client):
     )
     result = response.get_json()
     assert result["success"] is True
-    assert f"/factory/{factory_id}/sensors" in result["redirect"]
+    assert f"/factory/{factory_id}/facility-overview" in result["redirect"]
 
     # Confirm answers actually persisted.
-    sensors_page = client.get(f"/factory/{factory_id}/sensors")
-    assert sensors_page.status_code == 200
+    overview_page = client.get(f"/factory/{factory_id}/facility-overview")
+    assert overview_page.status_code == 200
 
 
 # ===========================================================================
@@ -383,16 +387,19 @@ def test_full_wizard_end_to_end(client):
 # ===========================================================================
 
 def test_navigation_skips_missing_sections(client):
-    """Sensors(4) -> Employees(8) should skip straight past Sections 5-7
-    (Key Personnel, Shift Patterns, Staffing Rules), none of which have
-    routes yet -- and back again -- without any hardcoded link between
-    them. This is the "go back to the previous section" mechanism from
-    models/wizard_sections.py, tested directly rather than just implied
-    by other tests passing."""
+    """Sensors(4)'s Back now correctly resolves to SCADA Systems(3) --
+    built in Step 3 -- instead of falling back to Validate. Its Next
+    still skips straight past Sections 5-7 (Key Personnel, Shift
+    Patterns, Staffing Rules), none of which have routes yet, landing on
+    Employees(8). This is the "go back to the previous section"
+    mechanism from models/wizard_sections.py, tested directly rather
+    than just implied by other tests passing -- and confirms the
+    registry auto-upgrades as new sections land, with no navigation
+    code changes required."""
     factory_id = _create_test_facility(client)
 
     sensors_page = client.get(f"/factory/{factory_id}/sensors")
-    assert f"/factory/{factory_id}/validate".encode() in sensors_page.data  # Back -> Validate (nothing earlier built yet)
+    assert f"/factory/{factory_id}/scada-systems".encode() in sensors_page.data  # Back -> SCADA Systems (built in Step 3)
     assert f"/factory/{factory_id}/employees".encode() in sensors_page.data  # Next -> Employees (skips 5,6,7)
 
     employees_page = client.get(f"/factory/{factory_id}/employees")
@@ -434,3 +441,115 @@ def test_new_monitored_parameter_categories_available(client):
     # through the Sensors UI which doesn't set them.
     assert "data_source_type" in result["sensor"]
     assert "fault_since" in result["sensor"]
+
+# ===========================================================================
+# NEW (Step 3) -- Part A pages: Facility Overview, Process Flow, SCADA Systems
+# ===========================================================================
+
+def test_facility_overview_prefilled_from_mock_extraction(client):
+    factory_id = _create_test_facility(client)
+    response = client.get(f"/factory/{factory_id}/facility-overview")
+    assert response.status_code == 200
+    assert b"Raigarh" in response.data          # from mock address
+    assert b"Thermal Power" in response.data     # from mock industry_sector
+    assert b"Boiler" in response.data            # from mock departments
+
+
+def test_facility_overview_save_and_redirect(client):
+    factory_id = _create_test_facility(client)
+    response = client.post(
+        f"/factory/{factory_id}/facility-overview",
+        data={
+            "address": "123 Test Road",
+            "industry_sector": "Steel",
+            "operating_phase": "Routine Operation",
+            "dept_name[]": "Operations",
+            "dept_function[]": "Running the plant",
+            "dept_headcount[]": "50",
+        },
+    )
+    assert response.status_code == 302
+    assert f"/factory/{factory_id}/process-flow" in response.headers["Location"]
+
+    # Confirm it persisted, including the dynamic department row.
+    page = client.get(f"/factory/{factory_id}/facility-overview")
+    assert b"123 Test Road" in page.data
+    assert b"Operations" in page.data
+
+
+def test_facility_overview_blank_department_row_dropped(client):
+    """A fully-blank department row (e.g. the always-present starter row
+    from dynamic_table.js, left untouched) must not be saved as a real
+    department."""
+    factory_id = _create_test_facility(client)
+    client.post(
+        f"/factory/{factory_id}/facility-overview",
+        data={
+            "address": "Test",
+            "dept_name[]": ["Operations", ""],
+            "dept_function[]": ["Running the plant", ""],
+            "dept_headcount[]": ["50", ""],
+        },
+    )
+    import services.storage as storage
+    factory = storage.get_factory(factory_id)
+    assert len(factory.departments) == 1
+    assert factory.departments[0]["name"] == "Operations"
+
+
+def test_process_flow_save_and_redirect(client):
+    factory_id = _create_test_facility(client)
+    response = client.post(
+        f"/factory/{factory_id}/process-flow",
+        data={"process_narrative": "Coal is crushed and burned.", "drawing_references": "DWG-001"},
+    )
+    assert response.status_code == 302
+    assert f"/factory/{factory_id}/scada-systems" in response.headers["Location"]
+
+    page = client.get(f"/factory/{factory_id}/process-flow")
+    assert b"Coal is crushed and burned." in page.data
+
+
+def test_scada_systems_save_and_redirect(client):
+    factory_id = _create_test_facility(client)
+    response = client.post(
+        f"/factory/{factory_id}/scada-systems",
+        data={
+            "scada_name[]": "Unit 1 DCS",
+            "scada_vendor[]": "ABB",
+            "scada_version[]": "v3.2",
+            "scada_function[]": "Overall control",
+            "scada_redundant[]": "Y",
+            "historian_system": "OSIsoft PI",
+        },
+    )
+    assert response.status_code == 302
+    assert f"/factory/{factory_id}/sensors" in response.headers["Location"]
+
+    page = client.get(f"/factory/{factory_id}/scada-systems")
+    assert b"Unit 1 DCS" in page.data
+    assert b"OSIsoft PI" in page.data
+
+
+def test_part_a_full_chain_navigation(client):
+    """Walks Validate -> Facility Overview -> Process Flow -> SCADA
+    Systems -> Sensors entirely via each page's own Next action, and
+    confirms Sensors' Back leads all the way back to SCADA Systems --
+    the full Part A chain now that all 4 of its sections have real
+    pages."""
+    factory_id = _create_test_facility(client)
+
+    r = client.post(f"/factory/{factory_id}/validate", data=json.dumps({"answers": ["a"] * 5}), content_type="application/json")
+    assert "/facility-overview" in r.get_json()["redirect"]
+
+    r = client.post(f"/factory/{factory_id}/facility-overview", data={"address": "A"})
+    assert "/process-flow" in r.headers["Location"]
+
+    r = client.post(f"/factory/{factory_id}/process-flow", data={"process_narrative": "B"})
+    assert "/scada-systems" in r.headers["Location"]
+
+    r = client.post(f"/factory/{factory_id}/scada-systems", data={"historian_system": "C"})
+    assert "/sensors" in r.headers["Location"]
+
+    sensors_page = client.get(f"/factory/{factory_id}/sensors")
+    assert f"/factory/{factory_id}/scada-systems".encode() in sensors_page.data

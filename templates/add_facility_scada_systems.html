@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+{% block title %}Add Facility — SCADA / DCS Systems{% endblock %}
+
+{% block content %}
+<div class="fill-height">
+
+{% with current_route = 'factory.scada_systems' %}{% include "partials/wizard_progress.html" %}{% endwith %}
+
+<div class="mb-1">
+    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
+        <i class="bi bi-arrow-left"></i> Back to Facility Details
+    </a>
+</div>
+
+<div class="mb-2">
+    <h3 class="mb-1">{{ factory.name }} — SCADA / DCS Systems</h3>
+    <p class="text-muted mb-0 small">The control systems this facility runs on.</p>
+</div>
+
+<div class="grid-scroll-area">
+<form method="POST" action="{{ url_for('factory.scada_systems', factory_id=factory.id) }}" id="scadaForm">
+    <div class="table-responsive mb-2">
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>System Name</th><th>Vendor</th><th>Version</th><th>Primary Function</th>
+                    <th style="width:110px">Redundant?</th><th style="width:40px"></th>
+                </tr>
+            </thead>
+            <tbody id="scadaRows"></tbody>
+        </table>
+    </div>
+    <button type="button" class="btn btn-sm btn-outline-primary mb-3" id="addScadaRowBtn">
+        <i class="bi bi-plus-lg"></i> Add System
+    </button>
+
+    <div class="row">
+        <div class="col-md-6 mb-2">
+            <label class="form-label">Historian System <span class="text-muted small">(if any)</span></label>
+            <input type="text" class="form-control" name="historian_system" value="{{ factory.historian_system }}"
+                   placeholder="e.g. OSIsoft PI System">
+        </div>
+        <div class="col-md-6 mb-3">
+            <label class="form-label">Network Architecture Notes</label>
+            <input type="text" class="form-control" name="network_notes" value="{{ factory.network_notes }}"
+                   placeholder="e.g. air-gapped, IT/OT segregation">
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-2">
+        {% if prev_nav %}
+        <a href="{{ prev_nav.url }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
+        {% else %}<span></span>{% endif %}
+        <button type="submit" class="btn btn-primary">Next <i class="bi bi-arrow-right"></i></button>
+    </div>
+</form>
+</div>
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    window.EXISTING_SCADA_SYSTEMS = {{ factory.scada_systems | tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/dynamic_table.js') }}"></script>
+<script>
+    function scadaRedundantOptions(selected) {
+        return ["", "Y", "N"].map((opt) => {
+            const label = opt === "" ? "—" : opt;
+            const sel = opt === (selected || "") ? "selected" : "";
+            return `<option value="${opt}" ${sel}>${label}</option>`;
+        }).join("");
+    }
+    initDynamicTable({
+        tbodyId: "scadaRows",
+        addButtonId: "addScadaRowBtn",
+        rowHtml: (v) => {
+            const esc = (s) => (s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+            return `
+            <td><input type="text" name="scada_name[]" class="form-control form-control-sm" value="${esc(v.name)}"></td>
+            <td><input type="text" name="scada_vendor[]" class="form-control form-control-sm" value="${esc(v.vendor)}"></td>
+            <td><input type="text" name="scada_version[]" class="form-control form-control-sm" value="${esc(v.version)}"></td>
+            <td><input type="text" name="scada_function[]" class="form-control form-control-sm" value="${esc(v.function)}"></td>
+            <td><select name="scada_redundant[]" class="form-select form-select-sm">${scadaRedundantOptions(v.redundant)}</select></td>
+            <td><button type="button" class="btn btn-sm btn-outline-danger remove-row-btn"><i class="bi bi-trash"></i></button></td>
+        `;
+        },
+        existingRows: window.EXISTING_SCADA_SYSTEMS || [],
+    });
+</script>
+{% endblock %}

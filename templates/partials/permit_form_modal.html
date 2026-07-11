@@ -1,0 +1,55 @@
+<div class="modal fade" id="permitModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="permitModalTitle">Add Permit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="permitForm">
+                    <input type="hidden" id="permitId" value="">
+                    <div class="mb-3">
+                        <label class="form-label">Permit No.</label>
+                        <input type="text" class="form-control" id="permitNumber" required placeholder="e.g. HW-2026-014">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Type</label>
+                            <select class="form-select" id="permitType"></select>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Status</label>
+                            <select class="form-select" id="permitStatus"></select>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Location / Equipment</label>
+                        <input type="text" class="form-control" id="permitLocationEquipment">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Issued To</label>
+                        <input type="text" class="form-control" id="permitIssuedTo">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Issued At</label>
+                            <input type="text" class="form-control" id="permitIssuedAt">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Expires At</label>
+                            <input type="text" class="form-control" id="permitExpiresAt">
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Notes</label>
+                        <textarea class="form-control" id="permitNotes" rows="2"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="savePermitBtn"><i class="bi bi-check-lg"></i> Save</button>
+            </div>
+        </div>
+    </div>
+</div>

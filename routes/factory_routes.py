@@ -3,12 +3,15 @@ routes/factory_routes.py
 ---------------------------
 Routes for the "Add Facility" wizard.
 
-Currently live (4 of the eventual 20 Facility Onboarding Template
+Currently live (7 of the eventual 20 Facility Onboarding Template
 sections -- the rest land in later build phases, see
 models/wizard_sections.py for the full section registry):
 
   GET/POST /factory/new                    -> download template, upload filled PDF
   GET/POST /factory/<id>/validate           -> chatbot-style gap-filling Q&A
+  GET/POST /factory/<id>/facility-overview  -> Section 1: Facility Overview
+  GET/POST /factory/<id>/process-flow       -> Section 2: Process Flow Description
+  GET/POST /factory/<id>/scada-systems      -> Section 3: SCADA / DCS Systems
   GET      /factory/<id>/sensors            -> Section 4: Sensor & Instrumentation (+ API test)
   GET      /factory/<id>/layout             -> portal-only Konva.js canvas editor (not a template section)
   GET/POST /factory/<id>/negligence         -> Section 15: Incident & Negligence History
@@ -39,7 +42,9 @@ from werkzeug.utils import secure_filename
 from config import Config
 from models.factory import Factory
 from models.monitored_parameter import MonitoredParameter, SENSOR_TYPE_CHOICES, RESPONSE_TYPE_CHOICES, API_METHOD_CHOICES
-from models.person import Person, DEPARTMENT_CHOICES, BLOOD_GROUP_CHOICES
+from models.person import Person, PERSON_CATEGORY_CHOICES, DEPARTMENT_CHOICES, BLOOD_GROUP_CHOICES
+from models.checklist_record import ChecklistRecord, STANDARD_PSSR_ITEMS
+from models.permit_record import PermitRecord, PERMIT_TYPE_CHOICES, PERMIT_STATUS_CHOICES
 from models.wizard_sections import get_prev_next, get_first_available_section
 from services import storage
 from services.ai_extraction import extract_from_document
@@ -61,6 +66,24 @@ def _get_factory_or_404(factory_id):
         flash("Facility not found.", "error")
         return None
     return factory
+
+
+def _zip_form_lists(*lists):
+    """Like zip(*lists), but pads any list shorter than the longest one
+    with empty strings instead of silently truncating to the shortest.
+
+    Plain zip() breaks silently for the dynamic-row tables (Departments,
+    SCADA, Shift Patterns, Maintenance, MOC, PSSR): if any single
+    array-named field is missing from the POST body entirely --
+    request.form.getlist() then returns [] for just that field -- zip()
+    truncates every row to length zero and the whole table is silently
+    dropped, even though the other fields have real data. This shouldn't
+    happen with the actual dynamic_table.js-rendered rows (every row
+    always includes all of its fields), but padding defensively here
+    costs nothing and removes an entire class of silent-data-loss bug."""
+    max_len = max((len(lst) for lst in lists), default=0)
+    padded = [list(lst) + [""] * (max_len - len(lst)) for lst in lists]
+    return zip(*padded)
 
 
 # ===========================================================================
@@ -195,6 +218,113 @@ def submit_validation(factory_id):
 
 
 # ===========================================================================
+# Section 1 -- Facility Overview
+# ===========================================================================
+
+@factory_bp.route("/<factory_id>/facility-overview", methods=["GET", "POST"])
+def facility_overview(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    prev_nav, next_nav = get_prev_next(
+        "factory.facility_overview", factory_id,
+        fallback_prev={"url": url_for("factory.validate_page", factory_id=factory_id), "label": "Validate"},
+    )
+
+    if request.method == "GET":
+        return render_template("add_facility_facility_overview.html", factory=factory, prev_nav=prev_nav, next_nav=next_nav)
+
+    # Departments come from the dynamic-row table as parallel arrays
+    # (dept_name[], dept_function[], dept_headcount[]) -- zip them back
+    # into a list of dicts, skipping any fully-blank row (e.g. an unused
+    # extra row the user never filled in, or the always-present starter
+    # blank row from dynamic_table.js).
+    names = request.form.getlist("dept_name[]")
+    functions = request.form.getlist("dept_function[]")
+    headcounts = request.form.getlist("dept_headcount[]")
+    departments = [
+        {"name": n.strip(), "function": f.strip(), "headcount": h.strip()}
+        for n, f, h in _zip_form_lists(names, functions, headcounts)
+        if n.strip() or f.strip() or h.strip()
+    ]
+
+    storage.update_factory_fields(
+        factory_id,
+        address=request.form.get("address", "").strip(),
+        industry_sector=request.form.get("industry_sector", "").strip(),
+        operating_company=request.form.get("operating_company", "").strip(),
+        commissioning_date=request.form.get("commissioning_date", "").strip(),
+        installed_capacity=request.form.get("installed_capacity", "").strip(),
+        operating_phase=request.form.get("operating_phase", "").strip(),
+        upcoming_milestone_date=request.form.get("upcoming_milestone_date", "").strip(),
+        departments=departments,
+    )
+    redirect_url = next_nav["url"] if next_nav else url_for("factory.facility_details", factory_id=factory_id)
+    return redirect(redirect_url)
+
+
+# ===========================================================================
+# Section 2 -- Process Flow Description
+# ===========================================================================
+
+@factory_bp.route("/<factory_id>/process-flow", methods=["GET", "POST"])
+def process_flow(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    prev_nav, next_nav = get_prev_next("factory.process_flow", factory_id)
+
+    if request.method == "GET":
+        return render_template("add_facility_process_flow.html", factory=factory, prev_nav=prev_nav, next_nav=next_nav)
+
+    storage.update_factory_fields(
+        factory_id,
+        process_narrative=request.form.get("process_narrative", "").strip(),
+        drawing_references=request.form.get("drawing_references", "").strip(),
+    )
+    redirect_url = next_nav["url"] if next_nav else url_for("factory.facility_details", factory_id=factory_id)
+    return redirect(redirect_url)
+
+
+# ===========================================================================
+# Section 3 -- SCADA / DCS Systems
+# ===========================================================================
+
+@factory_bp.route("/<factory_id>/scada-systems", methods=["GET", "POST"])
+def scada_systems(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    prev_nav, next_nav = get_prev_next("factory.scada_systems", factory_id)
+
+    if request.method == "GET":
+        return render_template("add_facility_scada_systems.html", factory=factory, prev_nav=prev_nav, next_nav=next_nav)
+
+    names = request.form.getlist("scada_name[]")
+    vendors = request.form.getlist("scada_vendor[]")
+    versions = request.form.getlist("scada_version[]")
+    functions = request.form.getlist("scada_function[]")
+    redundants = request.form.getlist("scada_redundant[]")
+    scada_list = [
+        {"name": n.strip(), "vendor": v.strip(), "version": ver.strip(), "function": f.strip(), "redundant": r.strip()}
+        for n, v, ver, f, r in _zip_form_lists(names, vendors, versions, functions, redundants)
+        if n.strip() or v.strip() or ver.strip() or f.strip()
+    ]
+
+    storage.update_factory_fields(
+        factory_id,
+        scada_systems=scada_list,
+        historian_system=request.form.get("historian_system", "").strip(),
+        network_notes=request.form.get("network_notes", "").strip(),
+    )
+    redirect_url = next_nav["url"] if next_nav else url_for("factory.facility_details", factory_id=factory_id)
+    return redirect(redirect_url)
+
+
+# ===========================================================================
 # Section 4 -- Sensor & Instrumentation Details (+ API config + test)
 # ===========================================================================
 
@@ -222,6 +352,12 @@ def sensors_page(factory_id):
 
 @factory_bp.route("/<factory_id>/sensors/add", methods=["POST"])
 def add_sensor(factory_id):
+    """Shared 'add a MonitoredParameter' endpoint -- reused by three
+    different pages (Sensors, Staffing Rules, Asset Registry), each
+    sending a different parameter_category. The URL/endpoint name stays
+    "sensor" for historical reasons (see models/factory.py docstring on
+    the Sensor/MonitoredParameter rename), but this now creates any
+    parameter category, not just a live sensor reading."""
     factory = storage.get_factory(factory_id)
     if not factory:
         return jsonify({"success": False, "error": "Facility not found"}), 404
@@ -229,13 +365,19 @@ def add_sensor(factory_id):
     data = request.get_json(force=True)
     parameter = MonitoredParameter(
         name=data.get("name", "Unnamed Sensor"),
-        parameter_category="Live Sensor Reading",
+        parameter_category=data.get("parameter_category", "Live Sensor Reading"),
         sensor_type=data.get("sensor_type", "Other"),
         location=data.get("location", ""),
         unit=data.get("unit", ""),
         normal_range=data.get("normal_range", ""),
         alarm_threshold=data.get("alarm_threshold", ""),
         response_type=data.get("response_type", "Continuous Analog"),
+        asset_type=data.get("asset_type", ""),
+        last_test_date=data.get("last_test_date", ""),
+        next_due_date=data.get("next_due_date", ""),
+        task_name=data.get("task_name", ""),
+        minimum_headcount=int(data.get("minimum_headcount") or 0),
+        required_roles=data.get("required_roles", ""),
         notes=data.get("notes", ""),
         api_url=data.get("api_url", ""),
         api_method=data.get("api_method", "GET"),
@@ -249,6 +391,9 @@ def add_sensor(factory_id):
 
 @factory_bp.route("/<factory_id>/sensors/<sensor_id>/edit", methods=["POST"])
 def edit_sensor(factory_id, sensor_id):
+    """Shared 'edit a MonitoredParameter' endpoint -- see add_sensor
+    above for why this serves three different pages despite the URL
+    saying "sensors"."""
     factory = storage.get_factory(factory_id)
     if not factory:
         return jsonify({"success": False, "error": "Facility not found"}), 404
@@ -259,12 +404,20 @@ def edit_sensor(factory_id, sensor_id):
 
     data = request.get_json(force=True)
     existing.name = data.get("name", existing.name)
+    existing.parameter_category = data.get("parameter_category", existing.parameter_category)
     existing.sensor_type = data.get("sensor_type", existing.sensor_type)
     existing.location = data.get("location", existing.location)
     existing.unit = data.get("unit", existing.unit)
     existing.normal_range = data.get("normal_range", existing.normal_range)
     existing.alarm_threshold = data.get("alarm_threshold", existing.alarm_threshold)
     existing.response_type = data.get("response_type", existing.response_type)
+    existing.asset_type = data.get("asset_type", existing.asset_type)
+    existing.last_test_date = data.get("last_test_date", existing.last_test_date)
+    existing.next_due_date = data.get("next_due_date", existing.next_due_date)
+    existing.task_name = data.get("task_name", existing.task_name)
+    if "minimum_headcount" in data:
+        existing.minimum_headcount = int(data.get("minimum_headcount") or 0)
+    existing.required_roles = data.get("required_roles", existing.required_roles)
     existing.notes = data.get("notes", existing.notes)
 
     # If the API connection details changed, the last test result is no
@@ -318,6 +471,122 @@ def test_sensor_connection(factory_id, sensor_id):
         "message": result["message"],
         "status_code": result["status_code"],
     })
+
+
+# ===========================================================================
+# Section 5 -- Key Personnel (Managerial / Maintenance / Safety Officer)
+# ===========================================================================
+
+@factory_bp.route("/<factory_id>/key-personnel", methods=["GET"])
+def key_personnel(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    key_person_categories = ("Managerial Staff", "Maintenance Staff", "Safety Officer")
+    managerial = [p for p in factory.people if p.person_category == "Managerial Staff"]
+    maintenance = [p for p in factory.people if p.person_category == "Maintenance Staff"]
+    safety = [p for p in factory.people if p.person_category == "Safety Officer"]
+    # Used by the Manager dropdown, same pattern as the Employees page --
+    # anyone on the facility can be selected as a manager, not just
+    # people in these 3 categories.
+    person_options = [{"id": p.id, "name": p.name} for p in factory.people]
+    # Used by partials/employee_card.html (shared with the Employees
+    # page) to resolve a manager_id -> name for display on each card.
+    person_lookup = {p.id: p.name for p in factory.people}
+
+    prev_nav, next_nav = get_prev_next("factory.key_personnel", factory_id)
+
+    return render_template(
+        "add_facility_key_personnel.html",
+        factory=factory,
+        managerial=managerial,
+        maintenance=maintenance,
+        safety=safety,
+        person_options=person_options,
+        employee_lookup=person_lookup,
+        department_choices=DEPARTMENT_CHOICES,
+        prev_nav=prev_nav,
+        next_nav=next_nav,
+    )
+
+
+@factory_bp.route("/<factory_id>/key-personnel/escalation", methods=["POST"])
+def save_escalation_logic(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    levels = request.form.getlist("escalation_level[]")
+    triggers = request.form.getlist("escalation_trigger[]")
+    contacts = request.form.getlist("escalation_contact[]")
+    response_times = request.form.getlist("escalation_response_time[]")
+    escalation_logic = [
+        {"level": lvl.strip(), "trigger": trg.strip(), "contact_role": c.strip(), "response_time": rt.strip()}
+        for lvl, trg, c, rt in _zip_form_lists(levels, triggers, contacts, response_times)
+        if lvl.strip() or trg.strip() or c.strip() or rt.strip()
+    ]
+    storage.update_factory_fields(factory_id, escalation_logic=escalation_logic)
+
+    _, next_nav = get_prev_next("factory.key_personnel", factory_id)
+    redirect_url = next_nav["url"] if next_nav else url_for("factory.facility_details", factory_id=factory_id)
+    return redirect(redirect_url)
+
+
+# ===========================================================================
+# Section 6 -- Shift & Workforce Patterns
+# ===========================================================================
+
+@factory_bp.route("/<factory_id>/shift-patterns", methods=["GET", "POST"])
+def shift_patterns(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    prev_nav, next_nav = get_prev_next("factory.shift_patterns", factory_id)
+
+    if request.method == "GET":
+        return render_template("add_facility_shift_patterns.html", factory=factory, prev_nav=prev_nav, next_nav=next_nav)
+
+    names = request.form.getlist("shift_name[]")
+    starts = request.form.getlist("shift_start[]")
+    ends = request.form.getlist("shift_end[]")
+    headcounts = request.form.getlist("shift_headcount[]")
+    shifts = [
+        {"shift_name": n.strip(), "start_time": s.strip(), "end_time": e.strip(), "headcount": h.strip()}
+        for n, s, e, h in _zip_form_lists(names, starts, ends, headcounts)
+        if n.strip() or s.strip() or e.strip() or h.strip()
+    ]
+
+    storage.update_factory_fields(
+        factory_id,
+        shift_patterns=shifts,
+        shift_handover_notes=request.form.get("shift_handover_notes", "").strip(),
+    )
+    redirect_url = next_nav["url"] if next_nav else url_for("factory.facility_details", factory_id=factory_id)
+    return redirect(redirect_url)
+
+
+# ===========================================================================
+# Section 7 -- Minimum Staffing Per Task Rules
+# ===========================================================================
+
+@factory_bp.route("/<factory_id>/staffing-rules", methods=["GET"])
+def staffing_rules(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    rules = [p for p in factory.monitored_parameters if p.parameter_category == "Staffing Rule"]
+    prev_nav, next_nav = get_prev_next("factory.staffing_rules", factory_id)
+
+    return render_template(
+        "add_facility_staffing_rules.html",
+        factory=factory,
+        rules=rules,
+        prev_nav=prev_nav,
+        next_nav=next_nav,
+    )
 
 
 # ===========================================================================
@@ -412,6 +681,12 @@ def employees_page(factory_id):
 
 @factory_bp.route("/<factory_id>/employees/add", methods=["POST"])
 def add_employee(factory_id):
+    """Shared 'add a Person' endpoint -- reused by three different pages
+    (Employee Directory, Key Personnel, Contractor Oversight), each
+    sending a different person_category. The URL/endpoint name stays
+    "employee" for historical reasons (see models/factory.py docstring
+    on the Sensor/Employee rename), but this now creates any Person
+    category, not just "Employee"."""
     factory = storage.get_factory(factory_id)
     if not factory:
         return jsonify({"success": False, "error": "Facility not found"}), 404
@@ -427,8 +702,8 @@ def add_employee(factory_id):
         manager_id = ""
 
     person = Person(
-        name=data.get("name", "Unnamed Employee"),
-        person_category="Employee",
+        name=data.get("name", "Unnamed Person"),
+        person_category=data.get("person_category", "Employee"),
         role=data.get("role", ""),
         department=data.get("department", ""),
         manager_id=manager_id,
@@ -440,6 +715,12 @@ def add_employee(factory_id):
         emergency_contact_name=data.get("emergency_contact_name", ""),
         emergency_contact_phone=data.get("emergency_contact_phone", ""),
         emergency_contact_relation=data.get("emergency_contact_relation", ""),
+        certifications=data.get("certifications", ""),
+        scope_of_work=data.get("scope_of_work", ""),
+        joint_hazop_conducted=data.get("joint_hazop_conducted", ""),
+        last_joint_inspection_date=data.get("last_joint_inspection_date", ""),
+        safety_induction_completed=data.get("safety_induction_completed", ""),
+        supervising_employee=data.get("supervising_employee", ""),
         notes=data.get("notes", ""),
         source="Manually Added",
     )
@@ -449,6 +730,9 @@ def add_employee(factory_id):
 
 @factory_bp.route("/<factory_id>/employees/<employee_id>/edit", methods=["POST"])
 def edit_employee(factory_id, employee_id):
+    """Shared 'edit a Person' endpoint -- see add_employee above for why
+    this serves three different pages despite the URL saying
+    "employees"."""
     factory = storage.get_factory(factory_id)
     if not factory:
         return jsonify({"success": False, "error": "Facility not found"}), 404
@@ -470,6 +754,7 @@ def edit_employee(factory_id, employee_id):
         new_manager_id = ""
 
     existing.name = data.get("name", existing.name)
+    existing.person_category = data.get("person_category", existing.person_category)
     existing.role = data.get("role", existing.role)
     existing.department = data.get("department", existing.department)
     existing.manager_id = new_manager_id
@@ -481,6 +766,12 @@ def edit_employee(factory_id, employee_id):
     existing.emergency_contact_name = data.get("emergency_contact_name", existing.emergency_contact_name)
     existing.emergency_contact_phone = data.get("emergency_contact_phone", existing.emergency_contact_phone)
     existing.emergency_contact_relation = data.get("emergency_contact_relation", existing.emergency_contact_relation)
+    existing.certifications = data.get("certifications", existing.certifications)
+    existing.scope_of_work = data.get("scope_of_work", existing.scope_of_work)
+    existing.joint_hazop_conducted = data.get("joint_hazop_conducted", existing.joint_hazop_conducted)
+    existing.last_joint_inspection_date = data.get("last_joint_inspection_date", existing.last_joint_inspection_date)
+    existing.safety_induction_completed = data.get("safety_induction_completed", existing.safety_induction_completed)
+    existing.supervising_employee = data.get("supervising_employee", existing.supervising_employee)
     existing.notes = data.get("notes", existing.notes)
 
     storage.upsert_person(factory_id, existing)
@@ -493,6 +784,252 @@ def delete_employee_route(factory_id, employee_id):
     if not success:
         return jsonify({"success": False, "error": "Employee or facility not found"}), 404
     return jsonify({"success": True})
+
+
+# ===========================================================================
+# Section 9 -- Maintenance Records & Timelines
+# ===========================================================================
+
+@factory_bp.route("/<factory_id>/maintenance", methods=["GET", "POST"])
+def maintenance_records(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    prev_nav, next_nav = get_prev_next("factory.maintenance_records", factory_id)
+
+    if request.method == "GET":
+        return render_template("add_facility_maintenance_records.html", factory=factory, prev_nav=prev_nav, next_nav=next_nav)
+
+    equipment = request.form.getlist("maint_equipment[]")
+    last_dates = request.form.getlist("maint_last_date[]")
+    types = request.form.getlist("maint_type[]")
+    next_dues = request.form.getlist("maint_next_due[]")
+    performed_bys = request.form.getlist("maint_performed_by[]")
+    deferred_notes = request.form.getlist("maint_deferred_notes[]")
+    records = [
+        {"equipment": eq.strip(), "last_date": ld.strip(), "type": t.strip(),
+         "next_due": nd.strip(), "performed_by": pb.strip(), "deferred_notes": dn.strip()}
+        for eq, ld, t, nd, pb, dn in _zip_form_lists(equipment, last_dates, types, next_dues, performed_bys, deferred_notes)
+        if eq.strip() or ld.strip() or t.strip() or nd.strip() or pb.strip() or dn.strip()
+    ]
+    storage.update_factory_fields(factory_id, maintenance_records=records)
+    redirect_url = next_nav["url"] if next_nav else url_for("factory.facility_details", factory_id=factory_id)
+    return redirect(redirect_url)
+
+
+# ===========================================================================
+# Section 10 -- Equipment / Asset Registry
+# ===========================================================================
+
+@factory_bp.route("/<factory_id>/asset-registry", methods=["GET"])
+def asset_registry(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    assets = [p for p in factory.monitored_parameters if p.parameter_category == "Compliance Due-Date"]
+    prev_nav, next_nav = get_prev_next("factory.asset_registry", factory_id)
+
+    return render_template(
+        "add_facility_asset_registry.html",
+        factory=factory,
+        assets=assets,
+        prev_nav=prev_nav,
+        next_nav=next_nav,
+    )
+
+
+# ===========================================================================
+# Section 11 -- Management of Change (MOC) Log
+# ===========================================================================
+
+def _get_or_create_checklist(factory, checklist_type, default_title, default_items=None):
+    """Shared helper for MOC (Section 11) and PSSR (Section 13) -- both
+    are represented as exactly ONE ChecklistRecord per facility per type
+    (the template shows each as a single flat table/checklist, not
+    multiple named records), created lazily on first visit."""
+    existing = next((c for c in factory.checklist_records if c.checklist_type == checklist_type), None)
+    if existing:
+        return existing
+    record = ChecklistRecord(
+        checklist_type=checklist_type,
+        title=default_title,
+        items=default_items or [],
+        source="Manually Added",
+    )
+    storage.upsert_checklist_record(factory.id, record)
+    return record
+
+
+@factory_bp.route("/<factory_id>/moc-log", methods=["GET", "POST"])
+def moc_log(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    record = _get_or_create_checklist(factory, "MOC", "Management of Change Log")
+    prev_nav, next_nav = get_prev_next("factory.moc_log", factory_id)
+
+    if request.method == "GET":
+        return render_template("add_facility_moc_log.html", factory=factory, record=record, prev_nav=prev_nav, next_nav=next_nav)
+
+    change_ids = request.form.getlist("moc_change_id[]")
+    equipment = request.form.getlist("moc_equipment[]")
+    descriptions = request.form.getlist("moc_description[]")
+    dates = request.form.getlist("moc_date[]")
+    completed = request.form.getlist("moc_completed[]")
+    reviewed_bys = request.form.getlist("moc_reviewed_by[]")
+    actions = request.form.getlist("moc_action[]")
+    items = [
+        {"change_id": cid.strip(), "equipment_process": eq.strip(), "description": desc.strip(),
+         "date_identified": d.strip(), "moc_completed": comp.strip(), "reviewed_by": rb.strip(), "corrective_action": a.strip()}
+        for cid, eq, desc, d, comp, rb, a in _zip_form_lists(change_ids, equipment, descriptions, dates, completed, reviewed_bys, actions)
+        if cid.strip() or eq.strip() or desc.strip()
+    ]
+    record.items = items
+    record.status = "Complete" if items and all(i.get("moc_completed") in ("Y", "Yes") for i in items) else "Open"
+    storage.upsert_checklist_record(factory_id, record)
+
+    redirect_url = next_nav["url"] if next_nav else url_for("factory.facility_details", factory_id=factory_id)
+    return redirect(redirect_url)
+
+
+# ===========================================================================
+# Section 12 -- Permit-to-Work Register
+# ===========================================================================
+
+@factory_bp.route("/<factory_id>/permits", methods=["GET"])
+def permits(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    prev_nav, next_nav = get_prev_next("factory.permits", factory_id)
+
+    return render_template(
+        "add_facility_permits.html",
+        factory=factory,
+        permit_type_choices=PERMIT_TYPE_CHOICES,
+        permit_status_choices=PERMIT_STATUS_CHOICES,
+        prev_nav=prev_nav,
+        next_nav=next_nav,
+    )
+
+
+@factory_bp.route("/<factory_id>/permits/add", methods=["POST"])
+def add_permit(factory_id):
+    factory = storage.get_factory(factory_id)
+    if not factory:
+        return jsonify({"success": False, "error": "Facility not found"}), 404
+
+    data = request.get_json(force=True)
+    permit = PermitRecord(
+        permit_number=data.get("permit_number", "Unnumbered Permit"),
+        permit_type=data.get("permit_type", ""),
+        location_equipment=data.get("location_equipment", ""),
+        issued_to=data.get("issued_to", ""),
+        issued_at=data.get("issued_at", ""),
+        expires_at=data.get("expires_at", ""),
+        status=data.get("status", "Active"),
+        notes=data.get("notes", ""),
+        source="Manually Added",
+    )
+    storage.upsert_permit_record(factory_id, permit)
+    return jsonify({"success": True, "permit": permit.to_dict()})
+
+
+@factory_bp.route("/<factory_id>/permits/<permit_id>/edit", methods=["POST"])
+def edit_permit(factory_id, permit_id):
+    factory = storage.get_factory(factory_id)
+    if not factory:
+        return jsonify({"success": False, "error": "Facility not found"}), 404
+
+    existing = next((p for p in factory.permit_records if p.id == permit_id), None)
+    if not existing:
+        return jsonify({"success": False, "error": "Permit not found"}), 404
+
+    data = request.get_json(force=True)
+    existing.permit_number = data.get("permit_number", existing.permit_number)
+    existing.permit_type = data.get("permit_type", existing.permit_type)
+    existing.location_equipment = data.get("location_equipment", existing.location_equipment)
+    existing.issued_to = data.get("issued_to", existing.issued_to)
+    existing.issued_at = data.get("issued_at", existing.issued_at)
+    existing.expires_at = data.get("expires_at", existing.expires_at)
+    existing.status = data.get("status", existing.status)
+    existing.notes = data.get("notes", existing.notes)
+
+    storage.upsert_permit_record(factory_id, existing)
+    return jsonify({"success": True, "permit": existing.to_dict()})
+
+
+@factory_bp.route("/<factory_id>/permits/<permit_id>/delete", methods=["POST"])
+def delete_permit(factory_id, permit_id):
+    success = storage.delete_permit_record(factory_id, permit_id)
+    if not success:
+        return jsonify({"success": False, "error": "Permit or facility not found"}), 404
+    return jsonify({"success": True})
+
+
+# ===========================================================================
+# Section 13 -- Pre-Startup Safety Review (PSSR) Checklist
+# ===========================================================================
+
+@factory_bp.route("/<factory_id>/pssr", methods=["GET", "POST"])
+def pssr_checklist(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    # Pre-populated with the 8 standard items from the template on first
+    # visit, per the build spec -- not an open-ended add-a-row table.
+    default_items = [{"item": item, "completed": "", "verified_by": "", "date": ""} for item in STANDARD_PSSR_ITEMS]
+    record = _get_or_create_checklist(factory, "PSSR", "Pre-Startup Safety Review", default_items)
+    prev_nav, next_nav = get_prev_next("factory.pssr_checklist", factory_id)
+
+    if request.method == "GET":
+        return render_template("add_facility_pssr.html", factory=factory, record=record, prev_nav=prev_nav, next_nav=next_nav)
+
+    items_text = request.form.getlist("pssr_item[]")
+    completed = request.form.getlist("pssr_completed[]")
+    verified_bys = request.form.getlist("pssr_verified_by[]")
+    dates = request.form.getlist("pssr_date[]")
+    items = [
+        {"item": it.strip(), "completed": comp.strip(), "verified_by": vb.strip(), "date": d.strip()}
+        for it, comp, vb, d in _zip_form_lists(items_text, completed, verified_bys, dates)
+        if it.strip()
+    ]
+    record.items = items
+    record.status = "Complete" if items and all(i.get("completed") in ("Y", "Yes") for i in items) else "Open"
+    storage.upsert_checklist_record(factory_id, record)
+
+    redirect_url = next_nav["url"] if next_nav else url_for("factory.facility_details", factory_id=factory_id)
+    return redirect(redirect_url)
+
+
+# ===========================================================================
+# Section 14 -- Contractor Oversight Register
+# ===========================================================================
+
+@factory_bp.route("/<factory_id>/contractors", methods=["GET"])
+def contractor_oversight(factory_id):
+    factory = _get_factory_or_404(factory_id)
+    if not factory:
+        return redirect(url_for("main.landing"))
+
+    contractors = [p for p in factory.people if p.person_category == "Contractor"]
+    # Used by the "Supervising Employee" dropdown.
+    person_options = [{"id": p.id, "name": p.name} for p in factory.people if p.person_category != "Contractor"]
+    prev_nav, next_nav = get_prev_next("factory.contractor_oversight", factory_id)
+
+    return render_template(
+        "add_facility_contractors.html",
+        factory=factory,
+        contractors=contractors,
+        person_options=person_options,
+        prev_nav=prev_nav,
+        next_nav=next_nav,
+    )
 
 
 # ===========================================================================

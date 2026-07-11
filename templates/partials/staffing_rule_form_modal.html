@@ -1,0 +1,37 @@
+<div class="modal fade" id="staffingRuleModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staffingRuleModalTitle">Add Staffing Rule</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="staffingRuleForm">
+                    <input type="hidden" id="ruleId" value="">
+                    <div class="mb-3">
+                        <label class="form-label">Task / Operation</label>
+                        <input type="text" class="form-control" id="ruleTaskName" required placeholder="e.g. Cylinder Filling">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Minimum Personnel Required</label>
+                            <input type="number" min="1" class="form-control" id="ruleMinimumHeadcount">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Roles Required</label>
+                            <input type="text" class="form-control" id="ruleRequiredRoles" placeholder="e.g. Operator + Supervisor">
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Notes</label>
+                        <textarea class="form-control" id="ruleNotes" rows="2" placeholder="e.g. must never be performed alone"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="saveRuleBtn"><i class="bi bi-check-lg"></i> Save</button>
+            </div>
+        </div>
+    </div>
+</div>

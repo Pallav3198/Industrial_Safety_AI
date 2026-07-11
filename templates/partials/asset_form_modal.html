@@ -1,0 +1,47 @@
+<div class="modal fade" id="assetModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="assetModalTitle">Add Asset</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="assetForm">
+                    <input type="hidden" id="assetId" value="">
+                    <div class="mb-3">
+                        <label class="form-label">Asset ID / Description</label>
+                        <input type="text" class="form-control" id="assetName" required placeholder="e.g. Fire Extinguisher — Bay 3">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Asset Type</label>
+                            <input type="text" class="form-control" id="assetType" placeholder="e.g. Gas Cylinder, Fire Extinguisher">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Location</label>
+                            <input type="text" class="form-control" id="assetLocation">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Last Test/Inspection Date</label>
+                            <input type="text" class="form-control" id="assetLastTestDate">
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label">Next Due Date</label>
+                            <input type="text" class="form-control" id="assetNextDueDate">
+                        </div>
+                    </div>
+                    <div class="mb-1">
+                        <label class="form-label">Notes</label>
+                        <textarea class="form-control" id="assetNotes" rows="2"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="saveAssetBtn"><i class="bi bi-check-lg"></i> Save</button>
+            </div>
+        </div>
+    </div>
+</div>
