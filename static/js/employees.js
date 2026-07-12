@@ -20,6 +20,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     const factoryId = document.getElementById("app-data").dataset.factoryId;
     const employeeGrid = document.getElementById("employeeGrid");
+    const employeePagination = initPagination({
+        gridSelector: "#employeeGrid",
+        itemSelector: ".employee-col",
+        controlsId: "employeePaginationControls",
+    });
     const employeeModalEl = document.getElementById("employeeModal");
     const employeeModal = new bootstrap.Modal(employeeModalEl);
 
@@ -164,6 +169,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 window.ALL_EMPLOYEES.push({ id: result.employee.id, name: result.employee.name });
             }
 
+            employeePagination.refresh();
+
             employeeModal.hide();
         } catch (err) {
             alert("Network error while saving the employee. Please try again.");
@@ -187,6 +194,8 @@ document.addEventListener("DOMContentLoaded", () => {
             cardCol.remove();
             showEmptyStateIfNeeded();
             window.ALL_EMPLOYEES = (window.ALL_EMPLOYEES || []).filter((emp) => emp.id !== employeeId);
+            employeePagination.refresh();
+            
         } catch (err) {
             alert("Network error while deleting the employee. Please try again.");
             console.error(err);

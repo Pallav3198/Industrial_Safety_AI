@@ -2314,5 +2314,198 @@
     "setup_complete": false,
     "id": "8bf52863",
     "created_at": "2026-07-11T06:50:47.110402"
+  },
+  "cfa7307c": {
+    "name": "DES",
+    "preliminary_doc_filename": "cfa7307c_Facility_Onboarding_Template_AA.pdf",
+    "ai_summary": "",
+    "monitored_parameters": [],
+    "people": [],
+    "checklist_records": [
+      {
+        "checklist_type": "MOC",
+        "title": "Management of Change Log",
+        "items": [],
+        "linked_equipment": "",
+        "status": "Open",
+        "source": "Manually Added",
+        "id": "d6d3fd3d"
+      },
+      {
+        "checklist_type": "PSSR",
+        "title": "Pre-Startup Safety Review",
+        "items": [
+          {
+            "item": "P&IDs reflect as-built condition",
+            "completed": "",
+            "verified_by": "",
+            "date": ""
+          },
+          {
+            "item": "Safety systems (interlocks, relief devices) tested and operational",
+            "completed": "",
+            "verified_by": "",
+            "date": ""
+          },
+          {
+            "item": "Operating procedures updated and available to operators",
+            "completed": "",
+            "verified_by": "",
+            "date": ""
+          },
+          {
+            "item": "Emergency procedures reviewed with operating team",
+            "completed": "",
+            "verified_by": "",
+            "date": ""
+          },
+          {
+            "item": "All operators trained on the new/modified unit",
+            "completed": "",
+            "verified_by": "",
+            "date": ""
+          },
+          {
+            "item": "Environmental permits and clearances in place",
+            "completed": "",
+            "verified_by": "",
+            "date": ""
+          },
+          {
+            "item": "Equipment leak-tested prior to introducing hazardous material",
+            "completed": "",
+            "verified_by": "",
+            "date": ""
+          },
+          {
+            "item": "Fire and gas detection systems commissioned and tested",
+            "completed": "",
+            "verified_by": "",
+            "date": ""
+          }
+        ],
+        "linked_equipment": "",
+        "status": "Open",
+        "source": "Manually Added",
+        "id": "5eff88ff"
+      }
+    ],
+    "permit_records": [],
+    "missing_sections": [
+      "Section 1: Facility Overview",
+      "Section 2: Process Flow Description",
+      "Section 3: SCADA / DCS Systems",
+      "Section 4: Sensor & Instrumentation Details",
+      "Section 5: Key Personnel",
+      "Section 6: Shift & Workforce Patterns",
+      "Section 7: Maintenance Records & Timelines",
+      "Section 8: Incident & Negligence History",
+      "Section 9: Employee Directory",
+      "Section 10: Attendance & Access Control Systems",
+      "Section 11: Utility & Support Systems",
+      "Section 12: Training & Certification Records",
+      "Section 13: Environmental & Quality Compliance",
+      "Section 14: Emergency Response & Compliance"
+    ],
+    "clarification_qa": [
+      {
+        "question": "What is the core function of this facility, including its primary raw materials and final products?",
+        "answer": "."
+      },
+      {
+        "question": "Please provide detailed data for Section 4, 'Sensor & Instrumentation Details', as this is critical for real-time risk detection. Which specific parameters are most vital to monitor for process safety?",
+        "answer": "."
+      },
+      {
+        "question": "Can you provide a complete list of key personnel (managerial, maintenance, safety) including contact details and their roles in incident escalation?",
+        "answer": "."
+      },
+      {
+        "question": "What are the standard shift patterns and typical headcounts for each shift, and what is the protocol for shift handovers?",
+        "answer": "."
+      },
+      {
+        "question": "What SCADA/DCS systems are in place, and how is the operational network architected to ensure cybersecurity and reliability?",
+        "answer": "."
+      },
+      {
+        "question": "Are there any ongoing or deferred maintenance issues for critical equipment that could pose a risk?",
+        "answer": "."
+      },
+      {
+        "question": "Could you provide details on recent safety incidents, near-misses, or audit findings that highlight areas of concern?",
+        "answer": "."
+      },
+      {
+        "question": "How can we obtain data from your attendance and access control systems for correlating personnel presence with operational events?",
+        "answer": "."
+      }
+    ],
+    "validation_complete": true,
+    "address": "",
+    "industry_sector": "",
+    "operating_company": "",
+    "commissioning_date": "",
+    "installed_capacity": "",
+    "operating_phase": "",
+    "upcoming_milestone_date": "",
+    "departments": [],
+    "process_narrative": "",
+    "drawing_references": "",
+    "scada_systems": [],
+    "historian_system": "",
+    "network_notes": "",
+    "escalation_logic": [],
+    "shift_patterns": [],
+    "shift_handover_notes": "",
+    "maintenance_records": [],
+    "negligence_history": "",
+    "attendance_api_url": "",
+    "attendance_api_method": "GET",
+    "attendance_api_headers": "",
+    "attendance_api_status": "Not Tested",
+    "attendance_api_last_tested": "",
+    "utility_systems": [
+      {
+        "system": "Emergency Power Backup (DG Set / UPS)",
+        "type_vendor": "",
+        "redundancy": "",
+        "last_tested": ""
+      },
+      {
+        "system": "Compressed Air System",
+        "type_vendor": "",
+        "redundancy": "",
+        "last_tested": ""
+      },
+      {
+        "system": "Water Treatment / Cooling Water",
+        "type_vendor": "",
+        "redundancy": "",
+        "last_tested": ""
+      },
+      {
+        "system": "Fire Water System",
+        "type_vendor": "",
+        "redundancy": "",
+        "last_tested": ""
+      },
+      {
+        "system": "HVAC (Control Room / Critical Areas)",
+        "type_vendor": "",
+        "redundancy": "",
+        "last_tested": ""
+      }
+    ],
+    "training_info": {},
+    "environmental_compliance": {},
+    "regulatory_standards": "",
+    "fire_safety_systems": "",
+    "last_safety_audit_date": "",
+    "last_safety_audit_findings": "",
+    "layout_data": [],
+    "setup_complete": false,
+    "id": "cfa7307c",
+    "created_at": "2026-07-11T21:32:53.494467"
   }
 }

@@ -17,6 +17,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     const factoryId = document.getElementById("app-data").dataset.factoryId;
     const sensorGrid = document.getElementById("sensorGrid");
+    const sensorPagination = initPagination({
+        gridSelector: "#sensorGrid",
+        itemSelector: ".sensor-col",
+        controlsId: "sensorPaginationControls",
+    });
     const sensorModalEl = document.getElementById("sensorModal");
     const sensorModal = new bootstrap.Modal(sensorModalEl);
 
@@ -123,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (sensorId) updateCardInPlace(sensorId, result.sensor);
             else appendNewCard(result.sensor);
+            sensorPagination.refresh();
 
             sensorModal.hide();
         } catch (err) {
@@ -146,6 +152,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             cardCol.remove();
             showEmptyStateIfNeeded();
+            sensorPagination.refresh();
         } catch (err) {
             alert("Network error while deleting the sensor. Please try again.");
             console.error(err);

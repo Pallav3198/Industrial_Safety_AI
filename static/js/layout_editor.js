@@ -20,21 +20,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const saveStatus = document.getElementById("layoutSaveStatus");
     const nextBtn = document.getElementById("nextBtn");
 
-    const CANVAS_HEIGHT = 550;
+    const CANVAS_MIN_HEIGHT = 300; // floor, in case the container hasn't been laid out yet
 
     const stage = new Konva.Stage({
         container: "layoutContainer",
         width: container.clientWidth,
-        height: CANVAS_HEIGHT,
+        height: Math.max(container.clientHeight, CANVAS_MIN_HEIGHT),
     });
 
     const layer = new Konva.Layer();
     stage.add(layer);
 
-    // Keep the canvas width responsive without rescaling/distorting any
-    // shapes already placed -- just changes the visible drawing area.
+    // Keep the canvas responsive to both width AND height changes --
+    // .layout-canvas-container is a flex-grow child that fills whatever
+    // vertical space remains on the page (see style.css), so its actual
+    // size can change on window resize, not just its width.
     window.addEventListener("resize", () => {
         stage.width(container.clientWidth);
+        stage.height(Math.max(container.clientHeight, CANVAS_MIN_HEIGHT));
     });
 
     // --- Grid ---------------------------------------------------------------

@@ -2,7 +2,8 @@
 {% block title %}Home — Compound Risk Intelligence{% endblock %}
 
 {% block content %}
-<div class="text-center mb-5 landing-header">
+<div class="fill-height justify-content-center">
+<div class="text-center mb-4 landing-header">
     <h1>Industrial Safety Intelligence Portal</h1>
     <p class="text-muted">Onboard a facility, review and edit what's been configured, and monitor it live.</p>
 </div>
@@ -67,7 +68,7 @@
 </div>
 
 {% if factory_count %}
-<div class="text-center mt-5 text-muted">
+<div class="text-center mt-4 text-muted">
     <small>{{ factory_count }} facility(ies) started &middot; {{ completed_count }} fully onboarded.</small>
 </div>
 {% endif %}

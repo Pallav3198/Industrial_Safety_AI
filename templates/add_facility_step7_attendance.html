@@ -9,7 +9,7 @@
 
 <div class="mb-1 text-center">
     <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
-        <i class="bi bi-arrow-left"></i> Back to Facility Overview
+        <i class="bi bi-arrow-left"></i> Back to Facility Details
     </a>
 </div>
 
@@ -68,8 +68,8 @@
                         {% if prev_nav %}
                         <a href="{{ prev_nav.url }}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left"></i> Back</a>
                         {% else %}<span></span>{% endif %}
-                       <button type="submit" class="btn btn-primary">
-                            Next <i class="bi bi-arrow-right"></i>>
+                      <button type="submit" class="btn btn-primary">
+                            Next <i class="bi bi-arrow-right"></i>
                         </button>
                     </div>
                 </form>

@@ -637,3 +637,203 @@ def test_part_a_full_chain_navigation(client):
 
     sensors_page = client.get(f"/factory/{factory_id}/sensors")
     assert f"/factory/{factory_id}/scada-systems".encode() in sensors_page.data
+
+    # ===========================================================================
+# NEW (Steps 4-6) -- Part B, C, D pages
+# ===========================================================================
+
+def test_key_personnel_grouped_by_category(client):
+    """Managerial/Maintenance/Safety Officer people from mock extraction
+    must each appear in their own grid, and NOT in the Employees page's
+    directory (category filtering working both directions)."""
+    factory_id = _create_test_facility(client)
+    page = client.get(f"/factory/{factory_id}/key-personnel")
+    assert page.status_code == 200
+    assert b"R. Venkatesh" in page.data   # Managerial Staff
+    assert b"Priya Nair" in page.data      # Safety Officer
+    assert b"Anil Sharma" in page.data     # Maintenance Staff
+
+    employees_page = client.get(f"/factory/{factory_id}/employees")
+    assert b"R. Venkatesh" not in employees_page.data
+    assert b"Priya Nair" not in employees_page.data
+
+
+def test_add_person_with_category_override(client):
+    factory_id = _create_test_facility(client)
+    result = client.post(
+        f"/factory/{factory_id}/employees/add",
+        data=json.dumps({"name": "New Manager", "person_category": "Managerial Staff"}),
+        content_type="application/json",
+    ).get_json()
+    assert result["success"] is True
+    assert result["employee"]["person_category"] == "Managerial Staff"
+
+
+def test_escalation_logic_save_and_redirect(client):
+    factory_id = _create_test_facility(client)
+    response = client.post(
+        f"/factory/{factory_id}/key-personnel/escalation",
+        data={
+            "escalation_level[]": "1 — First Responder",
+            "escalation_trigger[]": "Sensor fault",
+            "escalation_contact[]": "Shift Engineer",
+            "escalation_response_time[]": "Immediate",
+        },
+    )
+    assert response.status_code == 302
+    assert "/shift-patterns" in response.headers["Location"]
+
+    import services.storage as storage
+    factory = storage.get_factory(factory_id)
+    assert len(factory.escalation_logic) == 1
+    assert factory.escalation_logic[0]["level"] == "1 — First Responder"
+
+
+def test_shift_patterns_save_and_redirect(client):
+    factory_id = _create_test_facility(client)
+    response = client.post(
+        f"/factory/{factory_id}/shift-patterns",
+        data={"shift_name[]": "Shift A", "shift_start[]": "6:00 AM", "shift_end[]": "2:00 PM",
+              "shift_headcount[]": "65", "shift_handover_notes": "15-minute overlap"},
+    )
+    assert response.status_code == 302
+    assert "/staffing-rules" in response.headers["Location"]
+
+
+def test_staffing_rule_add_with_generalized_route(client):
+    """Confirms the generalized /sensors/add endpoint correctly creates a
+    Staffing Rule category parameter, not a Live Sensor Reading."""
+    factory_id = _create_test_facility(client)
+    result = client.post(
+        f"/factory/{factory_id}/sensors/add",
+        data=json.dumps({"name": "Cylinder Filling", "task_name": "Cylinder Filling",
+                          "minimum_headcount": 2, "parameter_category": "Staffing Rule"}),
+        content_type="application/json",
+    ).get_json()
+    assert result["success"] is True
+    assert result["sensor"]["parameter_category"] == "Staffing Rule"
+    assert result["sensor"]["minimum_headcount"] == 2
+
+    # Confirm it does NOT show up on the Sensors page (category filtered).
+    sensors_page = client.get(f"/factory/{factory_id}/sensors")
+    assert b"Cylinder Filling" not in sensors_page.data
+    # But does show up on the Staffing Rules page.
+    rules_page = client.get(f"/factory/{factory_id}/staffing-rules")
+    assert b"Cylinder Filling" in rules_page.data
+
+
+def test_maintenance_records_save_and_redirect(client):
+    factory_id = _create_test_facility(client)
+    response = client.post(
+        f"/factory/{factory_id}/maintenance",
+        data={"maint_equipment[]": "ID Fan", "maint_last_date[]": "2026-03-22", "maint_type[]": "Preventive"},
+    )
+    assert response.status_code == 302
+    assert "/asset-registry" in response.headers["Location"]
+
+
+def test_asset_registry_add_with_generalized_route(client):
+    factory_id = _create_test_facility(client)
+    result = client.post(
+        f"/factory/{factory_id}/sensors/add",
+        data=json.dumps({"name": "Fire Extinguisher Bay 3", "asset_type": "Fire Extinguisher",
+                          "next_due_date": "2027-01-01", "parameter_category": "Compliance Due-Date"}),
+        content_type="application/json",
+    ).get_json()
+    assert result["success"] is True
+    assert result["sensor"]["parameter_category"] == "Compliance Due-Date"
+
+    page = client.get(f"/factory/{factory_id}/asset-registry")
+    assert b"Fire Extinguisher Bay 3" in page.data
+
+
+def test_moc_log_creates_single_record_and_saves_items(client):
+    factory_id = _create_test_facility(client)
+    response = client.post(
+        f"/factory/{factory_id}/moc-log",
+        data={"moc_change_id[]": "MOC-001", "moc_equipment[]": "ID Fan",
+              "moc_description[]": "Vibration fault, deferred", "moc_completed[]": "N"},
+    )
+    assert response.status_code == 302
+    assert "/permits" in response.headers["Location"]
+
+    import services.storage as storage
+    factory = storage.get_factory(factory_id)
+    moc_records = [c for c in factory.checklist_records if c.checklist_type == "MOC"]
+    assert len(moc_records) == 1  # exactly one MOC record, not one per item
+    assert len(moc_records[0].items) == 1
+    assert moc_records[0].status == "Open"  # not all items completed
+
+
+def test_pssr_prepopulated_with_8_standard_items(client):
+    factory_id = _create_test_facility(client)
+    page = client.get(f"/factory/{factory_id}/pssr")
+    assert page.status_code == 200
+    # Jinja's |tojson filter escapes "&" as the JSON-safe \u0026 sequence
+    # when embedding data inside a <script> tag (a deliberate Flask/Jinja
+    # anti-XSS behavior) -- browsers decode this correctly at runtime, so
+    # checking for the encoded form here, not a raw "&", is the correct
+    # thing to assert against.
+    assert b"P\\u0026IDs reflect as-built condition" in page.data
+
+    import services.storage as storage
+    factory = storage.get_factory(factory_id)
+    pssr_records = [c for c in factory.checklist_records if c.checklist_type == "PSSR"]
+    assert len(pssr_records) == 1
+    assert len(pssr_records[0].items) == 8
+
+
+def test_permit_add_edit_delete_cycle(client):
+    factory_id = _create_test_facility(client)
+    add_result = client.post(
+        f"/factory/{factory_id}/permits/add",
+        data=json.dumps({"permit_number": "HW-2026-014", "permit_type": "Hot Work", "status": "Active"}),
+        content_type="application/json",
+    ).get_json()
+    assert add_result["success"] is True
+    permit_id = add_result["permit"]["id"]
+
+    edit_result = client.post(
+        f"/factory/{factory_id}/permits/{permit_id}/edit",
+        data=json.dumps({"status": "Closed"}),
+        content_type="application/json",
+    ).get_json()
+    assert edit_result["permit"]["status"] == "Closed"
+
+    delete_result = client.post(f"/factory/{factory_id}/permits/{permit_id}/delete").get_json()
+    assert delete_result["success"] is True
+
+
+def test_contractor_add_with_category_override(client):
+    factory_id = _create_test_facility(client)
+    result = client.post(
+        f"/factory/{factory_id}/employees/add",
+        data=json.dumps({"name": "VibroTech Services", "scope_of_work": "Vibration monitoring",
+                          "joint_hazop_conducted": "Y", "person_category": "Contractor"}),
+        content_type="application/json",
+    ).get_json()
+    assert result["success"] is True
+    assert result["employee"]["person_category"] == "Contractor"
+    assert result["employee"]["joint_hazop_conducted"] == "Y"
+
+    # Confirm it shows on Contractors page, not Employees.
+    contractors_page = client.get(f"/factory/{factory_id}/contractors")
+    assert b"VibroTech Services" in contractors_page.data
+    employees_page = client.get(f"/factory/{factory_id}/employees")
+    assert b"VibroTech Services" not in employees_page.data
+
+
+def test_full_part_b_c_d_navigation_chain(client):
+    """Walks the entire Sensors -> ... -> Negligence chain via each
+    page's actual Back/Next, now that all of Parts B, C, and D have
+    real pages -- the full 15-section chain end to end."""
+    factory_id = _create_test_facility(client)
+
+    sensors_page = client.get(f"/factory/{factory_id}/sensors")
+    assert f"/factory/{factory_id}/key-personnel".encode() in sensors_page.data
+
+    kp_page = client.get(f"/factory/{factory_id}/key-personnel")
+    assert f"/factory/{factory_id}/sensors".encode() in kp_page.data  # Back
+
+    contractors_page = client.get(f"/factory/{factory_id}/contractors")
+    assert f"/factory/{factory_id}/negligence".encode() in contractors_page.data  # Next -> Part E

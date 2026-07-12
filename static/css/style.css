@@ -21,10 +21,50 @@
     --brand-instrument: #0EA5E9;
     --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, 'Courier New', monospace;
 }
+
+html, body {
+    height: 100%;
+}
+
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background-color: var(--brand-bg);
     color: var(--brand-text);
+    display: flex;
+    flex-direction: column;
+    /* Primary no-scroll strategy: fixed navbar + flexed main area + card
+       grids that paginate instead of growing unbounded (see pagination.js).
+       overflow-y:auto below is a safety net for edge cases (very short
+       browser windows, heavy zoom) -- it should rarely actually trigger. */
+    overflow: hidden;
+}
+
+.app-main {
+    flex: 1 1 auto;
+    min-height: 0;              /* required for the overflow rule below to work inside a flex parent */
+    overflow-y: auto;           /* safety net only -- see comment above */
+    display: flex;
+    flex-direction: column;
+}
+
+.app-content-wrap {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    width: 100%;
+}
+
+/* Utility for a page's own root element to fill all remaining vertical
+   space and lay its children out top-to-bottom -- used by pages with a
+   dynamically-sized main area (chat window, layout canvas). */
+.fill-height {
+    flex: 1 1 auto;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
 }
 
 /* --- Navbar --------------------------------------------------------- */
@@ -149,6 +189,7 @@ body {
     border-color: var(--brand-primary);
     background-color: rgba(30, 58, 95, 0.03);
 }
+.upload-dropzone-compact { padding: 1.25rem 1rem; }
 .upload-icon {
     font-size: 2.2rem;
     color: var(--brand-primary);
@@ -235,40 +276,65 @@ body {
     box-shadow: 0 8px 20px rgba(16, 24, 40, 0.08);
 }
 
-/* --- 7-step wizard progress bar (Add Facility flow) ---------------------- */
+/* --- Facility wizard progress bar (Add Facility flow) --------------------- */
+/* Each step is a clickable link (except Section 1's "Back" fallback -- see
+   partials/wizard_progress.html) with THREE independent visual signals
+   layered together:
+     1. status-done / status-warning / status-pending -> circle color + icon,
+        computed from Factory.get_wizard_step_status() (real data state)
+     2. .active -> a ring around the circle of whichever step's PAGE you're
+        currently viewing (navigation position, independent of status)
+     3. hover/focus -> only on actually-clickable steps
+
+   Revised for density: with 20 sections across 5 Parts, this needed more
+   breathing room and a harder guarantee against looking like a wall of
+   default blue underlined links -- text-decoration/color are set with
+   higher specificity (a.wizard-step, not just .wizard-step) and repeated
+   explicitly on the label span, so nothing upstream (Bootstrap's base
+   link styles, a stray global rule) can win on specificity or load order.
+*/
 .wizard-progress-groups {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.6rem;
     align-items: center;
+    padding: 0.5rem 0;
 }
 .wizard-progress-group {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: 0.6rem;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 0.3rem 0.5rem;
+    border-radius: 10px;
 }
 .wizard-part-label {
-    font-size: 0.68rem;
-    font-weight: 700;
-    color: var(--brand-muted);
-    background-color: #E5E9EF;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: var(--brand-primary);
+    background-color: rgba(30, 58, 95, 0.08);
+    border: 1px solid rgba(30, 58, 95, 0.16);
+    border-radius: 7px;            /* deliberately a rounded square, not a
+                                       circle -- reads as "category label",
+                                       distinct at a glance from the round
+                                       step circles that follow it */
+    width: 22px;
+    height: 22px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    margin-right: 0.15rem;
 }
 .wizard-progress {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 0.4rem;
+    gap: 0.55rem;
 }
+a.wizard-step,
 .wizard-step {
     display: flex;
     align-items: center;
@@ -277,33 +343,99 @@ body {
     font-size: 0.8rem;
     color: var(--brand-muted);
     white-space: nowrap;
+    text-decoration: none;
+    padding: 3px 8px 3px 3px;
+    border-radius: 20px;           /* pill shape reads as "this is a UI
+                                       control", not a text link */
+    transition: background-color 0.15s ease, color 0.15s ease;
 }
-.wizard-step.active { color: var(--brand-primary); }
-.wizard-step.done { color: var(--brand-success); }
+a.wizard-step .wizard-step-label,
+.wizard-step .wizard-step-label {
+    text-decoration: none;
+    color: inherit;
+}
+a.wizard-step:hover {
+    background-color: rgba(30, 58, 95, 0.07);
+    color: var(--brand-primary);
+    cursor: pointer;
+}
+.wizard-step.wizard-step-disabled {
+    cursor: default;
+    opacity: 0.85;
+}
+.wizard-step.active {
+    color: var(--brand-primary);
+    background-color: rgba(30, 58, 95, 0.05);
+}
+
 .wizard-step-number {
-    width: 24px;
-    height: 24px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     background-color: #E5E9EF;
+    color: var(--brand-muted);
     display: inline-flex;
     align-items: center;
     justify-content: center;
     font-size: 0.75rem;
     flex-shrink: 0;
+    transition: box-shadow 0.15s ease;
 }
-.wizard-step.active .wizard-step-number { background-color: var(--brand-primary); color: #fff; }
-.wizard-step.done .wizard-step-number { background-color: var(--brand-success); color: #fff; }
+.wizard-step.status-done .wizard-step-number { background-color: var(--brand-success); color: #fff; }
+.wizard-step.status-warning .wizard-step-number { background-color: var(--brand-accent); color: #fff; }
+.wizard-step.status-pending .wizard-step-number { background-color: #E5E9EF; color: var(--brand-muted); }
+
+/* Current-page ring, layered on top of whatever status color applies. */
+.wizard-step.active .wizard-step-number {
+    box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.28);
+}
+
+/* Connecting lines are deliberately uniform, not status-colored -- with
+   20 scattered done/pending sections (not a strictly sequential progress
+   bar), selectively coloring some lines and not others read as random
+   noise rather than meaningful progress. The circles alone carry all
+   status information; the lines are pure visual connective tissue. */
 .wizard-step-line {
-    width: 24px;
+    width: 16px;
     height: 2px;
-    background-color: #E5E9EF;
+    background-color: #E1E6ED;
     flex-shrink: 0;
 }
-.wizard-step-line.done { background-color: var(--brand-success); }
 @media (max-width: 767px) {
     .wizard-step-label { display: none; }
-    .wizard-step-line { width: 14px; }
+    .wizard-step { padding: 3px; border-radius: 50%; }
+    .wizard-step-line { width: 10px; }
+    .wizard-step-number { width: 22px; height: 22px; font-size: 0.68rem; }
 }
+
+/* --- Pagination controls (Sensors / Employees / Facility list grids) ----- */
+.pagination-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding-top: 0.75rem;
+    flex-shrink: 0;
+}
+.pagination-controls .page-indicator {
+    font-size: 0.85rem;
+    color: var(--brand-muted);
+    font-weight: 600;
+    min-width: 90px;
+    text-align: center;
+}
+
+/* Wraps a paginated card grid (Sensors, Employees, Facility List). Takes
+   whatever vertical space remains after the header/toolbar/pagination
+   controls; overflow-y:auto is a safety net in case a page's cards are
+   still taller than the available space on an unusually short viewport --
+   pagination should make this rare in normal use. */
+.grid-scroll-area {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+}
+
 
 /* --- Validation chat (Step 2) -------------------------------------------- */
 .chat-card {
@@ -311,9 +443,13 @@ body {
     border-radius: var(--card-radius);
     box-shadow: 0 2px 8px rgba(16, 24, 40, 0.04);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 .chat-window {
-    height: 420px;
+    flex: 1 1 auto;
+    min-height: 200px;   /* sane floor so it's never crushed to nothing */
     overflow-y: auto;
     padding: 1.25rem;
     display: flex;
@@ -399,22 +535,25 @@ body {
     border-radius: var(--card-radius);
     box-shadow: 0 2px 8px rgba(16, 24, 40, 0.04);
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 .layout-toolbar {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.75rem 1rem;
+    padding: 0.6rem 1rem;
     background-color: var(--brand-bg);
     border-bottom: 1px solid #E5E9EF;
     flex-wrap: wrap;
+    flex-shrink: 0;
 }
 .layout-canvas-container {
     width: 100%;
     background-color: #ffffff;
-    /* Height is also set inline by layout_editor.js (Konva needs an
-       explicit pixel height on the stage) -- this is just a sane fallback
-       so the container isn't collapsed before JS runs. */
-    min-height: 550px;
+    /* Actual pixel height is computed and set by layout_editor.js on load
+       and on resize (Konva needs an explicit pixel height on the stage,
+       it can't just be "100%" via CSS) -- this is a sane fallback only. */
+    min-height: 300px;
     cursor: default;
 }
