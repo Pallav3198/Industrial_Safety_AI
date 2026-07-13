@@ -1,59 +1,63 @@
 {
-  "5ecc7ffa": {
-    "name": "avx",
-    "preliminary_doc_filename": "5ecc7ffa_Facility_Onboarding_Template_AA.pdf",
+  "6bb5fcdd": {
+    "name": "RED",
+    "preliminary_doc_filename": "6bb5fcdd_Facility_Onboarding_Template_AA.pdf",
     "ai_summary": "",
     "monitored_parameters": [],
     "people": [],
     "checklist_records": [],
     "permit_records": [],
     "missing_sections": [
-      "Section 1: Facility Overview",
-      "Section 2: Process Flow Description",
-      "Section 3: SCADA / DCS Systems",
-      "Section 4: Sensor & Instrumentation Details",
-      "Section 4.1: Real-Time Data Integration (API Access)",
-      "Section 5.1: Managerial Staff",
-      "Section 5.2: Maintenance Staff",
-      "Section 5.3: Safety Officers",
-      "Section 5.4: Escalation Logic",
-      "Section 6: Shift & Workforce Patterns",
-      "Section 7: Maintenance Records & Timelines",
-      "Section 8: Incident & Negligence History",
-      "Section 9: Employee Directory",
-      "Section 10: Attendance & Access Control Systems",
-      "Section 11: Utility & Support Systems",
-      "Section 12: Training & Certification Records",
-      "Section 13: Environmental & Quality Compliance",
-      "Section 14: Emergency Response & Compliance"
+      "1. Facility Overview",
+      "2. Process Flow Description",
+      "3. SCADA / DCS Systems",
+      "4. Sensor & Instrumentation Details",
+      "4.1 Real-Time Data Integration (API Access)",
+      "5.1 Managerial Staff",
+      "5.2 Maintenance Staff",
+      "5.3 Safety Officers",
+      "5.4 Escalation Logic",
+      "6. Shift & Workforce Patterns",
+      "7. Maintenance Records & Timelines",
+      "8. Incident & Negligence History",
+      "9. Employee Directory",
+      "10. Attendance & Access Control Systems",
+      "11. Utility & Support Systems",
+      "12. Training & Certification Records",
+      "13. Environmental & Quality Compliance",
+      "14. Emergency Response & Compliance"
     ],
     "clarification_qa": [
       {
-        "question": "What is the primary function of this facility, including a brief overview of its end-to-end process and main products?",
+        "question": "What is the core industrial process of the facility, and what are its main operational steps from raw material intake to final product?",
         "answer": ""
       },
       {
-        "question": "Given that the Sensor & Instrumentation Details (Section 4) are blank, please provide a list of all critical sensors, their types, locations, normal operating ranges, and alarm thresholds.",
+        "question": "Please provide comprehensive details on all SCADA/DCS systems, including vendor, version, primary function, and redundancy status.",
         "answer": ""
       },
       {
-        "question": "The Key Personnel (Sections 5 and 9) and Escalation Logic (Section 5.4) sections are empty. Could you detail the key operational and maintenance staff roles, their contact information, and the full incident escalation matrix for various severity levels?",
+        "question": "Could you list all critical sensors and instruments to be monitored, specifying their type, location, unit, normal operating range, alarm thresholds, and response type?",
         "answer": ""
       },
       {
-        "question": "Since Shift & Workforce Patterns (Section 6) is blank, what are the daily shift timings, typical headcount per shift, and the documented protocol for shift changeover and handovers?",
+        "question": "Who are the key personnel, including managerial staff, maintenance staff, safety officers, and general employees, with their roles, departments, contact information, and shift details?",
         "answer": ""
       },
       {
-        "question": "What are the planned maintenance schedules for all major equipment (Section 7), and are there any deferred maintenance items that could pose a risk?",
+        "question": "What are the defined shift patterns (start/end times, typical headcount) and the detailed shift changeover/handover protocols?",
         "answer": ""
       },
       {
-        "question": "Are there any past incidents, near-misses, or regulatory violations (Section 8) that could influence current risk assessments, and what corrective actions were taken?",
+        "question": "What is the maintenance history for major equipment, including last maintenance date, type, next due date, and any deferred or overdue items?",
         "answer": ""
       },
       {
-        "question": "What are the details of the facility's critical utility systems (Section 11), including their type, vendor, backup/redundancy, and last tested dates, especially concerning their potential impact on process control during failures?",
+        "question": "Are there any API endpoints available for real-time sensor data, and if so, what are the base URL, authentication method, and polling frequency?",
+        "answer": ""
+      },
+      {
+        "question": "What are the details of critical utility and support systems (e.g., emergency power, fire safety), including type/vendor, backup/redundancy, and last tested dates?",
         "answer": ""
       }
     ],
@@ -90,7 +94,7 @@
     "last_safety_audit_findings": "",
     "layout_data": [],
     "setup_complete": false,
-    "id": "5ecc7ffa",
-    "created_at": "2026-07-13T09:55:40.331903"
+    "id": "6bb5fcdd",
+    "created_at": "2026-07-13T10:43:17.759398"
   }
 }
