@@ -84,8 +84,8 @@
     </a>
 </div>
 {% for part_letter, part_title, steps in parts %}
-    {% set is_expanded = (part_letter == ns.expanded_part) %}
-    {% set is_unlocked = (parts_order.index(part_letter) <= parts_order.index(current_part)) %}
+    <!--{% set is_expanded = (part_letter == ns.expanded_part) %}-->
+    {% set is_unlocked = true %}
     {% set is_part_done = (part_status[part_letter] == "done") %}
     <div class="wizard-sidebar-group">
         {% if is_unlocked %}

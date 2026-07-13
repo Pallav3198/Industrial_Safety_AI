@@ -69,6 +69,16 @@ def list_factories() -> List[Factory]:
         data = _read_all()
         return [Factory.from_dict(r) for r in data.values()]
 
+def delete_factory(factory_id: str) -> bool:
+    """Permanently removes a factory record. Returns True if it existed
+    and was deleted, False if no record with that id was found."""
+    with _lock:
+        data = _read_all()
+        if factory_id not in data:
+            return False
+        del data[factory_id]
+        _write_all(data)
+        return True
 
 # ---------------------------------------------------------------------------
 # MonitoredParameter CRUD (was "Sensor CRUD" -- see models/monitored_parameter.py)

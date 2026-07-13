@@ -61,9 +61,26 @@ document.addEventListener("DOMContentLoaded", () => {
     // Show the processing overlay once the form is actually submitted
     // (not on click — the browser's own "required" field validation runs
     // first, so this only fires once the form is genuinely going through).
-    if (form && overlay) {
-        form.addEventListener("submit", () => {
-            overlay.classList.remove("d-none");
-        });
-    }
+    // AFTER
+const fileError = document.getElementById("fileError");
+
+function clearFileError() {
+    dropzone.classList.remove("border-danger");
+    fileError.classList.add("d-none");
+}
+
+fileInput.addEventListener("change", clearFileError);
+
+if (form && overlay) {
+    form.addEventListener("submit", (e) => {
+        if (!fileInput.files || fileInput.files.length === 0) {
+            e.preventDefault();
+            dropzone.classList.add("border-danger");
+            fileError.classList.remove("d-none");
+            dropzone.scrollIntoView({ behavior: "smooth", block: "center" });
+            return;
+        }
+        overlay.classList.remove("d-none");
+    });
+}
 });

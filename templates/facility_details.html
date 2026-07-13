@@ -5,7 +5,7 @@
 <div id="app-data" data-factory-id="{{ factory.id }}"></div>
 <div class="fill-height">
 
-<a href="{{ url_for('factory.list_facilities') }}" class="btn btn-sm btn-outline-secondary mb-2">
+<a href="{{ url_for('factory.list_facilities') }}" class="btn btn-sm btn-outline-secondary mb-2 align-self-start">
     <i class="bi bi-arrow-left"></i> All Facilities
 </a>
 
@@ -37,6 +37,21 @@
         </form>
         {% endif %}
     </div>
+    <div class="d-flex align-items-center gap-2">
+    <span class="badge fs-6 {{ 'text-bg-success' if factory.setup_complete else 'text-bg-warning' }}">
+        {{ 'Setup Complete' if factory.setup_complete else 'Setup In Progress' }}
+    </span>
+    {% if factory.is_fully_configured() %}
+    <form method="POST" action="{{ url_for('factory.train_and_configure', factory_id=factory.id) }}" class="d-inline">
+        <button type="submit" class="btn btn-success">
+            <i class="bi bi-cpu"></i> Train &amp; Configure AI
+        </button>
+    </form>
+    {% endif %}
+    <button type="button" class="btn btn-sm btn-outline-danger" id="deleteFacilityBtn">
+        <i class="bi bi-trash"></i> Delete Facility
+    </button>
+</div>
 </div>
 
 {% if factory.ai_summary %}

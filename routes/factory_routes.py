@@ -1280,6 +1280,19 @@ def rename_facility(factory_id):
     storage.update_factory_fields(factory_id, name=new_name)
     return jsonify({"success": True, "name": new_name})
 
+@factory_bp.route("/<factory_id>/delete", methods=["POST"])
+def delete_facility_route(factory_id):
+    """Permanently deletes a facility. Triggered from the Facility
+    Details page, gated by a confirm() dialog client-side (see
+    static/js/facility_details.js) since this is irreversible."""
+    factory = storage.get_factory(factory_id)
+    if not factory:
+        flash("Facility not found.", "error")
+        return redirect(url_for("factory.list_facilities"))
+
+    storage.delete_factory(factory_id)
+    flash(f'"{factory.name}" was deleted.', "success")
+    return redirect(url_for("factory.list_facilities"))
 
 @factory_bp.route("/<factory_id>/train", methods=["POST"])
 def train_and_configure(factory_id):

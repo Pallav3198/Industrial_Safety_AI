@@ -2,7 +2,6 @@
    style.css — custom design layer on top of Bootstrap 5.
    Palette: deep industrial blue + amber accent (safety/alert connotation).
    ========================================================================== */
-
 :root {
     --brand-primary: #1E3A5F;
     --brand-primary-dark: #142943;
@@ -307,7 +306,7 @@ body {
     gap: 0;
 }
 .wizard-mobile-toggle {
-    padding: 0.5rem 0 0.75rem;
+    margin-bottom: 0.75rem;
 }
 .wizard-sidebar {
     width: 320px;

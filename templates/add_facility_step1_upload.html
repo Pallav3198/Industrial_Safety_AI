@@ -47,16 +47,21 @@
                                required>
                     </div>
 
-                    <div class="mb-3">
+                                        <div class="mb-3">
                         <label class="form-label">Upload Completed Template (PDF)</label>
                         <div class="upload-dropzone upload-dropzone-compact" id="dropzone">
                             <i class="bi bi-cloud-arrow-up upload-icon"></i>
                             <p class="mb-1"><strong>Click to browse</strong> or drag a PDF here</p>
                             <p class="text-muted small mb-0" id="fileNameDisplay">No file selected — PDF only, no size limit</p>
                             <input class="form-control d-none" type="file" id="preliminary_doc"
-                                   name="preliminary_doc" accept="application/pdf" required>
+                                   name="preliminary_doc" accept="application/pdf">
+                        </div>
+                        <div class="text-danger small mt-1 d-none" id="fileError">
+                            Please upload the completed template as a PDF.
                         </div>
                     </div>
+                    
+                    
 
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-primary" id="submitBtn">
