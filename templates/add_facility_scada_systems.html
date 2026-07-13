@@ -1,16 +1,10 @@
-{% extends "base.html" %}
+{% extends "wizard_base.html" %}
 {% block title %}Add Facility — SCADA / DCS Systems{% endblock %}
+{% block current_route %}factory.THE_ROUTE_NAME{% endblock %}
 
-{% block content %}
+{% block wizard_content %}
+
 <div class="fill-height">
-
-{% with current_route = 'factory.scada_systems' %}{% include "partials/wizard_progress.html" %}{% endwith %}
-
-<div class="mb-1">
-    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
-        <i class="bi bi-arrow-left"></i> Back to Facility Details
-    </a>
-</div>
 
 <div class="mb-2">
     <h3 class="mb-1">{{ factory.name }} — SCADA / DCS Systems</h3>

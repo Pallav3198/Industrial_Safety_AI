@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{#
+    Layout for the ~19 Add Facility wizard pages (everything except the
+    Upload step, which has no `factory` yet and so nothing for a sidebar
+    to show -- Upload stays on the plain base.html layout).
+
+    Replaces the old horizontal wizard-progress-bar-at-the-top design.
+    That approach hit a hard structural ceiling once the template grew
+    to 20 sections across 5 Parts: no amount of spacing/color tuning
+    fixes a horizontal band that has to represent 20 items across a
+    fixed page width. A left sidebar has no such ceiling -- vertical
+    stacking accommodates any number of sections/Parts cleanly, and it's
+    the standard pattern for exactly this (Stripe onboarding, Gusto,
+    most enterprise admin tools switch to a side rail once step count
+    passes ~7-8).
+
+    Responsive via Bootstrap's built-in `offcanvas-lg` class (Bootstrap
+    5.2+): at >=992px the sidebar behaves as a normal static, always-
+    visible column; below that it becomes a slide-out drawer triggered
+    by the "Sections" button, with zero custom JS required -- this is
+    exactly what that Bootstrap feature is for, no need to hand-roll it.
+
+    Each child template must supply TWO blocks:
+      {% block current_route %}factory.some_route_name{% endblock %}
+      {% block wizard_content %}...{% endblock %}
+    current_route is read via self.current_route() below and passed into
+    partials/wizard_progress.html so it can highlight the active section
+    -- same value that used to go in `{% with current_route = ... %}`
+    directly in each page; it just needs to reach the sidebar now,
+    which lives in this shared parent template instead of inline in
+    each page.
+#}
+
+{% block main_layout %}
+<div class="wizard-shell">
+
+    <div class="wizard-mobile-toggle d-lg-none">
+        <button class="btn btn-outline-secondary btn-sm" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#wizardSidebar" aria-controls="wizardSidebar">
+            <i class="bi bi-list"></i> Sections
+        </button>
+    </div>
+
+    <aside class="wizard-sidebar offcanvas-lg offcanvas-start" id="wizardSidebar" tabindex="-1">
+        <div class="offcanvas-header d-lg-none">
+            <h5 class="offcanvas-title">Sections</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#wizardSidebar" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body wizard-sidebar-body">
+            {% set current_route = self.current_route() %}
+            {% include "partials/wizard_progress.html" %}
+        </div>
+    </aside>
+
+    <div class="wizard-main-content">
+        {% include "partials/flash_messages.html" %}
+        {% block wizard_content %}{% endblock %}
+    </div>
+
+</div>
+{% endblock %}
+
+{% block current_route %}{% endblock %}

@@ -276,136 +276,161 @@ body {
     box-shadow: 0 8px 20px rgba(16, 24, 40, 0.08);
 }
 
-/* --- Facility wizard progress bar (Add Facility flow) --------------------- */
-/* Each step is a clickable link (except Section 1's "Back" fallback -- see
-   partials/wizard_progress.html) with THREE independent visual signals
-   layered together:
-     1. status-done / status-warning / status-pending -> circle color + icon,
-        computed from Factory.get_wizard_step_status() (real data state)
-     2. .active -> a ring around the circle of whichever step's PAGE you're
-        currently viewing (navigation position, independent of status)
-     3. hover/focus -> only on actually-clickable steps
+/* --- Facility wizard sidebar (Add Facility flow) --------------------------- */
+/* Replaces the old horizontal wizard-progress-bar-at-the-top design. That
+   approach hit a hard structural ceiling once the template grew to 20
+   sections across 5 Parts -- no amount of spacing/color tuning fixes a
+   horizontal band that has to represent 20 items across a fixed page
+   width. A left sidebar has no such ceiling; vertical stacking
+   accommodates any number of sections/Parts cleanly. See
+   templates/wizard_base.html for the layout shell this plugs into.
 
-   Revised for density: with 20 sections across 5 Parts, this needed more
-   breathing room and a harder guarantee against looking like a wall of
-   default blue underlined links -- text-decoration/color are set with
-   higher specificity (a.wizard-step, not just .wizard-step) and repeated
-   explicitly on the label span, so nothing upstream (Bootstrap's base
-   link styles, a stray global rule) can win on specificity or load order.
+   Each step link carries the same three signals as before:
+     1. status-done / status-warning / status-pending -> circle color + icon
+     2. .active -> highlighted row (left border + bold + tinted background)
+        for whichever step's PAGE you're currently viewing
+     3. hover -> only on actually-clickable steps
 */
-.wizard-progress-groups {
+.wizard-shell {
     display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    align-items: center;
-    padding: 0.5rem 0;
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    gap: 0;
 }
-.wizard-progress-group {
+.wizard-mobile-toggle {
+    padding: 0.5rem 0 0.75rem;
+}
+.wizard-sidebar {
+    width: 260px;
+    flex-shrink: 0;
+    background-color: #fff;
+    border-right: 1px solid #E5E9EF;
+    overflow-y: auto;
+}
+.wizard-sidebar-body {
+    padding: 1.1rem 0.85rem;
+}
+@media (max-width: 991.98px) {
+    .wizard-sidebar { width: 300px; }  /* offcanvas drawer width on mobile */
+}
+
+.wizard-sidebar-facility {
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #E5E9EF;
+}
+.wizard-sidebar-facility-link {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 0.3rem 0.5rem;
-    border-radius: 10px;
+    gap: 0.4rem;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--brand-primary);
+    text-decoration: none;
+}
+.wizard-sidebar-facility-link:hover { text-decoration: underline; }
+
+.wizard-sidebar-group {
+    margin-bottom: 1.15rem;
+}
+.wizard-sidebar-group-label {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    margin-bottom: 0.35rem;
+    padding: 0 0.3rem;
 }
 .wizard-part-label {
-    font-size: 0.72rem;
+    font-size: 0.68rem;
     font-weight: 800;
     color: var(--brand-primary);
     background-color: rgba(30, 58, 95, 0.08);
     border: 1px solid rgba(30, 58, 95, 0.16);
-    border-radius: 7px;            /* deliberately a rounded square, not a
+    border-radius: 6px;            /* deliberately a rounded square, not a
                                        circle -- reads as "category label",
                                        distinct at a glance from the round
                                        step circles that follow it */
-    width: 22px;
-    height: 22px;
+    width: 19px;
+    height: 19px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
-    margin-right: 0.15rem;
 }
-.wizard-progress {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.55rem;
-}
-a.wizard-step,
-.wizard-step {
-    display: flex;
-    align-items: center;
-    gap: 0.4rem;
-    font-weight: 600;
-    font-size: 0.8rem;
+.wizard-sidebar-group-title {
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
     color: var(--brand-muted);
-    white-space: nowrap;
+}
+.wizard-sidebar-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+a.wizard-sidebar-step,
+.wizard-sidebar-step {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.4rem 0.5rem 0.4rem 0.55rem;
+    border-radius: 8px;
+    border-left: 3px solid transparent;
+    font-size: 0.83rem;
+    font-weight: 500;
+    color: var(--brand-muted);
     text-decoration: none;
-    padding: 3px 8px 3px 3px;
-    border-radius: 20px;           /* pill shape reads as "this is a UI
-                                       control", not a text link */
     transition: background-color 0.15s ease, color 0.15s ease;
 }
-a.wizard-step .wizard-step-label,
-.wizard-step .wizard-step-label {
+a.wizard-sidebar-step .wizard-step-label,
+.wizard-sidebar-step .wizard-step-label {
     text-decoration: none;
     color: inherit;
 }
-a.wizard-step:hover {
-    background-color: rgba(30, 58, 95, 0.07);
+a.wizard-sidebar-step:hover {
+    background-color: rgba(30, 58, 95, 0.06);
     color: var(--brand-primary);
     cursor: pointer;
 }
-.wizard-step.wizard-step-disabled {
-    cursor: default;
-    opacity: 0.85;
-}
-.wizard-step.active {
+.wizard-sidebar-step.active {
+    background-color: rgba(30, 58, 95, 0.08);
+    border-left-color: var(--brand-primary);
     color: var(--brand-primary);
-    background-color: rgba(30, 58, 95, 0.05);
+    font-weight: 700;
 }
 
 .wizard-step-number {
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
     border-radius: 50%;
     background-color: #E5E9EF;
     color: var(--brand-muted);
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     flex-shrink: 0;
-    transition: box-shadow 0.15s ease;
 }
-.wizard-step.status-done .wizard-step-number { background-color: var(--brand-success); color: #fff; }
-.wizard-step.status-warning .wizard-step-number { background-color: var(--brand-accent); color: #fff; }
-.wizard-step.status-pending .wizard-step-number { background-color: #E5E9EF; color: var(--brand-muted); }
+.wizard-sidebar-step.status-done .wizard-step-number { background-color: var(--brand-success); color: #fff; }
+.wizard-sidebar-step.status-warning .wizard-step-number { background-color: var(--brand-accent); color: #fff; }
+.wizard-sidebar-step.status-pending .wizard-step-number { background-color: #E5E9EF; color: var(--brand-muted); }
 
-/* Current-page ring, layered on top of whatever status color applies. */
-.wizard-step.active .wizard-step-number {
-    box-shadow: 0 0 0 3px rgba(30, 58, 95, 0.28);
-}
-
-/* Connecting lines are deliberately uniform, not status-colored -- with
-   20 scattered done/pending sections (not a strictly sequential progress
-   bar), selectively coloring some lines and not others read as random
-   noise rather than meaningful progress. The circles alone carry all
-   status information; the lines are pure visual connective tissue. */
-.wizard-step-line {
-    width: 16px;
-    height: 2px;
-    background-color: #E1E6ED;
-    flex-shrink: 0;
+/* Main content column next to the sidebar -- same flex/scroll behavior
+   the old .app-content-wrap provided, so each page's own .fill-height
+   wrapper (chat window, layout canvas) keeps working unmodified. */
+.wizard-main-content {
+    flex: 1 1 auto;
+    min-width: 0;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
 }
 @media (max-width: 767px) {
-    .wizard-step-label { display: none; }
-    .wizard-step { padding: 3px; border-radius: 50%; }
-    .wizard-step-line { width: 10px; }
-    .wizard-step-number { width: 22px; height: 22px; font-size: 0.68rem; }
+    .wizard-main-content { padding: 1rem; }
 }
 
 /* --- Pagination controls (Sensors / Employees / Facility list grids) ----- */

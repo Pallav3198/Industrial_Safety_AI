@@ -2507,5 +2507,430 @@
     "setup_complete": false,
     "id": "cfa7307c",
     "created_at": "2026-07-11T21:32:53.494467"
+  },
+  "60d1a3cd": {
+    "name": "DFF",
+    "preliminary_doc_filename": "60d1a3cd_Facility_Onboarding_Template_AA.pdf",
+    "ai_summary": "Demo mode (no GEMINI_API_KEY configured): this is fixed sample output standing in for real AI extraction. The plant appears to be a coal-fired boiler unit with primary-air-driven combustion and standard pressure/temperature instrumentation on the furnace and header.",
+    "monitored_parameters": [
+      {
+        "name": "Furnace Pressure Transmitter \u2014 FPT-101",
+        "parameter_category": "Live Sensor Reading",
+        "sensor_type": "Pressure",
+        "location": "Boiler Unit 1 - Furnace",
+        "unit": "bar",
+        "normal_range": "1.0 - 1.4",
+        "alarm_threshold": "> 1.6",
+        "response_type": "Continuous Analog",
+        "fault_since": "",
+        "asset_type": "",
+        "last_test_date": "",
+        "next_due_date": "",
+        "task_name": "",
+        "minimum_headcount": 0,
+        "required_roles": "",
+        "data_source_type": "Manual Entry",
+        "api_url": "",
+        "api_method": "GET",
+        "api_headers": "",
+        "api_json_path": "",
+        "api_status": "Not Tested",
+        "api_last_tested": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "ba6dcd39"
+      },
+      {
+        "name": "Primary Air Fan Status \u2014 PAF-01",
+        "parameter_category": "Live Sensor Reading",
+        "sensor_type": "Digital Status (On/Off)",
+        "location": "Boiler Unit 1 - Air Supply",
+        "unit": "",
+        "normal_range": "Running",
+        "alarm_threshold": "Fault / Tripped",
+        "response_type": "Digital ON/OFF",
+        "fault_since": "",
+        "asset_type": "",
+        "last_test_date": "",
+        "next_due_date": "",
+        "task_name": "",
+        "minimum_headcount": 0,
+        "required_roles": "",
+        "data_source_type": "Manual Entry",
+        "api_url": "",
+        "api_method": "GET",
+        "api_headers": "",
+        "api_json_path": "",
+        "api_status": "Not Tested",
+        "api_last_tested": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "717eaf4c"
+      },
+      {
+        "name": "Boiler Tube Temperature \u2014 TT-204",
+        "parameter_category": "Live Sensor Reading",
+        "sensor_type": "Temperature",
+        "location": "Boiler Unit 1 - Header",
+        "unit": "\u00b0C",
+        "normal_range": "480 - 540",
+        "alarm_threshold": "> 560",
+        "response_type": "Continuous Analog",
+        "fault_since": "",
+        "asset_type": "",
+        "last_test_date": "",
+        "next_due_date": "",
+        "task_name": "",
+        "minimum_headcount": 0,
+        "required_roles": "",
+        "data_source_type": "Manual Entry",
+        "api_url": "",
+        "api_method": "GET",
+        "api_headers": "",
+        "api_json_path": "",
+        "api_status": "Not Tested",
+        "api_last_tested": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "d28aa0f9"
+      }
+    ],
+    "people": [
+      {
+        "name": "R. Venkatesh",
+        "person_category": "Managerial Staff",
+        "role": "Plant Head",
+        "department": "Management",
+        "manager_id": "",
+        "email": "r.venkatesh@riverbendpower.example.com",
+        "phone": "+91 98765 10001",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "bdb96810"
+      },
+      {
+        "name": "Priya Nair",
+        "person_category": "Safety Officer",
+        "role": "Safety Officer",
+        "department": "Safety",
+        "manager_id": "",
+        "email": "priya.nair@example-plant.com",
+        "phone": "+91 98765 43212",
+        "blood_group": "A-",
+        "working_hours": "8:00 AM - 5:00 PM",
+        "working_days": "Mon-Fri",
+        "emergency_contact_name": "Vijay Nair",
+        "emergency_contact_phone": "+91 98765 33333",
+        "emergency_contact_relation": "Spouse",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "a067782c"
+      },
+      {
+        "name": "Anil Sharma",
+        "person_category": "Maintenance Staff",
+        "role": "Maintenance Technician",
+        "department": "Maintenance",
+        "manager_id": "",
+        "email": "anil.sharma@example-plant.com",
+        "phone": "+91 98765 43211",
+        "blood_group": "B+",
+        "working_hours": "9:00 AM - 6:00 PM",
+        "working_days": "Mon-Sat",
+        "emergency_contact_name": "Rakesh Sharma",
+        "emergency_contact_phone": "+91 98765 22222",
+        "emergency_contact_relation": "Brother",
+        "certifications": "Rotating Equipment Certified",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "bc706655"
+      },
+      {
+        "name": "Ravi Kumar",
+        "person_category": "Employee",
+        "role": "Shift Engineer",
+        "department": "Boiler Operations",
+        "manager_id": "",
+        "email": "ravi.kumar@example-plant.com",
+        "phone": "+91 98765 43210",
+        "blood_group": "O+",
+        "working_hours": "6:00 AM - 2:00 PM",
+        "working_days": "Rotating Shift A",
+        "emergency_contact_name": "Sunita Kumar",
+        "emergency_contact_phone": "+91 98765 11111",
+        "emergency_contact_relation": "Spouse",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "453cb100"
+      }
+    ],
+    "checklist_records": [
+      {
+        "checklist_type": "MOC",
+        "title": "Management of Change Log",
+        "items": [],
+        "linked_equipment": "",
+        "status": "Open",
+        "source": "Manually Added",
+        "id": "a2bb7887"
+      }
+    ],
+    "permit_records": [],
+    "missing_sections": [
+      "Section 7: Maintenance Records & Timelines",
+      "Section 6: Shift Changeover Protocol (timing described, handover procedure not described)"
+    ],
+    "clarification_qa": [
+      {
+        "question": "When was the Primary Air Fan (PAF-01) last serviced, and is there a scheduled maintenance date coming up?",
+        "answer": "."
+      },
+      {
+        "question": "During shift changeover, is there a documented handover checklist, or is it verbal only?",
+        "answer": "."
+      },
+      {
+        "question": "Does any scheduled maintenance window overlap with the shift changeover time (e.g. maintenance starting right as a new shift comes on)?",
+        "answer": "."
+      },
+      {
+        "question": "Are alarm thresholds on FPT-101 and TT-204 adjusted during startup/shutdown, or are they fixed at all times?",
+        "answer": "."
+      },
+      {
+        "question": "Who is contacted if a Level 1 (first responder) escalation doesn't get a response within the expected time -- is there a documented fallback?",
+        "answer": "."
+      }
+    ],
+    "validation_complete": true,
+    "address": "NH-49, Riverbend Industrial Corridor, Raigarh District, Chhattisgarh, India",
+    "industry_sector": "Thermal Power (Coal-Fired)",
+    "operating_company": "Riverbend Power Generation Ltd.",
+    "commissioning_date": "March 15, 2025",
+    "installed_capacity": "600 MW (Unit 1, sub-critical boiler)",
+    "operating_phase": "Routine Operation",
+    "upcoming_milestone_date": "",
+    "departments": [
+      {
+        "name": "Boiler & Furnace Operations",
+        "function": "Combustion and steam generation",
+        "headcount": "38"
+      },
+      {
+        "name": "Maintenance",
+        "function": "Mechanical, electrical, and instrumentation upkeep",
+        "headcount": "52"
+      }
+    ],
+    "process_narrative": "Coal is crushed and blown into a furnace, where combustion heat boils water into high-pressure steam. Steam drives a turbine-generator to produce electricity. Flue gas passes through an electrostatic precipitator before discharge via the stack.",
+    "drawing_references": "PFD-RTPS-001, PID-RTPS-BLR-014",
+    "scada_systems": [
+      {
+        "name": "Unit 1 DCS",
+        "vendor": "ABB Ability Symphony Plus",
+        "version": "v3.2",
+        "function": "Overall unit control and monitoring",
+        "redundant": "Y"
+      }
+    ],
+    "historian_system": "OSIsoft PI System",
+    "network_notes": "IT/OT segregated via firewall DMZ; SCADA network is air-gapped from corporate IT.",
+    "escalation_logic": [],
+    "shift_patterns": [
+      {
+        "shift_name": "Shift A",
+        "start_time": "6:00 AM",
+        "end_time": "2:00 PM",
+        "headcount": "65"
+      },
+      {
+        "shift_name": "Shift B",
+        "start_time": "2:00 PM",
+        "end_time": "10:00 PM",
+        "headcount": "60"
+      }
+    ],
+    "shift_handover_notes": "15-minute overlap; outgoing and incoming shift engineers walk a shared checklist together.",
+    "maintenance_records": [
+      {
+        "equipment": "Primary Air Fan (PAF-01)",
+        "last_date": "2026-04-10",
+        "type": "Preventive (bearing lubrication)",
+        "next_due": "2026-07-10",
+        "performed_by": "Anil Sharma",
+        "deferred_notes": "On schedule"
+      }
+    ],
+    "negligence_history": "",
+    "attendance_api_url": "",
+    "attendance_api_method": "GET",
+    "attendance_api_headers": "",
+    "attendance_api_status": "Not Tested",
+    "attendance_api_last_tested": "",
+    "utility_systems": [
+      {
+        "system": "Emergency Power Backup (DG Set / UPS)",
+        "type_vendor": "",
+        "redundancy": "",
+        "last_tested": ""
+      },
+      {
+        "system": "Compressed Air System",
+        "type_vendor": "",
+        "redundancy": "",
+        "last_tested": ""
+      },
+      {
+        "system": "Water Treatment / Cooling Water",
+        "type_vendor": "",
+        "redundancy": "",
+        "last_tested": ""
+      },
+      {
+        "system": "Fire Water System",
+        "type_vendor": "",
+        "redundancy": "",
+        "last_tested": ""
+      },
+      {
+        "system": "HVAC (Control Room / Critical Areas)",
+        "type_vendor": "",
+        "redundancy": "",
+        "last_tested": ""
+      }
+    ],
+    "training_info": {},
+    "environmental_compliance": {},
+    "regulatory_standards": "",
+    "fire_safety_systems": "",
+    "last_safety_audit_date": "",
+    "last_safety_audit_findings": "",
+    "layout_data": [],
+    "setup_complete": false,
+    "id": "60d1a3cd",
+    "created_at": "2026-07-12T05:33:42.737336"
+  },
+  "d77defbb": {
+    "name": "XYZ",
+    "preliminary_doc_filename": "d77defbb_Facility_Onboarding_Template_AA.pdf",
+    "ai_summary": "",
+    "monitored_parameters": [],
+    "people": [],
+    "checklist_records": [],
+    "permit_records": [],
+    "missing_sections": [
+      "Section 1: Facility Overview",
+      "Section 2: Process Flow Description",
+      "Section 3: SCADA / DCS Systems",
+      "Section 4: Sensor & Instrumentation Details",
+      "Section 5: Key Personnel",
+      "Section 6: Shift & Workforce Patterns",
+      "Section 7: Maintenance Records & Timelines",
+      "Section 8: Incident & Negligence History",
+      "Section 9: Employee Directory",
+      "Section 10: Attendance & Access Control Systems",
+      "Section 11: Utility & Support Systems",
+      "Section 12: Training & Certification Records",
+      "Section 13: Environmental & Quality Compliance",
+      "Section 14: Emergency Response & Compliance"
+    ],
+    "clarification_qa": [
+      {
+        "question": "Could you please provide a brief narrative of the facility's core operations and its main process steps?",
+        "answer": ""
+      },
+      {
+        "question": "What are the critical sensors and instruments that should be monitored by the risk detection platform, including their location, type, normal operating range, and alarm thresholds?",
+        "answer": ""
+      },
+      {
+        "question": "Who are the key managerial, maintenance, and safety personnel, along with their roles, contact information, and specific shift assignments?",
+        "answer": ""
+      },
+      {
+        "question": "What are the defined shift patterns for all operational personnel, including start/end times and typical headcount, and what is the detailed shift changeover protocol?",
+        "answer": ""
+      },
+      {
+        "question": "Please list all SCADA/DCS systems deployed at the facility, including their vendor, version, primary function, and redundancy status.",
+        "answer": ""
+      },
+      {
+        "question": "Can you provide details on the facility's emergency escalation logic, specifying contacts/roles for each incident level and their expected response times?",
+        "answer": ""
+      },
+      {
+        "question": "What is the current maintenance schedule for major equipment, including last maintenance date, type, next due date, and any deferred maintenance items?",
+        "answer": ""
+      },
+      {
+        "question": "Are there any past incidents, near-misses, or regulatory violations that could impact risk modeling, and is there a broader history of negligence to consider?",
+        "answer": ""
+      }
+    ],
+    "validation_complete": false,
+    "address": "",
+    "industry_sector": "",
+    "operating_company": "",
+    "commissioning_date": "",
+    "installed_capacity": "",
+    "operating_phase": "",
+    "upcoming_milestone_date": "",
+    "departments": [],
+    "process_narrative": "",
+    "drawing_references": "",
+    "scada_systems": [],
+    "historian_system": "",
+    "network_notes": "",
+    "escalation_logic": [],
+    "shift_patterns": [],
+    "shift_handover_notes": "",
+    "maintenance_records": [],
+    "negligence_history": "",
+    "attendance_api_url": "",
+    "attendance_api_method": "GET",
+    "attendance_api_headers": "",
+    "attendance_api_status": "Not Tested",
+    "attendance_api_last_tested": "",
+    "utility_systems": [],
+    "training_info": {},
+    "environmental_compliance": {},
+    "regulatory_standards": "",
+    "fire_safety_systems": "",
+    "last_safety_audit_date": "",
+    "last_safety_audit_findings": "",
+    "layout_data": [],
+    "setup_complete": false,
+    "id": "d77defbb",
+    "created_at": "2026-07-12T11:28:46.400439"
   }
 }

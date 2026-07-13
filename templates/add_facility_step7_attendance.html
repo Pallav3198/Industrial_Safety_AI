@@ -1,17 +1,12 @@
-{% extends "base.html" %}
+{% extends "wizard_base.html" %}
 {% block title %}Add Facility — Step 7{% endblock %}
+{% block current_route %}factory.THE_ROUTE_NAME{% endblock %}
 
-{% block content %}
+{% block wizard_content %}
+
 <div id="app-data" data-factory-id="{{ factory.id }}"></div>
 <div class="fill-height justify-content-center">
 
-{% with current_route = 'factory.attendance_page' %}{% include "partials/wizard_progress.html" %}{% endwith %}
-
-<div class="mb-1 text-center">
-    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
-        <i class="bi bi-arrow-left"></i> Back to Facility Details
-    </a>
-</div>
 
 <div class="row justify-content-center">
     <div class="col-lg-7">

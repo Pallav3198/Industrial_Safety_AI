@@ -1,17 +1,13 @@
-{% extends "base.html" %}
+{% extends "wizard_base.html" %}
 {% block title %}Add Facility — Contractor Oversight{% endblock %}
+{% block current_route %}factory.THE_ROUTE_NAME{% endblock %}
 
-{% block content %}
+
+{% block wizard_content %}
+
 <div id="app-data" data-factory-id="{{ factory.id }}"></div>
 <div class="fill-height">
 
-{% with current_route = 'factory.contractor_oversight' %}{% include "partials/wizard_progress.html" %}{% endwith %}
-
-<div class="mb-1">
-    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
-        <i class="bi bi-arrow-left"></i> Back to Facility Details
-    </a>
-</div>
 
 <div class="d-flex justify-content-between align-items-start mb-2 flex-wrap gap-2">
     <div>

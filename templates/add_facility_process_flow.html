@@ -1,16 +1,11 @@
-{% extends "base.html" %}
+{% extends "wizard_base.html" %}
 {% block title %}Add Facility — Process Flow{% endblock %}
+{% block current_route %}factory.THE_ROUTE_NAME{% endblock %}
 
-{% block content %}
+{% block wizard_content %}
+
 <div class="fill-height">
 
-{% with current_route = 'factory.process_flow' %}{% include "partials/wizard_progress.html" %}{% endwith %}
-
-<div class="mb-1 text-center flex-shrink-0">
-    <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="small text-muted">
-        <i class="bi bi-arrow-left"></i> Back to Facility Details
-    </a>
-</div>
 
 <div class="row justify-content-center flex-grow-1" style="min-height:0;">
     <div class="col-lg-8 d-flex flex-column">

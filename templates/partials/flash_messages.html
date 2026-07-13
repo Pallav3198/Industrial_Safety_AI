@@ -1,0 +1,15 @@
+{#
+    Extracted so both base.html (plain pages) and wizard_base.html
+    (sidebar-layout pages) can render flash messages in their own
+    content column without duplicating this block's logic in two places.
+#}
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}

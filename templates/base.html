@@ -30,21 +30,13 @@
         </div>
     </nav>
 
-    <main class="app-main">
+   <main class="app-main">
+        {% block main_layout %}
         <div class="container-fluid app-content-wrap px-3 px-md-4">
-            {% with messages = get_flashed_messages(with_categories=true) %}
-                {% if messages %}
-                    {% for category, message in messages %}
-                        <div class="alert alert-{{ 'danger' if category == 'error' else 'success' }} alert-dismissible fade show" role="alert">
-                            {{ message }}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            {% endwith %}
-
+            {% include "partials/flash_messages.html" %}
             {% block content %}{% endblock %}
         </div>
+        {% endblock %}
     </main>
 
     <!-- Bootstrap JS bundle (includes Popper, needed for modals) -->
