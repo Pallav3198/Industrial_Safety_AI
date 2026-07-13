@@ -5,20 +5,35 @@
         {% include "partials/wizard_progress.html" %}
     `factory` is already in scope from wizard_base.html's render context.
 
-    All 20 of the eventual Facility Onboarding Template sections have
-    real pages now, plus the portal-only Layout editor. Grouped by Part
-    (A-E) with a full section title as a small group header -- vertical
-    stacking has no width ceiling the way the old horizontal bar did, so
-    there's no pressure to abbreviate or compress here.
+    Accordion behaviour (as of this revision):
+      - All 5 Part headers (A-E) are always visible.
+      - Only ONE Part's step list is expanded at a time -- the Part
+        containing the page you're currently on, or (if you're not on
+        any of the 20 section pages, e.g. Facility Details) the first
+        Part that isn't fully complete yet. See
+        Factory.get_current_wizard_part().
+      - A Part can be expanded/clicked into if it's the current Part or
+        an earlier, already-completed one -- going back to review or
+        edit a finished Part is always allowed. Parts AFTER the current
+        one render as plain, non-clickable/locked headers: visible so
+        you can see what's ahead, but you can't skip into them yet.
+        This is a UI-only lock (no server-side route enforcement).
+      - A Part header shows a checkmark once every section inside it is
+        "done" (Factory.get_wizard_part_status()), same idea as the
+        per-step checkmarks but one level up.
 
-    Status per section comes from Factory.get_wizard_step_status() (a
-    real data-completeness check, independent of which page you're
+    Status per section still comes from Factory.get_wizard_step_status()
+    (a real data-completeness check, independent of which page you're
     currently viewing). Layout isn't in that registry (see
     models/wizard_sections.py), so its status is computed separately
-    right here, the same simple way it always was.
+    right here, the same simple way it always was, and it lives inside
+    Part A's step list.
 #}
 {% set step_status = factory.get_wizard_step_status() %}
 {% set layout_status = "done" if factory.layout_data else "pending" %}
+{% set part_status = factory.get_wizard_part_status() %}
+{% set current_part = factory.get_current_wizard_part() %}
+{% set parts_order = ["A", "B", "C", "D", "E"] %}
 {% set parts = [
     ("A", "Facility & Process Profile", [
         (url_for('factory.facility_overview', factory_id=factory.id), "factory.facility_overview", "Overview", step_status.get(1, "pending")),
@@ -51,39 +66,67 @@
         (url_for('factory.emergency_response', factory_id=factory.id), "factory.emergency_response", "Emergency Response", step_status.get(20, "pending")),
     ]),
 ] %}
+
+{# Which Part should render expanded: the Part containing the page
+   you're currently viewing (including Layout, which lives under A),
+   falling back to the first not-yet-complete Part. #}
+{% set ns = namespace(expanded_part=current_part) %}
+{% for part_letter, part_title, steps in parts %}
+    {% for link, route_name, label, status in steps %}
+        {% if route_name == current_route %}{% set ns.expanded_part = part_letter %}{% endif %}
+    {% endfor %}
+{% endfor %}
+{% if current_route == "factory.layout_page" %}{% set ns.expanded_part = "A" %}{% endif %}
+
 <div class="wizard-sidebar-facility">
     <a href="{{ url_for('factory.facility_details', factory_id=factory.id) }}" class="wizard-sidebar-facility-link">
         <i class="bi bi-arrow-left"></i> {{ factory.name }}
     </a>
 </div>
 {% for part_letter, part_title, steps in parts %}
-<div class="wizard-sidebar-group">
-    <div class="wizard-sidebar-group-label">
-        <span class="wizard-part-label">{{ part_letter }}</span>
-        <span class="wizard-sidebar-group-title">{{ part_title }}</span>
-    </div>
-    <div class="wizard-sidebar-steps">
-        {% for link, route_name, label, status in steps %}
-            {% set status_label = {"done": "Complete", "warning": "Needs attention", "pending": "Not started"}[status] %}
-            <a href="{{ link }}" class="wizard-sidebar-step status-{{ status }}{{ ' active' if route_name == current_route else '' }}"
-               title="{{ label }} — {{ status_label }}">
-                <span class="wizard-step-number">
-                    {% if status == "done" %}<i class="bi bi-check-lg"></i>
-                    {% elif status == "warning" %}<i class="bi bi-exclamation"></i>
-                    {% else %}<i class="bi bi-circle"></i>
-                    {% endif %}
+    {% set is_expanded = (part_letter == ns.expanded_part) %}
+    {% set is_unlocked = (parts_order.index(part_letter) <= parts_order.index(current_part)) %}
+    {% set is_part_done = (part_status[part_letter] == "done") %}
+    <div class="wizard-sidebar-group">
+        {% if is_unlocked %}
+            <button type="button" class="wizard-part-header{{ ' done' if is_part_done else '' }}"
+                    data-bs-toggle="collapse" data-bs-target="#part-{{ part_letter }}-steps"
+                    aria-expanded="{{ 'true' if is_expanded else 'false' }}"
+                    aria-controls="part-{{ part_letter }}-steps">
+                <span class="wizard-part-label">
+                    {% if is_part_done %}<i class="bi bi-check-lg"></i>{% else %}{{ part_letter }}{% endif %}
                 </span>
-                <span class="wizard-step-label">{{ label }}</span>
-            </a>
-        {% endfor %}
-        {% if part_letter == "A" %}
-            {% set layout_label = {"done": "Complete", "pending": "Not started"}[layout_status] %}
-            <a href="{{ url_for('factory.layout_page', factory_id=factory.id) }}" class="wizard-sidebar-step status-{{ layout_status }}{{ ' active' if current_route == 'factory.layout_page' else '' }}"
-               title="Layout — {{ layout_label }}">
-                <span class="wizard-step-number">{% if layout_status == "done" %}<i class="bi bi-check-lg"></i>{% else %}<i class="bi bi-circle"></i>{% endif %}</span>
-                <span class="wizard-step-label">Layout</span>
-            </a>
+                <span class="wizard-sidebar-group-title">{{ part_title }}</span>
+                <i class="bi bi-chevron-down wizard-part-chevron"></i>
+            </button>
+        {% else %}
+            <div class="wizard-part-header wizard-part-locked" title="Complete the current section first">
+                <span class="wizard-part-label"><i class="bi bi-lock-fill"></i></span>
+                <span class="wizard-sidebar-group-title">{{ part_title }}</span>
+            </div>
         {% endif %}
+        <div class="wizard-sidebar-steps collapse{{ ' show' if (is_unlocked and is_expanded) else '' }}" id="part-{{ part_letter }}-steps">
+            {% for link, route_name, label, status in steps %}
+                {% set status_label = {"done": "Complete", "warning": "Needs attention", "pending": "Not started"}[status] %}
+                <a href="{{ link }}" class="wizard-sidebar-step status-{{ status }}{{ ' active' if route_name == current_route else '' }}"
+                   title="{{ label }} — {{ status_label }}">
+                    <span class="wizard-step-number">
+                        {% if status == "done" %}<i class="bi bi-check-lg"></i>
+                        {% elif status == "warning" %}<i class="bi bi-exclamation"></i>
+                        {% else %}<i class="bi bi-circle"></i>
+                        {% endif %}
+                    </span>
+                    <span class="wizard-step-label">{{ label }}</span>
+                </a>
+            {% endfor %}
+            {% if part_letter == "A" %}
+                {% set layout_label = {"done": "Complete", "pending": "Not started"}[layout_status] %}
+                <a href="{{ url_for('factory.layout_page', factory_id=factory.id) }}" class="wizard-sidebar-step status-{{ layout_status }}{{ ' active' if current_route == 'factory.layout_page' else '' }}"
+                   title="Layout — {{ layout_label }}">
+                    <span class="wizard-step-number">{% if layout_status == "done" %}<i class="bi bi-check-lg"></i>{% else %}<i class="bi bi-circle"></i>{% endif %}</span>
+                    <span class="wizard-step-label">Layout</span>
+                </a>
+            {% endif %}
+        </div>
     </div>
-</div>
 {% endfor %}

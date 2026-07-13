@@ -248,6 +248,45 @@ class Factory:
 
         return status
 
+    def get_wizard_part_status(self) -> Dict[str, str]:
+        """Rolls the 20 section statuses up to one status per Part (A-E).
+
+        A Part is "done" only once every section inside it is "done".
+        Otherwise it's "pending" (mirrors the section-level vocabulary;
+        Parts don't get their own "warning" state -- that stays a
+        section-level distinction).
+
+        Used alongside get_current_wizard_part() below by
+        partials/wizard_progress.html to decide, per Part: expanded vs.
+        collapsed, and clickable vs. locked.
+        """
+        step_status = self.get_wizard_step_status()
+        part_section_numbers = {
+            "A": [1, 2, 3, 4],
+            "B": [5, 6, 7, 8],
+            "C": [9, 10, 11],
+            "D": [12, 13, 14],
+            "E": [15, 16, 17, 18, 19, 20],
+        }
+        part_status = {}
+        for part_letter, section_numbers in part_section_numbers.items():
+            part_status[part_letter] = (
+                "done" if all(step_status.get(n) == "done" for n in section_numbers) else "pending"
+            )
+        return part_status
+
+    def get_current_wizard_part(self) -> str:
+        """Returns the letter of the first Part (A-E) that isn't fully
+        done yet -- i.e. the one the sidebar should expand and allow
+        navigating within. If every Part is done, returns "E" (the
+        last one), so a fully-configured facility doesn't lock itself
+        out of its own sidebar."""
+        part_status = self.get_wizard_part_status()
+        for part_letter in ("A", "B", "C", "D", "E"):
+            if part_status[part_letter] != "done":
+                return part_letter
+        return "E"
+
     def is_fully_configured(self) -> bool:
         """True once every one of the 20 sections reports 'done' -- used
         to decide whether to show the 'Train & Configure AI' button."""

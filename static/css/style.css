@@ -20,6 +20,14 @@
        .tag-id below, and the blue left-border on .sensor-card. */
     --brand-instrument: #0EA5E9;
     --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, 'Courier New', monospace;
+
+    /* Wizard sidebar accordion restyle: teal accent for the active
+       step pill and for done checkmarks, matching the reference
+       "Register / Confirm / Log In" progress-tracker look. Kept as its
+       own var rather than reusing --brand-instrument so the two can be
+       tuned independently later. */
+    --wizard-teal: #14B8A6;
+    --wizard-teal-dark: #0F9488;
 }
 
 html, body {
@@ -302,7 +310,7 @@ body {
     padding: 0.5rem 0 0.75rem;
 }
 .wizard-sidebar {
-    width: 260px;
+    width: 320px;
     flex-shrink: 0;
     background-color: #fff;
     border-right: 1px solid #E5E9EF;
@@ -332,43 +340,92 @@ body {
 .wizard-sidebar-facility-link:hover { text-decoration: underline; }
 
 .wizard-sidebar-group {
-    margin-bottom: 1.15rem;
+    margin-bottom: 0.65rem;
 }
-.wizard-sidebar-group-label {
+
+/* --- Part header (accordion trigger) --------------------------------
+   Doubles as both the clickable <button> (unlocked Parts) and the
+   plain <div> (locked Parts) markup produced by wizard_progress.html
+   -- both share this class so the row layout stays identical either
+   way; .wizard-part-locked / :disabled-style cues are layered on top. */
+.wizard-part-header {
     display: flex;
     align-items: center;
-    gap: 0.45rem;
+    gap: 0.5rem;
+    width: 100%;
+    min-width: 0;
     margin-bottom: 0.35rem;
-    padding: 0 0.3rem;
+    padding: 0.4rem 0.3rem;
+    border: none;
+    background: none;
+    border-radius: 8px;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
 }
+button.wizard-part-header:hover {
+    background-color: rgba(20, 184, 166, 0.08);
+}
+.wizard-part-chevron {
+    margin-left: auto;
+    font-size: 0.7rem;
+    color: var(--brand-muted);
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+.wizard-part-header[aria-expanded="true"] .wizard-part-chevron {
+    transform: rotate(180deg);
+}
+.wizard-part-header.done .wizard-sidebar-group-title {
+    color: var(--wizard-teal-dark);
+}
+
+/* Locked Parts (not yet reached) -- visible but not interactive. */
+.wizard-part-header.wizard-part-locked {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+.wizard-part-header.wizard-part-locked .wizard-part-label {
+    background-color: #E5E9EF;
+    border-color: #E5E9EF;
+    color: var(--brand-muted);
+}
+
 .wizard-part-label {
-    font-size: 0.68rem;
+    font-size: 0.72rem;
     font-weight: 800;
     color: var(--brand-primary);
     background-color: rgba(30, 58, 95, 0.08);
     border: 1px solid rgba(30, 58, 95, 0.16);
-    border-radius: 6px;            /* deliberately a rounded square, not a
-                                       circle -- reads as "category label",
-                                       distinct at a glance from the round
-                                       step circles that follow it */
-    width: 19px;
-    height: 19px;
+    border-radius: 50%;            /* round badge, matching the reference
+                                       design's numbered-circle-turns-to-
+                                       check pattern at the Part level */
+    width: 22px;
+    height: 22px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
 }
+.wizard-part-header.done .wizard-part-label {
+    background-color: var(--wizard-teal);
+    border-color: var(--wizard-teal);
+    color: #fff;
+}
 .wizard-sidebar-group-title {
-    font-size: 0.66rem;
+    font-size: 0.72rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.4px;
     color: var(--brand-muted);
+    min-width: 0;
+    overflow-wrap: break-word;
 }
 .wizard-sidebar-steps {
     display: flex;
     flex-direction: column;
-    gap: 1px;
+    gap: 3px;
+    padding: 0.15rem 0 0.35rem 0.4rem;
 }
 a.wizard-sidebar-step,
 .wizard-sidebar-step {
@@ -376,8 +433,8 @@ a.wizard-sidebar-step,
     align-items: center;
     gap: 0.55rem;
     padding: 0.4rem 0.5rem 0.4rem 0.55rem;
-    border-radius: 8px;
-    border-left: 3px solid transparent;
+    border-radius: 999px;          /* pill shape, matching the reference
+                                       "Register / Confirm / Log In" rows */
     font-size: 0.83rem;
     font-weight: 500;
     color: var(--brand-muted);
@@ -390,16 +447,16 @@ a.wizard-sidebar-step .wizard-step-label,
     color: inherit;
 }
 a.wizard-sidebar-step:hover {
-    background-color: rgba(30, 58, 95, 0.06);
-    color: var(--brand-primary);
+    background-color: rgba(20, 184, 166, 0.08);
+    color: var(--wizard-teal-dark);
     cursor: pointer;
 }
 .wizard-sidebar-step.active {
-    background-color: rgba(30, 58, 95, 0.08);
-    border-left-color: var(--brand-primary);
-    color: var(--brand-primary);
+    background-color: var(--wizard-teal);
+    color: #fff;
     font-weight: 700;
 }
+.wizard-sidebar-step.active .wizard-step-label { color: #fff; }
 
 .wizard-step-number {
     width: 24px;
@@ -413,9 +470,10 @@ a.wizard-sidebar-step:hover {
     font-size: 0.72rem;
     flex-shrink: 0;
 }
-.wizard-sidebar-step.status-done .wizard-step-number { background-color: var(--brand-success); color: #fff; }
+.wizard-sidebar-step.status-done .wizard-step-number { background-color: var(--wizard-teal); color: #fff; }
 .wizard-sidebar-step.status-warning .wizard-step-number { background-color: var(--brand-accent); color: #fff; }
 .wizard-sidebar-step.status-pending .wizard-step-number { background-color: #E5E9EF; color: var(--brand-muted); }
+.wizard-sidebar-step.active .wizard-step-number { background-color: #fff; color: var(--wizard-teal-dark); }
 
 /* Main content column next to the sidebar -- same flex/scroll behavior
    the old .app-content-wrap provided, so each page's own .fill-height
