@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+{% block title %}{{ factory.name }} — Monitor{% endblock %}
+
+{% block content %}
+<div class="fill-height">
+
+<div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
+    <div>
+        <h4 class="mb-0">{{ factory.name }}</h4>
+        <p class="text-muted small mb-0">Monitoring dashboard</p>
+    </div>
+    <a href="{{ url_for('monitor.select_facility') }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i> Change Facility
+    </a>
+</div>
+
+<div class="row g-4">
+
+    <div class="col-md-4">
+        <div class="card landing-card h-100 landing-card-disabled">
+            <div class="card-body text-center d-flex flex-column">
+                <div class="landing-card-icon bg-primary-soft"><i class="bi bi-activity"></i></div>
+                <h5 class="card-title mt-3">Monitor Live Sensor Readings</h5>
+                <p class="card-text text-muted flex-grow-1 small">Real-time view of every monitored parameter for this facility.</p>
+                <span class="badge text-bg-secondary mt-2">Coming Soon</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <a href="{{ url_for('monitor.rule_engine_list', factory_id=factory.id) }}" class="landing-card-link">
+            <div class="card landing-card h-100">
+                <div class="card-body text-center d-flex flex-column">
+                    <div class="landing-card-icon bg-primary-soft"><i class="bi bi-diagram-3"></i></div>
+                    <h5 class="card-title mt-3">Add Rule Engine</h5>
+                    <p class="card-text text-muted flex-grow-1 small">Define compound risk rules across multiple parameters.</p>
+                    <span class="btn btn-primary btn-sm mt-2">Open <i class="bi bi-arrow-right"></i></span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card landing-card h-100 landing-card-disabled">
+            <div class="card-body text-center d-flex flex-column">
+                <div class="landing-card-icon bg-primary-soft"><i class="bi bi-robot"></i></div>
+                <h5 class="card-title mt-3">Monitor AI Recommendations</h5>
+                <p class="card-text text-muted flex-grow-1 small">AI-surfaced risk flags and suggested actions.</p>
+                <span class="badge text-bg-secondary mt-2">Coming Soon</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card landing-card h-100 landing-card-disabled">
+            <div class="card-body text-center d-flex flex-column">
+                <div class="landing-card-icon bg-secondary-soft"><i class="bi bi-sliders"></i></div>
+                <h5 class="card-title mt-3">Reconfigure and Fine Tune AI</h5>
+                <p class="card-text text-muted flex-grow-1 small">Adjust thresholds and AI behavior for this facility.</p>
+                <span class="badge text-bg-secondary mt-2">Coming Soon</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card landing-card h-100 landing-card-disabled">
+            <div class="card-body text-center d-flex flex-column">
+                <div class="landing-card-icon bg-primary-soft"><i class="bi bi-clipboard-check"></i></div>
+                <h5 class="card-title mt-3">Manage AI Recommendations</h5>
+                <p class="card-text text-muted flex-grow-1 small">Accept, dismiss, or track AI recommendations over time.</p>
+                <span class="badge text-bg-secondary mt-2">Coming Soon</span>
+            </div>
+        </div>
+    </div>
+
+   <div class="col-md-4">
+        <a href="{{ url_for('monitor.stakeholders', factory_id=factory.id) }}" class="landing-card-link">
+            <div class="card landing-card h-100">
+                <div class="card-body text-center d-flex flex-column">
+                    <div class="landing-card-icon bg-primary-soft"><i class="bi bi-people"></i></div>
+                    <h5 class="card-title mt-3">Manage Stakeholders</h5>
+                    <p class="card-text text-muted flex-grow-1 small">Manage who gets notified about this facility's risk events.</p>
+                    <span class="btn btn-primary btn-sm mt-2">Manage <i class="bi bi-arrow-right"></i></span>
+                </div>
+            </div>
+        </a>
+    </div>
+
+</div>
+</div>
+{% endblock %}

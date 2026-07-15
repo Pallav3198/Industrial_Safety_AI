@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Monitor Facility{% endblock %}
+
+{% block content %}
+<div class="fill-height">
+
+<div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+    <div>
+        <h3 class="mb-1">Monitor Facility</h3>
+        <p class="text-muted mb-0 small">Select a fully onboarded facility to monitor. {{ factories|length }} facility(ies) available.</p>
+    </div>
+    <a href="{{ url_for('main.landing') }}" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left"></i> Back
+    </a>
+</div>
+
+{% if factories %}
+<div class="grid-scroll-area">
+    <div class="row g-3" id="monitorFacilityGrid">
+        {% for factory in factories %}
+        <div class="col-md-6 col-lg-4 monitor-facility-col">
+            <a href="{{ url_for('monitor.dashboard', factory_id=factory.id) }}" class="facility-list-card-link">
+                <div class="card facility-list-card h-100">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                            <span class="badge text-bg-success">Setup Complete</span>
+                        </div>
+                        <h5 class="card-title mb-1">{{ factory.name }}</h5>
+                        <p class="text-muted small mb-3">Added {{ factory.created_at[:10] }}</p>
+                        <div class="d-flex gap-3 small text-muted">
+                            <span><i class="bi bi-cpu"></i> {{ factory.monitored_parameters|length }} sensors</span>
+                            <span><i class="bi bi-people"></i> {{ factory.people|length }} employees</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+<div id="monitorFacilityPaginationControls" class="pagination-controls"></div>
+{% else %}
+<div class="text-center text-muted py-5">
+    <i class="bi bi-activity display-4"></i>
+    <p class="mt-2">No fully onboarded facilities yet.</p>
+    <p class="small">Finish setup on a facility (Emergency Response & Compliance &rarr; Finish Setup) before it can be monitored.</p>
+</div>
+{% endif %}
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/pagination.js') }}"></script>
+<script>
+    initPagination({
+        gridSelector: "#monitorFacilityGrid",
+        itemSelector: ".monitor-facility-col",
+        controlsId: "monitorFacilityPaginationControls",
+    });
+</script>
+{% endblock %}

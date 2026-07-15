@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}{{ factory.name }} — Manage Stakeholders{% endblock %}
+
+{% block content %}
+<div class="fill-height">
+
+<div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
+    <div>
+        <h4 class="mb-0">{{ factory.name }}</h4>
+        <p class="text-muted small mb-0">Manage Stakeholders &mdash; severity mailing lists</p>
+    </div>
+    <a href="{{ url_for('monitor.dashboard', factory_id=factory.id) }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i> Back to Dashboard
+    </a>
+</div>
+
+{% if not factory.people %}
+<div class="text-center text-muted py-5">
+    <i class="bi bi-people display-4"></i>
+    <p class="mt-2">No people on record for this facility yet.</p>
+    <p class="small">Add people via Edit Facility &rarr; Employee Directory / Key Personnel first.</p>
+</div>
+{% else %}
+
+<!-- Standalone remove forms -- referenced via the "form" attribute on
+     each row's Remove button below (HTML forms can't be nested inside
+     the main list-membership form). -->
+{% for person in factory.people %}
+<form id="removeForm-{{ person.id }}" method="POST"
+      action="{{ url_for('monitor.remove_stakeholder', factory_id=factory.id, person_id=person.id) }}"
+      class="d-none"></form>
+{% endfor %}
+
+<form method="POST" action="{{ url_for('monitor.stakeholders', factory_id=factory.id) }}">
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Person</th>
+                <th>Contact</th>
+                <th>Working Hours</th>
+                <th>Manager</th>
+                {% for level in severity_levels %}
+                <th class="text-center">{{ level }}</th>
+                {% endfor %}
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for person in factory.people %}
+            {% set manager = people_by_id.get(person.manager_id) %}
+            <tr>
+                <td>
+                    <div class="fw-semibold">{{ person.name }}</div>
+                    <div class="small text-muted">{{ person.role or "—" }} &middot; {{ person.person_category }}</div>
+                </td>
+                <td class="small">
+                    <div>{{ person.email or "—" }}</div>
+                    <div class="text-muted">{{ person.phone or "—" }}</div>
+                </td>
+                <td class="small">{{ person.working_hours or "—" }}</td>
+                <td class="small">{{ manager.name if manager else "—" }}</td>
+                {% for level in severity_levels %}
+                <td class="text-center">
+                    <input type="checkbox" class="form-check-input"
+                           name="list_{{ level.lower() }}" value="{{ person.id }}"
+                           {% if person.id in factory.stakeholder_lists.get(level, []) %}checked{% endif %}>
+                </td>
+                {% endfor %}
+                <td class="text-end text-nowrap">
+                    <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip"
+                          title="This person can be edited in the Edit Facility option.">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" disabled style="pointer-events: none;">
+                            <i class="bi bi-pencil"></i>
+                        </button>
+                    </span>
+                    <button type="submit" form="removeForm-{{ person.id }}" class="btn btn-sm btn-outline-danger">
+                        <i class="bi bi-x-lg"></i> Remove
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="d-flex justify-content-end mt-3">
+    <button type="submit" class="btn btn-primary">
+        <i class="bi bi-check2"></i> Save / Update
+    </button>
+</div>
+</form>
+
+{% endif %}
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (el) {
+        new bootstrap.Tooltip(el);
+    });
+</script>
+{% endblock %}

@@ -639,3 +639,5 @@ a.wizard-sidebar-step:hover {
     min-height: 300px;
     cursor: default;
 }
+.ai-summary-chevron { transition: transform 0.2s ease; }
+[aria-expanded="true"] .ai-summary-chevron { transform: rotate(180deg); }

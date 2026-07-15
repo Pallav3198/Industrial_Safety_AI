@@ -29,7 +29,7 @@
         <span class="badge fs-6 {{ 'text-bg-success' if factory.setup_complete else 'text-bg-warning' }}">
             {{ 'Setup Complete' if factory.setup_complete else 'Setup In Progress' }}
         </span>
-        {% if factory.is_fully_configured() %}
+        {% if factory.setup_complete %}
         <form method="POST" action="{{ url_for('factory.train_and_configure', factory_id=factory.id) }}" class="d-inline">
             <button type="submit" class="btn btn-success">
                 <i class="bi bi-cpu"></i> Train &amp; Configure AI
@@ -41,7 +41,7 @@
     <span class="badge fs-6 {{ 'text-bg-success' if factory.setup_complete else 'text-bg-warning' }}">
         {{ 'Setup Complete' if factory.setup_complete else 'Setup In Progress' }}
     </span>
-    {% if factory.is_fully_configured() %}
+    {% if factory.setup_complete %}
     <form method="POST" action="{{ url_for('factory.train_and_configure', factory_id=factory.id) }}" class="d-inline">
         <button type="submit" class="btn btn-success">
             <i class="bi bi-cpu"></i> Train &amp; Configure AI
@@ -56,7 +56,15 @@
 
 {% if factory.ai_summary %}
 <div class="alert alert-info ai-summary-box mb-2 py-2 small flex-shrink-0">
-    <i class="bi bi-robot me-1"></i> <strong>AI Process Summary:</strong> {{ factory.ai_summary }}
+    <button type="button" class="btn btn-link btn-sm p-0 text-decoration-none d-flex align-items-center w-100 text-start"
+            data-bs-toggle="collapse" data-bs-target="#aiSummaryCollapse"
+            aria-expanded="false" aria-controls="aiSummaryCollapse">
+        <i class="bi bi-robot me-1"></i> <strong>AI Process Summary</strong>
+        <i class="bi bi-chevron-down ms-auto ai-summary-chevron"></i>
+    </button>
+    <div class="collapse" id="aiSummaryCollapse">
+        <div class="pt-2">{{ factory.ai_summary }}</div>
+    </div>
 </div>
 {% endif %}
 

@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% block title %}{{ factory.name }} — Rule Engine{% endblock %}
+
+{% block content %}
+<div class="fill-height">
+
+<div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
+    <div>
+        <h4 class="mb-0">{{ factory.name }}</h4>
+        <p class="text-muted small mb-0">Rule Engine</p>
+    </div>
+    <div class="d-flex gap-2">
+        <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" title="AI-generated rules (based on regulations and industry standards) will appear in this same list automatically once that system is built.">
+            <button type="button" class="btn btn-outline-secondary btn-sm" disabled style="pointer-events: none;">
+                <i class="bi bi-stars"></i> Generate via AI
+            </button>
+        </span>
+        <a href="{{ url_for('monitor.new_rule', factory_id=factory.id) }}" class="btn btn-primary btn-sm">
+            <i class="bi bi-plus-lg"></i> Add Rule
+        </a>
+        <a href="{{ url_for('monitor.dashboard', factory_id=factory.id) }}" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-arrow-left"></i> Back
+        </a>
+    </div>
+</div>
+
+{% set severity_badge = {'Minor': 'secondary', 'Major': 'warning', 'Significant': 'primary', 'Critical': 'danger'} %}
+
+{% if not factory.rules %}
+<div class="text-center text-muted py-5">
+    <i class="bi bi-diagram-3 display-4"></i>
+    <p class="mt-2">No rules defined yet.</p>
+    <a href="{{ url_for('monitor.new_rule', factory_id=factory.id) }}" class="btn btn-primary mt-2">Add Your First Rule</a>
+</div>
+{% else %}
+
+{% for rule in factory.rules %}
+<form id="deleteRuleForm-{{ rule.id }}" method="POST"
+      action="{{ url_for('monitor.delete_rule', factory_id=factory.id, rule_id=rule.id) }}" class="d-none"></form>
+<form id="toggleRuleForm-{{ rule.id }}" method="POST"
+      action="{{ url_for('monitor.toggle_rule', factory_id=factory.id, rule_id=rule.id) }}" class="d-none"></form>
+{% endfor %}
+
+<div class="table-responsive">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Rule</th>
+                <th>Severity</th>
+                <th>Source</th>
+                <th>Status</th>
+                <th>Evaluation</th>
+                <th class="text-end">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rule in factory.rules %}
+            <tr>
+                <td>
+                    <div class="fw-semibold">{{ rule.name }}</div>
+                    {% if rule.description %}<div class="small text-muted">{{ rule.description }}</div>{% endif %}
+                </td>
+                <td><span class="badge text-bg-{{ severity_badge.get(rule.severity, 'secondary') }}">{{ rule.severity }}</span></td>
+                <td>
+                    {% if rule.source == 'AI-Generated' %}
+                    <span class="badge text-bg-info"><i class="bi bi-stars"></i> AI-Generated</span>
+                    {% else %}
+                    <span class="badge text-bg-light text-dark">Manually Added</span>
+                    {% endif %}
+                    {% if rule.review_status == 'Pending Review' %}
+                    <span class="badge text-bg-warning">Pending Review</span>
+                    {% elif rule.review_status == 'Rejected' %}
+                    <span class="badge text-bg-danger">Rejected</span>
+                    {% endif %}
+                </td>
+                <td>
+                    <button type="submit" form="toggleRuleForm-{{ rule.id }}" class="btn btn-sm {{ 'btn-success' if rule.enabled else 'btn-outline-secondary' }}">
+                        {{ 'Enabled' if rule.enabled else 'Disabled' }}
+                    </button>
+                </td>
+                <td class="small text-muted">{{ rule.evaluation_status }}</td>
+                <td class="text-end text-nowrap">
+                    <a href="{{ url_for('monitor.edit_rule', factory_id=factory.id, rule_id=rule.id) }}" class="btn btn-sm btn-outline-secondary">
+                        <i class="bi bi-pencil"></i> Edit
+                    </a>
+                    <button type="submit" form="deleteRuleForm-{{ rule.id }}" class="btn btn-sm btn-outline-danger">
+                        <i class="bi bi-trash"></i> Delete
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endif %}
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+    document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(function (el) {
+        new bootstrap.Tooltip(el);
+    });
+</script>
+{% endblock %}

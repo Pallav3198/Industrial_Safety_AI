@@ -48,21 +48,23 @@
         </a>
     </div>
 
-    <!-- 3. Monitor Facility -- placeholder, not built in this version -->
+    <!-- 3. Monitor Facility -->
     <div class="col-md-4">
-        <div class="card landing-card h-100 landing-card-disabled">
-            <div class="card-body text-center d-flex flex-column">
-                <div class="landing-card-icon bg-secondary-soft">
-                    <i class="bi bi-activity"></i>
+        <a href="{{ url_for('monitor.select_facility') }}" class="landing-card-link">
+            <div class="card landing-card h-100">
+                <div class="card-body text-center d-flex flex-column">
+                    <div class="landing-card-icon bg-primary-soft">
+                        <i class="bi bi-activity"></i>
+                    </div>
+                    <h4 class="card-title mt-3">Monitor Facility</h4>
+                    <p class="card-text text-muted flex-grow-1">
+                        Live view of sensor readings, compound risk flags, and system health across all
+                        onboarded facilities.
+                    </p>
+                    <span class="btn btn-primary mt-2">Monitor <i class="bi bi-arrow-right"></i></span>
                 </div>
-                <h4 class="card-title mt-3">Monitor Facility</h4>
-                <p class="card-text text-muted flex-grow-1">
-                    Live view of sensor readings, compound risk flags, and system health across all
-                    onboarded facilities.
-                </p>
-                <span class="badge text-bg-secondary mt-2">Coming Soon</span>
             </div>
-        </div>
+        </a>
     </div>
 
 </div>

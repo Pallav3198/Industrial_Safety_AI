@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}{{ "Edit Rule" if rule else "Add Rule" }} — {{ factory.name }}{% endblock %}
+
+{% block content %}
+<div class="fill-height">
+<div class="d-flex justify-content-between align-items-start mb-3 flex-wrap gap-2">
+    <div>
+        <h4 class="mb-0">{{ factory.name }}</h4>
+        <p class="text-muted small mb-0">{{ "Edit Rule" if rule else "Add Rule" }}</p>
+    </div>
+    <a href="{{ url_for('monitor.rule_engine_list', factory_id=factory.id) }}" class="btn btn-outline-secondary btn-sm">
+        <i class="bi bi-arrow-left"></i> Back to Rules
+    </a>
+</div>
+
+<form method="POST" id="ruleBuilderForm">
+    <div class="row g-3 mb-3">
+        <div class="col-md-6">
+            <label class="form-label">Rule Name</label>
+            <input type="text" name="name" class="form-control" required value="{{ rule.name if rule else '' }}">
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Severity</label>
+            <select name="severity" class="form-select">
+                {% for level in severity_levels %}
+                <option value="{{ level }}" {% if rule and rule.severity == level %}selected{% endif %}>{{ level }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-3">
+            <label class="form-label">Status</label>
+            <select name="enabled" class="form-select">
+                <option value="1" {% if not rule or rule.enabled %}selected{% endif %}>Enabled</option>
+                <option value="0" {% if rule and not rule.enabled %}selected{% endif %}>Disabled</option>
+            </select>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Description</label>
+            <textarea name="description" class="form-control" rows="2">{{ rule.description if rule else '' }}</textarea>
+        </div>
+    </div>
+
+    <label class="form-label">Conditions</label>
+    <p class="text-muted small">Combine any number of conditions, in nested AND/OR groups, from any facility section. When triggered, this rule will notify everyone on the matching severity mailing list (Manage Stakeholders).</p>
+    <div id="ruleTreeContainer" class="mb-3"></div>
+    <input type="hidden" name="condition_tree" id="conditionTreeInput">
+
+    <div class="d-flex justify-content-end gap-2">
+        <a href="{{ url_for('monitor.rule_engine_list', factory_id=factory.id) }}" class="btn btn-outline-secondary">Cancel</a>
+        <button type="submit" class="btn btn-primary"><i class="bi bi-check2"></i> Save Rule</button>
+    </div>
+</form>
+
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/rule_engine.js') }}"></script>
+<script>
+    const RULE_CATALOG = {{ catalog_json|safe }};
+    const INITIAL_TREE = {{ (rule.condition_tree if rule else none) | tojson }};
+    initRuleBuilder(RULE_CATALOG, INITIAL_TREE);
+</script>
+{% endblock %}
