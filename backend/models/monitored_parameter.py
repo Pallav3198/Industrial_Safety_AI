@@ -31,7 +31,11 @@ class MonitoredParameter:
 
     # --- Live Sensor Reading fields (parameter_category == "Live Sensor Reading") ---
     sensor_type: str = ""                     # see SENSOR_TYPE_CHOICES below
-    location: str = ""                        # e.g. "Boiler Unit 1 - Furnace"
+    location: str = ""                        # e.g. "Boiler Unit 1 - Furnace" (free-text, human-readable)
+    equipment_tag: str = ""                   # e.g. "BLR-01" -- exact-match identifier, shared across
+                                               # sensors/permits for the SAME physical equipment. This is
+                                               # what the knowledge graph (services/graph.py) joins on --
+                                               # `location` above is for display, this is for linking.
     unit: str = ""                             # e.g. "°C", "bar", "ppm", "RPM"
     normal_range: str = ""                    # e.g. "20 - 45", or "Present" for a safeguard-presence flag
     alarm_threshold: str = ""                 # e.g. "> 50", or "Absent" for a safeguard-presence flag

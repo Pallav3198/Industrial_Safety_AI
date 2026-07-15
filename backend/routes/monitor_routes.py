@@ -216,3 +216,33 @@ def toggle_rule(factory_id, rule_id):
         rule.enabled = not rule.enabled
         storage.upsert_rule(factory_id, rule)
     return redirect(url_for("monitor.rule_engine_list", factory_id=factory_id))
+
+@monitor_bp.route("/<factory_id>/rules/<rule_id>/approve", methods=["POST"])
+def approve_rule(factory_id, rule_id):
+    """Moves a rule from Pending Review to Approved. Does not force
+    `enabled` on -- it just makes enabling possible, since Rule.is_active()
+    requires both enabled AND Approved. Whatever `enabled` was already
+    set to (e.g. by the AI generation service that proposed it) is left
+    as-is."""
+    rule = storage.get_rule(factory_id, rule_id)
+    if rule:
+        rule.review_status = "Approved"
+        rule.updated_at = datetime.utcnow().isoformat()
+        storage.upsert_rule(factory_id, rule)
+        flash(f'Rule "{rule.name}" approved.', "success")
+    return redirect(url_for("monitor.rule_engine_list", factory_id=factory_id))
+
+
+@monitor_bp.route("/<factory_id>/rules/<rule_id>/reject", methods=["POST"])
+def reject_rule(factory_id, rule_id):
+    """Moves a rule to Rejected, permanently (kept as a record, not
+    deleted). Also force-disables it -- a rejected rule must never be
+    able to fire, regardless of its enabled flag."""
+    rule = storage.get_rule(factory_id, rule_id)
+    if rule:
+        rule.review_status = "Rejected"
+        rule.enabled = False
+        rule.updated_at = datetime.utcnow().isoformat()
+        storage.upsert_rule(factory_id, rule)
+        flash(f'Rule "{rule.name}" rejected.', "success")
+    return redirect(url_for("monitor.rule_engine_list", factory_id=factory_id))

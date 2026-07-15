@@ -22,7 +22,11 @@ class PermitRecord:
     permit_number: str
     permit_type: str = ""          # see PERMIT_TYPE_CHOICES below
     location_equipment: str = ""
+    equipment_tag: str = ""        # exact-match identifier -- should match a MonitoredParameter's
+                                    # equipment_tag if this permit covers equipment with sensors on it.
     issued_to: str = ""
+    contractor_id: str = ""        # id of a Person (person_category == "Contractor") on this facility,
+                                    # if this permit is assigned to a contractor. "" if issued in-house.
     issued_at: str = ""
     expires_at: str = ""
     status: str = "Active"         # "Active" | "Closed"

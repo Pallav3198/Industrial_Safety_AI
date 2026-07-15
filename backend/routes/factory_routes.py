@@ -368,6 +368,7 @@ def add_sensor(factory_id):
         parameter_category=data.get("parameter_category", "Live Sensor Reading"),
         sensor_type=data.get("sensor_type", "Other"),
         location=data.get("location", ""),
+        equipment_tag=data.get("equipment_tag", ""),
         unit=data.get("unit", ""),
         normal_range=data.get("normal_range", ""),
         alarm_threshold=data.get("alarm_threshold", ""),
@@ -407,6 +408,7 @@ def edit_sensor(factory_id, sensor_id):
     existing.parameter_category = data.get("parameter_category", existing.parameter_category)
     existing.sensor_type = data.get("sensor_type", existing.sensor_type)
     existing.location = data.get("location", existing.location)
+    existing.equipment_tag = data.get("equipment_tag", existing.equipment_tag)
     existing.unit = data.get("unit", existing.unit)
     existing.normal_range = data.get("normal_range", existing.normal_range)
     existing.alarm_threshold = data.get("alarm_threshold", existing.alarm_threshold)
@@ -916,11 +918,18 @@ def permits(factory_id):
 
     prev_nav, next_nav = get_prev_next("factory.permits", factory_id)
 
+    contractor_choices = [
+        {"id": p.id, "name": p.name}
+        for p in factory.people
+        if p.person_category == "Contractor"
+    ]
+
     return render_template(
         "add_facility_permits.html",
         factory=factory,
         permit_type_choices=PERMIT_TYPE_CHOICES,
         permit_status_choices=PERMIT_STATUS_CHOICES,
+        contractor_choices=contractor_choices,
         prev_nav=prev_nav,
         next_nav=next_nav,
     )
@@ -937,7 +946,9 @@ def add_permit(factory_id):
         permit_number=data.get("permit_number", "Unnumbered Permit"),
         permit_type=data.get("permit_type", ""),
         location_equipment=data.get("location_equipment", ""),
+        equipment_tag=data.get("equipment_tag", ""),
         issued_to=data.get("issued_to", ""),
+        contractor_id=data.get("contractor_id", ""),
         issued_at=data.get("issued_at", ""),
         expires_at=data.get("expires_at", ""),
         status=data.get("status", "Active"),
@@ -962,7 +973,9 @@ def edit_permit(factory_id, permit_id):
     existing.permit_number = data.get("permit_number", existing.permit_number)
     existing.permit_type = data.get("permit_type", existing.permit_type)
     existing.location_equipment = data.get("location_equipment", existing.location_equipment)
+    existing.equipment_tag = data.get("equipment_tag", existing.equipment_tag)
     existing.issued_to = data.get("issued_to", existing.issued_to)
+    existing.contractor_id = data.get("contractor_id", existing.contractor_id)
     existing.issued_at = data.get("issued_at", existing.issued_at)
     existing.expires_at = data.get("expires_at", existing.expires_at)
     existing.status = data.get("status", existing.status)
