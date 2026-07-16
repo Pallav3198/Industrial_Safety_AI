@@ -67,7 +67,7 @@ def stakeholders(factory_id):
     if request.method == "POST":
         new_lists = {
             level: request.form.getlist(f"list_{level.lower()}")
-            for level in STAKEHOLDER_SEVERITY_LEVELS
+            for level in SEVERITY_LEVELS
         }
         storage.update_factory_fields(factory_id, stakeholder_lists=new_lists)
         flash("Stakeholder mailing lists updated.", "success")
@@ -79,10 +79,9 @@ def stakeholders(factory_id):
     return render_template(
         "monitor_stakeholders.html",
         factory=factory,
-        severity_levels=STAKEHOLDER_SEVERITY_LEVELS,
+        severity_levels=SEVERITY_LEVELS,
         people_by_id=people_by_id,
     )
-
 
 @monitor_bp.route("/<factory_id>/stakeholders/<person_id>/remove", methods=["POST"])
 def remove_stakeholder(factory_id, person_id):
