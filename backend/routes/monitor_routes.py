@@ -26,6 +26,7 @@ from datetime import datetime
 from flask import Blueprint, render_template, redirect, url_for, flash, request
 
 from services import storage
+from services import readings as readings_service
 from models.rule import Rule, SEVERITY_LEVELS
 from models.rule_catalog import RULE_CONDITION_CATALOG
 
@@ -242,3 +243,30 @@ def reject_rule(factory_id, rule_id):
         storage.upsert_rule(factory_id, rule)
         flash(f'Rule "{rule.name}" rejected.', "success")
     return redirect(url_for("monitor.rule_engine_list", factory_id=factory_id))
+
+@monitor_bp.route("/<factory_id>/readings", methods=["GET"])
+def live_readings(factory_id):
+    """Monitor Live Sensor Readings: one box per Live-Sensor-Reading
+    parameter. Sensors with no API configured are shown but never
+    polled -- see live_readings.js."""
+    factory = storage.get_factory(factory_id)
+    if not factory or not factory.setup_complete:
+        flash("Facility not found or not fully onboarded yet.", "error")
+        return redirect(url_for("monitor.select_facility"))
+
+    sensors = [p for p in factory.monitored_parameters if p.parameter_category == "Live Sensor Reading"]
+    return render_template("monitor_live_readings.html", factory=factory, sensors=sensors)
+
+@monitor_bp.route("/<factory_id>/readings/<parameter_id>/poll", methods=["GET"])
+def poll_reading(factory_id, parameter_id):
+    """AJAX-only endpoint -- called repeatedly by the browser to pull
+    one fresh value for a single sensor box."""
+    factory = storage.get_factory(factory_id)
+    if not factory:
+        return {"success": False, "reason": "not_found", "message": "Facility not found."}, 404
+
+    sensor = next((p for p in factory.monitored_parameters if p.id == parameter_id), None)
+    if not sensor:
+        return {"success": False, "reason": "not_found", "message": "Sensor not found."}, 404
+
+    return readings_service.poll_sensor(factory_id, sensor)
