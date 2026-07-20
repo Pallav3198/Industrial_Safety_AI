@@ -10956,22 +10956,22 @@
     "last_safety_audit_date": "",
     "last_safety_audit_findings": "",
     "layout_image_filename": "1f207c73_layout.png",
-    "layout_source_page": 11,
+    "layout_source_page": 17,
     "layout_canvas": {
       "width": 1836,
       "height": 2376
     },
     "layout_shapes": [
       {
-        "id": "box_da482349",
+        "id": "box_26637af3",
         "x": 936,
         "y": 2252,
         "width": 9,
         "height": 11,
-        "text": "Page 12 of 18"
+        "text": "Page 18 of 18"
       },
       {
-        "id": "box_4d63e15a",
+        "id": "box_91aa8dfc",
         "x": 979,
         "y": 2253,
         "width": 8,
@@ -10979,3615 +10979,359 @@
         "text": ""
       },
       {
-        "id": "box_d5656b39",
-        "x": 162,
-        "y": 339,
-        "width": 1352,
-        "height": 1292,
-        "text": "Name Role Email Phone Blood Working Working Emergency Dept: Group Hours Contact (Name Phone Relation) G Ravi Senior g.raviteja@vs +91- 06.00-14.00 Mon-Sat G. Lakshmi Teja Operator; p-rinl example 98480- (Spouse) +91- SMS-1 21001 98480-91001 Caster Bay M. Suresh Crane m.= suresh@vsp +91 - B+ 14.00-22.00 Mon-Sat M. Padma Operator; ~rinl example 98480- (Spouse) / +91- SMS-1 21045 98480-91045 K Anitha Shift kanitha@vsp- +91- A+ 22.00-06.00 Mon-Sat K Rao (Father) Engineer; rinl example 98480- +91-98480-91089 Blast 21089 Furnace-1 P. Durga Ladle p.durgarao@v +91- AB+ 06.00-14.00 Mon-Sat P Sita (Spouse) Rao Technician, Sp- 98480- +91-98480-91133 SMS-1 rinl example_ 21133 V. Naga Control nagamallesw +91- 14.00-22.00 Mon-Sat V. Rajesh Malleswari Room ari@vsp - 98480- (Spouse) +91- Operator; rinl example 21177 98480-91177 LMMM S. Praveen Fire & s.praveenkuma +91- B Rotating 6-day S. Vani (Spouse) Kumar Safety r@vsp- 98480- (24x7 rotating +91-98480-91221 Technician rinl example 21221 cover) roster N Vara Instrumenta n.varalakshmi +91 - A- 06.00-14.00 Mon-Sat N. Ramana Lakshmi tion @vsp- 98480- (Father) / +91- Technician; rinl example 21265 98480-91265 SMS-2 T. Bhargav Coke Oven t.bhargav@vs +91- 0+ 22.00-06.00 Mon-Sat T: Kumari Battery example 98480- (Mother) +91- Operator 21309 98480-91309 R Sai Raw r.saikiran@vs +91 - AB- 14.00-22.00 Mon-Sat R. Devi (Spouse) Kiran Material p-rinl example 98480- +91-98480-91353 Handling 21353 Plant Operator Maintenanc 1.manikyalarao +91- B+ 06.00-14.00 Mon-Sat L Kanaka Durga Manikyala e Fitter vsp- 98480- (Spouse) / +91- Rao Central rinl example 21397 98480-91397 Maintenanc Days Bay p-rinl.e"
-      },
-      {
-        "id": "box_b87ca00e",
-        "x": 1273,
-        "y": 1473,
-        "width": 240,
-        "height": 156,
-        "text": "L Kanaka Durga (Spouse) / +91- 98480-91397"
-      },
-      {
-        "id": "box_0c927044",
-        "x": 1421,
-        "y": 1543,
-        "width": 11,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_5be71262",
-        "x": 1409,
-        "y": 1544,
+        "id": "box_d6d1da80",
+        "x": 917,
+        "y": 2253,
         "width": 8,
-        "height": 9,
-        "text": ""
+        "height": 10,
+        "text": "Page 18 of 18"
       },
       {
-        "id": "box_cdc01bbf",
-        "x": 1346,
-        "y": 1543,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_447a93b2",
-        "x": 1333,
-        "y": 1543,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_1178c636",
-        "x": 1316,
-        "y": 1543,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_76124919",
-        "x": 1318,
-        "y": 1547,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_e9a117f1",
-        "x": 1306,
-        "y": 1543,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_82d7b467",
-        "x": 1292,
-        "y": 1544,
-        "width": 8,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_94b8e038",
-        "x": 1316,
-        "y": 1518,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_b0855961",
-        "x": 1424,
-        "y": 1513,
-        "width": 8,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_31194fba",
-        "x": 1377,
-        "y": 1511,
-        "width": 7,
-        "height": 25,
-        "text": ""
-      },
-      {
-        "id": "box_c8c1b85b",
-        "x": 1290,
-        "y": 1511,
-        "width": 7,
-        "height": 25,
-        "text": ""
-      },
-      {
-        "id": "box_09f6af0d",
-        "x": 1452,
-        "y": 1498,
+        "id": "box_073294ed",
+        "x": 170,
+        "y": 550,
         "width": 10,
-        "height": 6,
+        "height": 20,
         "text": ""
       },
       {
-        "id": "box_9df02481",
-        "x": 1413,
-        "y": 1482,
-        "width": 11,
-        "height": 17,
+        "id": "box_7eaeee32",
+        "x": 582,
+        "y": 491,
+        "width": 9,
+        "height": 15,
         "text": ""
       },
       {
-        "id": "box_b3d1a256",
-        "x": 1123,
-        "y": 1473,
-        "width": 150,
-        "height": 156,
-        "text": "Mon-Sat"
-      },
-      {
-        "id": "box_75b931c1",
-        "x": 958,
-        "y": 1473,
-        "width": 165,
-        "height": 156,
-        "text": "06.00-14.00"
-      },
-      {
-        "id": "box_555433cd",
-        "x": 1095,
-        "y": 1481,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_dad5fc82",
-        "x": 1082,
-        "y": 1481,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_fd03ebd7",
-        "x": 1058,
-        "y": 1481,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_dc4ddba6",
-        "x": 1060,
-        "y": 1485,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_8f042c5c",
-        "x": 1025,
-        "y": 1481,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_8eaab9c1",
-        "x": 1011,
-        "y": 1481,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_66d82d55",
-        "x": 977,
-        "y": 1481,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_5f2235f5",
-        "x": 838,
-        "y": 1473,
-        "width": 120,
-        "height": 156,
-        "text": "B+"
-      },
-      {
-        "id": "box_cf0e09cc",
-        "x": 855,
-        "y": 1481,
-        "width": 16,
-        "height": 18,
-        "text": "B+"
-      },
-      {
-        "id": "box_d8c8cf98",
-        "x": 688,
-        "y": 1473,
-        "width": 150,
-        "height": 156,
-        "text": "+91- 98480- 21397"
-      },
-      {
-        "id": "box_f2727268",
-        "x": 760,
-        "y": 1543,
-        "width": 11,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_3be1cfd3",
-        "x": 748,
-        "y": 1544,
-        "width": 8,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_b872b7f1",
-        "x": 761,
-        "y": 1512,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_0fa70cbf",
-        "x": 732,
-        "y": 1512,
-        "width": 13,
-        "height": 18,
-        "text": "98480-"
-      },
-      {
-        "id": "box_598525fa",
-        "x": 733,
-        "y": 1515,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_661d345a",
-        "x": 493,
-        "y": 1473,
-        "width": 195,
-        "height": 156,
-        "text": "1.manikyalarao vsp- rinl example"
-      },
-      {
-        "id": "box_3e4702b1",
-        "x": 615,
-        "y": 1549,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_808e9621",
-        "x": 518,
-        "y": 1548,
-        "width": 7,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_ebd92101",
-        "x": 561,
-        "y": 1518,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_378808df",
-        "x": 328,
-        "y": 1473,
-        "width": 165,
-        "height": 156,
-        "text": "Maintenanc e Fitter Central Maintenanc"
-      },
-      {
-        "id": "box_ae2fe5d4",
-        "x": 378,
-        "y": 1517,
-        "width": 7,
-        "height": 13,
-        "text": "e Fitter"
-      },
-      {
-        "id": "box_8b61bc8f",
-        "x": 163,
-        "y": 1473,
-        "width": 165,
-        "height": 156,
-        "text": "Manikyala Rao"
-      },
-      {
-        "id": "box_bb0f9d3b",
-        "x": 367,
-        "y": 1454,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_5a237053",
-        "x": 1273,
-        "y": 1316,
-        "width": 240,
-        "height": 157,
-        "text": "R. Devi (Spouse) +91-98480-91353"
-      },
-      {
-        "id": "box_4d4855a9",
-        "x": 1420,
-        "y": 1355,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_5f9dd882",
-        "x": 1368,
-        "y": 1355,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_51b4d3f5",
-        "x": 1369,
-        "y": 1358,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_c1b6af21",
-        "x": 1407,
-        "y": 1330,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_35254f82",
-        "x": 1381,
-        "y": 1323,
-        "width": 7,
-        "height": 25,
-        "text": "R. Devi (Spouse)"
-      },
-      {
-        "id": "box_861db49f",
-        "x": 1123,
-        "y": 1316,
-        "width": 150,
-        "height": 157,
-        "text": "Mon-Sat"
-      },
-      {
-        "id": "box_8b0b3298",
-        "x": 958,
-        "y": 1316,
-        "width": 165,
-        "height": 157,
-        "text": "14.00-22.00"
-      },
-      {
-        "id": "box_128999d0",
-        "x": 1082,
-        "y": 1324,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_7bfc03fe",
-        "x": 1025,
-        "y": 1324,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_78701501",
-        "x": 988,
-        "y": 1324,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_c6bc32c5",
-        "x": 990,
-        "y": 1328,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_ded4be64",
-        "x": 838,
-        "y": 1316,
-        "width": 120,
-        "height": 157,
-        "text": "AB-"
-      },
-      {
-        "id": "box_2427ec9e",
-        "x": 860,
-        "y": 1326,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_03173690",
-        "x": 688,
-        "y": 1316,
-        "width": 150,
-        "height": 157,
-        "text": "+91 - 98480- 21353"
-      },
-      {
-        "id": "box_829d8d56",
-        "x": 732,
-        "y": 1355,
-        "width": 13,
-        "height": 18,
-        "text": "98480-"
-      },
-      {
-        "id": "box_7d964f51",
-        "x": 733,
-        "y": 1358,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_9367cbd2",
-        "x": 493,
-        "y": 1316,
-        "width": 195,
-        "height": 157,
-        "text": "r.saikiran@vs p-rinl example"
-      },
-      {
-        "id": "box_ed91a441",
-        "x": 637,
-        "y": 1361,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_1698b239",
-        "x": 512,
-        "y": 1361,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_5e78ba88",
-        "x": 328,
-        "y": 1316,
-        "width": 165,
-        "height": 157,
-        "text": "Raw Material Handling Plant Operator"
-      },
-      {
-        "id": "box_93164fab",
-        "x": 349,
-        "y": 1418,
-        "width": 7,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_e3ae18f9",
-        "x": 433,
-        "y": 1403,
-        "width": 10,
-        "height": 6,
-        "text": ""
-      },
-      {
-        "id": "box_08979493",
-        "x": 392,
-        "y": 1392,
-        "width": 7,
-        "height": 12,
-        "text": "Handling"
-      },
-      {
-        "id": "box_ba430c49",
-        "x": 163,
-        "y": 1316,
-        "width": 165,
-        "height": 157,
-        "text": "R Sai Kiran"
-      },
-      {
-        "id": "box_26b8f357",
-        "x": 367,
-        "y": 1297,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_64fb0fe7",
-        "x": 1273,
-        "y": 1222,
-        "width": 240,
-        "height": 94,
-        "text": "T: Kumari (Mother) +91- 98480-91309"
-      },
-      {
-        "id": "box_113276bd",
-        "x": 1409,
-        "y": 1291,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_b04fe75b",
-        "x": 1346,
-        "y": 1291,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_9679683a",
-        "x": 1333,
-        "y": 1291,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_410d7b94",
-        "x": 1316,
-        "y": 1291,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_6f46f6d6",
-        "x": 1318,
-        "y": 1295,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_e2d5417b",
-        "x": 1306,
-        "y": 1291,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_a109a100",
-        "x": 1292,
-        "y": 1292,
-        "width": 8,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_98e53be8",
-        "x": 1290,
-        "y": 1259,
-        "width": 7,
-        "height": 25,
-        "text": ""
-      },
-      {
-        "id": "box_805e3949",
-        "x": 1394,
-        "y": 1234,
-        "width": 7,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_04e86551",
-        "x": 1123,
-        "y": 1222,
-        "width": 150,
-        "height": 94,
-        "text": "Mon-Sat"
-      },
-      {
-        "id": "box_eddb616a",
-        "x": 958,
-        "y": 1222,
-        "width": 165,
-        "height": 94,
-        "text": "22.00-06.00"
-      },
-      {
-        "id": "box_f95fd8be",
-        "x": 1095,
-        "y": 1229,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_e4273341",
-        "x": 1082,
-        "y": 1229,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_7ccd004a",
-        "x": 1047,
-        "y": 1229,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_1a67dbcc",
-        "x": 1025,
-        "y": 1229,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_6964a9e3",
-        "x": 1011,
-        "y": 1229,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_9d1045d6",
-        "x": 838,
-        "y": 1222,
-        "width": 120,
-        "height": 94,
-        "text": "0+"
-      },
-      {
-        "id": "box_61b19b83",
-        "x": 688,
-        "y": 1222,
-        "width": 150,
-        "height": 94,
-        "text": "+91- 98480- 21309"
-      },
-      {
-        "id": "box_c7c931ab",
-        "x": 748,
-        "y": 1291,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_9d647f3d",
-        "x": 761,
-        "y": 1260,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_922d7f2c",
-        "x": 732,
-        "y": 1260,
-        "width": 13,
-        "height": 18,
-        "text": "98480-"
-      },
-      {
-        "id": "box_e8c9dd2b",
-        "x": 733,
-        "y": 1263,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_99538fe6",
-        "x": 493,
-        "y": 1222,
-        "width": 195,
-        "height": 94,
-        "text": "t.bhargav@vs example p-rinl.e"
-      },
-      {
-        "id": "box_92ce3f04",
-        "x": 637,
-        "y": 1266,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_76067212",
-        "x": 512,
-        "y": 1266,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_3aa380c4",
-        "x": 527,
-        "y": 1235,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_e1b588ed",
-        "x": 328,
-        "y": 1222,
-        "width": 165,
-        "height": 94,
-        "text": "Coke Oven Battery Operator"
-      },
-      {
-        "id": "box_b593644c",
-        "x": 349,
-        "y": 1269,
-        "width": 10,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_07ab1415",
-        "x": 163,
-        "y": 1222,
-        "width": 165,
-        "height": 94,
-        "text": "T. Bhargav"
-      },
-      {
-        "id": "box_56bc7c5f",
-        "x": 214,
-        "y": 1238,
-        "width": 10,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_d386f448",
-        "x": 1273,
-        "y": 1096,
-        "width": 240,
-        "height": 125,
-        "text": "N. Ramana (Father) / +91- 98480-91265"
-      },
-      {
-        "id": "box_e9f0c910",
-        "x": 1346,
-        "y": 1166,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_49021fbb",
-        "x": 1333,
-        "y": 1166,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_c6f1faaa",
-        "x": 1316,
-        "y": 1166,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_92d0d451",
-        "x": 1318,
-        "y": 1170,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_d169bc3c",
-        "x": 1306,
-        "y": 1166,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_a46b30f7",
-        "x": 1292,
-        "y": 1166,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_1d1dca6e",
-        "x": 1415,
-        "y": 1135,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_855d656c",
-        "x": 1368,
-        "y": 1134,
-        "width": 7,
-        "height": 25,
-        "text": ""
-      },
-      {
-        "id": "box_3d8a8768",
-        "x": 1290,
-        "y": 1134,
-        "width": 7,
-        "height": 25,
-        "text": ""
-      },
-      {
-        "id": "box_fe93bef2",
-        "x": 1123,
-        "y": 1096,
-        "width": 150,
-        "height": 125,
-        "text": "Mon-Sat"
-      },
-      {
-        "id": "box_48b485f1",
-        "x": 958,
-        "y": 1096,
-        "width": 165,
-        "height": 125,
-        "text": "06.00-14.00"
-      },
-      {
-        "id": "box_b5aef17b",
-        "x": 1082,
-        "y": 1104,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_50b5aaf0",
-        "x": 1058,
-        "y": 1104,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_573668f7",
-        "x": 1060,
-        "y": 1108,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_035f0f82",
-        "x": 1025,
-        "y": 1104,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_542dcdc6",
-        "x": 838,
-        "y": 1096,
-        "width": 120,
-        "height": 125,
-        "text": "A-"
-      },
-      {
-        "id": "box_8745f86d",
-        "x": 860,
-        "y": 1106,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_e36d9b0a",
-        "x": 688,
-        "y": 1096,
-        "width": 150,
-        "height": 125,
-        "text": "+91 - 98480- 21265"
-      },
-      {
-        "id": "box_94477e37",
-        "x": 732,
-        "y": 1135,
-        "width": 13,
-        "height": 18,
-        "text": "98480-"
-      },
-      {
-        "id": "box_3351389c",
-        "x": 733,
-        "y": 1138,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_530e5132",
-        "x": 493,
-        "y": 1096,
-        "width": 195,
-        "height": 125,
-        "text": "n.varalakshmi @vsp- rinl example"
-      },
-      {
-        "id": "box_a150e746",
-        "x": 615,
-        "y": 1172,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_680df6e3",
-        "x": 518,
-        "y": 1171,
-        "width": 7,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_b43897de",
-        "x": 561,
-        "y": 1141,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_669e8320",
-        "x": 328,
-        "y": 1096,
-        "width": 165,
-        "height": 125,
-        "text": "Instrumenta tion Technician; SMS-2"
-      },
-      {
-        "id": "box_8c09362e",
-        "x": 431,
-        "y": 1171,
-        "width": 7,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_a475a8fb",
-        "x": 163,
-        "y": 1096,
-        "width": 165,
-        "height": 125,
-        "text": "N Vara Lakshmi"
-      },
-      {
-        "id": "box_6f5e83ab",
-        "x": 212,
-        "y": 1104,
-        "width": 19,
-        "height": 19,
+        "id": "box_532598b8",
+        "x": 217,
+        "y": 491,
+        "width": 9,
+        "height": 15,
         "text": ""
-      },
-      {
-        "id": "box_8bdbd9b9",
-        "x": 615,
-        "y": 1077,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_83c00f31",
-        "x": 1273,
-        "y": 1001,
-        "width": 240,
-        "height": 95,
-        "text": "S. Vani (Spouse) +91-98480-91221"
-      },
-      {
-        "id": "box_c14e24ea",
-        "x": 1420,
-        "y": 1041,
-        "width": 8,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_9669f9c7",
-        "x": 1397,
-        "y": 1040,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_bd0acea1",
-        "x": 1368,
-        "y": 1040,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_cc18993e",
-        "x": 1369,
-        "y": 1043,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_f6af8509",
-        "x": 1404,
-        "y": 1015,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_aac6f961",
-        "x": 1318,
-        "y": 1009,
-        "width": 19,
-        "height": 19,
-        "text": ""
-      },
-      {
-        "id": "box_8821431c",
-        "x": 1465,
-        "y": 1008,
-        "width": 7,
-        "height": 25,
-        "text": ""
-      },
-      {
-        "id": "box_b5bd65ef",
-        "x": 1378,
-        "y": 1008,
-        "width": 7,
-        "height": 25,
-        "text": "S. Vani (Spouse)"
-      },
-      {
-        "id": "box_15a1572b",
-        "x": 1123,
-        "y": 1001,
-        "width": 150,
-        "height": 95,
-        "text": "6-day rotating roster"
-      },
-      {
-        "id": "box_5bcd9393",
-        "x": 1164,
-        "y": 1015,
-        "width": 8,
-        "height": 12,
-        "text": "6-day"
-      },
-      {
-        "id": "box_b8b7c7bf",
-        "x": 1025,
-        "y": 1040,
-        "width": 11,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_16e25c80",
-        "x": 997,
-        "y": 1040,
-        "width": 13,
-        "height": 18,
-        "text": "(24x7"
-      },
-      {
-        "id": "box_82afa31e",
-        "x": 998,
-        "y": 1043,
-        "width": 8,
-        "height": 10,
-        "text": "(24x7"
-      },
-      {
-        "id": "box_1cef3089",
-        "x": 838,
-        "y": 1001,
-        "width": 120,
-        "height": 95,
-        "text": "B"
-      },
-      {
-        "id": "box_db4d2e10",
-        "x": 855,
-        "y": 1009,
-        "width": 16,
-        "height": 18,
-        "text": "B"
-      },
-      {
-        "id": "box_e31ffbab",
-        "x": 688,
-        "y": 1001,
-        "width": 150,
-        "height": 95,
-        "text": "+91- 98480- 21221"
-      },
-      {
-        "id": "box_dbf1833f",
-        "x": 761,
-        "y": 1040,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_db101ac0",
-        "x": 732,
-        "y": 1040,
-        "width": 13,
-        "height": 18,
-        "text": "98480-"
-      },
-      {
-        "id": "box_e269699a",
-        "x": 733,
-        "y": 1043,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_1619407c",
-        "x": 493,
-        "y": 1001,
-        "width": 195,
-        "height": 95,
-        "text": "s.praveenkuma r@vsp- rinl example"
-      },
-      {
-        "id": "box_7f978109",
-        "x": 518,
-        "y": 1076,
-        "width": 7,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_232b31cb",
-        "x": 570,
-        "y": 1046,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_4ab94c8e",
-        "x": 530,
-        "y": 1015,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_e64dd3d0",
-        "x": 328,
-        "y": 1001,
-        "width": 165,
-        "height": 95,
-        "text": "Fire & Safety Technician"
-      },
-      {
-        "id": "box_d56529bd",
-        "x": 431,
-        "y": 1076,
-        "width": 7,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_ab61bc04",
-        "x": 359,
-        "y": 1014,
-        "width": 7,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_dafe0367",
-        "x": 397,
-        "y": 1018,
-        "width": 10,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_22a99d41",
-        "x": 163,
-        "y": 1001,
-        "width": 165,
-        "height": 95,
-        "text": "S. Praveen Kumar"
-      },
-      {
-        "id": "box_da46d84c",
-        "x": 213,
-        "y": 1010,
-        "width": 7,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_9d130032",
-        "x": 1273,
-        "y": 875,
-        "width": 240,
-        "height": 126,
-        "text": "V. Rajesh (Spouse) +91- 98480-91177"
-      },
-      {
-        "id": "box_15525bb0",
-        "x": 1421,
-        "y": 945,
-        "width": 11,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_ae8d992a",
-        "x": 1407,
-        "y": 945,
-        "width": 12,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_3c4d437b",
-        "x": 1346,
-        "y": 945,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_924935cf",
-        "x": 1333,
-        "y": 945,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_aceee5c5",
-        "x": 1316,
-        "y": 945,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_658e34f5",
-        "x": 1318,
-        "y": 949,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_8053b0dc",
-        "x": 1306,
-        "y": 945,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_62be9039",
-        "x": 1292,
-        "y": 945,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_2466f95f",
-        "x": 1316,
-        "y": 920,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_66966ccd",
-        "x": 1424,
-        "y": 914,
-        "width": 8,
-        "height": 10,
-        "text": "+91-"
-      },
-      {
-        "id": "box_3e4847ac",
-        "x": 1377,
-        "y": 913,
-        "width": 7,
-        "height": 25,
-        "text": ""
-      },
-      {
-        "id": "box_56d4bfec",
-        "x": 1290,
-        "y": 913,
-        "width": 7,
-        "height": 25,
-        "text": ""
-      },
-      {
-        "id": "box_58f5d8c7",
-        "x": 1351,
-        "y": 888,
-        "width": 6,
-        "height": 19,
-        "text": ""
-      },
-      {
-        "id": "box_62e54796",
-        "x": 1289,
-        "y": 883,
-        "width": 19,
-        "height": 19,
-        "text": ""
-      },
-      {
-        "id": "box_b136b9df",
-        "x": 1123,
-        "y": 875,
-        "width": 150,
-        "height": 126,
-        "text": "Mon-Sat"
-      },
-      {
-        "id": "box_6c3e764b",
-        "x": 958,
-        "y": 875,
-        "width": 165,
-        "height": 126,
-        "text": "14.00-22.00"
-      },
-      {
-        "id": "box_c4eea304",
-        "x": 1082,
-        "y": 883,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_a3618fea",
-        "x": 1025,
-        "y": 883,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_de77a125",
-        "x": 988,
-        "y": 883,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_c0ce54cf",
-        "x": 990,
-        "y": 887,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_983a8054",
-        "x": 838,
-        "y": 875,
-        "width": 120,
-        "height": 126,
-        "text": ""
-      },
-      {
-        "id": "box_bef00c61",
-        "x": 688,
-        "y": 875,
-        "width": 150,
-        "height": 126,
-        "text": "+91- 98480- 21177"
-      },
-      {
-        "id": "box_21fa8933",
-        "x": 760,
-        "y": 945,
-        "width": 11,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_ccd23a67",
-        "x": 746,
-        "y": 945,
-        "width": 12,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_fd6b2cee",
-        "x": 732,
-        "y": 914,
-        "width": 13,
-        "height": 18,
-        "text": "98480-"
-      },
-      {
-        "id": "box_3d7bf544",
-        "x": 733,
-        "y": 917,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_8ddcc25d",
-        "x": 493,
-        "y": 875,
-        "width": 195,
-        "height": 126,
-        "text": "nagamallesw ari@vsp - rinl example"
-      },
-      {
-        "id": "box_6a58721f",
-        "x": 615,
-        "y": 951,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_cbb7e36b",
-        "x": 518,
-        "y": 950,
-        "width": 7,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_443968a3",
-        "x": 590,
-        "y": 920,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_59b0bca5",
-        "x": 530,
-        "y": 919,
-        "width": 7,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_bed006c0",
-        "x": 557,
-        "y": 900,
-        "width": 10,
-        "height": 6,
-        "text": ""
-      },
-      {
-        "id": "box_c9c9715b",
-        "x": 328,
-        "y": 875,
-        "width": 165,
-        "height": 126,
-        "text": "Control Room Operator; LMMM"
-      },
-      {
-        "id": "box_bf4ee713",
-        "x": 367,
-        "y": 951,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_4320fbfe",
-        "x": 163,
-        "y": 875,
-        "width": 165,
-        "height": 126,
-        "text": "V. Naga Malleswari"
-      },
-      {
-        "id": "box_a08d6d37",
-        "x": 293,
-        "y": 919,
-        "width": 7,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_79d65d09",
-        "x": 180,
-        "y": 883,
-        "width": 19,
-        "height": 19,
-        "text": ""
-      },
-      {
-        "id": "box_26410e6b",
-        "x": 615,
-        "y": 857,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_afdb468f",
-        "x": 1273,
-        "y": 781,
-        "width": 240,
-        "height": 94,
-        "text": "P Sita (Spouse) +91-98480-91133"
-      },
-      {
-        "id": "box_f0b19497",
-        "x": 1420,
-        "y": 821,
-        "width": 8,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_c75a4dc0",
-        "x": 1397,
-        "y": 820,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_203e4365",
-        "x": 1368,
-        "y": 820,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_d7cef85f",
-        "x": 1369,
-        "y": 823,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_bee19688",
-        "x": 1394,
-        "y": 795,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_fe8a2fd1",
-        "x": 1294,
-        "y": 790,
-        "width": 7,
-        "height": 10,
-        "text": "P"
-      },
-      {
-        "id": "box_afeba71f",
-        "x": 1454,
-        "y": 788,
-        "width": 7,
-        "height": 25,
-        "text": ""
-      },
-      {
-        "id": "box_b9e5acca",
-        "x": 1123,
-        "y": 781,
-        "width": 150,
-        "height": 94,
-        "text": "Mon-Sat"
-      },
-      {
-        "id": "box_ecff7792",
-        "x": 958,
-        "y": 781,
-        "width": 165,
-        "height": 94,
-        "text": "06.00-14.00"
-      },
-      {
-        "id": "box_a2bad187",
-        "x": 1095,
-        "y": 789,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_1db4c17a",
-        "x": 1082,
-        "y": 789,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_b99799ad",
-        "x": 1058,
-        "y": 789,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_1c7ee7f5",
-        "x": 1060,
-        "y": 793,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_a0f95a93",
-        "x": 1025,
-        "y": 789,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_e574a2a0",
-        "x": 1011,
-        "y": 789,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_ffff1b73",
-        "x": 977,
-        "y": 789,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_cef43355",
-        "x": 838,
-        "y": 781,
-        "width": 120,
-        "height": 94,
-        "text": "AB+"
-      },
-      {
-        "id": "box_6b2b5a88",
-        "x": 860,
-        "y": 791,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_1c7c1787",
-        "x": 688,
-        "y": 781,
-        "width": 150,
-        "height": 94,
-        "text": "+91- 98480- 21133"
-      },
-      {
-        "id": "box_e1890537",
-        "x": 761,
-        "y": 820,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_482ade6e",
-        "x": 732,
-        "y": 820,
-        "width": 13,
-        "height": 18,
-        "text": "98480-"
-      },
-      {
-        "id": "box_105af411",
-        "x": 733,
-        "y": 823,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_e7ff3c8c",
-        "x": 493,
-        "y": 781,
-        "width": 195,
-        "height": 94,
-        "text": "p.durgarao@v Sp- rinl example_"
-      },
-      {
-        "id": "box_48954456",
-        "x": 518,
-        "y": 856,
-        "width": 7,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_50a007d5",
-        "x": 523,
-        "y": 826,
-        "width": 7,
-        "height": 12,
-        "text": "Sp-"
       },
       {
-        "id": "box_c0a83184",
-        "x": 512,
-        "y": 795,
-        "width": 8,
-        "height": 12,
+        "id": "box_a6f57a2e",
+        "x": 526,
+        "y": 490,
+        "width": 17,
+        "height": 23,
         "text": ""
       },
       {
-        "id": "box_73194800",
+        "id": "box_ac0879d8",
         "x": 532,
-        "y": 795,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_497ba115",
-        "x": 328,
-        "y": 781,
-        "width": 165,
-        "height": 94,
-        "text": "Ladle Technician, SMS-1 Bay"
-      },
-      {
-        "id": "box_ff42c6fe",
-        "x": 431,
-        "y": 825,
+        "y": 492,
         "width": 7,
         "height": 13,
         "text": ""
       },
       {
-        "id": "box_4a0827c8",
-        "x": 417,
-        "y": 798,
-        "width": 10,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_a04cc37e",
-        "x": 375,
-        "y": 795,
-        "width": 8,
-        "height": 12,
-        "text": "Ladle"
-      },
-      {
-        "id": "box_fac751bb",
-        "x": 163,
-        "y": 781,
-        "width": 165,
-        "height": 94,
-        "text": "P. Durga Rao"
-      },
-      {
-        "id": "box_819164e4",
-        "x": 213,
-        "y": 790,
-        "width": 11,
-        "height": 17,
-        "text": ""
-      },
-      {
-        "id": "box_b2ac53a8",
-        "x": 1273,
-        "y": 655,
-        "width": 240,
-        "height": 126,
-        "text": "K Rao (Father) +91-98480-91089"
-      },
-      {
-        "id": "box_ad39419b",
-        "x": 1474,
-        "y": 694,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_268bd72c",
-        "x": 1461,
-        "y": 694,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_f60aca96",
-        "x": 1447,
-        "y": 694,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_ab603bc7",
-        "x": 1420,
-        "y": 694,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_2d3f24a0",
-        "x": 1368,
-        "y": 694,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_e31da821",
-        "x": 1369,
-        "y": 697,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_e21085af",
-        "x": 1451,
-        "y": 662,
-        "width": 7,
-        "height": 25,
-        "text": ""
-      },
-      {
-        "id": "box_b893d70c",
-        "x": 1123,
-        "y": 655,
-        "width": 150,
-        "height": 126,
-        "text": "Mon-Sat"
-      },
-      {
-        "id": "box_a28a72e8",
-        "x": 958,
-        "y": 655,
-        "width": 165,
-        "height": 126,
-        "text": "22.00-06.00"
-      },
-      {
-        "id": "box_042563a6",
-        "x": 1082,
-        "y": 663,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_e4e6cee6",
-        "x": 1025,
-        "y": 663,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_62dc68aa",
-        "x": 838,
-        "y": 655,
-        "width": 120,
-        "height": 126,
-        "text": "A+"
-      },
-      {
-        "id": "box_1bc0c55a",
-        "x": 860,
-        "y": 665,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_d9044850",
-        "x": 688,
-        "y": 655,
-        "width": 150,
-        "height": 126,
-        "text": "+91- 98480- 21089"
-      },
-      {
-        "id": "box_26e40557",
-        "x": 732,
-        "y": 694,
-        "width": 13,
-        "height": 18,
-        "text": "98480-"
-      },
-      {
-        "id": "box_e6610987",
-        "x": 733,
-        "y": 697,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_690996c2",
-        "x": 493,
-        "y": 655,
-        "width": 195,
-        "height": 126,
-        "text": "kanitha@vsp- rinl example"
-      },
-      {
-        "id": "box_7f87e9b4",
-        "x": 615,
-        "y": 700,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_b8cf1be9",
-        "x": 518,
-        "y": 699,
-        "width": 7,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_3b7f6af8",
-        "x": 647,
-        "y": 669,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_29f40a3c",
-        "x": 328,
-        "y": 655,
-        "width": 165,
-        "height": 126,
-        "text": "Shift Engineer; Blast Furnace-1"
-      },
-      {
-        "id": "box_8ec342bc",
-        "x": 349,
-        "y": 734,
-        "width": 10,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_acb2bd4d",
-        "x": 376,
-        "y": 711,
+        "id": "box_2a3b225f",
+        "x": 594,
+        "y": 506,
         "width": 10,
         "height": 6,
         "text": ""
       },
       {
-        "id": "box_34161713",
-        "x": 163,
-        "y": 655,
-        "width": 165,
-        "height": 126,
-        "text": "K Anitha"
-      },
-      {
-        "id": "box_ac0d6b45",
-        "x": 1273,
-        "y": 560,
-        "width": 240,
-        "height": 95,
-        "text": "M. Padma (Spouse) / +91- 98480-91045"
-      },
-      {
-        "id": "box_1f5c32ad",
-        "x": 1406,
-        "y": 630,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_8d927b3b",
-        "x": 1408,
-        "y": 634,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_2555c7ee",
-        "x": 1395,
-        "y": 630,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_9bfe2ea2",
-        "x": 1346,
-        "y": 630,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_21566efe",
-        "x": 1333,
-        "y": 630,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_01c6b4aa",
-        "x": 1316,
-        "y": 630,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_d269d706",
-        "x": 1318,
-        "y": 634,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_468816e0",
-        "x": 1306,
-        "y": 630,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_b4ea4754",
-        "x": 1292,
-        "y": 631,
-        "width": 8,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_dbec97a2",
-        "x": 1316,
-        "y": 605,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_f40c011b",
-        "x": 1424,
-        "y": 600,
-        "width": 8,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_0d22c729",
-        "x": 1377,
-        "y": 598,
-        "width": 7,
-        "height": 25,
-        "text": ""
-      },
-      {
-        "id": "box_6c207301",
-        "x": 1290,
-        "y": 598,
-        "width": 7,
-        "height": 25,
-        "text": ""
-      },
-      {
-        "id": "box_4b3ad6f8",
-        "x": 1356,
-        "y": 574,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_3c7efa3b",
-        "x": 1123,
-        "y": 560,
-        "width": 150,
-        "height": 95,
-        "text": "Mon-Sat"
-      },
-      {
-        "id": "box_11f28019",
-        "x": 958,
-        "y": 560,
-        "width": 165,
-        "height": 95,
-        "text": "14.00-22.00"
-      },
-      {
-        "id": "box_accd3481",
-        "x": 1095,
-        "y": 568,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_dd335e73",
-        "x": 1082,
-        "y": 568,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_ced0b1c3",
-        "x": 1025,
-        "y": 568,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_084ceb90",
-        "x": 1011,
-        "y": 568,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_fb900e62",
-        "x": 988,
-        "y": 568,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_85574a2c",
-        "x": 990,
-        "y": 572,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_a87d399f",
-        "x": 838,
-        "y": 560,
-        "width": 120,
-        "height": 95,
-        "text": "B+"
-      },
-      {
-        "id": "box_5a9b40e7",
-        "x": 855,
-        "y": 568,
-        "width": 16,
-        "height": 18,
-        "text": "B+"
-      },
-      {
-        "id": "box_e90f3998",
-        "x": 688,
-        "y": 560,
-        "width": 150,
-        "height": 95,
-        "text": "+91 - 98480- 21045"
-      },
-      {
-        "id": "box_b03ea0ae",
-        "x": 745,
-        "y": 630,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_b99f9887",
-        "x": 747,
-        "y": 634,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_3df699a1",
-        "x": 734,
-        "y": 630,
-        "width": 8,
-        "height": 18,
-        "text": "21045"
-      },
-      {
-        "id": "box_b122c9a3",
-        "x": 761,
-        "y": 599,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_85d1e39d",
-        "x": 732,
-        "y": 599,
-        "width": 13,
-        "height": 18,
-        "text": "98480-"
-      },
-      {
-        "id": "box_a1ede31d",
-        "x": 733,
-        "y": 602,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_7959ed92",
-        "x": 493,
-        "y": 560,
-        "width": 195,
-        "height": 95,
-        "text": "m.= suresh@vsp ~rinl example"
-      },
-      {
-        "id": "box_0e295f0d",
-        "x": 624,
-        "y": 605,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_f6623f28",
-        "x": 527,
-        "y": 604,
-        "width": 7,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_1295d0b2",
-        "x": 658,
-        "y": 574,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_b4ae2a93",
-        "x": 328,
-        "y": 560,
-        "width": 165,
-        "height": 95,
-        "text": "Crane Operator; SMS-1"
-      },
-      {
-        "id": "box_7821b566",
-        "x": 367,
-        "y": 605,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_c6c0ed37",
-        "x": 163,
-        "y": 560,
-        "width": 165,
-        "height": 95,
-        "text": "M. Suresh"
-      },
-      {
-        "id": "box_b8b57c25",
-        "x": 1273,
-        "y": 435,
-        "width": 240,
-        "height": 125,
-        "text": "G. Lakshmi (Spouse) +91- 98480-91001"
-      },
-      {
-        "id": "box_5cbd9185",
-        "x": 1409,
-        "y": 505,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_fd3bdeb8",
-        "x": 1346,
-        "y": 505,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_854b44d0",
-        "x": 1333,
-        "y": 505,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_98844733",
-        "x": 1316,
-        "y": 505,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_a619b4bb",
-        "x": 1318,
-        "y": 509,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_f0fdf4fa",
-        "x": 1306,
-        "y": 505,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_4bf51dad",
-        "x": 1292,
-        "y": 505,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_ae9ca9ba",
-        "x": 1316,
-        "y": 480,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_f2b48b1b",
-        "x": 1424,
-        "y": 474,
-        "width": 8,
-        "height": 10,
-        "text": "+91-"
-      },
-      {
-        "id": "box_f9d97250",
-        "x": 1377,
-        "y": 473,
-        "width": 7,
-        "height": 25,
-        "text": ""
-      },
-      {
-        "id": "box_b9effed8",
-        "x": 1290,
-        "y": 473,
-        "width": 7,
-        "height": 25,
-        "text": ""
-      },
-      {
-        "id": "box_66a335de",
-        "x": 1123,
-        "y": 435,
-        "width": 150,
-        "height": 125,
-        "text": "Mon-Sat"
-      },
-      {
-        "id": "box_e5b4435d",
-        "x": 958,
-        "y": 435,
-        "width": 165,
-        "height": 125,
-        "text": "06.00-14.00"
-      },
-      {
-        "id": "box_b40d1a67",
-        "x": 1082,
-        "y": 443,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_16636657",
-        "x": 1058,
-        "y": 443,
-        "width": 13,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_bfb13f53",
-        "x": 1060,
-        "y": 447,
-        "width": 7,
-        "height": 9,
-        "text": ""
-      },
-      {
-        "id": "box_eb6c2f9a",
-        "x": 1025,
-        "y": 443,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_b35349d5",
-        "x": 838,
-        "y": 435,
-        "width": 120,
-        "height": 125,
-        "text": ""
-      },
-      {
-        "id": "box_5d58aaf4",
-        "x": 688,
-        "y": 435,
-        "width": 150,
-        "height": 125,
-        "text": "+91- 98480- 21001"
-      },
-      {
-        "id": "box_359d0bd2",
-        "x": 748,
-        "y": 505,
-        "width": 8,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_392790c9",
-        "x": 732,
-        "y": 474,
-        "width": 13,
-        "height": 18,
-        "text": "98480-"
-      },
-      {
-        "id": "box_f53818b7",
-        "x": 733,
-        "y": 477,
-        "width": 8,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_eb341214",
-        "x": 493,
-        "y": 435,
-        "width": 195,
-        "height": 125,
-        "text": "g.raviteja@vs p-rinl example"
-      },
-      {
-        "id": "box_86ee6c01",
-        "x": 637,
-        "y": 480,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_65344562",
-        "x": 512,
-        "y": 480,
-        "width": 8,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_5f8fbdd7",
-        "x": 564,
-        "y": 448,
-        "width": 7,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_4cb7a945",
-        "x": 511,
-        "y": 460,
-        "width": 10,
-        "height": 6,
-        "text": ""
-      },
-      {
-        "id": "box_ea436ea1",
-        "x": 328,
-        "y": 435,
-        "width": 165,
-        "height": 125,
-        "text": "Senior Operator; SMS-1 Caster Bay"
-      },
-      {
-        "id": "box_4f01dd43",
-        "x": 420,
-        "y": 536,
-        "width": 16,
-        "height": 18,
-        "text": ""
-      },
-      {
-        "id": "box_e8e4d1dd",
-        "x": 367,
-        "y": 480,
-        "width": 7,
-        "height": 12,
-        "text": ""
-      },
-      {
-        "id": "box_f98986cb",
-        "x": 163,
-        "y": 435,
-        "width": 165,
-        "height": 125,
-        "text": "G Ravi Teja"
-      },
-      {
-        "id": "box_ecc68bf2",
-        "x": 1470,
-        "y": 415,
-        "width": 10,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_1f22cb37",
-        "x": 1464,
-        "y": 415,
-        "width": 8,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_b3ac079c",
-        "x": 1443,
-        "y": 415,
-        "width": 8,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_8134b421",
-        "x": 1340,
-        "y": 415,
-        "width": 9,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_6203396d",
-        "x": 1334,
-        "y": 415,
-        "width": 8,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_544c1c83",
-        "x": 1311,
-        "y": 415,
-        "width": 10,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_cb33797c",
-        "x": 1389,
-        "y": 412,
+        "id": "box_7bd8869a",
+        "x": 596,
+        "y": 491,
         "width": 6,
-        "height": 7,
+        "height": 9,
         "text": ""
       },
       {
-        "id": "box_7959e0df",
-        "x": 1289,
-        "y": 410,
-        "width": 16,
-        "height": 19,
-        "text": ""
-      },
-      {
-        "id": "box_35465a95",
-        "x": 1480,
-        "y": 409,
-        "width": 8,
-        "height": 25,
-        "text": ""
-      },
-      {
-        "id": "box_f6e2653b",
-        "x": 1367,
-        "y": 409,
-        "width": 9,
-        "height": 20,
-        "text": ""
-      },
-      {
-        "id": "box_9a11816a",
-        "x": 1413,
-        "y": 408,
-        "width": 8,
-        "height": 21,
-        "text": ""
-      },
-      {
-        "id": "box_4a2d40b7",
-        "x": 1305,
-        "y": 408,
-        "width": 8,
-        "height": 21,
-        "text": ""
-      },
-      {
-        "id": "box_7b135bf1",
-        "x": 1442,
-        "y": 384,
-        "width": 10,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_61e363b6",
-        "x": 1435,
-        "y": 384,
-        "width": 9,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_13a8a467",
-        "x": 1429,
-        "y": 384,
-        "width": 8,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_fd9ce8bc",
-        "x": 1328,
-        "y": 384,
-        "width": 9,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_50be0182",
-        "x": 1322,
-        "y": 384,
-        "width": 8,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_a01c31c1",
-        "x": 1172,
-        "y": 384,
-        "width": 10,
-        "height": 16,
-        "text": ""
-      },
-      {
-        "id": "box_ac494d21",
-        "x": 1016,
-        "y": 384,
-        "width": 8,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_f353f936",
-        "x": 915,
-        "y": 384,
-        "width": 15,
-        "height": 20,
-        "text": ""
-      },
-      {
-        "id": "box_5dc7c618",
-        "x": 921,
-        "y": 386,
-        "width": 5,
+        "id": "box_b19e52c8",
+        "x": 887,
+        "y": 495,
+        "width": 11,
         "height": 10,
         "text": ""
       },
       {
-        "id": "box_55844da9",
-        "x": 908,
-        "y": 384,
-        "width": 8,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_00c62bcf",
-        "x": 875,
-        "y": 384,
-        "width": 9,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_e446d50e",
-        "x": 375,
-        "y": 384,
-        "width": 15,
-        "height": 20,
-        "text": ""
-      },
-      {
-        "id": "box_d94476c7",
-        "x": 381,
-        "y": 386,
-        "width": 5,
+        "id": "box_f548255d",
+        "x": 887,
+        "y": 485,
+        "width": 10,
         "height": 10,
         "text": ""
       },
       {
-        "id": "box_e6c72634",
-        "x": 1337,
-        "y": 381,
+        "id": "box_f30243e2",
+        "x": 738,
+        "y": 485,
+        "width": 8,
+        "height": 12,
+        "text": "Reviewed By (Name &amp; Signature): P. Ramesh Babu; General Manager (Works)"
+      },
+      {
+        "id": "box_ddea9a8d",
+        "x": 460,
+        "y": 495,
+        "width": 11,
+        "height": 10,
+        "text": ""
+      },
+      {
+        "id": "box_bb305ed7",
+        "x": 306,
+        "y": 484,
+        "width": 21,
+        "height": 22,
+        "text": ""
+      },
+      {
+        "id": "box_99d82477",
+        "x": 170,
+        "y": 485,
         "width": 9,
-        "height": 17,
-        "text": ""
-      },
-      {
-        "id": "box_1593cda5",
-        "x": 1139,
-        "y": 379,
-        "width": 19,
-        "height": 19,
-        "text": ""
-      },
-      {
-        "id": "box_a2efee95",
-        "x": 1146,
-        "y": 381,
-        "width": 7,
-        "height": 15,
-        "text": ""
-      },
-      {
-        "id": "box_451c4513",
-        "x": 344,
-        "y": 379,
-        "width": 19,
-        "height": 19,
-        "text": ""
-      },
-      {
-        "id": "box_615cd117",
-        "x": 351,
-        "y": 381,
-        "width": 7,
-        "height": 15,
-        "text": ""
-      },
-      {
-        "id": "box_effad3b1",
-        "x": 1470,
-        "y": 378,
-        "width": 9,
-        "height": 20,
-        "text": ""
-      },
-      {
-        "id": "box_2bf78fd0",
-        "x": 1197,
-        "y": 356,
-        "width": 10,
         "height": 11,
         "text": ""
       },
       {
-        "id": "box_8aa454c0",
-        "x": 1032,
-        "y": 356,
-        "width": 10,
-        "height": 11,
-        "text": ""
-      },
-      {
-        "id": "box_d37cfd47",
-        "x": 1406,
-        "y": 353,
-        "width": 10,
-        "height": 16,
-        "text": ""
-      },
-      {
-        "id": "box_339e14da",
-        "x": 1385,
-        "y": 353,
+        "id": "box_5d22f080",
+        "x": 1304,
+        "y": 483,
         "width": 9,
-        "height": 14,
+        "height": 30,
         "text": ""
       },
       {
-        "id": "box_e09282a6",
-        "x": 1379,
-        "y": 353,
-        "width": 8,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_88e98c4e",
-        "x": 1320,
-        "y": 353,
-        "width": 10,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_c9009379",
-        "x": 1313,
-        "y": 353,
-        "width": 9,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_25768934",
-        "x": 1307,
-        "y": 353,
-        "width": 8,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_22875e15",
-        "x": 1220,
-        "y": 353,
-        "width": 9,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_543b0216",
-        "x": 1214,
-        "y": 353,
-        "width": 8,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_1bea74b1",
+        "id": "box_773b10a7",
         "x": 1206,
-        "y": 353,
-        "width": 8,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_3b0266ea",
-        "x": 1055,
-        "y": 353,
+        "y": 483,
         "width": 9,
-        "height": 14,
+        "height": 30,
         "text": ""
       },
       {
-        "id": "box_3352839f",
-        "x": 1049,
-        "y": 353,
-        "width": 8,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_9befd61f",
-        "x": 1041,
-        "y": 353,
-        "width": 8,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_9980f341",
-        "x": 1015,
-        "y": 353,
+        "id": "box_03def6f4",
+        "x": 702,
+        "y": 483,
         "width": 9,
-        "height": 14,
-        "text": ""
+        "height": 30,
+        "text": "Reviewed By (Name &amp; Signature): P. Ramesh Babu; General Manager (Works)"
       },
       {
-        "id": "box_a5c2e167",
-        "x": 755,
-        "y": 353,
+        "id": "box_4b4ed7b6",
+        "x": 354,
+        "y": 483,
         "width": 9,
+        "height": 30,
+        "text": ""
+      },
+      {
+        "id": "box_0a3fd463",
+        "x": 285,
+        "y": 491,
+        "width": 7,
         "height": 14,
         "text": ""
       },
       {
-        "id": "box_9c67608a",
-        "x": 749,
-        "y": 353,
-        "width": 8,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_5030be04",
-        "x": 726,
-        "y": 353,
-        "width": 10,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_5ec6126b",
-        "x": 563,
-        "y": 353,
-        "width": 8,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_d751b726",
-        "x": 540,
-        "y": 353,
-        "width": 10,
-        "height": 14,
-        "text": "Email"
-      },
-      {
-        "id": "box_022aa818",
-        "x": 533,
-        "y": 353,
+        "id": "box_d754d680",
+        "x": 578,
+        "y": 426,
         "width": 9,
-        "height": 14,
-        "text": ""
+        "height": 15,
+        "text": "Prepared By (Name &amp; Signature): K Suryanarayana"
       },
       {
-        "id": "box_07e1a3e0",
-        "x": 527,
-        "y": 353,
-        "width": 8,
-        "height": 14,
-        "text": ""
+        "id": "box_e389e1a8",
+        "x": 522,
+        "y": 425,
+        "width": 17,
+        "height": 23,
+        "text": "Prepared By (Name &amp; Signature): K Suryanarayana"
       },
       {
-        "id": "box_3287d78e",
-        "x": 225,
-        "y": 353,
-        "width": 10,
-        "height": 14,
-        "text": ""
+        "id": "box_f6ad5c8c",
+        "x": 528,
+        "y": 427,
+        "width": 7,
+        "height": 13,
+        "text": "Prepared By (Name &amp; Signature): K Suryanarayana"
       },
       {
-        "id": "box_cd178790",
+        "id": "box_6f053674",
         "x": 218,
-        "y": 353,
-        "width": 9,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_3085969d",
-        "x": 212,
-        "y": 353,
-        "width": 8,
-        "height": 14,
-        "text": "Name"
-      },
-      {
-        "id": "box_484fff1d",
-        "x": 854,
-        "y": 348,
-        "width": 18,
-        "height": 19,
-        "text": ""
-      },
-      {
-        "id": "box_7ca6e4c1",
-        "x": 861,
-        "y": 357,
+        "y": 427,
         "width": 7,
-        "height": 8,
-        "text": ""
-      },
-      {
-        "id": "box_9f8c6272",
-        "x": 711,
-        "y": 350,
-        "width": 5,
-        "height": 8,
-        "text": ""
-      },
-      {
-        "id": "box_9ccb8f43",
-        "x": 351,
-        "y": 350,
-        "width": 6,
-        "height": 7,
-        "text": ""
-      },
-      {
-        "id": "box_507e670d",
-        "x": 403,
-        "y": 347,
-        "width": 9,
-        "height": 20,
-        "text": ""
-      },
-      {
-        "id": "box_45cebc82",
-        "x": 1192,
-        "y": 346,
-        "width": 7,
-        "height": 21,
-        "text": "Working"
-      },
-      {
-        "id": "box_66deeecc",
-        "x": 1027,
-        "y": 346,
-        "width": 7,
-        "height": 21,
-        "text": "Working"
-      },
-      {
-        "id": "box_58c94f4c",
-        "x": 914,
-        "y": 346,
-        "width": 8,
-        "height": 21,
-        "text": ""
-      },
-      {
-        "id": "box_3da4f2e1",
-        "x": 872,
-        "y": 346,
-        "width": 8,
-        "height": 21,
-        "text": ""
-      },
-      {
-        "id": "box_8cdc9447",
-        "x": 720,
-        "y": 346,
-        "width": 8,
-        "height": 21,
-        "text": ""
-      },
-      {
-        "id": "box_60efa470",
-        "x": 570,
-        "y": 346,
-        "width": 8,
-        "height": 21,
-        "text": ""
-      },
-      {
-        "id": "box_ecb76f90",
-        "x": 377,
-        "y": 346,
-        "width": 8,
-        "height": 21,
-        "text": ""
-      },
-      {
-        "id": "box_203ba76f",
-        "x": 820,
-        "y": 289,
-        "width": 12,
-        "height": 14,
-        "text": "please complete every column."
-      },
-      {
-        "id": "box_3f7c5caf",
-        "x": 809,
-        "y": 289,
-        "width": 8,
-        "height": 8,
-        "text": "please complete every column."
-      },
-      {
-        "id": "box_baaf9466",
-        "x": 788,
-        "y": 289,
-        "width": 8,
-        "height": 8,
-        "text": "please complete every column."
-      },
-      {
-        "id": "box_c484cc0f",
-        "x": 743,
-        "y": 290,
-        "width": 9,
         "height": 13,
         "text": ""
       },
       {
-        "id": "box_e05a34cc",
-        "x": 643,
-        "y": 289,
-        "width": 13,
-        "height": 14,
+        "id": "box_91d4a9d4",
+        "x": 457,
+        "y": 430,
+        "width": 10,
+        "height": 10,
         "text": ""
       },
       {
-        "id": "box_a6e35358",
-        "x": 609,
-        "y": 290,
+        "id": "box_e0a4400a",
+        "x": 310,
+        "y": 430,
         "width": 9,
-        "height": 13,
+        "height": 10,
         "text": ""
       },
       {
-        "id": "box_84d46903",
-        "x": 554,
-        "y": 289,
-        "width": 8,
-        "height": 8,
+        "id": "box_949153e9",
+        "x": 170,
+        "y": 420,
+        "width": 7,
+        "height": 11,
         "text": ""
       },
       {
-        "id": "box_c2d86528",
-        "x": 498,
-        "y": 290,
+        "id": "box_1505d28f",
+        "x": 698,
+        "y": 418,
         "width": 9,
-        "height": 13,
+        "height": 30,
         "text": ""
       },
       {
-        "id": "box_288fe24d",
-        "x": 459,
-        "y": 289,
-        "width": 11,
+        "id": "box_09bb85af",
+        "x": 350,
+        "y": 418,
+        "width": 9,
+        "height": 30,
+        "text": ""
+      },
+      {
+        "id": "box_0c0076fe",
+        "x": 281,
+        "y": 426,
+        "width": 7,
         "height": 14,
         "text": ""
       },
       {
-        "id": "box_e742ae4e",
-        "x": 370,
-        "y": 289,
-        "width": 11,
-        "height": 14,
-        "text": "analysis and emergency response"
-      },
-      {
-        "id": "box_f8e12315",
-        "x": 269,
-        "y": 289,
-        "width": 13,
-        "height": 14,
+        "id": "box_2a7d7a2c",
+        "x": 564,
+        "y": 255,
+        "width": 15,
+        "height": 23,
         "text": ""
       },
       {
-        "id": "box_685a6ea9",
-        "x": 193,
-        "y": 289,
-        "width": 13,
-        "height": 14,
+        "id": "box_d004e876",
+        "x": 568,
+        "y": 256,
+        "width": 9,
+        "height": 15,
         "text": ""
       },
       {
-        "id": "box_6201c7a8",
+        "id": "box_c6574809",
         "x": 163,
-        "y": 289,
-        "width": 13,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_4c773dad",
-        "x": 908,
-        "y": 282,
-        "width": 6,
-        "height": 21,
-        "text": ""
-      },
-      {
-        "id": "box_4f4a5ff1",
-        "x": 757,
-        "y": 282,
-        "width": 6,
-        "height": 21,
-        "text": ""
-      },
-      {
-        "id": "box_14e3f01c",
-        "x": 623,
-        "y": 282,
-        "width": 6,
-        "height": 21,
-        "text": ""
-      },
-      {
-        "id": "box_3e15038b",
-        "x": 209,
-        "y": 282,
-        "width": 6,
-        "height": 21,
-        "text": ""
-      },
-      {
-        "id": "box_ac1aa44c",
-        "x": 1536,
-        "y": 254,
-        "width": 13,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_26742435",
-        "x": 1491,
-        "y": 254,
-        "width": 11,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_6b183b3b",
-        "x": 1382,
-        "y": 254,
-        "width": 11,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_b1c9a5df",
-        "x": 1325,
-        "y": 254,
-        "width": 8,
-        "height": 8,
-        "text": ""
-      },
-      {
-        "id": "box_65a102b5",
-        "x": 1199,
-        "y": 254,
-        "width": 13,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_6c0fbfde",
-        "x": 972,
-        "y": 254,
-        "width": 13,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_ca692e7f",
-        "x": 935,
-        "y": 255,
-        "width": 9,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_b1f10900",
-        "x": 877,
-        "y": 254,
-        "width": 8,
-        "height": 8,
-        "text": "Provide full details for all on-site employees relevant to safety operations. This information is used for shift-correlation"
-      },
-      {
-        "id": "box_76229805",
-        "x": 851,
-        "y": 254,
-        "width": 13,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_081ad70e",
-        "x": 763,
-        "y": 254,
-        "width": 13,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_ad81862d",
-        "x": 750,
-        "y": 254,
-        "width": 12,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_504ca797",
-        "x": 717,
-        "y": 254,
-        "width": 8,
-        "height": 8,
-        "text": ""
-      },
-      {
-        "id": "box_84184be0",
-        "x": 673,
-        "y": 254,
-        "width": 8,
-        "height": 8,
-        "text": ""
-      },
-      {
-        "id": "box_9b05c96b",
-        "x": 608,
-        "y": 255,
-        "width": 9,
-        "height": 13,
-        "text": ""
-      },
-      {
-        "id": "box_801bff06",
-        "x": 573,
-        "y": 254,
-        "width": 8,
-        "height": 8,
-        "text": ""
-      },
-      {
-        "id": "box_a5b2a12b",
-        "x": 443,
-        "y": 254,
-        "width": 13,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_04e76def",
-        "x": 424,
-        "y": 254,
-        "width": 11,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_f58a2048",
-        "x": 349,
-        "y": 254,
-        "width": 13,
-        "height": 14,
-        "text": "analysis and emergency response"
-      },
-      {
-        "id": "box_b5444312",
-        "x": 330,
-        "y": 254,
-        "width": 8,
-        "height": 8,
-        "text": ""
-      },
-      {
-        "id": "box_c00c1a65",
-        "x": 247,
-        "y": 254,
-        "width": 8,
-        "height": 8,
-        "text": ""
-      },
-      {
-        "id": "box_1162a5b9",
-        "x": 208,
-        "y": 254,
-        "width": 13,
-        "height": 14,
-        "text": ""
-      },
-      {
-        "id": "box_d66e26c6",
-        "x": 168,
         "y": 249,
         "width": 10,
-        "height": 11,
+        "height": 22,
         "text": ""
       },
       {
-        "id": "box_c73eb219",
-        "x": 1528,
-        "y": 247,
-        "width": 6,
-        "height": 21,
+        "id": "box_28168d2e",
+        "x": 1581,
+        "y": 256,
+        "width": 9,
+        "height": 14,
         "text": ""
       },
       {
-        "id": "box_f985ddc1",
-        "x": 729,
-        "y": 247,
-        "width": 6,
-        "height": 21,
+        "id": "box_af96e192",
+        "x": 1100,
+        "y": 256,
+        "width": 9,
+        "height": 14,
         "text": ""
       },
       {
-        "id": "box_fc8a0fad",
-        "x": 622,
-        "y": 247,
-        "width": 6,
-        "height": 21,
+        "id": "box_24266083",
+        "x": 780,
+        "y": 248,
+        "width": 16,
+        "height": 24,
         "text": ""
       },
       {
-        "id": "box_8e25a48d",
-        "x": 467,
-        "y": 247,
-        "width": 6,
-        "height": 21,
+        "id": "box_3c20e71d",
+        "x": 783,
+        "y": 256,
+        "width": 9,
+        "height": 14,
         "text": ""
       },
       {
-        "id": "box_10774d6d",
-        "x": 459,
-        "y": 247,
-        "width": 6,
-        "height": 21,
+        "id": "box_bff7f32a",
+        "x": 668,
+        "y": 256,
+        "width": 9,
+        "height": 14,
         "text": ""
       },
       {
-        "id": "box_436358be",
-        "x": 374,
-        "y": 247,
-        "width": 6,
-        "height": 21,
+        "id": "box_e7a22f00",
+        "x": 637,
+        "y": 256,
+        "width": 9,
+        "height": 14,
         "text": ""
       },
       {
-        "id": "box_ea6c2c3e",
-        "x": 298,
-        "y": 247,
-        "width": 6,
-        "height": 21,
-        "text": ""
-      },
-      {
-        "id": "box_8a7a7503",
-        "x": 290,
-        "y": 247,
-        "width": 6,
-        "height": 21,
-        "text": ""
-      },
-      {
-        "id": "box_c2a6f961",
-        "x": 610,
+        "id": "box_2a9c24c0",
+        "x": 381,
         "y": 181,
-        "width": 24,
-        "height": 36,
+        "width": 21,
+        "height": 26,
         "text": ""
       },
       {
-        "id": "box_2dce8fe3",
-        "x": 510,
-        "y": 183,
-        "width": 15,
-        "height": 10,
-        "text": ""
-      },
-      {
-        "id": "box_7574bb02",
-        "x": 480,
+        "id": "box_8b2bff7d",
+        "x": 344,
         "y": 181,
         "width": 5,
         "height": 26,
         "text": ""
       },
       {
-        "id": "box_fdfef2a1",
-        "x": 408,
+        "id": "box_180576cd",
+        "x": 203,
         "y": 183,
         "width": 15,
         "height": 10,
-        "text": "9. Employee Directory"
+        "text": ""
       },
       {
-        "id": "box_bb865bdd",
-        "x": 382,
-        "y": 183,
-        "width": 15,
-        "height": 10,
-        "text": "9. Employee Directory"
-      },
-      {
-        "id": "box_dfac1630",
-        "x": 352,
-        "y": 181,
-        "width": 24,
-        "height": 36,
-        "text": "9. Employee Directory"
-      },
-      {
-        "id": "box_4c555171",
-        "x": 446,
+        "id": "box_e00e78d8",
+        "x": 166,
         "y": 174,
         "width": 28,
         "height": 33,
         "text": ""
       },
       {
-        "id": "box_ff313668",
-        "x": 450,
+        "id": "box_fdb65390",
+        "x": 170,
         "y": 177,
         "width": 21,
         "height": 27,
         "text": ""
       },
       {
-        "id": "box_3613bd5f",
-        "x": 317,
+        "id": "box_6769dad5",
+        "x": 251,
         "y": 172,
         "width": 5,
         "height": 35,
-        "text": ""
+        "text": "Declaration"
       },
       {
-        "id": "box_aa54c787",
+        "id": "box_68fcc6a7",
         "x": 1628,
         "y": 118,
         "width": 10,
@@ -14595,7 +11339,7 @@
         "text": ""
       },
       {
-        "id": "box_3bedf7b8",
+        "id": "box_cca52b3a",
         "x": 1630,
         "y": 118,
         "width": 8,
@@ -14603,7 +11347,7 @@
         "text": ""
       },
       {
-        "id": "box_1c8042b7",
+        "id": "box_fdc15df0",
         "x": 1506,
         "y": 118,
         "width": 9,
@@ -14621,5 +11365,5177 @@
     "setup_complete": false,
     "id": "1f207c73",
     "created_at": "2026-07-20T14:46:29.174988"
+  },
+  "a6184a39": {
+    "name": "Vedanta_Black",
+    "preliminary_doc_filename": "a6184a39_ilovepdf_merged_1.pdf",
+    "ai_summary": "Visakhapatnam Steel Plant (RINL) is an integrated steel manufacturing facility producing liquid steel from raw materials like iron ore and coking coal. The core process involves coking coal carbonization, iron ore sintering, blast furnaces for hot metal production, LD converters for steelmaking, and continuous casting into blooms. These blooms are then hot-rolled into finished products such as TMT bars, wire rods, and structural sections for construction and infrastructure markets.",
+    "monitored_parameters": [
+      {
+        "name": "Ladle Refractory Temperature",
+        "parameter_category": "Live Sensor Reading",
+        "sensor_type": "Temperature",
+        "location": "SMS-1, Ladle Bay (Ladle-19)",
+        "equipment_tag": "",
+        "unit": "degC",
+        "normal_range": "1580-1650",
+        "alarm_threshold": ">1680",
+        "response_type": "Continuous Analog",
+        "fault_since": "",
+        "asset_type": "",
+        "last_test_date": "",
+        "next_due_date": "",
+        "task_name": "",
+        "minimum_headcount": 0,
+        "required_roles": "",
+        "data_source_type": "Manual Entry",
+        "api_url": "",
+        "api_method": "GET",
+        "api_headers": "",
+        "api_json_path": "",
+        "api_status": "Not Tested",
+        "api_last_tested": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "c489541e"
+      },
+      {
+        "name": "Blast Furnace Hot Blast Pressure",
+        "parameter_category": "Live Sensor Reading",
+        "sensor_type": "Pressure",
+        "location": "Blast Furnace-1, Bustle Main",
+        "equipment_tag": "",
+        "unit": "bar",
+        "normal_range": "3.2-4.0",
+        "alarm_threshold": ">4.3",
+        "response_type": "Continuous Analog",
+        "fault_since": "",
+        "asset_type": "",
+        "last_test_date": "",
+        "next_due_date": "",
+        "task_name": "",
+        "minimum_headcount": 0,
+        "required_roles": "",
+        "data_source_type": "Manual Entry",
+        "api_url": "",
+        "api_method": "GET",
+        "api_headers": "",
+        "api_json_path": "",
+        "api_status": "Not Tested",
+        "api_last_tested": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "5dce1206"
+      },
+      {
+        "name": "Oxygen Flow to Converter",
+        "parameter_category": "Live Sensor Reading",
+        "sensor_type": "Flow Rate",
+        "location": "LD Converter Shop, O2 Lance",
+        "equipment_tag": "",
+        "unit": "Nm3/hr",
+        "normal_range": "12000-16000",
+        "alarm_threshold": ">17000",
+        "response_type": "Continuous Analog",
+        "fault_since": "",
+        "asset_type": "",
+        "last_test_date": "",
+        "next_due_date": "",
+        "task_name": "",
+        "minimum_headcount": 0,
+        "required_roles": "",
+        "data_source_type": "Manual Entry",
+        "api_url": "",
+        "api_method": "GET",
+        "api_headers": "",
+        "api_json_path": "",
+        "api_status": "Not Tested",
+        "api_last_tested": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "87e7c9b2"
+      },
+      {
+        "name": "Overhead Crane-2 Load Cell",
+        "parameter_category": "Live Sensor Reading",
+        "sensor_type": "Other",
+        "location": "SMS-1, Caster-2 Crane Bay",
+        "equipment_tag": "",
+        "unit": "tonnes",
+        "normal_range": "0-180",
+        "alarm_threshold": ">185",
+        "response_type": "Continuous Analog",
+        "fault_since": "",
+        "asset_type": "",
+        "last_test_date": "",
+        "next_due_date": "",
+        "task_name": "",
+        "minimum_headcount": 0,
+        "required_roles": "",
+        "data_source_type": "Manual Entry",
+        "api_url": "",
+        "api_method": "GET",
+        "api_headers": "",
+        "api_json_path": "",
+        "api_status": "Not Tested",
+        "api_last_tested": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "02a863e1"
+      },
+      {
+        "name": "Coke Oven Gas (CO) Detector",
+        "parameter_category": "Live Sensor Reading",
+        "sensor_type": "Gas Concentration",
+        "location": "Coke Oven Battery-2, Ascension Pipe",
+        "equipment_tag": "",
+        "unit": "ppm",
+        "normal_range": "0-30",
+        "alarm_threshold": ">50",
+        "response_type": "Threshold Alarm",
+        "fault_since": "",
+        "asset_type": "",
+        "last_test_date": "",
+        "next_due_date": "",
+        "task_name": "",
+        "minimum_headcount": 0,
+        "required_roles": "",
+        "data_source_type": "Manual Entry",
+        "api_url": "",
+        "api_method": "GET",
+        "api_headers": "",
+        "api_json_path": "",
+        "api_status": "Not Tested",
+        "api_last_tested": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "78b98c11"
+      },
+      {
+        "name": "Tundish Temperature, Caster-2",
+        "parameter_category": "Live Sensor Reading",
+        "sensor_type": "Temperature",
+        "location": "SMS-1, Caster-2 Tundish",
+        "equipment_tag": "",
+        "unit": "degC",
+        "normal_range": "1520-1560",
+        "alarm_threshold": ">1580",
+        "response_type": "Continuous Analog",
+        "fault_since": "",
+        "asset_type": "",
+        "last_test_date": "",
+        "next_due_date": "",
+        "task_name": "",
+        "minimum_headcount": 0,
+        "required_roles": "",
+        "data_source_type": "Manual Entry",
+        "api_url": "",
+        "api_method": "GET",
+        "api_headers": "",
+        "api_json_path": "",
+        "api_status": "Not Tested",
+        "api_last_tested": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "c8ea1b68"
+      },
+      {
+        "name": "Overhead Crane-2 Hoist Vibration",
+        "parameter_category": "Live Sensor Reading",
+        "sensor_type": "Vibration",
+        "location": "SMS-1, Caster-2 Crane Bay",
+        "equipment_tag": "",
+        "unit": "mm/s",
+        "normal_range": "0-4.5",
+        "alarm_threshold": ">7.1",
+        "response_type": "Continuous Analog",
+        "fault_since": "",
+        "asset_type": "",
+        "last_test_date": "",
+        "next_due_date": "",
+        "task_name": "",
+        "minimum_headcount": 0,
+        "required_roles": "",
+        "data_source_type": "Manual Entry",
+        "api_url": "",
+        "api_method": "GET",
+        "api_headers": "",
+        "api_json_path": "",
+        "api_status": "Not Tested",
+        "api_last_tested": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "1626fa67"
+      },
+      {
+        "name": "Compressed Air Header Pressure",
+        "parameter_category": "Live Sensor Reading",
+        "sensor_type": "Pressure",
+        "location": "Central Compressor House",
+        "equipment_tag": "",
+        "unit": "bar",
+        "normal_range": "6.0-7.5",
+        "alarm_threshold": "<5.0",
+        "response_type": "Continuous Analog",
+        "fault_since": "",
+        "asset_type": "",
+        "last_test_date": "",
+        "next_due_date": "",
+        "task_name": "",
+        "minimum_headcount": 0,
+        "required_roles": "",
+        "data_source_type": "Manual Entry",
+        "api_url": "",
+        "api_method": "GET",
+        "api_headers": "",
+        "api_json_path": "",
+        "api_status": "Not Tested",
+        "api_last_tested": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "c4db7f49"
+      }
+    ],
+    "people": [
+      {
+        "name": "K. Suryanarayana",
+        "person_category": "Managerial Staff",
+        "role": "Deputy General Manager, Safety & Environment",
+        "department": "Safety & Environment",
+        "manager_id": "",
+        "email": "k.suryanarayana@vsp-rinl.example",
+        "phone": "+91-891-278-1021",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "d7e27a1e"
+      },
+      {
+        "name": "P. Ramesh Babu",
+        "person_category": "Managerial Staff",
+        "role": "General Manager, Works",
+        "department": "Works (Overall Operations)",
+        "manager_id": "",
+        "email": "p.rameshbabu@vsp-rinl.example",
+        "phone": "+91-891-278-1002",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "d33485fb"
+      },
+      {
+        "name": "T. Venkata Rao",
+        "person_category": "Managerial Staff",
+        "role": "Deputy General Manager, SMS",
+        "department": "Steel Melt Shop-1 & 2",
+        "manager_id": "",
+        "email": "t.venkatarao@vsp-rinl.example",
+        "phone": "+91-891-278-1108",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "d9b158df"
+      },
+      {
+        "name": "N. Satish Kumar",
+        "person_category": "Managerial Staff",
+        "role": "General Manager, Blast Furnace",
+        "department": "Blast Furnace Department",
+        "manager_id": "",
+        "email": "n.satishkumar@vsp-rinl.example",
+        "phone": "+91-891-278-1155",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "6a2e48b2"
+      },
+      {
+        "name": "A. Lakshmi Prasanna",
+        "person_category": "Managerial Staff",
+        "role": "Deputy General Manager, HR & Contract Labour",
+        "department": "Human Resources",
+        "manager_id": "",
+        "email": "a.lakshmiprasanna@vsp-rinl.example",
+        "phone": "+91-891-278-1210",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "3ce893e5"
+      },
+      {
+        "name": "S. Chandrasekhar",
+        "person_category": "Managerial Staff",
+        "role": "Manager, Maintenance Planning",
+        "department": "Central Maintenance",
+        "manager_id": "",
+        "email": "s.chandrasekhar@vsp-rinl.example",
+        "phone": "+91-891-278-1244",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "8e18ba22"
+      },
+      {
+        "name": "B. Nageswara Rao",
+        "person_category": "Maintenance Staff",
+        "role": "Senior Foreman, Mechanical Maintenance",
+        "department": "",
+        "manager_id": "",
+        "email": "b.nageswararao@vsp-rinl.example",
+        "phone": "+91-98480-11234",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "Shift A",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "NEBOSH IGC, Rigging & Lifting Cert.",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "171d02dd"
+      },
+      {
+        "name": "Y. Srinivas",
+        "person_category": "Maintenance Staff",
+        "role": "Electrical Maintenance Engineer",
+        "department": "",
+        "manager_id": "",
+        "email": "y.srinivas@vsp-rinl.example",
+        "phone": "+91-98480-11897",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "Shift B",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "Electrical Safety (HV), CEA Cert.",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "88c27c56"
+      },
+      {
+        "name": "D. Krishna Murthy",
+        "person_category": "Maintenance Staff",
+        "role": "Crane & Hoist Maintenance Supervisor",
+        "department": "",
+        "manager_id": "",
+        "email": "d.krishnamurthy@vsp-rinl.example",
+        "phone": "+91-98480-12045",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "Shift A",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "Crane Inspector Certification",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "a8d13f1e"
+      },
+      {
+        "name": "M. Appalanaidu",
+        "person_category": "Maintenance Staff",
+        "role": "Refractory Maintenance Technician",
+        "department": "",
+        "manager_id": "",
+        "email": "m.appalanaidu@vsp-rinl.example",
+        "phone": "+91-98480-12310",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "Shift C",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "Refractory Installation & Inspection Cert.",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "c349ca8f"
+      },
+      {
+        "name": "R. Ganesh",
+        "person_category": "Maintenance Staff",
+        "role": "Instrumentation Maintenance Engineer",
+        "department": "",
+        "manager_id": "",
+        "email": "r.ganesh@vsp-rinl.example",
+        "phone": "+91-98480-12588",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "Shift B",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "Instrumentation & Control Systems Cert.",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "a8aba61e"
+      },
+      {
+        "name": "V. Bhaskara Rao",
+        "person_category": "Maintenance Staff",
+        "role": "Hydraulics & Pneumatics Technician",
+        "department": "",
+        "manager_id": "",
+        "email": "v.bhaskararao@vsp-rinl.example",
+        "phone": "+91-98480-12799",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "Shift A",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "Hydraulic Systems Maintenance Cert.",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "6e48f811"
+      },
+      {
+        "name": "J. Padmavathi",
+        "person_category": "Safety Officer",
+        "role": "Safety Officer, SMS-1 & 2",
+        "department": "",
+        "manager_id": "",
+        "email": "j.padmavathi@vsp-rinl.example",
+        "phone": "+91-98480-13120",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "43ca9561"
+      },
+      {
+        "name": "C. Ravindra Babu",
+        "person_category": "Safety Officer",
+        "role": "Safety Officer, Blast Furnace & Coke Ovens",
+        "department": "",
+        "manager_id": "",
+        "email": "c.ravindrababu@vsp-rinl.example",
+        "phone": "+91-98480-13355",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "e86c6f70"
+      },
+      {
+        "name": "S. Vijaya Lakshmi",
+        "person_category": "Safety Officer",
+        "role": "Fire & Emergency Response Officer",
+        "department": "",
+        "manager_id": "",
+        "email": "s.vijayalakshmi@vsp-rinl.example",
+        "phone": "+91-98480-13590",
+        "blood_group": "",
+        "working_hours": "",
+        "working_days": "",
+        "emergency_contact_name": "",
+        "emergency_contact_phone": "",
+        "emergency_contact_relation": "",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "86c656b4"
+      },
+      {
+        "name": "G. Ravi Teja",
+        "person_category": "Employee",
+        "role": "Senior Operator, SMS-1 Caster Bay",
+        "department": "SMS-1 Caster Bay",
+        "manager_id": "",
+        "email": "g.raviteja@vs-p-rinl.example",
+        "phone": "+91-98480-21001",
+        "blood_group": "O+",
+        "working_hours": "06:00-14:00",
+        "working_days": "Mon-Sat",
+        "emergency_contact_name": "G. Lakshmi",
+        "emergency_contact_phone": "+91-98480-91001",
+        "emergency_contact_relation": "Spouse",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "daf78c02"
+      },
+      {
+        "name": "M. Suresh",
+        "person_category": "Employee",
+        "role": "Crane Operator, SMS-1",
+        "department": "SMS-1",
+        "manager_id": "",
+        "email": "m.suresh@vsp-rinl.example",
+        "phone": "+91-98480-21045",
+        "blood_group": "B+",
+        "working_hours": "14:00-22:00",
+        "working_days": "Mon-Sat",
+        "emergency_contact_name": "M. Padma",
+        "emergency_contact_phone": "+91-98480-91045",
+        "emergency_contact_relation": "Spouse",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "53e172b2"
+      },
+      {
+        "name": "K. Anitha",
+        "person_category": "Employee",
+        "role": "Shift Engineer, Blast Furnace-1",
+        "department": "Blast Furnace-1",
+        "manager_id": "",
+        "email": "k.anitha@vsp-rinl.example",
+        "phone": "+91-98480-21089",
+        "blood_group": "A+",
+        "working_hours": "22:00-06:00",
+        "working_days": "Mon-Sat",
+        "emergency_contact_name": "K. Rao",
+        "emergency_contact_phone": "+91-98480-91089",
+        "emergency_contact_relation": "Father",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "44136271"
+      },
+      {
+        "name": "P. Durga Rao",
+        "person_category": "Employee",
+        "role": "Ladle Bay Technician, SMS-1",
+        "department": "SMS-1",
+        "manager_id": "",
+        "email": "p.durgarao@vsp-rinl.example",
+        "phone": "+91-98480-21133",
+        "blood_group": "AB+",
+        "working_hours": "06:00-14:00",
+        "working_days": "Mon-Sat",
+        "emergency_contact_name": "P. Sita",
+        "emergency_contact_phone": "+91-98480-91133",
+        "emergency_contact_relation": "Spouse",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "ee14cb0f"
+      },
+      {
+        "name": "V. Naga Malleswari",
+        "person_category": "Employee",
+        "role": "Control Room Operator, LMMM",
+        "department": "LMMM",
+        "manager_id": "",
+        "email": "v.nagamalleswari@vsp-rinl.example",
+        "phone": "+91-98480-21177",
+        "blood_group": "O-",
+        "working_hours": "14:00-22:00",
+        "working_days": "Mon-Sat",
+        "emergency_contact_name": "V. Rajesh",
+        "emergency_contact_phone": "+91-98480-91177",
+        "emergency_contact_relation": "Spouse",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "4749e474"
+      },
+      {
+        "name": "S. Praveen Kumar",
+        "person_category": "Employee",
+        "role": "Fire & Safety Technician",
+        "department": "",
+        "manager_id": "",
+        "email": "s.praveenkumar@vsp-rinl.example",
+        "phone": "+91-98480-21221",
+        "blood_group": "B-",
+        "working_hours": "Rotating (24x7 cover)",
+        "working_days": "6-day rotating roster",
+        "emergency_contact_name": "S. Vani",
+        "emergency_contact_phone": "+91-98480-91221",
+        "emergency_contact_relation": "Spouse",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "e82d0d1a"
+      },
+      {
+        "name": "N. Vara Lakshmi",
+        "person_category": "Employee",
+        "role": "Instrumentation Technician, SMS-2",
+        "department": "SMS-2",
+        "manager_id": "",
+        "email": "n.varalakshmi@vsp-rinl.example",
+        "phone": "+91-98480-21265",
+        "blood_group": "A-",
+        "working_hours": "06:00-14:00",
+        "working_days": "Mon-Sat",
+        "emergency_contact_name": "N. Ramana",
+        "emergency_contact_phone": "+91-98480-91265",
+        "emergency_contact_relation": "Father",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "00c4ab29"
+      },
+      {
+        "name": "T. Bhargav",
+        "person_category": "Employee",
+        "role": "Coke Oven Battery Operator",
+        "department": "Coke Oven Battery",
+        "manager_id": "",
+        "email": "t.bhargav@vs-p-rinl.example",
+        "phone": "+91-98480-21309",
+        "blood_group": "O+",
+        "working_hours": "22:00-06:00",
+        "working_days": "Mon-Sat",
+        "emergency_contact_name": "T. Kumari",
+        "emergency_contact_phone": "+91-98480-91309",
+        "emergency_contact_relation": "Mother",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "d56b3864"
+      },
+      {
+        "name": "R. Sai Kiran",
+        "person_category": "Employee",
+        "role": "Raw Material Handling Plant Operator",
+        "department": "Raw Material Handling Plant",
+        "manager_id": "",
+        "email": "r.saikiran@vs-p-rinl.example",
+        "phone": "+91-98480-21353",
+        "blood_group": "AB-",
+        "working_hours": "14:00-22:00",
+        "working_days": "Mon-Sat",
+        "emergency_contact_name": "R. Devi",
+        "emergency_contact_phone": "+91-98480-91353",
+        "emergency_contact_relation": "Spouse",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "bde2d5a1"
+      },
+      {
+        "name": "L. Manikyala Rao",
+        "person_category": "Employee",
+        "role": "Maintenance Fitter, Central Maintenance",
+        "department": "Central Maintenance",
+        "manager_id": "",
+        "email": "l.manikyalarao@vsp-rinl.example",
+        "phone": "+91-98480-21397",
+        "blood_group": "B+",
+        "working_hours": "06:00-14:00",
+        "working_days": "Mon-Sat",
+        "emergency_contact_name": "L. Kanaka Durga",
+        "emergency_contact_phone": "+91-98480-91397",
+        "emergency_contact_relation": "Spouse",
+        "certifications": "",
+        "scope_of_work": "",
+        "joint_hazop_conducted": "",
+        "last_joint_inspection_date": "",
+        "safety_induction_completed": "",
+        "supervising_employee": "",
+        "notes": "",
+        "source": "AI-Extracted",
+        "id": "ac382c54"
+      }
+    ],
+    "checklist_records": [],
+    "permit_records": [],
+    "missing_sections": [
+      "Facility Overview: Operating Phase & Upcoming Milestones",
+      "Key Personnel: Full Contact & Shift Details for Managerial/Safety Staff",
+      "Employee Certifications (Comprehensive)"
+    ],
+    "clarification_qa": [
+      {
+        "question": "The 8-Jun-2026 incident at Caster-2 involved a \"deferred crane brake overhaul\" as a contributing factor. How are deferred maintenance items, especially for critical equipment, risk-assessed and prioritized, particularly when production schedules conflict?",
+        "answer": "r"
+      },
+      {
+        "question": "An external inquiry is assessing \"casting-bay staffing levels\" following the 8-Jun-2026 incident. Are there plans to update shift patterns or headcount for the Steel Melt Shop's casting bay based on these findings?",
+        "answer": "da"
+      },
+      {
+        "question": "Managerial and Safety staff (Sections 5.1 & 5.3) lack detailed working hours, days, and emergency contacts. How does the escalation logic (Section 5.4) ensure these personnel are reachable and effective across all shifts, especially if their normal working hours are not 24/7?",
+        "answer": "asa"
+      },
+      {
+        "question": "The \"Employee Directory\" (Section 9) provides blood group information for some staff but not all. Is there a process to collect this for all safety-critical personnel to aid emergency response?",
+        "answer": "asa"
+      },
+      {
+        "question": "What are the normal operating ranges and alarm thresholds for sensors during startup, shutdown, and other transient operational phases, as the current parameters (Section 4) appear to represent routine operation?",
+        "answer": "asa"
+      },
+      {
+        "question": "Are there any known single points of failure in the network architecture, especially concerning the one-way historian data diode, that could impact data integrity or availability during a cyber incident?",
+        "answer": "asa"
+      },
+      {
+        "question": "Given the history of \"long-standing ageing-equipment and manpower-shortage issues\" (Section 8), what specific actions are being taken to address these systemic concerns beyond incident-specific corrective actions?",
+        "answer": "asa"
+      },
+      {
+        "question": "The \"Last Tested Date\" for some critical utility systems (Section 11) is provided, but not for all or without next due dates. What are the scheduled future test dates for all critical utility systems to ensure their reliability and prevent compounding risks?",
+        "answer": "asa"
+      }
+    ],
+    "validation_complete": true,
+    "address": "Ukkunagaram, Gajuwaka, Visakhapatnam, Andhra Pradesh - 530032, India",
+    "industry_sector": "Integrated Iron & Steel Manufacturing",
+    "operating_company": "Rashtriya Ispat Nigam Limited (RINL) -- Navratna CPSE, Ministry of Steel, Government of India",
+    "commissioning_date": "August 1992 (first Blast Furnace blown-in: 1990)",
+    "installed_capacity": "7.3 MTPA liquid steel (post-expansion)",
+    "operating_phase": "",
+    "upcoming_milestone_date": "",
+    "departments": [
+      {
+        "name": "Coke Ovens & By-Product Plant",
+        "function": "Coking coal carbonization, coke & by-product gas production",
+        "headcount": "850"
+      },
+      {
+        "name": "Sinter Plant",
+        "function": "Iron ore agglomeration (sintering) for blast furnace feed",
+        "headcount": "620"
+      },
+      {
+        "name": "Blast Furnace Department (BF-1, BF-2)",
+        "function": "Hot metal (pig iron) production",
+        "headcount": "780"
+      },
+      {
+        "name": "Steel Melt Shop-1 & 2 (SMS)",
+        "function": "LD converter steelmaking, ladle refining, continuous casting",
+        "headcount": "1450"
+      },
+      {
+        "name": "Light & Medium Merchant Mill / Wire Rod Mill",
+        "function": "Hot rolling of TMT bars, structurals, wire rod",
+        "headcount": "1100"
+      },
+      {
+        "name": "Raw Material Handling Plant",
+        "function": "Ore/coal yard operations, stacking-reclaiming, logistics",
+        "headcount": "540"
+      }
+    ],
+    "process_narrative": "1. Raw material intake: iron ore (Bailadila mines) and imported coking coal received via rail and the captive Visakhapatnam Port berth, stacked/reclaimed at the Raw Material Handling Plant.\r\n2. Coke Ovens & By-Product Plant: coking coal carbonized into metallurgical coke; by-product gases (coke oven gas) recovered and reused as plant fuel.\r\n3. Sinter Plant: fine iron ore agglomerated into sinter for improved blast furnace burden permeability.\r\n4. Blast Furnace-1 / Blast Furnace-2: sinter, coke, and flux charged from the top; hot blast air injected; molten hot metal (pig iron) tapped and transported by torpedo ladle car to the Steel Melt Shop.\r\n5. Steel Melt Shop-1 & 2: hot metal charged into LD (oxygen) converters, refined, tapped into ladles, secondary-refined, then continuously cast at Casters 1-6 into blooms (Caster-2 handles a portion of this casting load).\r\n6. Rolling: cast blooms reheated and hot-rolled at the LMMM and Wire Rod Mill into finished TMT bars.",
+    "drawing_references": "PFD-VSP-SMS1-014 Rev C; PID-VSP-CASTER2-007 Rev B",
+    "scada_systems": [
+      {
+        "name": "SMS Level-2 Process Automation",
+        "vendor": "ABB Ability",
+        "version": "v8.2",
+        "function": "Converter blow-end prediction, ladle/caster sequencing",
+        "redundant": "Y"
+      },
+      {
+        "name": "Blast Furnace Control System (BFCS)",
+        "vendor": "Siemens",
+        "version": "PCS7 v9.0",
+        "function": "Burden charging, hot blast, stove control",
+        "redundant": "Y"
+      },
+      {
+        "name": "Rolling Mills SCADA/HMI",
+        "vendor": "Honeywell Experion PKS",
+        "version": "R510",
+        "function": "Drive control, pass scheduling, mill sequencing",
+        "redundant": "N"
+      }
+    ],
+    "historian_system": "PI Historian (OSIsoft/AVEVA), plant-wide, 5-year retention",
+    "network_notes": "IT/OT segregated via firewalled DMZ; Level-2 automation air-gapped from corporate network, one-way historian data diode to PI",
+    "escalation_logic": [],
+    "shift_patterns": [
+      {
+        "shift_name": "Shift 1",
+        "start_time": "06:00",
+        "end_time": "14:00",
+        "headcount": "~1450 (across SMS/BF/Rolling)"
+      },
+      {
+        "shift_name": "Shift A",
+        "start_time": "14:00",
+        "end_time": "22:00",
+        "headcount": "~1450 (across SMS/BF/Rolling)"
+      },
+      {
+        "shift_name": "Shift B",
+        "start_time": "22:00",
+        "end_time": "06:00",
+        "headcount": "~1050 (reduced night complement)"
+      }
+    ],
+    "shift_handover_notes": "Outgoing shift-in-charge briefs incoming counterpart on: equipment status/any open work permits, abnormal readings or alarms in the last 8 hours, deferred maintenance items still pending closure, and any near-miss or safety observation raised during the shift. Both sign the shift log register and the crane/ladle pre-use checklist before handover is considered complete. SMS-1 additionally requires a joint walk-down of the casting bay (Caster-1 through Caster-6) before sign-off.",
+    "maintenance_records": [
+      {
+        "equipment": "Overhead Crane-2 Hoist Brake System (SMS-1)",
+        "last_date": "18-Feb-2026",
+        "type": "Preventive",
+        "next_due": "18-Aug-2026",
+        "performed_by": "Central Maintenance (Mechanical)",
+        "deferred_notes": "DEFERRED -- full brake overhaul postponed from Mar-2026 due to production schedule; interim inspection only completed"
+      },
+      {
+        "equipment": "Ladle Refractory Lining, Ladle-19",
+        "last_date": "02-May-2026",
+        "type": "Relining",
+        "next_due": "02-Sep-2026",
+        "performed_by": "Refractory Maintenance Team",
+        "deferred_notes": "On schedule"
+      },
+      {
+        "equipment": "Blast Furnace-1 Hot Blast Stove Refractory",
+        "last_date": "10-Jan-2026",
+        "type": "Preventive",
+        "next_due": "10-Jul-2026",
+        "performed_by": "Central Maintenance (Mechanical)",
+        "deferred_notes": "On schedule"
+      },
+      {
+        "equipment": "LD Converter No.2 Vessel Trunnion",
+        "last_date": "22-Nov-2025",
+        "type": "Preventive",
+        "next_due": "22-May-2026",
+        "performed_by": "Central Maintenance (Mechanical)",
+        "deferred_notes": "On schedule"
+      },
+      {
+        "equipment": "Coke Oven Battery-2 Gas Collection Main",
+        "last_date": "05-Apr-2026",
+        "type": "Corrective (gasket replacement)",
+        "next_due": "05-Oct-2026",
+        "performed_by": "Coke Ovens Maintenance",
+        "deferred_notes": "On schedule"
+      },
+      {
+        "equipment": "Compressed Air Header, Central Compressor House",
+        "last_date": "14-Mar-2026",
+        "type": "Preventive",
+        "next_due": "14-Sep-2026",
+        "performed_by": "Utilities Maintenance",
+        "deferred_notes": "On schedule"
+      }
+    ],
+    "negligence_history": "",
+    "attendance_api_url": "",
+    "attendance_api_method": "GET",
+    "attendance_api_headers": "",
+    "attendance_api_status": "Not Tested",
+    "attendance_api_last_tested": "",
+    "utility_systems": [],
+    "training_records": [],
+    "environmental_records": [],
+    "regulatory_standards": "",
+    "fire_safety_systems": "",
+    "last_safety_audit_date": "",
+    "last_safety_audit_findings": "",
+    "layout_image_filename": "a6184a39_layout.png",
+    "layout_source_page": 18,
+    "layout_canvas": {
+      "width": 2526,
+      "height": 1785
+    },
+    "layout_shapes": [
+      {
+        "id": "box_0925db42",
+        "x": 1818,
+        "y": 200,
+        "width": 41,
+        "height": 24,
+        "text": ""
+      },
+      {
+        "id": "box_5dee0dd4",
+        "x": 14,
+        "y": 200,
+        "width": 2495,
+        "height": 1386,
+        "text": "Tecit PAlIIII BBSlI Fcok 5C7yg Dmc BBCU EcieNuTi jakcl I9t Jiurta PxoorT eirictr VPICNE Roiu 8 6537"
+      },
+      {
+        "id": "box_de865b88",
+        "x": 769,
+        "y": 1571,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_44707971",
+        "x": 353,
+        "y": 1564,
+        "width": 12,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_212583a9",
+        "x": 999,
+        "y": 1512,
+        "width": 418,
+        "height": 71,
+        "text": ""
+      },
+      {
+        "id": "box_20eae129",
+        "x": 570,
+        "y": 1512,
+        "width": 421,
+        "height": 71,
+        "text": ""
+      },
+      {
+        "id": "box_5e646898",
+        "x": 143,
+        "y": 1509,
+        "width": 422,
+        "height": 71,
+        "text": "6537"
+      },
+      {
+        "id": "box_ca7e7f4f",
+        "x": 1422,
+        "y": 1468,
+        "width": 421,
+        "height": 40,
+        "text": ""
+      },
+      {
+        "id": "box_64cc77be",
+        "x": 999,
+        "y": 1468,
+        "width": 418,
+        "height": 40,
+        "text": ""
+      },
+      {
+        "id": "box_9b12c56e",
+        "x": 570,
+        "y": 1468,
+        "width": 421,
+        "height": 40,
+        "text": ""
+      },
+      {
+        "id": "box_79b0961d",
+        "x": 143,
+        "y": 1468,
+        "width": 422,
+        "height": 40,
+        "text": ""
+      },
+      {
+        "id": "box_5db4695f",
+        "x": 1597,
+        "y": 1461,
+        "width": 16,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_df0db102",
+        "x": 1563,
+        "y": 1461,
+        "width": 33,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_c9924e73",
+        "x": 1484,
+        "y": 1461,
+        "width": 16,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_41a26c03",
+        "x": 1326,
+        "y": 1461,
+        "width": 12,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_e45a5f79",
+        "x": 1308,
+        "y": 1461,
+        "width": 13,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_20a7abf4",
+        "x": 1181,
+        "y": 1461,
+        "width": 19,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_fe513e32",
+        "x": 1161,
+        "y": 1461,
+        "width": 12,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_57a4490b",
+        "x": 1047,
+        "y": 1461,
+        "width": 16,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_9d88c286",
+        "x": 1016,
+        "y": 1461,
+        "width": 30,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_4ea539ef",
+        "x": 886,
+        "y": 1461,
+        "width": 19,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_0efb8243",
+        "x": 776,
+        "y": 1461,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_8208107f",
+        "x": 614,
+        "y": 1461,
+        "width": 30,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_99cb3cec",
+        "x": 99,
+        "y": 1454,
+        "width": 43,
+        "height": 54,
+        "text": ""
+      },
+      {
+        "id": "box_2dbbf9bb",
+        "x": 1680,
+        "y": 1437,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_e57e6bc2",
+        "x": 1645,
+        "y": 1437,
+        "width": 13,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_ae80db9c",
+        "x": 1491,
+        "y": 1437,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_47cba2c5",
+        "x": 1473,
+        "y": 1437,
+        "width": 13,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_9d14b09b",
+        "x": 1401,
+        "y": 1437,
+        "width": 16,
+        "height": 15,
+        "text": ""
+      },
+      {
+        "id": "box_68fc2fa5",
+        "x": 570,
+        "y": 1437,
+        "width": 32,
+        "height": 15,
+        "text": ""
+      },
+      {
+        "id": "box_dc1e20a1",
+        "x": 1779,
+        "y": 1433,
+        "width": 16,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_daf4e968",
+        "x": 1697,
+        "y": 1433,
+        "width": 12,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_d80089cb",
+        "x": 1662,
+        "y": 1433,
+        "width": 13,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_ec51c1fc",
+        "x": 1611,
+        "y": 1433,
+        "width": 12,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_6df645e7",
+        "x": 1594,
+        "y": 1433,
+        "width": 15,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_e440137e",
+        "x": 1559,
+        "y": 1433,
+        "width": 16,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_bb129de5",
+        "x": 1508,
+        "y": 1433,
+        "width": 12,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_86c97202",
+        "x": 755,
+        "y": 1433,
+        "width": 9,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_52d81353",
+        "x": 1779,
+        "y": 1420,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_92fdc5ba",
+        "x": 1731,
+        "y": 1420,
+        "width": 13,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_2fc768ed",
+        "x": 1697,
+        "y": 1420,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_7b8d539e",
+        "x": 1680,
+        "y": 1420,
+        "width": 15,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_b95476c5",
+        "x": 1662,
+        "y": 1420,
+        "width": 13,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_c9256616",
+        "x": 1645,
+        "y": 1420,
+        "width": 13,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_ee4d5c43",
+        "x": 1594,
+        "y": 1420,
+        "width": 15,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_71c5b1eb",
+        "x": 1559,
+        "y": 1420,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_15b9f896",
+        "x": 1522,
+        "y": 1420,
+        "width": 15,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_a596a02b",
+        "x": 1508,
+        "y": 1420,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_b775e993",
+        "x": 1491,
+        "y": 1420,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_945a762f",
+        "x": 1473,
+        "y": 1420,
+        "width": 13,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_d6d8e7e6",
+        "x": 638,
+        "y": 1420,
+        "width": 92,
+        "height": 32,
+        "text": ""
+      },
+      {
+        "id": "box_d709c38c",
+        "x": 667,
+        "y": 1427,
+        "width": 38,
+        "height": 14,
+        "text": ""
+      },
+      {
+        "id": "box_cf95ae60",
+        "x": 573,
+        "y": 1409,
+        "width": 29,
+        "height": 23,
+        "text": ""
+      },
+      {
+        "id": "box_b7ee70a9",
+        "x": 755,
+        "y": 1406,
+        "width": 9,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_a9771dd9",
+        "x": 1779,
+        "y": 1402,
+        "width": 16,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_4ecfc80f",
+        "x": 1745,
+        "y": 1402,
+        "width": 16,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_f151dfe8",
+        "x": 1731,
+        "y": 1402,
+        "width": 13,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_c3217cb2",
+        "x": 1680,
+        "y": 1402,
+        "width": 15,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_ba1bf61c",
+        "x": 1662,
+        "y": 1402,
+        "width": 13,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_849772f3",
+        "x": 1645,
+        "y": 1402,
+        "width": 13,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_e04d9e48",
+        "x": 1611,
+        "y": 1402,
+        "width": 16,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_b82078e1",
+        "x": 1522,
+        "y": 1402,
+        "width": 15,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_e63a48d4",
+        "x": 1508,
+        "y": 1402,
+        "width": 12,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_d5d6c1a3",
+        "x": 1491,
+        "y": 1402,
+        "width": 12,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_fd418f2a",
+        "x": 1473,
+        "y": 1402,
+        "width": 13,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_92b3ad19",
+        "x": 1154,
+        "y": 1402,
+        "width": 12,
+        "height": 40,
+        "text": ""
+      },
+      {
+        "id": "box_b323f4a8",
+        "x": 1061,
+        "y": 1402,
+        "width": 12,
+        "height": 44,
+        "text": ""
+      },
+      {
+        "id": "box_256ac587",
+        "x": 1766,
+        "y": 1399,
+        "width": 12,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_acd8d7e5",
+        "x": 1697,
+        "y": 1399,
+        "width": 12,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_7a05daec",
+        "x": 1594,
+        "y": 1399,
+        "width": 15,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_ca5d0df7",
+        "x": 1281,
+        "y": 1399,
+        "width": 54,
+        "height": 53,
+        "text": ""
+      },
+      {
+        "id": "box_6a9c46d6",
+        "x": 1292,
+        "y": 1421,
+        "width": 28,
+        "height": 10,
+        "text": ""
+      },
+      {
+        "id": "box_33d25240",
+        "x": 1168,
+        "y": 1399,
+        "width": 12,
+        "height": 43,
+        "text": ""
+      },
+      {
+        "id": "box_82d0cb60",
+        "x": 1137,
+        "y": 1399,
+        "width": 12,
+        "height": 43,
+        "text": ""
+      },
+      {
+        "id": "box_bbd4064d",
+        "x": 1123,
+        "y": 1399,
+        "width": 12,
+        "height": 43,
+        "text": ""
+      },
+      {
+        "id": "box_6c651b47",
+        "x": 1109,
+        "y": 1399,
+        "width": 12,
+        "height": 43,
+        "text": ""
+      },
+      {
+        "id": "box_2a54099a",
+        "x": 1092,
+        "y": 1399,
+        "width": 12,
+        "height": 43,
+        "text": ""
+      },
+      {
+        "id": "box_52327195",
+        "x": 1078,
+        "y": 1399,
+        "width": 13,
+        "height": 43,
+        "text": ""
+      },
+      {
+        "id": "box_45e5dec4",
+        "x": 1401,
+        "y": 1392,
+        "width": 16,
+        "height": 26,
+        "text": ""
+      },
+      {
+        "id": "box_64dcd711",
+        "x": 1779,
+        "y": 1385,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_bde3457d",
+        "x": 1745,
+        "y": 1385,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_02803d65",
+        "x": 1731,
+        "y": 1385,
+        "width": 13,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_82ded2ba",
+        "x": 1697,
+        "y": 1385,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_0937c98a",
+        "x": 1680,
+        "y": 1385,
+        "width": 15,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_5f6b034f",
+        "x": 1662,
+        "y": 1385,
+        "width": 13,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_49315690",
+        "x": 1645,
+        "y": 1385,
+        "width": 13,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_394e7d01",
+        "x": 1611,
+        "y": 1385,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_8d7dde58",
+        "x": 1594,
+        "y": 1385,
+        "width": 15,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_7809c91b",
+        "x": 1577,
+        "y": 1385,
+        "width": 15,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_018f771c",
+        "x": 1559,
+        "y": 1385,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_d0ecba3e",
+        "x": 1522,
+        "y": 1385,
+        "width": 15,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_5226116e",
+        "x": 1508,
+        "y": 1385,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_f65e41ba",
+        "x": 1491,
+        "y": 1385,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_635f0dc4",
+        "x": 1473,
+        "y": 1385,
+        "width": 13,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_f74e9ac4",
+        "x": 759,
+        "y": 1378,
+        "width": 26,
+        "height": 23,
+        "text": ""
+      },
+      {
+        "id": "box_a338b61f",
+        "x": 573,
+        "y": 1378,
+        "width": 29,
+        "height": 26,
+        "text": ""
+      },
+      {
+        "id": "box_c003f276",
+        "x": 1089,
+        "y": 1371,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_d3802524",
+        "x": 1845,
+        "y": 1368,
+        "width": 658,
+        "height": 140,
+        "text": ""
+      },
+      {
+        "id": "box_bbd431a8",
+        "x": 1377,
+        "y": 1368,
+        "width": 30,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_79d3937c",
+        "x": 1092,
+        "y": 1361,
+        "width": 40,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_13ba88f8",
+        "x": 570,
+        "y": 1361,
+        "width": 32,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_9b159310",
+        "x": 1405,
+        "y": 1354,
+        "width": 12,
+        "height": 19,
+        "text": ""
+      },
+      {
+        "id": "box_30dcb629",
+        "x": 1095,
+        "y": 1354,
+        "width": 16,
+        "height": 26,
+        "text": ""
+      },
+      {
+        "id": "box_d4dc49d8",
+        "x": 1385,
+        "y": 1341,
+        "width": 14,
+        "height": 7,
+        "text": ""
+      },
+      {
+        "id": "box_7927551d",
+        "x": 222,
+        "y": 1316,
+        "width": 23,
+        "height": 23,
+        "text": ""
+      },
+      {
+        "id": "box_38a12628",
+        "x": 202,
+        "y": 1306,
+        "width": 16,
+        "height": 26,
+        "text": ""
+      },
+      {
+        "id": "box_f9b49b40",
+        "x": 233,
+        "y": 1303,
+        "width": 12,
+        "height": 8,
+        "text": ""
+      },
+      {
+        "id": "box_81692e02",
+        "x": 250,
+        "y": 1289,
+        "width": 29,
+        "height": 43,
+        "text": ""
+      },
+      {
+        "id": "box_4d8c6538",
+        "x": 1068,
+        "y": 1268,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_a9410098",
+        "x": 1095,
+        "y": 1265,
+        "width": 16,
+        "height": 26,
+        "text": ""
+      },
+      {
+        "id": "box_24747ada",
+        "x": 1363,
+        "y": 1254,
+        "width": 9,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_4ef4fc5f",
+        "x": 222,
+        "y": 1254,
+        "width": 6,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_06e9094c",
+        "x": 1068,
+        "y": 1251,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_045ba940",
+        "x": 1095,
+        "y": 1237,
+        "width": 23,
+        "height": 26,
+        "text": ""
+      },
+      {
+        "id": "box_5a814364",
+        "x": 1370,
+        "y": 1234,
+        "width": 23,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_f1eae3ad",
+        "x": 1137,
+        "y": 1234,
+        "width": 5,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_d99e654a",
+        "x": 222,
+        "y": 1227,
+        "width": 23,
+        "height": 26,
+        "text": ""
+      },
+      {
+        "id": "box_fb862c6a",
+        "x": 202,
+        "y": 1227,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_fe0eb1ec",
+        "x": 1061,
+        "y": 1223,
+        "width": 71,
+        "height": 37,
+        "text": ""
+      },
+      {
+        "id": "box_15c82743",
+        "x": 1009,
+        "y": 1223,
+        "width": 51,
+        "height": 20,
+        "text": ""
+      },
+      {
+        "id": "box_4e6d429d",
+        "x": 1848,
+        "y": 1196,
+        "width": 40,
+        "height": 260,
+        "text": ""
+      },
+      {
+        "id": "box_030182da",
+        "x": 1206,
+        "y": 1314,
+        "width": 55,
+        "height": 17,
+        "text": ""
+      },
+      {
+        "id": "box_b0696a81",
+        "x": 1230,
+        "y": 1293,
+        "width": 42,
+        "height": 17,
+        "text": ""
+      },
+      {
+        "id": "box_57ec6b8b",
+        "x": 1193,
+        "y": 1293,
+        "width": 37,
+        "height": 17,
+        "text": ""
+      },
+      {
+        "id": "box_0201c6c5",
+        "x": 638,
+        "y": 1196,
+        "width": 54,
+        "height": 54,
+        "text": ""
+      },
+      {
+        "id": "box_e034641d",
+        "x": 650,
+        "y": 1218,
+        "width": 31,
+        "height": 10,
+        "text": ""
+      },
+      {
+        "id": "box_05e042ee",
+        "x": 838,
+        "y": 1399,
+        "width": 33,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_93376045",
+        "x": 742,
+        "y": 1300,
+        "width": 62,
+        "height": 21,
+        "text": "Roiu"
+      },
+      {
+        "id": "box_eac6c358",
+        "x": 725,
+        "y": 1280,
+        "width": 96,
+        "height": 20,
+        "text": "VPICNE"
+      },
+      {
+        "id": "box_60ad07f3",
+        "x": 745,
+        "y": 1289,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_333c52e3",
+        "x": 779,
+        "y": 1282,
+        "width": 9,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_05f63081",
+        "x": 759,
+        "y": 1282,
+        "width": 5,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_64e63e1a",
+        "x": 745,
+        "y": 1282,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_6f4cfdec",
+        "x": 887,
+        "y": 1214,
+        "width": 96,
+        "height": 45,
+        "text": ""
+      },
+      {
+        "id": "box_b1d12d8a",
+        "x": 889,
+        "y": 1220,
+        "width": 92,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_279fdebf",
+        "x": 918,
+        "y": 1228,
+        "width": 34,
+        "height": 14,
+        "text": ""
+      },
+      {
+        "id": "box_124d708d",
+        "x": 570,
+        "y": 1196,
+        "width": 26,
+        "height": 74,
+        "text": ""
+      },
+      {
+        "id": "box_03ae577c",
+        "x": 1422,
+        "y": 1193,
+        "width": 418,
+        "height": 259,
+        "text": ""
+      },
+      {
+        "id": "box_870788f2",
+        "x": 1725,
+        "y": 1300,
+        "width": 76,
+        "height": 76,
+        "text": ""
+      },
+      {
+        "id": "box_240aa1cc",
+        "x": 1766,
+        "y": 1358,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_27ecbacc",
+        "x": 1745,
+        "y": 1358,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_b7f9bdfa",
+        "x": 1731,
+        "y": 1358,
+        "width": 13,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_e5330e6e",
+        "x": 1779,
+        "y": 1340,
+        "width": 16,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_4d6a930b",
+        "x": 1766,
+        "y": 1340,
+        "width": 12,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_9d2b7c7b",
+        "x": 1745,
+        "y": 1340,
+        "width": 16,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_a8fe335c",
+        "x": 1731,
+        "y": 1340,
+        "width": 13,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_2e5d4e05",
+        "x": 1766,
+        "y": 1323,
+        "width": 12,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_81c6e70d",
+        "x": 1745,
+        "y": 1323,
+        "width": 16,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_c9d993d4",
+        "x": 1728,
+        "y": 1323,
+        "width": 16,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_710719fa",
+        "x": 1766,
+        "y": 1306,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_2af4e98e",
+        "x": 1745,
+        "y": 1306,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_9e47c145",
+        "x": 1728,
+        "y": 1306,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_275905c5",
+        "x": 1639,
+        "y": 1300,
+        "width": 76,
+        "height": 76,
+        "text": ""
+      },
+      {
+        "id": "box_a9a5f0b9",
+        "x": 1697,
+        "y": 1358,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_f1c845c9",
+        "x": 1680,
+        "y": 1358,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_db316505",
+        "x": 1645,
+        "y": 1358,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_9e845455",
+        "x": 1697,
+        "y": 1340,
+        "width": 12,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_9928733a",
+        "x": 1680,
+        "y": 1340,
+        "width": 12,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_dde85cd4",
+        "x": 1662,
+        "y": 1340,
+        "width": 13,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_bbcf46ec",
+        "x": 1645,
+        "y": 1340,
+        "width": 16,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_3ae210eb",
+        "x": 1697,
+        "y": 1323,
+        "width": 12,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_b20b407a",
+        "x": 1680,
+        "y": 1323,
+        "width": 15,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_f88cb587",
+        "x": 1662,
+        "y": 1323,
+        "width": 16,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_de28d4e4",
+        "x": 1645,
+        "y": 1323,
+        "width": 16,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_c8688453",
+        "x": 1697,
+        "y": 1306,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_7d0aa8ee",
+        "x": 1680,
+        "y": 1306,
+        "width": 15,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_d015e655",
+        "x": 1662,
+        "y": 1306,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_ec1a7c66",
+        "x": 1645,
+        "y": 1306,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_baa74b63",
+        "x": 1554,
+        "y": 1300,
+        "width": 75,
+        "height": 76,
+        "text": ""
+      },
+      {
+        "id": "box_36d6531a",
+        "x": 1611,
+        "y": 1358,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_04825b2c",
+        "x": 1594,
+        "y": 1358,
+        "width": 15,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_b706a4a1",
+        "x": 1577,
+        "y": 1358,
+        "width": 15,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_e9b8dc7e",
+        "x": 1559,
+        "y": 1358,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_0a65ab2f",
+        "x": 1611,
+        "y": 1340,
+        "width": 16,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_2ccc7055",
+        "x": 1594,
+        "y": 1340,
+        "width": 15,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_25269aeb",
+        "x": 1577,
+        "y": 1340,
+        "width": 15,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_42323998",
+        "x": 1559,
+        "y": 1340,
+        "width": 16,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_046f4762",
+        "x": 1611,
+        "y": 1323,
+        "width": 16,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_3e83098a",
+        "x": 1577,
+        "y": 1323,
+        "width": 15,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_10fc1e49",
+        "x": 1559,
+        "y": 1323,
+        "width": 16,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_2c4fe06f",
+        "x": 1611,
+        "y": 1306,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_c5b61c9d",
+        "x": 1577,
+        "y": 1306,
+        "width": 15,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_a17d657c",
+        "x": 1559,
+        "y": 1306,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_68294c0a",
+        "x": 1468,
+        "y": 1300,
+        "width": 75,
+        "height": 76,
+        "text": ""
+      },
+      {
+        "id": "box_34c578b6",
+        "x": 1525,
+        "y": 1358,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_9e4091c6",
+        "x": 1508,
+        "y": 1358,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_81ef9e7e",
+        "x": 1473,
+        "y": 1358,
+        "width": 13,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_f55e287b",
+        "x": 1525,
+        "y": 1340,
+        "width": 12,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_f1d83e8f",
+        "x": 1508,
+        "y": 1340,
+        "width": 12,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_28f49007",
+        "x": 1491,
+        "y": 1340,
+        "width": 12,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_db269e4e",
+        "x": 1473,
+        "y": 1340,
+        "width": 13,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_9faf2684",
+        "x": 1525,
+        "y": 1323,
+        "width": 12,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_15291616",
+        "x": 1508,
+        "y": 1323,
+        "width": 12,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_8d9dee5f",
+        "x": 1491,
+        "y": 1323,
+        "width": 12,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_949c8e89",
+        "x": 1473,
+        "y": 1323,
+        "width": 13,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_47faf423",
+        "x": 1525,
+        "y": 1306,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_836fcf64",
+        "x": 1508,
+        "y": 1306,
+        "width": 12,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_ce684f45",
+        "x": 1491,
+        "y": 1306,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_519eca78",
+        "x": 1473,
+        "y": 1306,
+        "width": 13,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_cd0f392c",
+        "x": 1608,
+        "y": 1266,
+        "width": 52,
+        "height": 20,
+        "text": ""
+      },
+      {
+        "id": "box_c340be4c",
+        "x": 1625,
+        "y": 1272,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_7a5dd97b",
+        "x": 1584,
+        "y": 1245,
+        "width": 38,
+        "height": 21,
+        "text": ""
+      },
+      {
+        "id": "box_79eb6192",
+        "x": 1597,
+        "y": 1251,
+        "width": 9,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_c958120c",
+        "x": 1557,
+        "y": 1245,
+        "width": 27,
+        "height": 21,
+        "text": ""
+      },
+      {
+        "id": "box_b9d8e1f4",
+        "x": 240,
+        "y": 1162,
+        "width": 5,
+        "height": 43,
+        "text": ""
+      },
+      {
+        "id": "box_060c7c97",
+        "x": 198,
+        "y": 1162,
+        "width": 9,
+        "height": 46,
+        "text": ""
+      },
+      {
+        "id": "box_75d7120a",
+        "x": 240,
+        "y": 1110,
+        "width": 5,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_43f6c62b",
+        "x": 198,
+        "y": 1110,
+        "width": 9,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_ae8f3e3a",
+        "x": 240,
+        "y": 1058,
+        "width": 5,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_44f1140e",
+        "x": 198,
+        "y": 1058,
+        "width": 9,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_240dca98",
+        "x": 2446,
+        "y": 1021,
+        "width": 57,
+        "height": 366,
+        "text": ""
+      },
+      {
+        "id": "box_2852366b",
+        "x": 240,
+        "y": 1007,
+        "width": 5,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_db1db706",
+        "x": 198,
+        "y": 1007,
+        "width": 9,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_aac913cb",
+        "x": 2446,
+        "y": 1003,
+        "width": 57,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_f12dfe95",
+        "x": 882,
+        "y": 1003,
+        "width": 30,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_dd8524f6",
+        "x": 890,
+        "y": 1015,
+        "width": 14,
+        "height": 7,
+        "text": ""
+      },
+      {
+        "id": "box_dc863c8e",
+        "x": 1075,
+        "y": 1000,
+        "width": 22,
+        "height": 60,
+        "text": ""
+      },
+      {
+        "id": "box_8f110bab",
+        "x": 924,
+        "y": 1000,
+        "width": 22,
+        "height": 60,
+        "text": ""
+      },
+      {
+        "id": "box_5a1d7103",
+        "x": 666,
+        "y": 986,
+        "width": 16,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_cf8a120e",
+        "x": 198,
+        "y": 959,
+        "width": 9,
+        "height": 43,
+        "text": ""
+      },
+      {
+        "id": "box_e23565ff",
+        "x": 882,
+        "y": 955,
+        "width": 30,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_2112866f",
+        "x": 903,
+        "y": 941,
+        "width": 12,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_e7595117",
+        "x": 882,
+        "y": 928,
+        "width": 30,
+        "height": 15,
+        "text": ""
+      },
+      {
+        "id": "box_ecee2395",
+        "x": 673,
+        "y": 928,
+        "width": 29,
+        "height": 15,
+        "text": ""
+      },
+      {
+        "id": "box_73066539",
+        "x": 136,
+        "y": 928,
+        "width": 6,
+        "height": 40,
+        "text": ""
+      },
+      {
+        "id": "box_fe7b9696",
+        "x": 1106,
+        "y": 907,
+        "width": 174,
+        "height": 153,
+        "text": "PxoorT"
+      },
+      {
+        "id": "box_e8ba5e68",
+        "x": 1178,
+        "y": 972,
+        "width": 9,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_21b7acd6",
+        "x": 1075,
+        "y": 907,
+        "width": 22,
+        "height": 88,
+        "text": ""
+      },
+      {
+        "id": "box_e6820628",
+        "x": 968,
+        "y": 907,
+        "width": 88,
+        "height": 33,
+        "text": "I9t"
+      },
+      {
+        "id": "box_cebcc238",
+        "x": 924,
+        "y": 907,
+        "width": 22,
+        "height": 88,
+        "text": ""
+      },
+      {
+        "id": "box_9f527a95",
+        "x": 666,
+        "y": 907,
+        "width": 249,
+        "height": 153,
+        "text": ""
+      },
+      {
+        "id": "box_94a9f8a2",
+        "x": 704,
+        "y": 907,
+        "width": 22,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_55e7f25f",
+        "x": 240,
+        "y": 907,
+        "width": 5,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_2fc4d787",
+        "x": 198,
+        "y": 907,
+        "width": 9,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_d4d9535f",
+        "x": 202,
+        "y": 866,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_64588965",
+        "x": 2446,
+        "y": 828,
+        "width": 57,
+        "height": 171,
+        "text": ""
+      },
+      {
+        "id": "box_41d5131a",
+        "x": 2446,
+        "y": 804,
+        "width": 61,
+        "height": 19,
+        "text": ""
+      },
+      {
+        "id": "box_a80a16b9",
+        "x": 1264,
+        "y": 770,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_cbedf0bc",
+        "x": 1061,
+        "y": 770,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_949b2998",
+        "x": 1009,
+        "y": 770,
+        "width": 13,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_97c68c05",
+        "x": 913,
+        "y": 770,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_2d87431d",
+        "x": 879,
+        "y": 770,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_242f2179",
+        "x": 707,
+        "y": 770,
+        "width": 12,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_d2fd4aef",
+        "x": 147,
+        "y": 752,
+        "width": 9,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_c6a7abf5",
+        "x": 136,
+        "y": 752,
+        "width": 6,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_85e02c41",
+        "x": 525,
+        "y": 721,
+        "width": 43,
+        "height": 40,
+        "text": ""
+      },
+      {
+        "id": "box_49081cf9",
+        "x": 2429,
+        "y": 718,
+        "width": 12,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_56eb406d",
+        "x": 150,
+        "y": 701,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_90cf1b6f",
+        "x": 2264,
+        "y": 677,
+        "width": 43,
+        "height": 46,
+        "text": ""
+      },
+      {
+        "id": "box_2e6b452a",
+        "x": 2439,
+        "y": 670,
+        "width": 64,
+        "height": 132,
+        "text": ""
+      },
+      {
+        "id": "box_647d6fb2",
+        "x": 1071,
+        "y": 639,
+        "width": 30,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_fb253b07",
+        "x": 1061,
+        "y": 639,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_c0ed7cdf",
+        "x": 1047,
+        "y": 639,
+        "width": 13,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_ced1531d",
+        "x": 913,
+        "y": 639,
+        "width": 19,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_55b388e0",
+        "x": 879,
+        "y": 639,
+        "width": 33,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_0fcf40c4",
+        "x": 838,
+        "y": 639,
+        "width": 39,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_b070aa19",
+        "x": 741,
+        "y": 639,
+        "width": 37,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_5f28abd0",
+        "x": 724,
+        "y": 639,
+        "width": 16,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_e31c133e",
+        "x": 686,
+        "y": 639,
+        "width": 37,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_215e8b9a",
+        "x": 652,
+        "y": 639,
+        "width": 30,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_1bc6a82e",
+        "x": 604,
+        "y": 639,
+        "width": 47,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_fbe85752",
+        "x": 573,
+        "y": 639,
+        "width": 29,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_d80c8e5a",
+        "x": 346,
+        "y": 635,
+        "width": 33,
+        "height": 40,
+        "text": ""
+      },
+      {
+        "id": "box_b1cd841e",
+        "x": 308,
+        "y": 635,
+        "width": 33,
+        "height": 40,
+        "text": ""
+      },
+      {
+        "id": "box_923855bb",
+        "x": 271,
+        "y": 635,
+        "width": 32,
+        "height": 40,
+        "text": ""
+      },
+      {
+        "id": "box_d55c3d9c",
+        "x": 191,
+        "y": 635,
+        "width": 37,
+        "height": 40,
+        "text": ""
+      },
+      {
+        "id": "box_054e7400",
+        "x": 154,
+        "y": 635,
+        "width": 36,
+        "height": 40,
+        "text": ""
+      },
+      {
+        "id": "box_09ca611e",
+        "x": 229,
+        "y": 632,
+        "width": 37,
+        "height": 43,
+        "text": ""
+      },
+      {
+        "id": "box_708dbdc1",
+        "x": 2322,
+        "y": 611,
+        "width": 112,
+        "height": 106,
+        "text": ""
+      },
+      {
+        "id": "box_482e0d4a",
+        "x": 2322,
+        "y": 598,
+        "width": 40,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_a303aaba",
+        "x": 346,
+        "y": 587,
+        "width": 33,
+        "height": 44,
+        "text": ""
+      },
+      {
+        "id": "box_6c491e83",
+        "x": 308,
+        "y": 587,
+        "width": 33,
+        "height": 44,
+        "text": ""
+      },
+      {
+        "id": "box_3338b8ff",
+        "x": 271,
+        "y": 587,
+        "width": 32,
+        "height": 44,
+        "text": ""
+      },
+      {
+        "id": "box_02e58df7",
+        "x": 229,
+        "y": 587,
+        "width": 37,
+        "height": 44,
+        "text": ""
+      },
+      {
+        "id": "box_ff0db1f9",
+        "x": 191,
+        "y": 587,
+        "width": 37,
+        "height": 44,
+        "text": ""
+      },
+      {
+        "id": "box_f1fc4334",
+        "x": 154,
+        "y": 587,
+        "width": 36,
+        "height": 44,
+        "text": ""
+      },
+      {
+        "id": "box_bf2e5c52",
+        "x": 143,
+        "y": 580,
+        "width": 422,
+        "height": 872,
+        "text": "EcieNuTi"
+      },
+      {
+        "id": "box_5526c280",
+        "x": 371,
+        "y": 860,
+        "width": 124,
+        "height": 495,
+        "text": ""
+      },
+      {
+        "id": "box_7ab3386c",
+        "x": 408,
+        "y": 1316,
+        "width": 26,
+        "height": 23,
+        "text": ""
+      },
+      {
+        "id": "box_6847c731",
+        "x": 422,
+        "y": 1303,
+        "width": 12,
+        "height": 8,
+        "text": ""
+      },
+      {
+        "id": "box_80b96c9b",
+        "x": 435,
+        "y": 1289,
+        "width": 30,
+        "height": 43,
+        "text": ""
+      },
+      {
+        "id": "box_f95a5af2",
+        "x": 408,
+        "y": 1258,
+        "width": 5,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_16e5654a",
+        "x": 408,
+        "y": 1227,
+        "width": 26,
+        "height": 26,
+        "text": ""
+      },
+      {
+        "id": "box_414951f6",
+        "x": 394,
+        "y": 1227,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_268e0688",
+        "x": 425,
+        "y": 1162,
+        "width": 9,
+        "height": 46,
+        "text": ""
+      },
+      {
+        "id": "box_564584e4",
+        "x": 387,
+        "y": 1162,
+        "width": 6,
+        "height": 43,
+        "text": ""
+      },
+      {
+        "id": "box_62bafc32",
+        "x": 387,
+        "y": 1113,
+        "width": 6,
+        "height": 44,
+        "text": ""
+      },
+      {
+        "id": "box_563b1820",
+        "x": 425,
+        "y": 1110,
+        "width": 9,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_aaddcc10",
+        "x": 425,
+        "y": 1058,
+        "width": 9,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_65c7463f",
+        "x": 387,
+        "y": 1058,
+        "width": 6,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_e4b4be40",
+        "x": 425,
+        "y": 1007,
+        "width": 9,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_747e18d3",
+        "x": 387,
+        "y": 1007,
+        "width": 6,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_b822eb00",
+        "x": 425,
+        "y": 959,
+        "width": 9,
+        "height": 46,
+        "text": ""
+      },
+      {
+        "id": "box_7ac7944a",
+        "x": 387,
+        "y": 959,
+        "width": 6,
+        "height": 43,
+        "text": ""
+      },
+      {
+        "id": "box_c8e6215b",
+        "x": 425,
+        "y": 907,
+        "width": 9,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_b10dbfcc",
+        "x": 387,
+        "y": 907,
+        "width": 6,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_cf9aef69",
+        "x": 391,
+        "y": 866,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_3b17da9f",
+        "x": 302,
+        "y": 781,
+        "width": 59,
+        "height": 20,
+        "text": ""
+      },
+      {
+        "id": "box_ee6619a0",
+        "x": 336,
+        "y": 787,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_8127390e",
+        "x": 319,
+        "y": 787,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_94d3da0b",
+        "x": 371,
+        "y": 757,
+        "width": 48,
+        "height": 20,
+        "text": ""
+      },
+      {
+        "id": "box_b554097d",
+        "x": 391,
+        "y": 763,
+        "width": 9,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_bc0eb1ed",
+        "x": 244,
+        "y": 757,
+        "width": 127,
+        "height": 24,
+        "text": "EcieNuTi"
+      },
+      {
+        "id": "box_3b4c50b8",
+        "x": 312,
+        "y": 766,
+        "width": 12,
+        "height": 6,
+        "text": ""
+      },
+      {
+        "id": "box_d97e7930",
+        "x": 277,
+        "y": 763,
+        "width": 13,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_82c46a91",
+        "x": 250,
+        "y": 763,
+        "width": 9,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_6419858d",
+        "x": 2322,
+        "y": 577,
+        "width": 40,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_c0c62910",
+        "x": 1271,
+        "y": 570,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_386931cb",
+        "x": 566,
+        "y": 570,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_c67ebf1a",
+        "x": 2316,
+        "y": 556,
+        "width": 5,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_3dd98fc9",
+        "x": 2322,
+        "y": 553,
+        "width": 44,
+        "height": 22,
+        "text": ""
+      },
+      {
+        "id": "box_b88f9c79",
+        "x": 2316,
+        "y": 539,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_b9b50ef2",
+        "x": 99,
+        "y": 532,
+        "width": 29,
+        "height": 43,
+        "text": ""
+      },
+      {
+        "id": "box_38325380",
+        "x": 2322,
+        "y": 529,
+        "width": 40,
+        "height": 22,
+        "text": ""
+      },
+      {
+        "id": "box_293f509f",
+        "x": 2316,
+        "y": 529,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_c34bb640",
+        "x": 1229,
+        "y": 518,
+        "width": 47,
+        "height": 44,
+        "text": ""
+      },
+      {
+        "id": "box_fa9033d4",
+        "x": 2322,
+        "y": 512,
+        "width": 40,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_2ddbd4f3",
+        "x": 2316,
+        "y": 498,
+        "width": 5,
+        "height": 29,
+        "text": ""
+      },
+      {
+        "id": "box_1144c588",
+        "x": 2322,
+        "y": 491,
+        "width": 40,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_784ce3fb",
+        "x": 570,
+        "y": 488,
+        "width": 706,
+        "height": 74,
+        "text": "Dmc BBCU"
+      },
+      {
+        "id": "box_d34d798e",
+        "x": 894,
+        "y": 530,
+        "width": 61,
+        "height": 20,
+        "text": "BBCU"
+      },
+      {
+        "id": "box_7ed24e8f",
+        "x": 927,
+        "y": 539,
+        "width": 9,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_a5916c67",
+        "x": 951,
+        "y": 515,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_840f2655",
+        "x": 143,
+        "y": 488,
+        "width": 422,
+        "height": 74,
+        "text": ""
+      },
+      {
+        "id": "box_f1b7aabb",
+        "x": 2322,
+        "y": 474,
+        "width": 44,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_580a55f2",
+        "x": 2316,
+        "y": 470,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_4558f6bb",
+        "x": 336,
+        "y": 470,
+        "width": 9,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_a19cb4f5",
+        "x": 353,
+        "y": 467,
+        "width": 9,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_9d6aa6c7",
+        "x": 2316,
+        "y": 457,
+        "width": 5,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_8d11b6c4",
+        "x": 2322,
+        "y": 453,
+        "width": 40,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_ee960944",
+        "x": 1274,
+        "y": 453,
+        "width": 6,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_0d827eed",
+        "x": 2322,
+        "y": 432,
+        "width": 40,
+        "height": 20,
+        "text": ""
+      },
+      {
+        "id": "box_ddaa0f4c",
+        "x": 728,
+        "y": 408,
+        "width": 5,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_48b6f5dd",
+        "x": 2322,
+        "y": 405,
+        "width": 44,
+        "height": 23,
+        "text": ""
+      },
+      {
+        "id": "box_6e56a2a8",
+        "x": 2316,
+        "y": 405,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_999cdb1d",
+        "x": 2316,
+        "y": 395,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_cd0f126b",
+        "x": 1728,
+        "y": 391,
+        "width": 22,
+        "height": 37,
+        "text": ""
+      },
+      {
+        "id": "box_f044da30",
+        "x": 1693,
+        "y": 391,
+        "width": 23,
+        "height": 37,
+        "text": ""
+      },
+      {
+        "id": "box_7aceb876",
+        "x": 1360,
+        "y": 391,
+        "width": 26,
+        "height": 37,
+        "text": ""
+      },
+      {
+        "id": "box_03edd1aa",
+        "x": 1326,
+        "y": 391,
+        "width": 26,
+        "height": 37,
+        "text": ""
+      },
+      {
+        "id": "box_d01d7f8b",
+        "x": 1295,
+        "y": 391,
+        "width": 22,
+        "height": 37,
+        "text": ""
+      },
+      {
+        "id": "box_96658456",
+        "x": 2322,
+        "y": 388,
+        "width": 40,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_4632a758",
+        "x": 1363,
+        "y": 381,
+        "width": 16,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_97314f3e",
+        "x": 1326,
+        "y": 381,
+        "width": 19,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_bd0d5864",
+        "x": 1728,
+        "y": 377,
+        "width": 26,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_03ed5613",
+        "x": 1312,
+        "y": 371,
+        "width": 5,
+        "height": 15,
+        "text": ""
+      },
+      {
+        "id": "box_fdbf00a0",
+        "x": 2322,
+        "y": 367,
+        "width": 40,
+        "height": 19,
+        "text": ""
+      },
+      {
+        "id": "box_6ae2e155",
+        "x": 2316,
+        "y": 353,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_84f688b1",
+        "x": 1728,
+        "y": 350,
+        "width": 22,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_24134676",
+        "x": 1693,
+        "y": 350,
+        "width": 23,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_869c8235",
+        "x": 1326,
+        "y": 350,
+        "width": 26,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_57643ba8",
+        "x": 1295,
+        "y": 350,
+        "width": 22,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_9461e5d8",
+        "x": 1645,
+        "y": 319,
+        "width": 33,
+        "height": 88,
+        "text": ""
+      },
+      {
+        "id": "box_df72900f",
+        "x": 1728,
+        "y": 312,
+        "width": 22,
+        "height": 37,
+        "text": ""
+      },
+      {
+        "id": "box_886e951d",
+        "x": 1360,
+        "y": 312,
+        "width": 26,
+        "height": 37,
+        "text": ""
+      },
+      {
+        "id": "box_82a8b117",
+        "x": 1295,
+        "y": 312,
+        "width": 22,
+        "height": 37,
+        "text": ""
+      },
+      {
+        "id": "box_92f975db",
+        "x": 2316,
+        "y": 309,
+        "width": 5,
+        "height": 19,
+        "text": ""
+      },
+      {
+        "id": "box_14b24b07",
+        "x": 1693,
+        "y": 309,
+        "width": 23,
+        "height": 40,
+        "text": ""
+      },
+      {
+        "id": "box_b5abba5f",
+        "x": 1326,
+        "y": 309,
+        "width": 26,
+        "height": 40,
+        "text": ""
+      },
+      {
+        "id": "box_27d55a55",
+        "x": 2078,
+        "y": 305,
+        "width": 229,
+        "height": 23,
+        "text": ""
+      },
+      {
+        "id": "box_65c51366",
+        "x": 1790,
+        "y": 305,
+        "width": 88,
+        "height": 33,
+        "text": "Tecit"
+      },
+      {
+        "id": "box_da52f4a4",
+        "x": 1804,
+        "y": 310,
+        "width": 55,
+        "height": 24,
+        "text": "Tecit"
+      },
+      {
+        "id": "box_eea43cd3",
+        "x": 1801,
+        "y": 413,
+        "width": 62,
+        "height": 20,
+        "text": "Fcok"
+      },
+      {
+        "id": "box_6353bbde",
+        "x": 1821,
+        "y": 419,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_c242ac1c",
+        "x": 1834,
+        "y": 415,
+        "width": 9,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_ec511e01",
+        "x": 1784,
+        "y": 385,
+        "width": 96,
+        "height": 24,
+        "text": "PAlIIII"
+      },
+      {
+        "id": "box_6f32b213",
+        "x": 1817,
+        "y": 395,
+        "width": 12,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_34db2e79",
+        "x": 1869,
+        "y": 391,
+        "width": 5,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_472b2d54",
+        "x": 1894,
+        "y": 330,
+        "width": 75,
+        "height": 179,
+        "text": ""
+      },
+      {
+        "id": "box_b39ffbc1",
+        "x": 1948,
+        "y": 491,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_174ed229",
+        "x": 1931,
+        "y": 491,
+        "width": 15,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_c68e251d",
+        "x": 1913,
+        "y": 491,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_215af4b2",
+        "x": 1900,
+        "y": 491,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_2e3637c5",
+        "x": 1948,
+        "y": 474,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_dec326bf",
+        "x": 1931,
+        "y": 474,
+        "width": 15,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_d450a8f1",
+        "x": 1913,
+        "y": 474,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_935f613f",
+        "x": 1900,
+        "y": 474,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_49916ed6",
+        "x": 1948,
+        "y": 457,
+        "width": 16,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_0f65dd1a",
+        "x": 1934,
+        "y": 457,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_e9e2b61d",
+        "x": 1917,
+        "y": 457,
+        "width": 12,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_3fc09e5d",
+        "x": 1900,
+        "y": 457,
+        "width": 12,
+        "height": 15,
+        "text": ""
+      },
+      {
+        "id": "box_e21199b7",
+        "x": 1948,
+        "y": 439,
+        "width": 16,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_4ba44635",
+        "x": 1934,
+        "y": 439,
+        "width": 12,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_a76794db",
+        "x": 1917,
+        "y": 439,
+        "width": 12,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_68d5ac4c",
+        "x": 1900,
+        "y": 439,
+        "width": 12,
+        "height": 16,
+        "text": ""
+      },
+      {
+        "id": "box_a54fb215",
+        "x": 1924,
+        "y": 432,
+        "width": 12,
+        "height": 6,
+        "text": ""
+      },
+      {
+        "id": "box_996beab3",
+        "x": 1910,
+        "y": 350,
+        "width": 43,
+        "height": 71,
+        "text": ""
+      },
+      {
+        "id": "box_e74ace7d",
+        "x": 1914,
+        "y": 368,
+        "width": 31,
+        "height": 21,
+        "text": ""
+      },
+      {
+        "id": "box_8fdfbca6",
+        "x": 1924,
+        "y": 336,
+        "width": 12,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_10e7886f",
+        "x": 1683,
+        "y": 305,
+        "width": 9,
+        "height": 88,
+        "text": ""
+      },
+      {
+        "id": "box_0033a4df",
+        "x": 525,
+        "y": 305,
+        "width": 1291,
+        "height": 666,
+        "text": "BBSlI 5C7yg Dmc BBCU I9t"
+      },
+      {
+        "id": "box_05605a80",
+        "x": 1212,
+        "y": 856,
+        "width": 40,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_4694cc82",
+        "x": 1164,
+        "y": 856,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_d0684e60",
+        "x": 1116,
+        "y": 856,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_3a3d077a",
+        "x": 1068,
+        "y": 856,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_1f00d1fc",
+        "x": 1020,
+        "y": 856,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_ae9cbff3",
+        "x": 972,
+        "y": 856,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_861f5dd0",
+        "x": 927,
+        "y": 856,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_67282666",
+        "x": 879,
+        "y": 856,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_21defd7e",
+        "x": 831,
+        "y": 856,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_0e913fe4",
+        "x": 783,
+        "y": 856,
+        "width": 46,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_bc42a206",
+        "x": 735,
+        "y": 856,
+        "width": 46,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_19bcbd78",
+        "x": 690,
+        "y": 856,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_5995773d",
+        "x": 642,
+        "y": 856,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_b5311cd9",
+        "x": 594,
+        "y": 856,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_a41c4a5d",
+        "x": 1212,
+        "y": 790,
+        "width": 40,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_0d075d50",
+        "x": 1164,
+        "y": 790,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_5bc401e8",
+        "x": 1116,
+        "y": 790,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_118ffd8a",
+        "x": 1068,
+        "y": 790,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_3831b198",
+        "x": 1020,
+        "y": 790,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_720b9d2a",
+        "x": 972,
+        "y": 790,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_cdb6d15d",
+        "x": 927,
+        "y": 790,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_808a5803",
+        "x": 879,
+        "y": 790,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_5c130b4f",
+        "x": 831,
+        "y": 790,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_3e47b7c4",
+        "x": 783,
+        "y": 790,
+        "width": 46,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_4314ee23",
+        "x": 735,
+        "y": 790,
+        "width": 46,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_89450d35",
+        "x": 690,
+        "y": 790,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_f7c42d62",
+        "x": 642,
+        "y": 790,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_f4b55d79",
+        "x": 594,
+        "y": 790,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_2d412beb",
+        "x": 1212,
+        "y": 725,
+        "width": 40,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_70db0e65",
+        "x": 1164,
+        "y": 725,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_b5aceec2",
+        "x": 1116,
+        "y": 725,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_8c9f6b7f",
+        "x": 1068,
+        "y": 725,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_729e8b90",
+        "x": 1020,
+        "y": 725,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_41fc06c5",
+        "x": 972,
+        "y": 725,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_e47521e4",
+        "x": 927,
+        "y": 725,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_5c8174b6",
+        "x": 879,
+        "y": 725,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_f8f4b174",
+        "x": 831,
+        "y": 725,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_fbbb8dcd",
+        "x": 786,
+        "y": 725,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_0c96f142",
+        "x": 738,
+        "y": 725,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_b370d7b1",
+        "x": 690,
+        "y": 725,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_42cd35c6",
+        "x": 642,
+        "y": 725,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_6c8ef0df",
+        "x": 594,
+        "y": 725,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_b30c03f8",
+        "x": 1533,
+        "y": 691,
+        "width": 55,
+        "height": 224,
+        "text": ""
+      },
+      {
+        "id": "box_f4e1be71",
+        "x": 1556,
+        "y": 893,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_bdd582cb",
+        "x": 1542,
+        "y": 814,
+        "width": 37,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_6b94b7db",
+        "x": 1557,
+        "y": 822,
+        "width": 10,
+        "height": 28,
+        "text": ""
+      },
+      {
+        "id": "box_e05e8024",
+        "x": 1546,
+        "y": 794,
+        "width": 29,
+        "height": 15,
+        "text": ""
+      },
+      {
+        "id": "box_fb5ae497",
+        "x": 1566,
+        "y": 780,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_00e2dd39",
+        "x": 1570,
+        "y": 766,
+        "width": 5,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_6d53c59b",
+        "x": 1570,
+        "y": 745,
+        "width": 5,
+        "height": 20,
+        "text": ""
+      },
+      {
+        "id": "box_2a0e5be8",
+        "x": 1539,
+        "y": 745,
+        "width": 5,
+        "height": 44,
+        "text": ""
+      },
+      {
+        "id": "box_72f7f455",
+        "x": 1577,
+        "y": 742,
+        "width": 8,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_12cb6dbd",
+        "x": 1566,
+        "y": 711,
+        "width": 6,
+        "height": 19,
+        "text": ""
+      },
+      {
+        "id": "box_920881a0",
+        "x": 1426,
+        "y": 688,
+        "width": 59,
+        "height": 227,
+        "text": ""
+      },
+      {
+        "id": "box_fa2a6162",
+        "x": 1439,
+        "y": 866,
+        "width": 33,
+        "height": 43,
+        "text": ""
+      },
+      {
+        "id": "box_9285a1f8",
+        "x": 1453,
+        "y": 890,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_89e4eeb6",
+        "x": 1439,
+        "y": 811,
+        "width": 33,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_7d06a7be",
+        "x": 1450,
+        "y": 822,
+        "width": 11,
+        "height": 28,
+        "text": ""
+      },
+      {
+        "id": "box_f1ba3ca6",
+        "x": 1463,
+        "y": 766,
+        "width": 6,
+        "height": 19,
+        "text": ""
+      },
+      {
+        "id": "box_e0da6040",
+        "x": 1463,
+        "y": 745,
+        "width": 6,
+        "height": 20,
+        "text": ""
+      },
+      {
+        "id": "box_833bea33",
+        "x": 1453,
+        "y": 745,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_bdb97cf1",
+        "x": 1443,
+        "y": 745,
+        "width": 5,
+        "height": 20,
+        "text": ""
+      },
+      {
+        "id": "box_91407d23",
+        "x": 1473,
+        "y": 742,
+        "width": 6,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_b2f41609",
+        "x": 1432,
+        "y": 742,
+        "width": 6,
+        "height": 47,
+        "text": ""
+      },
+      {
+        "id": "box_82d2efe0",
+        "x": 1449,
+        "y": 732,
+        "width": 9,
+        "height": 5,
+        "text": ""
+      },
+      {
+        "id": "box_2bf206be",
+        "x": 1164,
+        "y": 659,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_b77baa81",
+        "x": 1068,
+        "y": 659,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_b8e7d48e",
+        "x": 1020,
+        "y": 659,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_81430525",
+        "x": 972,
+        "y": 659,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_bde9103c",
+        "x": 879,
+        "y": 659,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_17630b28",
+        "x": 783,
+        "y": 659,
+        "width": 46,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_9c27ebd7",
+        "x": 738,
+        "y": 659,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_28516754",
+        "x": 690,
+        "y": 659,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_207ff00e",
+        "x": 642,
+        "y": 659,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_8365f2ba",
+        "x": 1212,
+        "y": 656,
+        "width": 40,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_cce0a73d",
+        "x": 1116,
+        "y": 656,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_fbb83466",
+        "x": 927,
+        "y": 656,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_af4ac444",
+        "x": 831,
+        "y": 656,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_91fdbc1f",
+        "x": 594,
+        "y": 656,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_3ffd2c1b",
+        "x": 1770,
+        "y": 599,
+        "width": 31,
+        "height": 92,
+        "text": ""
+      },
+      {
+        "id": "box_cd6423ac",
+        "x": 1783,
+        "y": 625,
+        "width": 5,
+        "height": 12,
+        "text": ""
+      },
+      {
+        "id": "box_2c73321f",
+        "x": 1772,
+        "y": 618,
+        "width": 6,
+        "height": 13,
+        "text": ""
+      },
+      {
+        "id": "box_dd98fb2b",
+        "x": 1212,
+        "y": 591,
+        "width": 40,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_e13fe06d",
+        "x": 1164,
+        "y": 591,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_6b2e3cda",
+        "x": 1116,
+        "y": 591,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_71903e12",
+        "x": 1068,
+        "y": 591,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_0499b3d9",
+        "x": 1020,
+        "y": 591,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_bc52d8b9",
+        "x": 972,
+        "y": 591,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_d04a4001",
+        "x": 927,
+        "y": 591,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_13fa09bc",
+        "x": 879,
+        "y": 591,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_dc5db46c",
+        "x": 831,
+        "y": 591,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_8edd2e0f",
+        "x": 783,
+        "y": 591,
+        "width": 46,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_edd40113",
+        "x": 738,
+        "y": 591,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_84b231fd",
+        "x": 690,
+        "y": 591,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_b44bc509",
+        "x": 642,
+        "y": 591,
+        "width": 43,
+        "height": 36,
+        "text": ""
+      },
+      {
+        "id": "box_20cdd710",
+        "x": 594,
+        "y": 591,
+        "width": 43,
+        "height": 33,
+        "text": ""
+      },
+      {
+        "id": "box_131ca81d",
+        "x": 1437,
+        "y": 475,
+        "width": 123,
+        "height": 20,
+        "text": "5C7yg"
+      },
+      {
+        "id": "box_067c02d4",
+        "x": 1522,
+        "y": 481,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_5d8b7244",
+        "x": 1491,
+        "y": 481,
+        "width": 9,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_1b72290c",
+        "x": 1468,
+        "y": 378,
+        "width": 106,
+        "height": 76,
+        "text": ""
+      },
+      {
+        "id": "box_505f3be9",
+        "x": 1470,
+        "y": 384,
+        "width": 98,
+        "height": 64,
+        "text": ""
+      },
+      {
+        "id": "box_314e1356",
+        "x": 1492,
+        "y": 403,
+        "width": 48,
+        "height": 24,
+        "text": ""
+      },
+      {
+        "id": "box_69348fc3",
+        "x": 1834,
+        "y": 298,
+        "width": 13,
+        "height": 6,
+        "text": ""
+      },
+      {
+        "id": "box_98dff1f5",
+        "x": 1735,
+        "y": 298,
+        "width": 12,
+        "height": 6,
+        "text": ""
+      },
+      {
+        "id": "box_287eec05",
+        "x": 1370,
+        "y": 298,
+        "width": 13,
+        "height": 6,
+        "text": ""
+      },
+      {
+        "id": "box_d032c477",
+        "x": 1357,
+        "y": 298,
+        "width": 12,
+        "height": 6,
+        "text": ""
+      },
+      {
+        "id": "box_63453844",
+        "x": 2322,
+        "y": 295,
+        "width": 40,
+        "height": 67,
+        "text": ""
+      },
+      {
+        "id": "box_aab5712a",
+        "x": 2322,
+        "y": 291,
+        "width": 30,
+        "height": 20,
+        "text": ""
+      },
+      {
+        "id": "box_dac39e73",
+        "x": 2068,
+        "y": 291,
+        "width": 12,
+        "height": 6,
+        "text": ""
+      },
+      {
+        "id": "box_0807795c",
+        "x": 1999,
+        "y": 291,
+        "width": 19,
+        "height": 6,
+        "text": ""
+      },
+      {
+        "id": "box_1e23becc",
+        "x": 1793,
+        "y": 291,
+        "width": 50,
+        "height": 6,
+        "text": ""
+      },
+      {
+        "id": "box_9cdde167",
+        "x": 1693,
+        "y": 291,
+        "width": 23,
+        "height": 6,
+        "text": ""
+      },
+      {
+        "id": "box_9c3529b0",
+        "x": 1319,
+        "y": 291,
+        "width": 57,
+        "height": 6,
+        "text": ""
+      },
+      {
+        "id": "box_82dd4a09",
+        "x": 1288,
+        "y": 291,
+        "width": 29,
+        "height": 6,
+        "text": ""
+      },
+      {
+        "id": "box_95f78514",
+        "x": 515,
+        "y": 264,
+        "width": 1916,
+        "height": 1188,
+        "text": "Tecit PAlIIII BBSlI Fcok 5C7yg Dmc BBCU jakcl I9t Jiurta PxoorT eirictr VPICNE Roiu 8"
+      },
+      {
+        "id": "box_7dc3a9d2",
+        "x": 2114,
+        "y": 1235,
+        "width": 10,
+        "height": 100,
+        "text": ""
+      },
+      {
+        "id": "box_beb36eb6",
+        "x": 876,
+        "y": 1118,
+        "width": 107,
+        "height": 21,
+        "text": "eirictr"
+      },
+      {
+        "id": "box_810ddb9e",
+        "x": 958,
+        "y": 1124,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_af2de65a",
+        "x": 941,
+        "y": 1124,
+        "width": 9,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_526ceec3",
+        "x": 882,
+        "y": 1124,
+        "width": 9,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_4ee2db05",
+        "x": 2227,
+        "y": 918,
+        "width": 96,
+        "height": 21,
+        "text": "Jiurta"
+      },
+      {
+        "id": "box_a9bb156b",
+        "x": 2302,
+        "y": 924,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_6ae921e7",
+        "x": 2257,
+        "y": 924,
+        "width": 9,
+        "height": 9,
+        "text": ""
+      },
+      {
+        "id": "box_4224e89c",
+        "x": 1288,
+        "y": 219,
+        "width": 390,
+        "height": 71,
+        "text": ""
+      },
+      {
+        "id": "box_b6b82bc3",
+        "x": 1484,
+        "y": 202,
+        "width": 5,
+        "height": 9,
+        "text": ""
+      }
+    ],
+    "stakeholder_lists": {
+      "Minor": [],
+      "Major": [],
+      "Significant": [],
+      "Critical": []
+    },
+    "rules": [],
+    "setup_complete": false,
+    "id": "a6184a39",
+    "created_at": "2026-07-20T16:21:06.383998"
   }
 }
