@@ -121,13 +121,17 @@ class Factory:
     # Section 17: Utility & Support Systems
     utility_systems: List[Dict] = field(default_factory=list)  # [{"system":.., "type_vendor":.., "redundancy":.., "last_tested":..}]
 
-    # Section 18: Training & Certification Records
-    training_info: Dict = field(default_factory=dict)
-    # {"induction_program":.., "drill_frequency":.., "last_drill_date":.., "contractor_training_process":..}
+    # Section 18: Training & Certification Records -- a facility can run many
+    # distinct training programs/drills/certifications, so this is now a list
+    # of records rather than one flat dict (see from_dict() below for the
+    # one-time migration of the old single-record shape).
+    training_records: List[Dict] = field(default_factory=list)
+    # [{"name":.., "type":.., "frequency":.., "last_conducted":.., "notes":..}, ...]
 
-    # Section 19: Environmental & Quality Compliance
-    environmental_compliance: Dict = field(default_factory=dict)
-    # {"env_clearance":.., "pcb_registration":.., "iso_9001":.., "iso_14001":.., "iso_45001":..}
+    # Section 19: Environmental & Quality Compliance -- same change: a list of
+    # certifications/clearances instead of a fixed set of named fields.
+    environmental_records: List[Dict] = field(default_factory=list)
+    # [{"type":.., "reference":.., "issuing_authority":.., "valid_until":..}, ...]
 
     # Section 20: Emergency Response & Compliance
     regulatory_standards: str = ""
@@ -186,6 +190,34 @@ class Factory:
             for f in Factory.__dataclass_fields__
             if f in data and f not in ("monitored_parameters", "people", "checklist_records", "permit_records", "rules")
         }
+
+        # Backward compatibility: older saved facilities stored Section 18
+        # and 19 as a single flat dict (training_info / environmental_
+        # compliance) instead of a list of records. Convert on load so
+        # existing data isn't silently dropped by the rename above.
+        if "training_records" not in known_fields and data.get("training_info"):
+            old = data["training_info"]
+            migrated = []
+            if old.get("induction_program"):
+                migrated.append({"name": "Safety Induction Program", "type": "Induction",
+                                  "frequency": old["induction_program"], "last_conducted": "", "notes": ""})
+            if old.get("drill_frequency") or old.get("last_drill_date"):
+                migrated.append({"name": "Mock Drills", "type": "Drill",
+                                  "frequency": old.get("drill_frequency", ""), "last_conducted": old.get("last_drill_date", ""), "notes": ""})
+            if old.get("contractor_training_process"):
+                migrated.append({"name": "Contractor / Third-Party Worker Training", "type": "Contractor Training",
+                                  "frequency": "", "last_conducted": "", "notes": old["contractor_training_process"]})
+            known_fields["training_records"] = migrated
+
+        if "environmental_records" not in known_fields and data.get("environmental_compliance"):
+            old = data["environmental_compliance"]
+            migrated = []
+            for label, key in (("Environmental Clearance", "env_clearance"), ("PCB Registration", "pcb_registration"),
+                                ("ISO 9001", "iso_9001"), ("ISO 14001", "iso_14001"), ("ISO 45001", "iso_45001")):
+                if old.get(key):
+                    migrated.append({"type": label, "reference": old[key], "issuing_authority": "", "valid_until": ""})
+            known_fields["environmental_records"] = migrated
+
         factory = Factory(**known_fields)
         factory.monitored_parameters = monitored_parameters
         factory.people = people
@@ -260,9 +292,9 @@ class Factory:
         # Section 17: Utility & Support Systems
         status[17] = "done" if self.utility_systems else "pending"
         # Section 18: Training & Certification Records
-        status[18] = "done" if self.training_info else "pending"
+        status[18] = "done" if self.training_records else "pending"
         # Section 19: Environmental & Quality Compliance
-        status[19] = "done" if self.environmental_compliance else "pending"
+        status[19] = "done" if self.environmental_records else "pending"
         # Section 20: Emergency Response & Compliance
         status[20] = "done" if self.regulatory_standards.strip() else "pending"
 

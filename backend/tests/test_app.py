@@ -388,18 +388,26 @@ def test_utility_systems_prepopulated_with_standard_categories(client):
 def test_training_and_environmental_save_and_redirect(client):
     factory_id = _create_test_facility(client)
 
-    r = client.post(f"/factory/{factory_id}/training", data={"induction_program": "2-day induction"})
+    r = client.post(f"/factory/{factory_id}/training", data={
+        "training_name[]": "Safety Induction Program",
+        "training_type[]": "Induction",
+        "training_frequency[]": "2-day induction",
+    })
     assert r.status_code == 302
     assert "/environmental" in r.headers["Location"]
 
-    r = client.post(f"/factory/{factory_id}/environmental", data={"iso_9001": "Yes", "iso_14001": "Yes"})
+    r = client.post(f"/factory/{factory_id}/environmental", data={
+        "env_type[]": ["ISO 9001", "ISO 14001"],
+        "env_reference[]": ["Yes", "Yes"],
+    })
     assert r.status_code == 302
     assert "/emergency-response" in r.headers["Location"]
 
     import services.storage as storage
     factory = storage.get_factory(factory_id)
-    assert factory.training_info["induction_program"] == "2-day induction"
-    assert factory.environmental_compliance["iso_9001"] == "Yes"
+    assert factory.training_records[0]["name"] == "Safety Induction Program"
+    assert factory.environmental_records[0]["type"] == "ISO 9001"
+    assert factory.environmental_records[0]["reference"] == "Yes"
 
 
 def test_facility_details_shows_all_parts(client):
@@ -455,7 +463,7 @@ def test_full_wizard_end_to_end(client):
     # Utilities -> Training -> Environmental -> Emergency Response (the real finish)
     r = client.post(f"/factory/{factory_id}/utilities", data={})
     assert "/training" in r.headers["Location"]
-    r = client.post(f"/factory/{factory_id}/training", data={"induction_program": "Standard"})
+    r = client.post(f"/factory/{factory_id}/training", data={"training_name[]": "Standard Induction", "training_type[]": "Induction"})
     assert "/environmental" in r.headers["Location"]
     r = client.post(f"/factory/{factory_id}/environmental", data={})
     assert "/emergency-response" in r.headers["Location"]

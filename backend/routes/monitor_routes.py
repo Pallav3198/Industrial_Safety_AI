@@ -160,7 +160,6 @@ def new_rule(factory_id):
         catalog_json=json.dumps(RULE_CONDITION_CATALOG),
     )
 
-
 @monitor_bp.route("/<factory_id>/rules/<rule_id>/edit", methods=["GET", "POST"])
 def edit_rule(factory_id, rule_id):
     factory = storage.get_factory(factory_id)
@@ -198,7 +197,6 @@ def edit_rule(factory_id, rule_id):
         catalog_json=json.dumps(RULE_CONDITION_CATALOG),
     )
 
-
 @monitor_bp.route("/<factory_id>/rules/<rule_id>/delete", methods=["POST"])
 def delete_rule(factory_id, rule_id):
     storage.delete_rule(factory_id, rule_id)
@@ -230,7 +228,6 @@ def approve_rule(factory_id, rule_id):
         storage.upsert_rule(factory_id, rule)
         flash(f'Rule "{rule.name}" approved.', "success")
     return redirect(url_for("monitor.rule_engine_list", factory_id=factory_id))
-
 
 @monitor_bp.route("/<factory_id>/rules/<rule_id>/reject", methods=["POST"])
 def reject_rule(factory_id, rule_id):

@@ -1192,13 +1192,17 @@ def training_records(factory_id):
     if request.method == "GET":
         return render_template("add_facility_training_records.html", factory=factory, prev_nav=prev_nav, next_nav=next_nav)
 
-    training_info = {
-        "induction_program": request.form.get("induction_program", "").strip(),
-        "drill_frequency": request.form.get("drill_frequency", "").strip(),
-        "last_drill_date": request.form.get("last_drill_date", "").strip(),
-        "contractor_training_process": request.form.get("contractor_training_process", "").strip(),
-    }
-    storage.update_factory_fields(factory_id, training_info=training_info)
+    names = request.form.getlist("training_name[]")
+    types = request.form.getlist("training_type[]")
+    frequencies = request.form.getlist("training_frequency[]")
+    last_conducteds = request.form.getlist("training_last_conducted[]")
+    notes = request.form.getlist("training_notes[]")
+    records = [
+        {"name": n.strip(), "type": t.strip(), "frequency": f.strip(), "last_conducted": lc.strip(), "notes": nt.strip()}
+        for n, t, f, lc, nt in _zip_form_lists(names, types, frequencies, last_conducteds, notes)
+        if n.strip() or t.strip() or f.strip() or lc.strip() or nt.strip()
+    ]
+    storage.update_factory_fields(factory_id, training_records=records)
     redirect_url = next_nav["url"] if next_nav else url_for("factory.facility_details", factory_id=factory_id)
     return redirect(redirect_url)
 
@@ -1218,14 +1222,16 @@ def environmental_compliance(factory_id):
     if request.method == "GET":
         return render_template("add_facility_environmental_compliance.html", factory=factory, prev_nav=prev_nav, next_nav=next_nav)
 
-    env_compliance = {
-        "env_clearance": request.form.get("env_clearance", "").strip(),
-        "pcb_registration": request.form.get("pcb_registration", "").strip(),
-        "iso_9001": request.form.get("iso_9001", "").strip(),
-        "iso_14001": request.form.get("iso_14001", "").strip(),
-        "iso_45001": request.form.get("iso_45001", "").strip(),
-    }
-    storage.update_factory_fields(factory_id, environmental_compliance=env_compliance)
+    types = request.form.getlist("env_type[]")
+    references = request.form.getlist("env_reference[]")
+    authorities = request.form.getlist("env_authority[]")
+    valid_untils = request.form.getlist("env_valid_until[]")
+    records = [
+        {"type": t.strip(), "reference": r.strip(), "issuing_authority": a.strip(), "valid_until": v.strip()}
+        for t, r, a, v in _zip_form_lists(types, references, authorities, valid_untils)
+        if t.strip() or r.strip() or a.strip() or v.strip()
+    ]
+    storage.update_factory_fields(factory_id, environmental_records=records)
     redirect_url = next_nav["url"] if next_nav else url_for("factory.facility_details", factory_id=factory_id)
     return redirect(redirect_url)
 
@@ -1257,6 +1263,11 @@ def emergency_response(factory_id):
         setup_complete=True,
     )
     flash(f'"{factory.name}" onboarding complete.', "success")
+    # The page submits this via fetch() so it can enable the "Configure AI"
+    # button in place instead of navigating away immediately -- see
+    # static/js/emergency_response.js.
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        return jsonify({"success": True})
     return redirect(url_for("main.landing"))
 
 # ===========================================================================
@@ -1326,8 +1337,13 @@ def train_and_configure(factory_id):
     committing to a real implementation yet."""
     factory = storage.get_factory(factory_id)
     if not factory:
+        if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+            return jsonify({"success": False, "error": "Facility not found"}), 404
         flash("Facility not found.", "error")
         return redirect(url_for("factory.list_facilities"))
 
     flash(f'"{factory.name}" is fully configured. Train & Configure AI is not implemented yet.', "success")
-    return redirect(url_for("factory.facility_details", factory_id=factory_id))
+    redirect_url = url_for("factory.facility_details", factory_id=factory_id)
+    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
+        return jsonify({"success": True, "redirect": redirect_url})
+    return redirect(redirect_url)
