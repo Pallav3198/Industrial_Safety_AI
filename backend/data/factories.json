@@ -1147,19 +1147,8 @@
         "last_tested": ""
       }
     ],
-    "training_info": {
-      "induction_program": "",
-      "drill_frequency": "",
-      "last_drill_date": "",
-      "contractor_training_process": ""
-    },
-    "environmental_compliance": {
-      "env_clearance": "",
-      "pcb_registration": "",
-      "iso_9001": "",
-      "iso_14001": "",
-      "iso_45001": ""
-    },
+    "training_records": [],
+    "environmental_records": [],
     "regulatory_standards": "",
     "fire_safety_systems": "",
     "last_safety_audit_date": "",
@@ -1205,24 +1194,36 @@
         "updated_at": "2026-07-14T10:24:25.012607"
       },
       {
-        "name": "Test AI Proposal",
-        "description": "Manually created to test the review workflow.",
-        "severity": "Major",
+        "name": "asa",
+        "description": "",
+        "severity": "Minor",
         "condition_tree": {
           "type": "group",
-          "id": "bea41937",
+          "id": "343f6cec",
           "logic": "ALL",
-          "children": []
+          "children": [
+            {
+              "type": "condition",
+              "id": "bd14ebcc",
+              "section": "sensors",
+              "condition_type": "faulted_duration",
+              "scope": "any",
+              "target_id": "",
+              "operator": "",
+              "value": "",
+              "notes": ""
+            }
+          ]
         },
         "enabled": true,
-        "source": "AI-Generated",
-        "ai_basis": "Manual test, not a real AI proposal.",
+        "source": "Manually Added",
+        "ai_basis": "",
         "review_status": "Approved",
         "evaluation_status": "Not Evaluated",
         "last_evaluated": "",
-        "id": "bdd1cfb1",
-        "created_at": "2026-07-15T19:56:21.575347",
-        "updated_at": "2026-07-15T21:26:08.883522"
+        "id": "a1ede976",
+        "created_at": "2026-07-20T10:55:03.268395",
+        "updated_at": "2026-07-20T10:55:03.268408"
       }
     ],
     "setup_complete": true,
@@ -6023,31 +6024,31 @@
     "clarification_qa": [
       {
         "question": "Could you provide the 'Last Tested Date' for all critical utility and support systems listed in Section 11? This information is crucial for assessing potential compound risks from utility failures.",
-        "answer": "d"
+        "answer": "s"
       },
       {
         "question": "Please clarify the expected 'Immediate (on detection)' response timeframe for the 'Corporate / Regulatory' escalation level, as it is currently blank in Section 5.4.",
-        "answer": "a"
+        "answer": "s"
       },
       {
         "question": "For all Managerial Staff, Maintenance Staff, and Safety Officers, please provide their blood group, typical working hours and days, and emergency contact details (name, phone, relation) to ensure comprehensive emergency response capabilities.",
-        "answer": "a"
+        "answer": "s"
       },
       {
         "question": "Given the history of 'deferred crane brake overhaul' contributing to the 8-Jun-2026 incident, how are deferred maintenance items tracked and prioritized, especially when production schedules conflict, and what is the current status of the outstanding deferral?",
-        "answer": "a"
+        "answer": "s"
       },
       {
         "question": "Are there specific alarm thresholds or operational procedures for sensor parameters (e.g., ladle refractory temperature, tundish temperature) during startup, shutdown, or other off-normal conditions that deviate from the 'Normal Range' and 'Alarm Threshold' provided?",
-        "answer": "a"
+        "answer": "s"
       },
       {
         "question": "The current shift patterns show a reduced night complement (~1050 vs ~1450). How does this reduced staffing during Shift C affect response times and resource availability during incidents, particularly in light of manpower shortage allegations?",
-        "answer": "a"
+        "answer": "s"
       },
       {
         "question": "How is the 'one-way historian data diode to PI' for Level-2 automation data validated to ensure data integrity and real-time accuracy for critical tags?",
-        "answer": "a"
+        "answer": "s"
       }
     ],
     "validation_complete": true,
@@ -6227,19 +6228,15 @@
         "last_tested": ""
       }
     ],
-    "training_info": {
-      "induction_program": "",
-      "drill_frequency": "",
-      "last_drill_date": "",
-      "contractor_training_process": ""
-    },
-    "environmental_compliance": {
-      "env_clearance": "",
-      "pcb_registration": "",
-      "iso_9001": "",
-      "iso_14001": "",
-      "iso_45001": ""
-    },
+    "training_records": [],
+    "environmental_records": [
+      {
+        "type": "Environmental Clearance",
+        "reference": "",
+        "issuing_authority": "",
+        "valid_until": ""
+      }
+    ],
     "regulatory_standards": "",
     "fire_safety_systems": "",
     "last_safety_audit_date": "",
