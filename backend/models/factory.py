@@ -140,11 +140,21 @@ class Factory:
     last_safety_audit_findings: str = ""
 
     # --- Facility layout (portal-only feature, not a template section) -------
-    # A flat list of plain dicts exported by the Konva.js canvas editor,
-    # e.g. [{"type": "machine", "x": 100, "y": 100, "width": 140,
-    # "height": 80, "label": "Boiler Unit 1"}, {"type": "text", ...},
-    # {"type": "line", "points": [x1, y1, x2, y2]}, ...].
-    layout_data: List[Dict] = field(default_factory=list)
+    # No longer a hand-built Konva.js canvas -- the layout is auto-detected
+    # from the facility's uploaded onboarding PDF (see
+    # services/layout_extraction.py): layout_image_filename is a PNG
+    # rendered from whichever page was identified as the floor plan / site
+    # layout drawing (saved alongside the original upload in
+    # Config.UPLOAD_FOLDER, which is directly servable as a static file at
+    # /static/uploads/<filename>). layout_canvas is that image's pixel
+    # size, and layout_shapes is the list of detected+OCR'd boxes the user
+    # can drag/resize/retype/delete on top of it in the editor.
+    layout_image_filename: str = ""
+    layout_source_page: int = -1  # 0-indexed PDF page number the layout was found on, -1 = not detected yet
+    layout_canvas: Dict = field(default_factory=dict)
+    # {"width": int, "height": int}
+    layout_shapes: List[Dict] = field(default_factory=list)
+    # [{"id": str, "x": int, "y": int, "width": int, "height": int, "text": str}, ...]
 
     # --- Stakeholder mailing lists (portal-only feature, Monitor Facility) ---
     # Maps a severity level to the list of Person ids subscribed to that

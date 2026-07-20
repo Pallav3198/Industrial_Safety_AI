@@ -19,6 +19,7 @@ from config import Config
 from routes.main_routes import main_bp
 from routes.factory_routes import factory_bp
 from routes.monitor_routes import monitor_bp
+from services.layout_extraction import warmup_ocr_async
 
 
 def create_app() -> Flask:
@@ -38,6 +39,11 @@ def create_app() -> Flask:
 
     from db import init_db
     init_db()
+
+    # Best-effort, non-blocking: starts loading EasyOCR's model now
+    # instead of waiting for someone to click "Detect Layout from PDF" --
+    # see services/layout_extraction.py's warmup_ocr_async() docstring.
+    warmup_ocr_async()
 
     return app
 

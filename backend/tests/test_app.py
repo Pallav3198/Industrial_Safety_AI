@@ -236,14 +236,15 @@ def test_delete_nonexistent_sensor_returns_404(client):
 # ===========================================================================
 
 def test_step4_layout_stub_loads(client):
-    """Layout is a real Konva.js canvas editor, not a stub -- this test's
-    name is legacy from an earlier build phase, kept for continuity with
-    the rest of the suite's naming."""
+    """Layout is auto-detected from the uploaded PDF (services/
+    layout_extraction.py) and edited in a Konva.js canvas on top of that
+    image -- it's no longer a manual "Add Machine/Text/Line" builder."""
     factory_id = _create_test_facility(client)
     response = client.get(f"/factory/{factory_id}/layout")
     assert response.status_code == 200
-    assert b"machineBtn" in response.data  # the "Add Machine" toolbar button
+    assert b"detectBtn" in response.data  # the "Detect Layout from PDF" toolbar button
     assert b"layoutContainer" in response.data  # the canvas mount point
+    assert b"machineBtn" not in response.data  # the old manual-builder button is gone
 
 
 # ===========================================================================

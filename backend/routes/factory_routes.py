@@ -13,7 +13,9 @@ models/wizard_sections.py for the full section registry):
   GET/POST /factory/<id>/process-flow       -> Section 2: Process Flow Description
   GET/POST /factory/<id>/scada-systems      -> Section 3: SCADA / DCS Systems
   GET      /factory/<id>/sensors            -> Section 4: Sensor & Instrumentation (+ API test)
-  GET      /factory/<id>/layout             -> portal-only Konva.js canvas editor (not a template section)
+  GET      /factory/<id>/layout             -> portal-only, auto-detected + editable layout (not a template section)
+  POST     /factory/<id>/layout/detect      -> re-runs automatic layout detection against the uploaded PDF
+  POST     /factory/<id>/layout/detect_page -> manual override: detect against a user-chosen page number
   GET/POST /factory/<id>/negligence         -> Section 15: Incident & Negligence History
   GET      /factory/<id>/employees          -> Section 8: Employee Directory
   GET      /factory/<id>/attendance         -> Section 16: Attendance & Access Control (+ finish)
@@ -48,6 +50,7 @@ from models.permit_record import PermitRecord, PERMIT_TYPE_CHOICES, PERMIT_STATU
 from models.wizard_sections import get_prev_next, get_first_available_section
 from services import storage
 from services.ai_extraction import extract_from_document
+from services.layout_extraction import detect_facility_layout, detect_facility_layout_for_page, get_pdf_page_count
 from services.api_tester import test_endpoint
 
 factory_bp = Blueprint("factory", __name__, url_prefix="/factory")
@@ -592,10 +595,13 @@ def staffing_rules(factory_id):
 
 
 # ===========================================================================
-# Facility Layout -- portal-only Konva.js canvas editor. Sits between
-# Sensors and Key Personnel in models/wizard_sections.WIZARD_SECTIONS,
-# so it's reachable via linear Back/Next like any other section, as
-# well as from the wizard progress bar and Facility Details.
+# Facility Layout -- auto-detected from the facility's uploaded onboarding
+# PDF (services/layout_extraction.py finds the floor-plan/site-layout
+# page, renders it, and detects+OCRs its boxes), then hand-corrected in
+# a Konva.js editor built on top of that image. Sits between Sensors and
+# Key Personnel in models/wizard_sections.WIZARD_SECTIONS, so it's
+# reachable via linear Back/Next like any other section, as well as
+# from the wizard progress bar and Facility Details.
 # ===========================================================================
 
 @factory_bp.route("/<factory_id>/layout", methods=["GET"])
@@ -614,24 +620,137 @@ def layout_page(factory_id):
     )
 
 
+@factory_bp.route("/<factory_id>/layout/detect", methods=["POST"])
+def detect_layout(factory_id):
+    """Runs services/layout_extraction.py's full pipeline against this
+    facility's originally uploaded onboarding PDF: finds the floor-plan/
+    site-layout page, renders it, detects boxes, OCRs labels, and
+    associates the two. Replaces whatever layout was previously saved
+    for this facility -- this is also how the user "starts over" if the
+    wrong page or boxes got picked the first time.
+
+    No automatic scoring heuristic is right 100% of the time, so the
+    result also reports a "confidence" ("confirmed" vs "low") and a
+    human-readable note -- the frontend shows a warning banner plus the
+    manual page-number override (see detect_layout_page below) whenever
+    confidence isn't "confirmed", instead of silently presenting a guess
+    as certain."""
+    factory = storage.get_factory(factory_id)
+    if not factory:
+        return jsonify({"success": False, "error": "Facility not found"}), 404
+
+    if not factory.preliminary_doc_filename:
+        return jsonify({"success": False, "error": "No uploaded onboarding PDF found for this facility."}), 400
+
+    pdf_path = os.path.join(Config.UPLOAD_FOLDER, factory.preliminary_doc_filename)
+    if not os.path.exists(pdf_path):
+        return jsonify({"success": False, "error": "The originally uploaded PDF could not be found on disk."}), 400
+
+    try:
+        result = detect_facility_layout(pdf_path, Config.UPLOAD_FOLDER, factory_id)
+    except ImportError as exc:
+        return jsonify({
+            "success": False,
+            "error": f"Layout detection isn't installed on this server yet ({exc}). "
+                     f"See requirements.txt for the extra packages this feature needs.",
+        }), 500
+    except Exception as exc:  # noqa: BLE001 -- see services/layout_extraction.py docstring
+        print(f"[layout] detection failed for factory {factory_id}: {exc}")
+        return jsonify({"success": False, "error": f"Layout detection failed: {exc}"}), 500
+
+    storage.update_factory_fields(
+        factory_id,
+        layout_image_filename=result["image_filename"],
+        layout_source_page=result["source_page"],
+        layout_canvas=result["canvas"],
+        layout_shapes=result["shapes"],
+    )
+    return jsonify({
+        "success": True,
+        "image_url": url_for("static", filename=f"uploads/{result['image_filename']}"),
+        "canvas": result["canvas"],
+        "shapes": result["shapes"],
+        "source_page": result["source_page"],
+        "total_pages": result["total_pages"],
+        "confidence": result["confidence"],
+        "confidence_note": result["confidence_note"],
+    })
+
+
+@factory_bp.route("/<factory_id>/layout/detect_page", methods=["POST"])
+def detect_layout_page(factory_id):
+    """Manual override: runs detection directly against a page number
+    the user typed in, skipping the scoring/confirmation pass entirely.
+    This is the actual fail-safe for when automatic detection (the route
+    above) picks the wrong page -- no heuristic is right 100% of the
+    time, so being able to just say "use page 19" always works, and is
+    also faster since it doesn't scan every page."""
+    factory = storage.get_factory(factory_id)
+    if not factory:
+        return jsonify({"success": False, "error": "Facility not found"}), 404
+
+    if not factory.preliminary_doc_filename:
+        return jsonify({"success": False, "error": "No uploaded onboarding PDF found for this facility."}), 400
+
+    pdf_path = os.path.join(Config.UPLOAD_FOLDER, factory.preliminary_doc_filename)
+    if not os.path.exists(pdf_path):
+        return jsonify({"success": False, "error": "The originally uploaded PDF could not be found on disk."}), 400
+
+    data = request.get_json(force=True) or {}
+    page_1_indexed = data.get("page")
+    if not isinstance(page_1_indexed, int) or page_1_indexed < 1:
+        return jsonify({"success": False, "error": "page must be a positive integer (1-indexed, as shown in your PDF viewer)."}), 400
+
+    try:
+        total_pages = get_pdf_page_count(pdf_path)
+        if page_1_indexed > total_pages:
+            return jsonify({"success": False, "error": f"This PDF only has {total_pages} page(s)."}), 400
+        result = detect_facility_layout_for_page(pdf_path, Config.UPLOAD_FOLDER, factory_id, page_1_indexed - 1)
+    except ImportError as exc:
+        return jsonify({
+            "success": False,
+            "error": f"Layout detection isn't installed on this server yet ({exc}). "
+                     f"See requirements.txt for the extra packages this feature needs.",
+        }), 500
+    except Exception as exc:  # noqa: BLE001 -- see services/layout_extraction.py docstring
+        print(f"[layout] manual-page detection failed for factory {factory_id}, page {page_1_indexed}: {exc}")
+        return jsonify({"success": False, "error": f"Layout detection failed: {exc}"}), 500
+
+    storage.update_factory_fields(
+        factory_id,
+        layout_image_filename=result["image_filename"],
+        layout_source_page=result["source_page"],
+        layout_canvas=result["canvas"],
+        layout_shapes=result["shapes"],
+    )
+    return jsonify({
+        "success": True,
+        "image_url": url_for("static", filename=f"uploads/{result['image_filename']}"),
+        "canvas": result["canvas"],
+        "shapes": result["shapes"],
+        "source_page": result["source_page"],
+        "total_pages": result["total_pages"],
+        "confidence": result["confidence"],
+        "confidence_note": result["confidence_note"],
+    })
+
 @factory_bp.route("/<factory_id>/layout/save", methods=["POST"])
 def save_layout(factory_id):
-    """Persists the canvas JSON export from static/js/layout_editor.js --
-    a flat list of shape dicts (machines/text/lines). Called both by the
-    explicit 'Save Layout' button and automatically when the user clicks
-    'Next', so work is never silently lost."""
+    """Persists the user's edits (moved/resized/retyped/deleted boxes)
+    from static/js/layout_editor.js -- a flat list of box dicts. Called
+    both by the explicit 'Save Layout' button and automatically when the
+    user clicks 'Next', so work is never silently lost."""
     factory = storage.get_factory(factory_id)
     if not factory:
         return jsonify({"success": False, "error": "Facility not found"}), 404
 
     data = request.get_json(force=True)
-    layout_data = data.get("layout_data")
-    if not isinstance(layout_data, list):
-        return jsonify({"success": False, "error": "layout_data must be a list"}), 400
+    shapes = data.get("shapes")
+    if not isinstance(shapes, list):
+        return jsonify({"success": False, "error": "shapes must be a list"}), 400
 
-    storage.update_factory_fields(factory_id, layout_data=layout_data)
-    return jsonify({"success": True, "shape_count": len(layout_data)})
-
+    storage.update_factory_fields(factory_id, layout_shapes=shapes)
+    return jsonify({"success": True, "shape_count": len(shapes)})
 
 # ===========================================================================
 # Section 15 -- Incident & Negligence History
